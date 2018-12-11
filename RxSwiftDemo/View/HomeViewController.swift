@@ -10,8 +10,6 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     
-    let dataSource = BehaviorRelay<[String]>(value: [])
-    
     let disposedBag = DisposeBag()
     
     lazy var tableView: UITableView = {
@@ -25,7 +23,7 @@ class HomeViewController: BaseViewController {
         tableView.estimatedSectionFooterHeight = 24.0
         tableView.zs.register(HomeTableViewCell.self)
         tableView.mj_header = MJRefreshNormalHeader()
-        tableView.mj_footer = MJRefreshAutoStateFooter()
+        tableView.mj_footer = MJRefreshAutoNormalFooter()
         return tableView
     }()
     
@@ -51,9 +49,10 @@ class HomeViewController: BaseViewController {
                 NetworkService.shared.getRandomResult(10).catchErrorJustReturn([])
             }.share(replay: 1)
         
-        let footerState: ([String]) -> RxMJRefreshFooterState = {
-            [weak self] _ in guard let `self` = self else { return .default}
-            return self.dataSource.value.count < 30 ? .default : .noMoreData
+        let dataSource = BehaviorRelay<[String]>(value: [])
+        
+        let footerState: ([String]) -> RxMJRefreshFooterState = {_ in
+            dataSource.value.count < 30 ? .default : .noMoreData
         }
         
         newData
@@ -61,10 +60,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposedBag)
         
         moreData
-            .map {
-                [weak self] in guard let `self` = self else { return [] }
-                return self.dataSource.value + $0
-            }
+            .map { dataSource.value + $0 }
             .bind(to: dataSource)
             .disposed(by: disposedBag)
         
@@ -74,8 +70,6 @@ class HomeViewController: BaseViewController {
             .drive(tableView.mj_header.rx.isRefreshing)
             .disposed(by: disposedBag)
         
-//        moreData
-//            .map(footerState)
         Observable
             .merge(newData.map(footerState), moreData.map(footerState))
             .startWith(.hidden)
