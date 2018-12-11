@@ -8,5 +8,7 @@ target 'RxSwiftDemo' do
   pod 'MJRefresh', '~> 3.1.15.7'
   pod 'RxCocoa', '~> 4.4.0'
   pod 'RxSwift', '~> 4.4.0'
+  pod 'Moya', '~> 12.0.1'
+  pod 'HandyJSON', '~> 4.2.1'
   
 end
