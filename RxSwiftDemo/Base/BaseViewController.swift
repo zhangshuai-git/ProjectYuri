@@ -8,13 +8,16 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, BaseViewType {
-
+class BaseViewController<ViewModelType>: UIViewController, BaseViewType {
+    
+    var viewModel: ViewModelType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buildSubViews()
         makeConstraints()
-        bindViewModel()
+//        bindViewModel()
+        bindViewModel(viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +27,7 @@ class BaseViewController: UIViewController, BaseViewType {
 
     func buildSubViews() -> Void { }
     func makeConstraints() -> Void { }
-    func bindViewModel() -> Void { }
+//    func bindViewModel() -> Void { }
+    func bindViewModel(_ viewModel: ViewModelType?) { }
     func reBindViewModel() -> Void { }
 }

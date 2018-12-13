@@ -1,14 +1,14 @@
 //
-//  BaseTableViewCell.swift
-//  SwiftDemo
+//  BaseView.swift
+//  RxSwiftDemo
 //
-//  Created by 張帥 on 2018/11/30.
+//  Created by 張帥 on 2018/12/11.
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
 import UIKit
 
-class BaseTableViewCell<ViewModelType>: UITableViewCell, BaseViewType {
+class BaseView<ViewModelType>: UIView, BaseViewType {
     
     var viewModel: ViewModelType? {
         didSet {
@@ -16,8 +16,12 @@ class BaseTableViewCell<ViewModelType>: UITableViewCell, BaseViewType {
         }
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    convenience init() {
+        self.init(frame: CGRect.zero)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         buildSubViews()
         makeConstraints()
 //        bindViewModel()
@@ -29,7 +33,7 @@ class BaseTableViewCell<ViewModelType>: UITableViewCell, BaseViewType {
     
     func buildSubViews() { }
     func makeConstraints() { }
-//    func bindViewModel() { }
-//    func didSetViewModel(_ viewModel: ViewModelType?) { }
     func bindViewModel(_ viewModel: ViewModelType?) { }
+    
+//    func didSetViewModel(_ viewModel: ViewModelType?) { }
 }

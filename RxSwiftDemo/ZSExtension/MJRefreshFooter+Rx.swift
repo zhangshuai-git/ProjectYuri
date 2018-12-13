@@ -17,24 +17,6 @@ public enum RxMJRefreshFooterState {
     case hidden
 }
 
-extension RxMJRefreshFooterState: CustomStringConvertible {
-    
-    public var description: String {
-        switch self {
-        case .default: return "默认状态"
-        case .noMoreData: return "没有更多数据"
-        case .hidden: return "隐藏"
-        }
-    }
-}
-
-extension RxMJRefreshFooterState: CustomDebugStringConvertible {
-    
-    public var debugDescription: String {
-        return description
-    }
-}
-
 public extension Reactive where Base: MJRefreshFooter {
     
     public var refreshFooterState: Binder<RxMJRefreshFooterState> {

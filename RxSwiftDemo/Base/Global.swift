@@ -11,6 +11,8 @@ import Foundation
 @_exported import RxSwift
 @_exported import RxCocoa
 @_exported import SnapKit
+@_exported import Moya
+@_exported import HandyJSON
 
 func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, methodName: String = #function, lineNumber: Int = #line) {
     #if DEBUG
