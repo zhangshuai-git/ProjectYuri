@@ -8,19 +8,19 @@
 
 import UIKit
 
-class BaseTableViewCell<ViewModelType>: UITableViewCell, BaseViewType {
+class BaseTableViewCell/*<ViewModelType>*/: UITableViewCell, BaseViewType {
     
-    var viewModel: ViewModelType? {
-        didSet {
-            bindViewModel(viewModel)
-        }
-    }
+//    var viewModel: ViewModelType? {
+//        didSet {
+//            bindViewModel(viewModel)
+//        }
+//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         buildSubViews()
         makeConstraints()
-//        bindViewModel()
+        bindViewModel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +29,7 @@ class BaseTableViewCell<ViewModelType>: UITableViewCell, BaseViewType {
     
     func buildSubViews() { }
     func makeConstraints() { }
-//    func bindViewModel() { }
+    func bindViewModel() { }
 //    func didSetViewModel(_ viewModel: ViewModelType?) { }
-    func bindViewModel(_ viewModel: ViewModelType?) { }
+//    func bindViewModel(_ viewModel: ViewModelType?) { }
 }

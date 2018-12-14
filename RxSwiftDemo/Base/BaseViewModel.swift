@@ -8,11 +8,11 @@
 
 import Foundation
 
-class BaseViewModel<ModelType> {
+class BaseViewModel/*<ModelType>*/ {
     
     weak var view: UIView?
     var action: PublishSubject<(Any?) -> Void>?
-    var dataSource: BehaviorRelay<ModelType>?
+//    var dataSource: BehaviorRelay<ModelType>?
     
     required init() { }
 }

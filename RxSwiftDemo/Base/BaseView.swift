@@ -8,32 +8,32 @@
 
 import UIKit
 
-class BaseView<ViewModelType>: UIView, BaseViewType {
-    
-    var viewModel: ViewModelType? {
-        didSet {
-            bindViewModel(viewModel)
-        }
-    }
-    
-    convenience init() {
-        self.init(frame: CGRect.zero)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        buildSubViews()
-        makeConstraints()
-//        bindViewModel()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func buildSubViews() { }
-    func makeConstraints() { }
-    func bindViewModel(_ viewModel: ViewModelType?) { }
-    
-//    func didSetViewModel(_ viewModel: ViewModelType?) { }
-}
+//class BaseView<ViewModelType>: UIView, BaseViewType {
+//
+//    var viewModel: ViewModelType? {
+//        didSet {
+//            bindViewModel(viewModel)
+//        }
+//    }
+//
+//    convenience init() {
+//        self.init(frame: CGRect.zero)
+//    }
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        buildSubViews()
+//        makeConstraints()
+////        bindViewModel()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    func buildSubViews() { }
+//    func makeConstraints() { }
+//    func bindViewModel(_ viewModel: ViewModelType?) { }
+//
+////    func didSetViewModel(_ viewModel: ViewModelType?) { }
+//}

@@ -8,6 +8,6 @@
 
 import Foundation
 
-class HomeCellModel: BaseViewModel<HomeModel> {
-    
-}
+//class HomeCellModel: BaseViewModel<HomeModel> {
+//    
+//}

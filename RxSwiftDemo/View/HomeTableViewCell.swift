@@ -6,7 +6,7 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-class HomeTableViewCell: BaseTableViewCell<HomeCellModel> {
+class HomeTableViewCell: BaseTableViewCell {
     
     lazy var titleLab: UILabel = {
         let label = UILabel()

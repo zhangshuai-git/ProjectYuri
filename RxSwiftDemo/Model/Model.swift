@@ -8,47 +8,46 @@
 
 import Foundation
 
-class HomeModel: HandyJSON {
-    
-    var number: Int = 0
-    var description: String = ""
-    
-    required init() { }
-}
+//class HomeModel: HandyJSON {
+//    
+//    var number: Int = 0
+//    var description: String = ""
+//    
+//    required init() { }
+//}
 
-//包含查询返回的所有库模型
+
+
 class GitHubRepositories: HandyJSON {
-    var totalCount: Int!
-    var incompleteResults: Bool!
-    var items: [GitHubRepository]! //本次查询返回的所有仓库集合
+    var total_count: Int = 0
+    var items: [GitHubRepository] = []
     
-    required init() {
-        print("init()")
-        totalCount = 0
-        incompleteResults = false
-        items = []
+    required init() { }
+    
+    static func + (obj0: GitHubRepositories, obj1: GitHubRepositories) -> GitHubRepositories {
+        let obj = GitHubRepositories()
+        obj.total_count = max(obj0.total_count, obj1.total_count)
+        obj.items = obj0.items + obj1.items
+        return obj
     }
-    
 }
 
-//单个仓库模型
 class GitHubRepository: HandyJSON {
-    var id: Int!
-    var name: String!
-    var full_name: String!
-    var html_url: String!
-    var description: String!
-    var owner: RepositoryOwner!
+    var id: Int = 0
+    var name: String = ""
+    var full_name: String = ""
+    var html_url: String = ""
+    var description: String = ""
+    var owner: RepositoryOwner = RepositoryOwner()
     
     required init() { }
 }
-
 
 class RepositoryOwner: HandyJSON {
-    var id: Int!
-    var login: String!
-    var url: String!
-    var avatar_url: String!
+    var id: Int = 0
+    var login: String = ""
+    var url: String = ""
+    var avatar_url: String = ""
     
     required init() { }
 }

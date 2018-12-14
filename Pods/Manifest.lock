@@ -2,8 +2,6 @@ PODS:
   - Alamofire (4.8.0)
   - HandyJSON (4.2.1)
   - MJRefresh (3.1.15.7)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
@@ -21,7 +19,6 @@ PODS:
 DEPENDENCIES:
   - HandyJSON (~> 4.2.1)
   - MJRefresh (~> 3.1.15.7)
-  - Moya (~> 12.0.1)
   - Moya/RxSwift (~> 12.0.1)
   - RxCocoa (~> 4.4.0)
   - RxSwift (~> 4.4.0)
@@ -50,6 +47,6 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 0129e4b44a85c25fb55e88d1d21df52997786c0d
+PODFILE CHECKSUM: ddf1444422f24fb60f8c58ed8927989a092a6535
 
 COCOAPODS: 1.5.3

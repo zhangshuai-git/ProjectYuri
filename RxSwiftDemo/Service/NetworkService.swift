@@ -34,8 +34,8 @@ import Moya
 //    }
 //}
 
-class GitHubNetworkService {
-    static let shared = GitHubNetworkService()
+class NetworkService {
+    static let shared = NetworkService()
     private init() {}
     
     func searchRepositories(query:String) -> Observable<GitHubRepositories> {
