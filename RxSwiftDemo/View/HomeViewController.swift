@@ -14,6 +14,8 @@ class HomeViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
+    let viewModel = HomeViewModel()
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.tableFooterView = UIView()
@@ -54,13 +56,28 @@ class HomeViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        let viewModel = HomeViewModel(vc: self)
+        let searchAction:Observable<String> = searchBar.rx.text.orEmpty
+            .throttle(2.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+
+        let headerAction:Observable<String> = tableView.mj_header.rx.refreshing
+            .asObservable()
+            .map{ [weak self] in self?.searchBar.text ?? "" }
+
+        let footerAction:Observable<String> = tableView.mj_footer.rx.refreshing
+            .asObservable()
+            .map{ [weak self] in self?.searchBar.text ?? "" }
         
-        viewModel.dataSouceCount
+        let input = HomeViewModel.Input(searchAction: searchAction, headerAction: headerAction, footerAction: footerAction
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.dataSourceCount
             .bind(to: resultLab.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel.dataSource
+        output.dataSource
             .skip(1)
             .map{ $0.items }
             .debug("bind to: tableView")
@@ -77,11 +94,28 @@ class HomeViewController: BaseViewController {
                 self?.showAlert(title: item.fullName ,message: item.description)
             })
             .disposed(by: disposeBag)
+        
+        output.newData
+            .map{ _ in false }
+            .asDriver(onErrorJustReturn: false)
+            .drive(tableView.mj_header.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
+        Observable
+            .merge(output.newData.map(footerState), output.moreData.map(footerState))
+            .startWith(.hidden)
+            .asDriver(onErrorJustReturn: .hidden)
+            .drive(tableView.mj_footer.rx.refreshFooterState)
+            .disposed(by: disposeBag)
+    }
+    
+    func footerState(_ repositories: GitHubRepositories) -> RxMJRefreshFooterState {
+        print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
+        return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
     
     func showAlert(title:String, message:String) {
-        let alertController = UIAlertController(title: title,
-                                                message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)

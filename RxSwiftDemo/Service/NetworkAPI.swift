@@ -45,12 +45,6 @@ extension GitHubAPI: TargetType {
     public var task: Task {
         switch self {
         case .repositories(let params):
-//            var params: [String: Any] = [:]
-//            params["q"] = query
-//            params["sort"] = sort
-//            params["order"] = order
-//            params["per_page"] = prePage
-//            params["page"] = page
             print("发起请求: \(params)")
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }

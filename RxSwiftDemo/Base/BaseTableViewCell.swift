@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseTableViewCell/*<ViewModelType>*/: UITableViewCell, BaseViewType {
+class BaseTableViewCell/*<ViewModelType>*/: UITableViewCell, ViewType {
     
 //    var viewModel: ViewModelType? {
 //        didSet {

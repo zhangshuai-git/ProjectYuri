@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController/*<ViewModelType>*/: UIViewController, BaseViewType {
+class BaseViewController/*<ViewModelType>*/: UIViewController, ViewType {
     
 //    var viewModel: ViewModelType?ß
     

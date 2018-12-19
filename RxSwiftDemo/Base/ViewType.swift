@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol BaseViewType {
+public protocol ViewType {
 //    associatedtype ViewModelType
     
     func buildSubViews()

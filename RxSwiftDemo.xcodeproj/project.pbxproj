@@ -14,7 +14,7 @@
 		EC1B9D7721BE84DE000E2C5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7521BE84DE000E2C5B /* LaunchScreen.storyboard */; };
 		EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */; };
 		EC1B9D8421BE8690000E2C5B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */; };
-		EC1B9D8521BE8690000E2C5B /* BaseViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8121BE8690000E2C5B /* BaseViewType.swift */; };
+		EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8121BE8690000E2C5B /* ViewType.swift */; };
 		EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8221BE8690000E2C5B /* Global.swift */; };
 		EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8821BE86CF000E2C5B /* ZSExtension.swift */; };
 		EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8921BE86CF000E2C5B /* UITableView+ZSExtension.swift */; };
@@ -25,10 +25,8 @@
 		EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */; };
-		ECB6D88C21BFBDC100017274 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D88B21BFBDC100017274 /* BaseViewModel.swift */; };
-		ECB6D88E21BFCB8A00017274 /* HomeCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D88D21BFCB8A00017274 /* HomeCellModel.swift */; };
+		ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0805121CA37DB00ED8548 /* ViewModelType.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
-		ECB6D89321BFCDE000017274 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89221BFCDE000017274 /* BaseView.swift */; };
 		ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* HomeViewModel.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +43,7 @@
 		EC1B9D7821BE84DE000E2C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		EC1B9D8121BE8690000E2C5B /* BaseViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewType.swift; sourceTree = "<group>"; };
+		EC1B9D8121BE8690000E2C5B /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		EC1B9D8221BE8690000E2C5B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		EC1B9D8821BE86CF000E2C5B /* ZSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZSExtension.swift; sourceTree = "<group>"; };
 		EC1B9D8921BE86CF000E2C5B /* UITableView+ZSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ZSExtension.swift"; sourceTree = "<group>"; };
@@ -56,10 +54,8 @@
 		EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
-		ECB6D88B21BFBDC100017274 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		ECB6D88D21BFCB8A00017274 /* HomeCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellModel.swift; sourceTree = "<group>"; };
+		ECB0805121CA37DB00ED8548 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		ECB6D89221BFCDE000017274 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		ECB6D89421BFD77500017274 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,11 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				EC1B9D8221BE8690000E2C5B /* Global.swift */,
-				EC1B9D8121BE8690000E2C5B /* BaseViewType.swift */,
+				EC1B9D8121BE8690000E2C5B /* ViewType.swift */,
+				ECB0805121CA37DB00ED8548 /* ViewModelType.swift */,
 				EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */,
 				EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */,
-				ECB6D89221BFCDE000017274 /* BaseView.swift */,
-				ECB6D88B21BFBDC100017274 /* BaseViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -149,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */,
-				ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */,
 				EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */,
+				ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				ECB6D89421BFD77500017274 /* HomeViewModel.swift */,
-				ECB6D88D21BFCB8A00017274 /* HomeCellModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -327,9 +321,8 @@
 			files = (
 				EC1B9D8421BE8690000E2C5B /* BaseTableViewCell.swift in Sources */,
 				ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */,
-				EC1B9D8521BE8690000E2C5B /* BaseViewType.swift in Sources */,
+				EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
-				ECB6D89321BFCDE000017274 /* BaseView.swift in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
@@ -339,13 +332,12 @@
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */,
 				EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */,
-				ECB6D88C21BFBDC100017274 /* BaseViewModel.swift in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
 				EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
+				ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,
 				EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */,
-				ECB6D88E21BFCB8A00017274 /* HomeCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
