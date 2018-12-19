@@ -12,7 +12,7 @@ import RxCocoa
 
 class HomeViewController: BaseViewController {
     
-    let disposedBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -56,50 +56,30 @@ class HomeViewController: BaseViewController {
     override func bindViewModel() {
         let viewModel = HomeViewModel(vc: self)
         
-        viewModel.newData
-            .bind(to: viewModel.dataSource)
-            .disposed(by: disposedBag)
-
-        viewModel.moreData
-            .map { viewModel.dataSource.value + $0 }
-            .bind(to: viewModel.dataSource)
-            .disposed(by: disposedBag)
-
-        viewModel.newData
-            .map { _ in false }
-            .asDriver(onErrorJustReturn: false)
-            .drive(tableView.mj_header.rx.isRefreshing)
-            .disposed(by: disposedBag)
-
-        Observable
-            .merge(viewModel.newData.map(viewModel.footerState), viewModel.moreData.map(viewModel.footerState))
-            .startWith(.hidden)
-            .asDriver(onErrorJustReturn: .hidden)
-            .drive(tableView.mj_footer.rx.refreshFooterState)
-            .disposed(by: disposedBag)
-
-        viewModel.totalCount
+        viewModel.dataSouceCount
             .bind(to: resultLab.rx.text)
-            .disposed(by: disposedBag)
+            .disposed(by: disposeBag)
         
-        Observable.of(viewModel.repositories, viewModel.dataSource.skip(1).map{ $0.items })
-            .merge()
+        viewModel.dataSource
+            .skip(1)
+            .map{ $0.items }
+            .debug("bind to: tableView")
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
                 cell.titleLab.text = element.name
-                cell.detailLab.text = element.html_url
+                cell.detailLab.text = element.htmlUrl
                 return cell
             }
-            .disposed(by: disposedBag)
+            .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(GitHubRepository.self)
             .subscribe(onNext: {[weak self] item in
-                self?.showAlert(title: item.full_name , message: item.description )
+                self?.showAlert(title: item.fullName ,message: item.description)
             })
-            .disposed(by: disposedBag)
+            .disposed(by: disposeBag)
     }
     
-    func showAlert(title:String, message:String){
+    func showAlert(title:String, message:String) {
         let alertController = UIAlertController(title: title,
                                                 message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

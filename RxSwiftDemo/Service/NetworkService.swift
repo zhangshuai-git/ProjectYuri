@@ -34,20 +34,27 @@ import Moya
 //    }
 //}
 
+enum NetworkError: Error {
+    case empty
+}
+
 class NetworkService {
     static let shared = NetworkService()
     private init() {}
     
-    func searchRepositories(query:String) -> Observable<GitHubRepositories> {
+    func searchRepositories(_ params:RepositoriesParams) -> Observable<GitHubRepositories> {
+//        if query.isEmpty {
+//            return Observable<GitHubRepositories>.error(NetworkError.empty)
+//        }
         return GitHubProvider.rx
-            .request(.repositories(query))
+            .request(.repositories(params.toJSON() ?? [:]))
             .asObservable()
-            .filterSuccessfulStatusCodes()
+//            .filterSuccessfulStatusCodes()
             .mapModel(GitHubRepositories.self)
-            .catchError({ error in
-                print("发生错误：",error.localizedDescription)
-                return Observable<GitHubRepositories>.empty()
-            })
+//            .catchError({ error in
+//                print("发生错误：",error.localizedDescription)
+//                return Observable<GitHubRepositories>.empty()
+//            })
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
     }

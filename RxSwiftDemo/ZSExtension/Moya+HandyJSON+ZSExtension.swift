@@ -20,7 +20,7 @@ extension Response {
 //        print(jsonString);
 //        return JSONDeserializer<T>.deserializeFrom(json: jsonString)!
         let dict:[String : Any] = (try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? [String : Any] ?? [:]
-        print(dict);
+//        print(dict);
         return JSONDeserializer<T>.deserializeFrom(dict: dict) ?? T()
     }
 }

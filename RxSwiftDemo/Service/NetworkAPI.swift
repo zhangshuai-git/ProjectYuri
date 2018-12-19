@@ -8,6 +8,8 @@
 
 import Foundation
 
+let PER_PAGE:UInt = 1
+
 let GitHubProvider = MoyaProvider<GitHubAPI>()
 
 public enum GitHubAPI {
@@ -18,7 +20,7 @@ public enum GitHubAPI {
      sort   string     The sort field. One of stars, forks, or updated. Default: results are sorted by best match.
      order  string     The sort order if sort parameter is provided. One of asc or desc. Default: desc
      */
-    case repositories(String)
+    case repositories(_ params:[String : Any])
 }
 
 extension GitHubAPI: TargetType {
@@ -41,15 +43,15 @@ extension GitHubAPI: TargetType {
     }
     
     public var task: Task {
-        print("发起请求。")
         switch self {
-        case .repositories(let query):
-            var params: [String: Any] = [:]
-            params["q"] = query
-            params["sort"] = "stars"
-            params["order"] = "desc"
-            params["per_page"] = "10"
-            params["page"] = "1"
+        case .repositories(let params):
+//            var params: [String: Any] = [:]
+//            params["q"] = query
+//            params["sort"] = sort
+//            params["order"] = order
+//            params["per_page"] = prePage
+//            params["page"] = page
+            print("发起请求: \(params)")
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }

@@ -16,29 +16,61 @@ import Foundation
 //    required init() { }
 //}
 
-
+public class RepositoriesParams:HandyJSON {
+    var query:String = ""
+    var sort:String = "stars"
+    var order:String = "desc"
+    var perPage:UInt = PER_PAGE
+    var page:Int = 1
+    
+    public func mapping(mapper: HelpingMapper) {
+        mapper <<< query <-- "q"
+        mapper <<< perPage <-- "per_page"
+    }
+    
+    public required init() { }
+    
+    public init(query:String = "", page:Int = 1) {
+        self.query = query
+        self.page = page
+    }
+}
 
 class GitHubRepositories: HandyJSON {
-    var total_count: Int = 0
+    var totalCount:UInt = 0
     var items: [GitHubRepository] = []
+    var currentPage:Int = 1
+    var totalPage:UInt {
+        return totalCount / PER_PAGE
+    }
     
-    required init() { }
+    public func mapping(mapper: HelpingMapper) {
+        mapper <<< totalCount <-- "total_count"
+    }
     
     static func + (obj0: GitHubRepositories, obj1: GitHubRepositories) -> GitHubRepositories {
         let obj = GitHubRepositories()
-        obj.total_count = max(obj0.total_count, obj1.total_count)
+        obj.totalCount = max(obj0.totalCount, obj1.totalCount)
         obj.items = obj0.items + obj1.items
+        obj.currentPage = max(obj0.currentPage, obj1.currentPage)
         return obj
     }
+    
+    required init() { }
 }
 
 class GitHubRepository: HandyJSON {
     var id: Int = 0
     var name: String = ""
-    var full_name: String = ""
-    var html_url: String = ""
+    var fullName: String = ""
+    var htmlUrl: String = ""
     var description: String = ""
     var owner: RepositoryOwner = RepositoryOwner()
+    
+    public func mapping(mapper: HelpingMapper) {
+        mapper <<< fullName <-- "full_name"
+        mapper <<< htmlUrl <-- "html_url"
+    }
     
     required init() { }
 }
@@ -47,7 +79,11 @@ class RepositoryOwner: HandyJSON {
     var id: Int = 0
     var login: String = ""
     var url: String = ""
-    var avatar_url: String = ""
+    var avatarUrl: String = ""
+    
+    public func mapping(mapper: HelpingMapper) {
+        mapper <<< avatarUrl <-- "avatar_url"
+    }
     
     required init() { }
 }

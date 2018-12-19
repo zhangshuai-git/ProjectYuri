@@ -23,3 +23,5 @@ func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, method
     Swift.print("\(tag ?? date) <\(fileName)> \(methodName) [Line \(lineNumber)] \(message)")
     #endif
 }
+
+
