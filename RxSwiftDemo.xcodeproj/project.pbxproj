@@ -25,7 +25,7 @@
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
 		EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
-		ECB0803C21C220E300ED8548 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */; };
+		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0805121CA37DB00ED8548 /* ViewModelType.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
 		ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* HomeViewModel.swift */; };
@@ -55,7 +55,7 @@
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
-		ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
+		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB0805121CA37DB00ED8548 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECB6D89421BFD77500017274 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */,
 				EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */,
-				ECB0803B21C220E300ED8548 /* RepositoryViewController.swift */,
+				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* HomeViewController.swift in Sources */,
-				ECB0803C21C220E300ED8548 /* RepositoryViewController.swift in Sources */,
+				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */,
 				EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */,

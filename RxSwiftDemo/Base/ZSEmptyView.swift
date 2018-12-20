@@ -44,15 +44,15 @@ class ZSEmptyView: UIView {
     
     func makeConstraints() {
         iconImg.snp.makeConstraints({ make in
-            make.top.left.greaterThanOrEqualToSuperview().inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
-            make.bottom.right.lessThanOrEqualToSuperview().inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+            make.top.left.greaterThanOrEqualTo(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+            make.bottom.right.lessThanOrEqualTo(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-40)
         })
         
         messageLab.snp.makeConstraints({ make in
-            make.top.left.greaterThanOrEqualToSuperview().inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
-            make.bottom.right.lessThanOrEqualToSuperview().inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+            make.top.left.greaterThanOrEqualTo(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+            make.bottom.right.lessThanOrEqualTo(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
             make.centerX.equalToSuperview()
             make.top.equalTo(iconImg.snp.bottom).offset(20)
         })

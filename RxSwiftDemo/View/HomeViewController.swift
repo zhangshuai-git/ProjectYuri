@@ -44,7 +44,7 @@ class HomeViewController: BaseViewController {
     }()
     
     lazy var emptyView: ZSEmptyView = {
-        let emptyView = ZSEmptyView(message: "请输入关键字\n实时搜索GitHub上的repositories\n下拉列表刷新数据，上拉加载更多数据")
+        let emptyView = ZSEmptyView(message: "请输入关键字\n实时搜索GitHub上的repositories\n下拉列表刷新数据，上拉加载更多数据\n点击条目查看详情，点击Owner查看作者信息")
         emptyView.backgroundColor = UIColor.white
         return emptyView
     }()
@@ -90,6 +90,11 @@ class HomeViewController: BaseViewController {
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
                 cell.titleLab.text = element.name
                 cell.detailLab.text = element.htmlUrl
+                cell.actionBtn.rx.tap.asDriver()
+                    .drive(onNext: {
+                        
+                    })
+                    .disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)
