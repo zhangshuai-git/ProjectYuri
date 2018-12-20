@@ -8,14 +8,6 @@
 
 import Foundation
 
-//class HomeModel: HandyJSON {
-//    
-//    var number: Int = 0
-//    var description: String = ""
-//    
-//    required init() { }
-//}
-
 public class RepositoriesParams:HandyJSON {
     var query:String = ""
     var sort:String = "stars"
