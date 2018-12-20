@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		517A6C4F928248C331EA1D44 /* Pods_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
+		EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0FA00121CB693800EA685A /* ActivityIndicator.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
 		EC1B9D6F21BE84DB000E2C5B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */; };
 		EC1B9D7421BE84DE000E2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		70551E8D4E1F661459CE6F27 /* Pods-RxSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
+		EC0FA00121CB693800EA685A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* RxSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				EC1B9D8921BE86CF000E2C5B /* UITableView+ZSExtension.swift */,
 				EC1B9D8821BE86CF000E2C5B /* ZSExtension.swift */,
+				EC0FA00121CB693800EA685A /* ActivityIndicator.swift */,
 				EC1B9D8E21BE8765000E2C5B /* MJRefreshComponent+Rx.swift */,
 				EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */,
 				EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */,
@@ -273,6 +276,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -288,6 +292,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +333,7 @@
 				ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */,
 				EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
+				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,

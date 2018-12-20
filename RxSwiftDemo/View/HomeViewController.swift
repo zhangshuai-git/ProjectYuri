@@ -40,6 +40,7 @@ class HomeViewController: BaseViewController {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
+        label.backgroundColor = UIColor.groupTableViewBackground
         return label
     }()
     
@@ -63,7 +64,7 @@ class HomeViewController: BaseViewController {
     
     override func bindViewModel() {
         let searchAction:Observable<String> = searchBar.rx.text.orEmpty
-            .throttle(0.5, scheduler: MainScheduler.instance)
+            .throttle(2.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
 
         let headerAction:Observable<String> = tableView.mj_header.rx.refreshing

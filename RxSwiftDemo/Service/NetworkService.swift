@@ -12,11 +12,25 @@ import Moya
 
 class NetworkService {
     static let shared = NetworkService()
-    private init() {}
+    private init() {
+        isShowIndicator
+            .asObservable()
+            .subscribe(onNext: {
+                $0 ? SVProgressHUD.show() : SVProgressHUD.dismiss()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    let disposeBag = DisposeBag()
+    
+    private let indicator = ActivityIndicator()
+    
+    private lazy var isShowIndicator : Driver<Bool> = indicator.asDriver()
     
     func searchRepositories(_ params:RepositoriesParams) -> Observable<GitHubRepositories> {
         return GitHubProvider.rx
             .request(.repositories(params.toJSON() ?? [:]))
+            .trackActivity(indicator)
             .asObservable()
             .mapModel(GitHubRepositories.self)
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))

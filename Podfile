@@ -11,5 +11,6 @@ target 'RxSwiftDemo' do
   pod 'Moya/RxSwift', '~> 12.0.1'
   pod 'HandyJSON', '~> 4.2.1'
   pod 'SDWebImage', '~> 4.4.2'
+  pod 'SVProgressHUD', '~> 2.2.5'
   
 end

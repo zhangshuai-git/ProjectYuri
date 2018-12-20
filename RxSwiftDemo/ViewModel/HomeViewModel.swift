@@ -39,7 +39,7 @@ class HomeViewModel:ViewModelType {
     
     private lazy var dataSourceCount = Observable.merge(
         dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
-        dataSource.filter{ $0.totalCount == 0 }.map{ _ in "" },
+        dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
         newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
         moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
         )

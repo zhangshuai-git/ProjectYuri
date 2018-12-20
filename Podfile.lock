@@ -18,6 +18,7 @@ PODS:
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
   - SnapKit (4.2.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - HandyJSON (~> 4.2.1)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - RxSwift (~> 4.4.0)
   - SDWebImage (~> 4.4.2)
   - SnapKit (~> 4.2.0)
+  - SVProgressHUD (~> 2.2.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -40,6 +42,7 @@ SPEC REPOS:
     - RxSwift
     - SDWebImage
     - SnapKit
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
@@ -52,7 +55,8 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: b862c75cd8232516441e7e2675f3cdcaf21f32b8
+PODFILE CHECKSUM: 177ad973f48e3881946df58f182eb9d644c4a8ca
 
 COCOAPODS: 1.5.3
