@@ -17,6 +17,7 @@ class OwnerViewController: BaseViewController {
     
     lazy var iconImg: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         return imageView
