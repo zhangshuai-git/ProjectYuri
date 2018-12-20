@@ -17,6 +17,8 @@ class OwnerViewController: BaseViewController {
     
     lazy var iconImg: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -50,7 +52,7 @@ class OwnerViewController: BaseViewController {
         
         iconImg.snp.makeConstraints { (make) in
             make.top.left.equalTo(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
-            make.size.equalTo(CGSize(width: 60, height: 60))
+            make.size.equalTo(CGSize(width: 40, height: 40))
         }
         
         titleLab.snp.makeConstraints { (make) in
