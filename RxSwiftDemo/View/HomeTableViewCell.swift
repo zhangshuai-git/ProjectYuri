@@ -8,8 +8,6 @@
 
 class HomeTableViewCell: BaseTableViewCell {
     
-    let disposeBag = DisposeBag()
-    
     lazy var titleLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
@@ -28,7 +26,7 @@ class HomeTableViewCell: BaseTableViewCell {
         button.setTitleColor(UIColor.black, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
-        button.layer.borderColor = UIColor.green.cgColor
+        button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 1
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         return button

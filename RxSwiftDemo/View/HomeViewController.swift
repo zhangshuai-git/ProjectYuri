@@ -90,12 +90,14 @@ class HomeViewController: BaseViewController {
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
                 cell.titleLab.text = element.name
                 cell.detailLab.text = element.htmlUrl
-                cell.actionBtn.rx.tap.asDriver()
+                _ = cell.actionBtn.rx.tap
+                    .asObservable()
+                    .takeUntil(cell.rx.sentMessage(#selector(UITableViewCell.prepareForReuse)))
+                    .asDriver(onErrorJustReturn: Void())
                     .drive(onNext: {
                         [weak self] in guard let `self` = self else { return }
                         self.gotoOwnerViewController(element.owner)
                     })
-                    .disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)
