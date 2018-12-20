@@ -43,6 +43,12 @@ class HomeViewController: BaseViewController {
         return label
     }()
     
+    lazy var emptyView: ZSEmptyView = {
+        let emptyView = ZSEmptyView(message: "请输入关键字\n实时搜索GitHub上的repositories\n下拉列表刷新数据，上拉加载更多数据")
+        emptyView.backgroundColor = UIColor.white
+        return emptyView
+    }()
+    
     override func buildSubViews() {
         navigationItem.titleView = searchBar
         view.addSubview(tableView)
@@ -57,7 +63,7 @@ class HomeViewController: BaseViewController {
     
     override func bindViewModel() {
         let searchAction:Observable<String> = searchBar.rx.text.orEmpty
-            .throttle(2.0, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
 
         let headerAction:Observable<String> = tableView.mj_header.rx.refreshing
@@ -68,8 +74,7 @@ class HomeViewController: BaseViewController {
             .asObservable()
             .map{ [weak self] in self?.searchBar.text ?? "" }
         
-        let input = HomeViewModel.Input(searchAction: searchAction, headerAction: headerAction, footerAction: footerAction
-        )
+        let input = HomeViewModel.Input(searchAction: searchAction, headerAction: headerAction, footerAction: footerAction)
         
         let output = viewModel.transform(input)
         
@@ -87,6 +92,13 @@ class HomeViewController: BaseViewController {
                 cell.detailLab.text = element.htmlUrl
                 return cell
             }
+            .disposed(by: disposeBag)
+        
+        output.dataSource
+            .subscribe(onNext: {
+                [weak self] _ in guard let `self` = self else { return }
+                self.tableView.zs.reloadData(withEmpty: self.emptyView)
+            })
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(GitHubRepository.self)
@@ -108,8 +120,11 @@ class HomeViewController: BaseViewController {
             .drive(tableView.mj_footer.rx.refreshFooterState)
             .disposed(by: disposeBag)
     }
-    
+}
+
+extension HomeViewController {
     func footerState(_ repositories: GitHubRepositories) -> RxMJRefreshFooterState {
+        if repositories.items.count == 0 { return .hidden }
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }

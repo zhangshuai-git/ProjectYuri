@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		517A6C4F928248C331EA1D44 /* Pods_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */; };
+		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
 		EC1B9D6F21BE84DB000E2C5B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */; };
 		EC1B9D7421BE84DE000E2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70551E8D4E1F661459CE6F27 /* Pods-RxSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* RxSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				EC1B9D8221BE8690000E2C5B /* Global.swift */,
 				EC1B9D8121BE8690000E2C5B /* ViewType.swift */,
 				ECB0805121CA37DB00ED8548 /* ViewModelType.swift */,
+				EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */,
 				EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */,
 				EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */,
 			);
@@ -322,6 +325,7 @@
 				EC1B9D8421BE8690000E2C5B /* BaseTableViewCell.swift in Sources */,
 				ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */,
 				EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */,
+				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,

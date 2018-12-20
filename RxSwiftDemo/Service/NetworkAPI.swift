@@ -8,7 +8,7 @@
 
 import Foundation
 
-let PER_PAGE:UInt = 1
+let PER_PAGE:UInt = 10
 
 let GitHubProvider = MoyaProvider<GitHubAPI>()
 
