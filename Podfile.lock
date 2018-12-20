@@ -14,6 +14,9 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
@@ -22,6 +25,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 12.0.1)
   - RxCocoa (~> 4.4.0)
   - RxSwift (~> 4.4.0)
+  - SDWebImage (~> 4.4.2)
   - SnapKit (~> 4.2.0)
 
 SPEC REPOS:
@@ -34,6 +38,7 @@ SPEC REPOS:
     - RxAtomic
     - RxCocoa
     - RxSwift
+    - SDWebImage
     - SnapKit
 
 SPEC CHECKSUMS:
@@ -45,8 +50,9 @@ SPEC CHECKSUMS:
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: ddf1444422f24fb60f8c58ed8927989a092a6535
+PODFILE CHECKSUM: b862c75cd8232516441e7e2675f3cdcaf21f32b8
 
 COCOAPODS: 1.5.3

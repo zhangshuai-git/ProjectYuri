@@ -92,7 +92,8 @@ class HomeViewController: BaseViewController {
                 cell.detailLab.text = element.htmlUrl
                 cell.actionBtn.rx.tap.asDriver()
                     .drive(onNext: {
-                        
+                        [weak self] in guard let `self` = self else { return }
+                        self.gotoOwnerViewController(element.owner)
                     })
                     .disposed(by: cell.disposeBag)
                 return cell
@@ -107,8 +108,9 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(GitHubRepository.self)
-            .subscribe(onNext: {[weak self] item in
-                self?.showAlert(title: item.fullName ,message: item.description)
+            .subscribe(onNext: {
+                [weak self] in guard let `self` = self else { return }
+                self.showAlert(title: $0.fullName ,message: $0.description)
             })
             .disposed(by: disposeBag)
         
@@ -139,6 +141,12 @@ extension HomeViewController {
         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func gotoOwnerViewController(_ owner: RepositoryOwner?) {
+        let vc = OwnerViewController()
+        vc.owner = owner
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

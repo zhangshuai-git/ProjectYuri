@@ -17,12 +17,14 @@ class HomeViewModel:ViewModelType {
     private lazy var moreRepositoriesParams = BehaviorRelay<RepositoriesParams>(value: RepositoriesParams(page: 2))
     
     private lazy var newData:Observable<GitHubRepositories> = newRepositoriesParams
+        .skip(1)
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
         .share(replay: 1)
     
     private lazy var moreData:Observable<GitHubRepositories> = moreRepositoriesParams
+        .skip(1)
         .map{
             [weak self] in guard let `self` = self else { return $0 }
             $0.page = self.dataSource.value.currentPage + 1

@@ -8,16 +8,12 @@
 
 import UIKit
 
-class BaseTableViewCell/*<ViewModelType>*/: UITableViewCell, ViewType {
-    
-//    var viewModel: ViewModelType? {
-//        didSet {
-//            bindViewModel(viewModel)
-//        }
-//    }
+class BaseTableViewCell: UITableViewCell, ViewType {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
+        contentView.backgroundColor = UIColor.white
         buildSubViews()
         makeConstraints()
         bindViewModel()
@@ -30,6 +26,4 @@ class BaseTableViewCell/*<ViewModelType>*/: UITableViewCell, ViewType {
     func buildSubViews() { }
     func makeConstraints() { }
     func bindViewModel() { }
-//    func didSetViewModel(_ viewModel: ViewModelType?) { }
-//    func bindViewModel(_ viewModel: ViewModelType?) { }
 }
