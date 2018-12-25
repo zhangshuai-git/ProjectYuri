@@ -12,5 +12,6 @@ target 'RxSwiftDemo' do
   pod 'HandyJSON', '~> 4.2.1'
   pod 'SDWebImage', '~> 4.4.2'
   pod 'SVProgressHUD', '~> 2.2.5'
+  pod 'FMDB', '~> 2.7.5'
   
 end

@@ -8,21 +8,21 @@
 
 import Foundation
 
-public class RepositoriesParams:HandyJSON {
+class RepositoriesParams:HandyJSON {
     var query:String = ""
     var sort:String = "stars"
     var order:String = "desc"
     var perPage:UInt = PER_PAGE
     var page:Int = 1
     
-    public func mapping(mapper: HelpingMapper) {
+    func mapping(mapper: HelpingMapper) {
         mapper <<< query <-- "q"
         mapper <<< perPage <-- "per_page"
     }
     
-    public required init() { }
+    required init() { }
     
-    public init(query:String = "", page:Int = 1) {
+    init(query:String = "", page:Int = 1) {
         self.query = query
         self.page = page
     }
