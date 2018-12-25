@@ -89,6 +89,7 @@ extension HomeViewModel {
             .disposed(by: disposeBag)
         
         newData
+            .filter{ $0.items.count > 0 }
             .subscribe(onNext: {
                 [weak self] _ in guard let `self` = self else { return }
                 self.dataSource.value.currentPage = 1
@@ -96,6 +97,7 @@ extension HomeViewModel {
             .disposed(by: disposeBag)
         
         moreData
+            .filter{ $0.items.count > 0 }
             .subscribe(onNext: {
                 [weak self] _ in guard let `self` = self else { return }
                 self.dataSource.value.currentPage += 1

@@ -86,7 +86,6 @@ class HomeViewController: BaseViewController {
         output.dataSource
             .skip(1)
             .map{ $0.items }
-            .debug("bind to: tableView")
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
                 cell.titleLab.text = element.name
