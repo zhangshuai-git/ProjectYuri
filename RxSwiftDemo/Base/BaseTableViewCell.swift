@@ -10,20 +10,30 @@ import UIKit
 
 class BaseTableViewCell: UITableViewCell, ViewType {
     
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        bindViewModel()
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         contentView.backgroundColor = UIColor.white
-        buildSubViews()
+        buildSubViews(contentView)
         makeConstraints()
-        bindViewModel()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func buildSubViews() { }
+//    func buildSubViews() { }
     func makeConstraints() { }
     func bindViewModel() { }
+    
+    func buildSubViews(_ rootView: UIView) { }
+//    func bindViewModel(_ viewModel: ViewModel) { }
 }

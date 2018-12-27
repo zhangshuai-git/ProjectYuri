@@ -9,7 +9,10 @@
 import Foundation
 
 public protocol ViewType {
-    func buildSubViews()
+//    associatedtype ViewModel:ViewModelType
+    
+    func buildSubViews(_ rootView:UIView)
     func makeConstraints()
     func bindViewModel()
+//    func bindViewModel(_ viewModel:ViewModel)
 }

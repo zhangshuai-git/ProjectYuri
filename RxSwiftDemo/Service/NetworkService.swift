@@ -33,6 +33,7 @@ class NetworkService {
             .trackActivity(indicator)
             .asObservable()
             .mapModel(GitHubRepositories.self)
+            .catchErrorJustReturn(GitHubRepositories())
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
     }

@@ -25,6 +25,10 @@
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
 		EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */; };
+		EC3908F221D1D1F8003A9250 /* DataBaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DataBaseAPI.swift */; };
+		EC3908F421D1D20E003A9250 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F321D1D20E003A9250 /* DataBaseService.swift */; };
+		ECA89EB521D38E940051AA95 /* Moya+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA89EB421D38E940051AA95 /* Moya+Rx.swift */; };
+		ECA89EC321D4B2F30051AA95 /* HomeCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA89EC221D4B2F30051AA95 /* HomeCellModel.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0805121CA37DB00ED8548 /* ViewModelType.swift */; };
@@ -56,6 +60,10 @@
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		EC3908F121D1D1F8003A9250 /* DataBaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseAPI.swift; sourceTree = "<group>"; };
+		EC3908F321D1D20E003A9250 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
+		ECA89EB421D38E940051AA95 /* Moya+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Rx.swift"; sourceTree = "<group>"; };
+		ECA89EC221D4B2F30051AA95 /* HomeCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellModel.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB0805121CA37DB00ED8548 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 				EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */,
 				EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */,
 				ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */,
+				ECA89EB421D38E940051AA95 /* Moya+Rx.swift */,
 			);
 			path = ZSExtension;
 			sourceTree = "<group>";
@@ -160,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				ECB6D89421BFD77500017274 /* HomeViewModel.swift */,
+				ECA89EC221D4B2F30051AA95 /* HomeCellModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -169,6 +179,8 @@
 			children = (
 				EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */,
 				ECB0803121C2032400ED8548 /* NetworkAPI.swift */,
+				EC3908F321D1D20E003A9250 /* DataBaseService.swift */,
+				EC3908F121D1D1F8003A9250 /* DataBaseAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -336,6 +348,7 @@
 				EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
+				EC3908F421D1D20E003A9250 /* DataBaseService.swift in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
@@ -344,10 +357,13 @@
 				EC1B9D6F21BE84DB000E2C5B /* HomeViewController.swift in Sources */,
 				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
+				ECA89EC321D4B2F30051AA95 /* HomeCellModel.swift in Sources */,
 				ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */,
 				EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
 				EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */,
+				EC3908F221D1D1F8003A9250 /* DataBaseAPI.swift in Sources */,
+				ECA89EB521D38E940051AA95 /* Moya+Rx.swift in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
 				ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,

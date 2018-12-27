@@ -12,8 +12,6 @@ import RxCocoa
 
 class HomeViewController: BaseViewController {
     
-    let disposeBag = DisposeBag()
-    
     let viewModel = HomeViewModel()
     
     lazy var tableView: UITableView = {
@@ -50,9 +48,9 @@ class HomeViewController: BaseViewController {
         return emptyView
     }()
     
-    override func buildSubViews() {
+    override func buildSubViews(_ rootView: UIView) {
         navigationItem.titleView = searchBar
-        view.addSubview(tableView)
+        rootView.addSubview(tableView)
         tableView.tableHeaderView = resultLab
     }
     
@@ -88,16 +86,20 @@ class HomeViewController: BaseViewController {
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-                cell.titleLab.text = element.name
-                cell.detailLab.text = element.htmlUrl
-                _ = cell.actionBtn.rx.tap
-                    .asObservable()
-                    .takeUntil(cell.rx.sentMessage(#selector(UITableViewCell.prepareForReuse)))
-                    .asDriver(onErrorJustReturn: Void())
-                    .drive(onNext: {
-                        [weak self] in guard let `self` = self else { return }
-                        self.gotoOwnerViewController(element.owner)
-                    })
+                Observable.of(element).bind(to: cell.viewModel.output.dataSource).disposed(by: cell.disposeBag)
+//                cell.titleLab.text = element.name
+//                cell.detailLab.text = element.description
+//                cell.contentLab.text = element.htmlUrl
+////                cell.isButtonActive = false
+//                cell.actionBtn.rx.tap
+//                    .asObservable()
+//                    .asDriver(onErrorJustReturn: Void())
+//                    .drive(onNext: {
+////                        cell.isButtonActive.toggle()
+//                        print(cell.isButtonActive)
+////                        [weak self] in guard let `self` = self else { return }
+////                        self.gotoOwnerViewController(element.owner)
+//                    }).disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)
@@ -112,7 +114,8 @@ class HomeViewController: BaseViewController {
         tableView.rx.modelSelected(GitHubRepository.self)
             .subscribe(onNext: {
                 [weak self] in guard let `self` = self else { return }
-                self.showAlert(title: $0.fullName ,message: $0.description)
+//                self.showAlert(title: $0.fullName ,message: $0.description)
+                self.gotoOwnerViewController($0.owner)
             })
             .disposed(by: disposeBag)
         
@@ -138,12 +141,12 @@ extension HomeViewController {
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
     
-    func showAlert(title:String, message:String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
+//    func showAlert(title:String, message:String) {
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
     
     func gotoOwnerViewController(_ owner: RepositoryOwner?) {
         let vc = OwnerViewController()
