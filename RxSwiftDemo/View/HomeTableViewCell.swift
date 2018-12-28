@@ -83,7 +83,6 @@ class HomeTableViewCell: BaseTableViewCell {
     override func bindViewModel() {
         isButtonActive = false
         viewModel
-            .output
             .dataSource
             .subscribe(onNext:{
                 self.titleLab.text = $0.name

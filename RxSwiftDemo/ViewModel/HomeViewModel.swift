@@ -58,9 +58,7 @@ extension HomeViewModel {
         let dataSource:BehaviorRelay<GitHubRepositories>
         let dataSourceCount:Observable<String>
     }
-}
 
-extension HomeViewModel {
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
         Observable
             .merge(input.searchAction, input.headerAction)

@@ -9,7 +9,9 @@
 import Foundation
 
 class HomeCellModel:ViewModelType {
-    let output = Output()
+    
+    lazy var dataSource = BehaviorRelay<GitHubRepository>(value: GitHubRepository())
+    
     
 }
 
@@ -19,12 +21,10 @@ extension HomeCellModel {
     }
     
     struct Output {
-        let dataSource = BehaviorRelay<GitHubRepository>(value: GitHubRepository())
+        
     }
-}
-
-extension HomeCellModel {
+    
     func transform(_ input: HomeCellModel.Input) -> HomeCellModel.Output {
-        return output
+        return Output()
     }
 }

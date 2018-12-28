@@ -86,7 +86,7 @@ class HomeViewController: BaseViewController {
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.viewModel.output.dataSource).disposed(by: cell.disposeBag)
+                Observable.of(element).bind(to: cell.viewModel.dataSource).disposed(by: cell.disposeBag)
 //                cell.titleLab.text = element.name
 //                cell.detailLab.text = element.description
 //                cell.contentLab.text = element.htmlUrl
