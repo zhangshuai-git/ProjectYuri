@@ -27,13 +27,13 @@ class NetworkService {
     
     private lazy var isShowIndicator : Driver<Bool> = indicator.asDriver()
     
-    func searchRepositories(_ params:RepositoriesParams) -> Observable<GitHubRepositories> {
+    func searchRepositories(_ params:RepositoriesParams) -> Observable<Repositories> {
         return GitHubProvider.rx
             .request(.repositories(params.toJSON() ?? [:]))
             .trackActivity(indicator)
             .asObservable()
-            .mapModel(GitHubRepositories.self)
-            .catchErrorJustReturn(GitHubRepositories())
+            .mapModel(Repositories.self)
+            .catchErrorJustReturn(Repositories())
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
     }

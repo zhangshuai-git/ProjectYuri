@@ -10,7 +10,7 @@ import Foundation
 
 class HomeCellModel:ViewModelType {
     
-    lazy var dataSource = BehaviorRelay<GitHubRepository>(value: GitHubRepository())
+    lazy var dataSource = BehaviorRelay<Repository>(value: Repository())
     
     
 }

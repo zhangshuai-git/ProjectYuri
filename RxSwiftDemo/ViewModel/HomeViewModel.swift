@@ -16,14 +16,14 @@ class HomeViewModel:ViewModelType {
     
     private lazy var moreRepositoriesParams = BehaviorRelay<RepositoriesParams>(value: RepositoriesParams(page: 2))
     
-    private lazy var newData:Observable<GitHubRepositories> = newRepositoriesParams
+    private lazy var newData:Observable<Repositories> = newRepositoriesParams
         .skip(1)
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
         .share(replay: 1)
     
-    private lazy var moreData:Observable<GitHubRepositories> = moreRepositoriesParams
+    private lazy var moreData:Observable<Repositories> = moreRepositoriesParams
         .skip(1)
         .map{
             [weak self] in guard let `self` = self else { return $0 }
@@ -35,7 +35,7 @@ class HomeViewModel:ViewModelType {
         }
         .share(replay: 1)
     
-    private lazy var dataSource = BehaviorRelay<GitHubRepositories>(value: GitHubRepositories())
+    private lazy var dataSource = BehaviorRelay<Repositories>(value: Repositories())
     
     private lazy var dataSourceCount = Observable.merge(
         dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
@@ -53,9 +53,9 @@ extension HomeViewModel {
     }
     
     struct Output {
-        let newData:Observable<GitHubRepositories>
-        let moreData:Observable<GitHubRepositories>
-        let dataSource:BehaviorRelay<GitHubRepositories>
+        let newData:Observable<Repositories>
+        let moreData:Observable<Repositories>
+        let dataSource:BehaviorRelay<Repositories>
         let dataSourceCount:Observable<String>
     }
 

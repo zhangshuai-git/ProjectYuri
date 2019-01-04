@@ -27,25 +27,44 @@ class DataBaseAPI {
             db.close()
         }
         
-        let personSql = """
-        CREATE TABLE 'person' (\
+        //        class Repository: HandyJSON {
+        //            var id: Int = 0
+        //            var name: String = ""
+        //            var fullName: String = ""
+        //            var htmlUrl: String = ""
+        //            var description: String = ""
+        //            var owner: RepositoryOwner = RepositoryOwner()
+        //
+        //        }
+        db.executeStatements("""
+        CREATE TABLE 'repository' (\
             'id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,\
-            'person_id' VARCHAR(255),\
-            'person_name' VARCHAR(255),\
-            'person_age' VARCHAR(255),\
-            'person_number'VARCHAR(255)\
+            'repository_id' INT,\
+            'name' INT,\
+            'full_name' VARCHAR(255),\
+            'html_url' VARCHAR(255),\
+            'description' VARCHAR(255),\
+            'comment' VARCHAR(255),\
+            'owner' VARCHAR(255)\
             )
-        """
-        let carSql = """
-        CREATE TABLE 'car' (\
+        """)
+        
+        //        class RepositoryOwner: HandyJSON {
+        //            var id: Int = 0
+        //            var login: String = ""
+        //            var url: String = ""
+        //            var avatarUrl: String = ""
+        //
+        //        }
+        db.executeStatements("""
+        CREATE TABLE 'repository_owner' (\
             'id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,\
-            'own_id' VARCHAR(255),\
-            'car_id' VARCHAR(255),\
-            'car_brand' VARCHAR(255),\
-            'car_price'VARCHAR(255)\
+            'repository_id' INT,\
+            'owner_id' INT,\
+            'login' VARCHAR(255),\
+            'url' VARCHAR(255),\
+            'avatarUrl' VARCHAR(255)\
             )
-        """
-        db.executeStatements(personSql)
-        db.executeStatements(carSql)
+        """)
     }
 }

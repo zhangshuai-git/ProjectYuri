@@ -111,7 +111,7 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(GitHubRepository.self)
+        tableView.rx.modelSelected(Repository.self)
             .subscribe(onNext: {
                 [weak self] in guard let `self` = self else { return }
 //                self.showAlert(title: $0.fullName ,message: $0.description)
@@ -135,7 +135,7 @@ class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController {
-    func footerState(_ repositories: GitHubRepositories) -> RxMJRefreshFooterState {
+    func footerState(_ repositories: Repositories) -> RxMJRefreshFooterState {
         if repositories.items.count == 0 { return .hidden }
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData

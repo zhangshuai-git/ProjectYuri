@@ -28,9 +28,9 @@ class RepositoriesParams:HandyJSON {
     }
 }
 
-class GitHubRepositories: HandyJSON {
+class Repositories: HandyJSON {
     var totalCount:UInt = 0
-    var items: [GitHubRepository] = []
+    var items: [Repository] = []
     var currentPage:Int = 1
     var totalPage:UInt {
         return totalCount / PER_PAGE
@@ -40,8 +40,8 @@ class GitHubRepositories: HandyJSON {
         mapper <<< totalCount <-- "total_count"
     }
     
-    static func + (obj0: GitHubRepositories, obj1: GitHubRepositories) -> GitHubRepositories {
-        let obj = GitHubRepositories()
+    static func + (obj0: Repositories, obj1: Repositories) -> Repositories {
+        let obj = Repositories()
         obj.totalCount = max(obj0.totalCount, obj1.totalCount)
         obj.items = obj0.items + obj1.items
         obj.currentPage = max(obj0.currentPage, obj1.currentPage)
@@ -51,14 +51,15 @@ class GitHubRepositories: HandyJSON {
     required init() { }
 }
 
-class GitHubRepository: HandyJSON {
+class Repository: HandyJSON {
     var id: Int = 0
     var name: String = ""
     var fullName: String = ""
     var htmlUrl: String = ""
     var description: String = ""
+    var comment: String = ""
     var owner: RepositoryOwner = RepositoryOwner()
-    
+
     public func mapping(mapper: HelpingMapper) {
         mapper <<< fullName <-- "full_name"
         mapper <<< htmlUrl <-- "html_url"
