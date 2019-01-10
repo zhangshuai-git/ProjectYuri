@@ -48,15 +48,16 @@ class HomeViewController: BaseViewController {
         return emptyView
     }()
     
-    override func buildSubViews(_ rootView: UIView) {
+    override func buildSubViews() {
         navigationItem.titleView = searchBar
-        rootView.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.tableHeaderView = resultLab
     }
     
     override func makeConstraints() -> Void {
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottomMargin)
         }
     }
     

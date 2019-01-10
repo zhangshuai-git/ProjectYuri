@@ -37,8 +37,8 @@ class OwnerViewController: BaseViewController {
     
     var owner: RepositoryOwner?
     
-    override func buildSubViews(_ rootView: UIView) {
-        rootView.addSubview(mainView)
+    override func buildSubViews() {
+        view.addSubview(mainView)
         mainView.addSubview(iconImg)
         mainView.addSubview(titleLab)
         mainView.addSubview(detailLab)

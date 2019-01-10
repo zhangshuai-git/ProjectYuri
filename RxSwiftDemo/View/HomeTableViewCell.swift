@@ -50,11 +50,11 @@ class HomeTableViewCell: BaseTableViewCell {
         }
     }
     
-    override func buildSubViews(_ rootView: UIView) {
-        rootView.addSubview(titleLab)
-        rootView.addSubview(detailLab)
-        rootView.addSubview(contentLab)
-        rootView.addSubview(actionBtn)
+    override func buildSubViews() {
+        contentView.addSubview(titleLab)
+        contentView.addSubview(detailLab)
+        contentView.addSubview(contentLab)
+        contentView.addSubview(actionBtn)
     }
     
     override func makeConstraints() {

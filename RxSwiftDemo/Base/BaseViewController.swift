@@ -15,7 +15,7 @@ class BaseViewController: UIViewController, ViewType {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        buildSubViews(view)
+        buildSubViews()
         makeConstraints()
         bindViewModel()
     }
@@ -25,12 +25,9 @@ class BaseViewController: UIViewController, ViewType {
         reBindViewModel()
     }
 
-//    func buildSubViews() -> Void { }
+    func buildSubViews() -> Void { }
     func makeConstraints() -> Void { }
     func bindViewModel() -> Void { }
     func reBindViewModel() -> Void { }
     
-    func buildSubViews(_ rootView: UIView) { }
-//    func bindViewModel(_ viewModel: ViewModel) { }
-//    func reBindViewModel(_ viewModel: ViewModelType) -> Void { }
 }

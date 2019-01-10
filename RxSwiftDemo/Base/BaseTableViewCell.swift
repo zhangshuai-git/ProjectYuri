@@ -22,7 +22,7 @@ class BaseTableViewCell: UITableViewCell, ViewType {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         contentView.backgroundColor = UIColor.white
-        buildSubViews(contentView)
+        buildSubViews()
         makeConstraints()
     }
     
@@ -30,10 +30,7 @@ class BaseTableViewCell: UITableViewCell, ViewType {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func buildSubViews() { }
+    func buildSubViews() { }
     func makeConstraints() { }
     func bindViewModel() { }
-    
-    func buildSubViews(_ rootView: UIView) { }
-//    func bindViewModel(_ viewModel: ViewModel) { }
 }
