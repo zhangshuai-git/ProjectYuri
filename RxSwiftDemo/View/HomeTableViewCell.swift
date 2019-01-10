@@ -8,7 +8,7 @@
 
 class HomeTableViewCell: BaseTableViewCell {
     
-    let viewModel = HomeCellModel()
+    lazy var model = BehaviorRelay<Repository>(value: Repository())
     
     lazy var titleLab: UILabel = {
         let label = UILabel()
@@ -81,35 +81,26 @@ class HomeTableViewCell: BaseTableViewCell {
     }
     
     override func bindViewModel() {
-        isButtonActive = false
-        viewModel
-            .dataSource
-            .subscribe(onNext:{
+        model.subscribe(onNext:{
+                [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.name
-                self.detailLab.text = $0.description
+                self.detailLab.text = $0.desp
                 self.contentLab.text = $0.htmlUrl
+                self.isButtonActive = $0.isSubscribed
             })
             .disposed(by: disposeBag)
         
-        //                cell.isButtonActive = false
         actionBtn.rx.tap
             .asObservable()
-            .asDriver(onErrorJustReturn: Void())
+            .asDriver(onErrorJustReturn: ())
             .drive(onNext: {
-                [weak self] _ in guard let `self` = self else { return }
+                [weak self] in guard let `self` = self else { return }
                 self.isButtonActive.toggle()
                 print(self.isButtonActive)
-                //                        [weak self] in guard let `self` = self else { return }
-                //                        self.gotoOwnerViewController(element.owner)
+                self.model.value.isSubscribed = self.isButtonActive
+                self.isButtonActive ? DataBaseAPI.shared.add(repository: self.model.value)
+                                    : DataBaseAPI.shared.delete(repository: self.model.value)
             }).disposed(by: disposeBag)
-        //        actionBtn.rx.tap
-        //        .asObservable().bind(to: viewModel.action)
-        //        actionBtn.rx.tap
-        //            .subscribe{
-        //                [weak self] _ in guard let `self` = self else { return }
-        //                self.isButtonActive.toggle()
-        //            }
-        //            .disposed(by: disposeBag)
     }
 }
 

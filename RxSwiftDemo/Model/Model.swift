@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RepositoriesParams:HandyJSON {
+class RepositoriesParams: HandyJSON {
     var query:String = ""
     var sort:String = "stars"
     var order:String = "desc"
@@ -20,12 +20,12 @@ class RepositoriesParams:HandyJSON {
         mapper <<< perPage <-- "per_page"
     }
     
-    required init() { }
-    
     init(query:String = "", page:Int = 1) {
         self.query = query
         self.page = page
     }
+    
+    required init() { }
 }
 
 class Repositories: HandyJSON {
@@ -56,13 +56,15 @@ class Repository: HandyJSON {
     var name: String = ""
     var fullName: String = ""
     var htmlUrl: String = ""
-    var description: String = ""
+    var desp: String = ""
     var comment: String = ""
+    var isSubscribed:Bool = false
     var owner: RepositoryOwner = RepositoryOwner()
 
     public func mapping(mapper: HelpingMapper) {
         mapper <<< fullName <-- "full_name"
         mapper <<< htmlUrl <-- "html_url"
+        mapper <<< desp <-- "description"
     }
     
     required init() { }
@@ -77,6 +79,6 @@ class RepositoryOwner: HandyJSON {
     public func mapping(mapper: HelpingMapper) {
         mapper <<< avatarUrl <-- "avatar_url"
     }
-    
+ 
     required init() { }
 }

@@ -6,25 +6,26 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 
-class HomeCellModel:ViewModelType {
-    
-    lazy var dataSource = BehaviorRelay<Repository>(value: Repository())
-    
-    
-}
-
-extension HomeCellModel {
-    struct Input {
-        let btnTapAction:Observable<Void>
-    }
-    
-    struct Output {
-        
-    }
-    
-    func transform(_ input: HomeCellModel.Input) -> HomeCellModel.Output {
-        return Output()
-    }
-}
+//class HomeCellModel:ViewModelType {
+//
+//    lazy var dataSource = BehaviorRelay<Repository>(value: Repository())
+//
+////    lazy var isSubscribed = BehaviorRelay<Bool>(value: false)
+//
+//}
+//
+//extension HomeCellModel {
+//    struct Input {
+//        let btnTapAction:Observable<Void>
+//    }
+//
+//    struct Output {
+//
+//    }
+//
+//    func transform(_ input: HomeCellModel.Input) -> HomeCellModel.Output {
+//        return Output()
+//    }
+//}

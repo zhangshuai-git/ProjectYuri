@@ -18,6 +18,7 @@ class DataBaseAPI {
     lazy var db: FMDatabase = {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last ?? ""
         let filePath = URL(fileURLWithPath: documentsPath).appendingPathComponent("repositories.sqlite").absoluteString
+        print("[database init] \(filePath)")
         return FMDatabase(path: filePath)
     }()
     
@@ -45,7 +46,6 @@ class DataBaseAPI {
             'html_url' VARCHAR(255),\
             'description' VARCHAR(255),\
             'comment' VARCHAR(255),\
-            'owner' VARCHAR(255)\
             )
         """)
         
@@ -85,7 +85,7 @@ class DataBaseAPI {
         }
         maxID = maxID + 1
         
-        try? db.executeUpdate("INSERT INTO repository(repository_id,name,full_name,html_url,description, comment)VALUES(?,?,?,?,?,?)", values: [maxID, repository.name, repository.fullName, repository.htmlUrl, repository.description, repository.comment])
+        try? db.executeUpdate("INSERT INTO repository(repository_id,name,full_name,html_url,description, comment)VALUES(?,?,?,?,?,?)", values: [maxID, repository.name, repository.fullName, repository.htmlUrl, repository.desp, repository.comment])
     }
     
     func delete(repository: Repository) {
@@ -106,7 +106,7 @@ class DataBaseAPI {
         try? db.executeUpdate("UPDATE 'person' SET name = ?  WHERE person_id = ? ", values: [repository.name, repository.id])
         try? db.executeUpdate("UPDATE 'person' SET full_name = ?  WHERE person_id = ? ", values: [repository.fullName, repository.id])
         try? db.executeUpdate("UPDATE 'person' SET html_url = ?  WHERE person_id = ? ", values: [repository.htmlUrl, repository.id])
-        try? db.executeUpdate("UPDATE 'person' SET description = ?  WHERE person_id = ? ", values: [repository.description,   repository.id])
+        try? db.executeUpdate("UPDATE 'person' SET description = ?  WHERE person_id = ? ", values: [repository.desp,   repository.id])
         try? db.executeUpdate("UPDATE 'person' SET comment = ?  WHERE person_id = ? ", values: [repository.comment, repository.id])
     }
     
@@ -126,7 +126,7 @@ class DataBaseAPI {
             repository.name = res.string(forColumn: "name") ?? ""
             repository.fullName = res.string(forColumn: "full_name") ?? ""
             repository.htmlUrl = res.string(forColumn: "html_url") ?? ""
-            repository.description = res.string(forColumn: "description") ?? ""
+            repository.desp = res.string(forColumn: "description") ?? ""
             repository.comment = res.string(forColumn: "comment") ?? ""
             dataArray.append(repository)
         }
