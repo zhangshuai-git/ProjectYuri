@@ -28,42 +28,24 @@ class DataBaseAPI {
             db.close()
         }
         
-        //        class Repository: HandyJSON {
-        //            var id: Int = 0
-        //            var name: String = ""
-        //            var fullName: String = ""
-        //            var htmlUrl: String = ""
-        //            var description: String = ""
-        //            var owner: RepositoryOwner = RepositoryOwner()
-        //
-        //        }
         db.executeStatements("""
         CREATE TABLE 'repository' (\
             'id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,\
-            'repository_id' INT,\
             'name' INT,\
             'full_name' VARCHAR(255),\
             'html_url' VARCHAR(255),\
             'description' VARCHAR(255),\
-            'comment' VARCHAR(255),\
+            'comment' VARCHAR(255)\
             )
         """)
         
-        //        class RepositoryOwner: HandyJSON {
-        //            var id: Int = 0
-        //            var login: String = ""
-        //            var url: String = ""
-        //            var avatarUrl: String = ""
-        //
-        //        }
         db.executeStatements("""
         CREATE TABLE 'repository_owner' (\
             'id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,\
             'repository_id' INT,\
-            'owner_id' INT,\
             'login' VARCHAR(255),\
             'url' VARCHAR(255),\
-            'avatarUrl' VARCHAR(255)\
+            'avatar_url' VARCHAR(255)\
             )
         """)
     }
@@ -74,18 +56,9 @@ class DataBaseAPI {
             db.close()
         }
         
-        var maxID = 0
+        db.executeUpdate("INSERT INTO repository(id, name, full_name, html_url, description, comment)VALUES(?,?,?,?,?,?)", withArgumentsIn: [repository.id, repository.name, repository.fullName, repository.htmlUrl, repository.desp, repository.comment])
         
-        let res: FMResultSet = (try? db.executeQuery("SELECT * FROM repository ", values: nil)) ?? FMResultSet()
-        //获取数据库中最大的ID
-        while res.next() {
-            if maxID < res.int(forColumn: "repository_id") {
-                maxID = Int(res.int(forColumn: "repository_id") )
-            }
-        }
-        maxID = maxID + 1
-        
-        try? db.executeUpdate("INSERT INTO repository(repository_id,name,full_name,html_url,description, comment)VALUES(?,?,?,?,?,?)", values: [maxID, repository.name, repository.fullName, repository.htmlUrl, repository.desp, repository.comment])
+        db.executeUpdate("INSERT INTO repository_owner(id, repository_id, login, url, avatar_url)VALUES(?,?,?,?,?)", withArgumentsIn: [repository.owner.id, repository.id, repository.owner.login, repository.owner.url, repository.owner.avatarUrl])
     }
     
     func delete(repository: Repository) {
@@ -94,7 +67,8 @@ class DataBaseAPI {
             db.close()
         }
         
-        try? db.executeUpdate("DELETE FROM person WHERE person_id = ?", values: [repository.id])
+        db.executeUpdate("DELETE FROM repository WHERE id = ?", withArgumentsIn: [repository.id])
+        db.executeUpdate("DELETE FROM repository_owner WHERE id = ?", withArgumentsIn: [repository.owner.id])
     }
 
     func update(repository: Repository) {
@@ -103,11 +77,11 @@ class DataBaseAPI {
             db.close()
         }
         
-        try? db.executeUpdate("UPDATE 'person' SET name = ?  WHERE person_id = ? ", values: [repository.name, repository.id])
-        try? db.executeUpdate("UPDATE 'person' SET full_name = ?  WHERE person_id = ? ", values: [repository.fullName, repository.id])
-        try? db.executeUpdate("UPDATE 'person' SET html_url = ?  WHERE person_id = ? ", values: [repository.htmlUrl, repository.id])
-        try? db.executeUpdate("UPDATE 'person' SET description = ?  WHERE person_id = ? ", values: [repository.desp,   repository.id])
-        try? db.executeUpdate("UPDATE 'person' SET comment = ?  WHERE person_id = ? ", values: [repository.comment, repository.id])
+        db.executeUpdate("UPDATE 'repository' SET name = ?  WHERE id = ? ", withArgumentsIn: [repository.name, repository.id])
+        db.executeUpdate("UPDATE 'repository' SET full_name = ?  WHERE id = ? ", withArgumentsIn: [repository.fullName, repository.id])
+        db.executeUpdate("UPDATE 'repository' SET html_url = ?  WHERE id = ? ", withArgumentsIn: [repository.htmlUrl, repository.id])
+        db.executeUpdate("UPDATE 'repository' SET description = ?  WHERE id = ? ", withArgumentsIn: [repository.desp,   repository.id])
+        db.executeUpdate("UPDATE 'repository' SET comment = ?  WHERE id = ? ", withArgumentsIn: [repository.comment, repository.id])
     }
     
     func getAllRepository() -> [Repository] {
@@ -118,16 +92,29 @@ class DataBaseAPI {
         
         var dataArray: [Repository] = []
         
-        let res: FMResultSet = (try? db.executeQuery("SELECT * FROM person", values: nil)) ?? FMResultSet()
+        let res: FMResultSet = db.executeQuery("SELECT * FROM repository", withArgumentsIn: []) ?? FMResultSet()
         
         while res.next() {
             let repository = Repository()
-            repository.id = Int(res.int(forColumn: "person_id"))
+            repository.id = Int(res.int(forColumn: "id"))
             repository.name = res.string(forColumn: "name") ?? ""
             repository.fullName = res.string(forColumn: "full_name") ?? ""
             repository.htmlUrl = res.string(forColumn: "html_url") ?? ""
             repository.desp = res.string(forColumn: "description") ?? ""
             repository.comment = res.string(forColumn: "comment") ?? ""
+            
+            let ownerRes: FMResultSet = db.executeQuery("SELECT * FROM repository_owner where own_id = ? ", withArgumentsIn: [repository.id]) ?? FMResultSet()
+            
+            while ownerRes.next() {
+                let owner = RepositoryOwner()
+                owner.id = Int(res.int(forColumn: "id"))
+                owner.login = res.string(forColumn: "login") ?? ""
+                owner.url = res.string(forColumn: "url") ?? ""
+                owner.avatarUrl = res.string(forColumn: "avatar_url") ?? ""
+                
+                repository.owner = owner
+            }
+            
             dataArray.append(repository)
         }
         

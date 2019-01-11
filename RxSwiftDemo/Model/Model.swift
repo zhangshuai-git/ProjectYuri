@@ -59,6 +59,7 @@ class Repository: HandyJSON {
     var desp: String = ""
     var comment: String = ""
     var isSubscribed:Bool = false
+//    var isSubscribed = BehaviorRelay<Bool>(value: false)
     var owner: RepositoryOwner = RepositoryOwner()
 
     public func mapping(mapper: HelpingMapper) {

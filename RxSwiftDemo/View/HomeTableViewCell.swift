@@ -81,7 +81,8 @@ class HomeTableViewCell: BaseTableViewCell {
     }
     
     override func bindViewModel() {
-        model.subscribe(onNext:{
+        model
+            .subscribe(onNext:{
                 [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.name
                 self.detailLab.text = $0.desp
@@ -96,11 +97,12 @@ class HomeTableViewCell: BaseTableViewCell {
             .drive(onNext: {
                 [weak self] in guard let `self` = self else { return }
                 self.isButtonActive.toggle()
-                print(self.isButtonActive)
                 self.model.value.isSubscribed = self.isButtonActive
-                self.isButtonActive ? DataBaseAPI.shared.add(repository: self.model.value)
-                                    : DataBaseAPI.shared.delete(repository: self.model.value)
-            }).disposed(by: disposeBag)
+                self.isButtonActive
+                    ? DataBaseAPI.shared.add(repository: self.model.value)
+                    : DataBaseAPI.shared.delete(repository: self.model.value)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

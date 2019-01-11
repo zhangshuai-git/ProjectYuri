@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		517A6C4F928248C331EA1D44 /* Pods_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */; };
+		EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */; };
+		EC03452221E881B700DDC12C /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03452121E881B700DDC12C /* FavouritesViewModel.swift */; };
 		EC0B976A21E72C5400E5F849 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B976921E72C5400E5F849 /* BaseModel.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0FA00121CB693800EA685A /* ActivityIndicator.swift */; };
@@ -42,6 +44,8 @@
 		6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70551E8D4E1F661459CE6F27 /* Pods-RxSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		EC03452121E881B700DDC12C /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		EC0B976921E72C5400E5F849 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC0FA00121CB693800EA685A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -162,8 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */,
-				EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */,
+				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
+				EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				ECB6D89421BFD77500017274 /* HomeViewModel.swift */,
+				EC03452121E881B700DDC12C /* FavouritesViewModel.swift */,
 				ECA89EC221D4B2F30051AA95 /* HomeCellModel.swift */,
 			);
 			path = ViewModel;
@@ -350,6 +356,7 @@
 				ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */,
 				EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
+				EC03452221E881B700DDC12C /* FavouritesViewModel.swift in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC3908F421D1D20E003A9250 /* DataBaseService.swift in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
@@ -364,6 +371,7 @@
 				ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */,
 				EC0B976A21E72C5400E5F849 /* BaseModel.swift in Sources */,
 				EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */,
+				EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
 				EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */,
 				EC3908F221D1D1F8003A9250 /* DataBaseAPI.swift in Sources */,

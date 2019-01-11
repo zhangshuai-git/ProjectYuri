@@ -49,6 +49,7 @@ class OwnerViewController: BaseViewController {
     var owner: RepositoryOwner?
     
     override func buildSubViews() {
+        self.title = "Owner"
         view.addSubview(scrollerView)
         scrollerView.addSubview(scrollerContentView)
         scrollerContentView.addSubview(mainView)
