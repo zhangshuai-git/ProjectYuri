@@ -40,10 +40,8 @@ class HomeViewController: BaseViewController {
     }()
     
     lazy var resultLab: UILabel = {
-        let label = UILabel()//(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+        let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
-//        label.textAlignment = .center
-//        label.backgroundColor = UIColor.groupTableViewBackground
         return label
     }()
     
@@ -71,7 +69,6 @@ class HomeViewController: BaseViewController {
         view.addSubview(tableView)
         topView.addSubview(resultLab)
         topView.addSubview(actionBtn)
-//        tableView.tableHeaderView = resultLab
     }
     
     override func makeConstraints() -> Void {
@@ -140,8 +137,7 @@ class HomeViewController: BaseViewController {
         tableView.rx.modelSelected(Repository.self)
             .subscribe(onNext: {
                 [weak self] in guard let `self` = self else { return }
-//                self.showAlert(title: $0.fullName ,message: $0.description)
-                self.gotoOwnerViewController($0.owner)
+                self.gotoOwnerViewController(Observable.of($0.owner))
             })
             .disposed(by: disposeBag)
         
@@ -162,7 +158,7 @@ class HomeViewController: BaseViewController {
             .asObservable()
             .bind {
                 [weak self] in guard let `self` = self else { return }
-                self.gotoFavouritesViewController(output.favourites.value)
+                self.gotoFavouritesViewController(output.favourites.asObservable())
             }
             .disposed(by: disposeBag)
     }
@@ -175,22 +171,15 @@ extension HomeViewController {
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
     
-//    func showAlert(title:String, message:String) {
-//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//        alertController.addAction(cancelAction)
-//        self.present(alertController, animated: true, completion: nil)
-//    }
-    
-    func gotoOwnerViewController(_ owner: RepositoryOwner?) {
+    func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
         let vc = OwnerViewController()
-        vc.owner = owner
+        owner.bind(to: vc.owner).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func gotoFavouritesViewController(_ favourites: [Repository]?) {
+    func gotoFavouritesViewController(_ favourites: Observable<[Repository]>) {
         let vc = FavouritesViewController()
-        vc.favourites = favourites
+        favourites.bind(to: vc.favourites).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

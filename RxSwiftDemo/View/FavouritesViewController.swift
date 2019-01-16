@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class FavouritesViewController: BaseViewController {
 
-    let viewModel = FavouritesViewModel()
+    var favourites = BehaviorRelay(value: [Repository]())
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
@@ -24,8 +26,6 @@ class FavouritesViewController: BaseViewController {
         tableView.zs.register(HomeTableViewCell.self)
         return tableView
     }()
-    
-    var favourites: [Repository]?
     
     override func buildSubViews() {
         self.title = "Favourites"
@@ -41,8 +41,14 @@ class FavouritesViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        
-        
+        favourites
+            .debug()
+            .bind(to: tableView.rx.items) { tableView, row, element in
+            let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
+            Observable.of(element).bind(to: cell.model).disposed(by: cell.disposeBag)
+            return cell
+        }
+        .disposed(by: disposeBag)
     }
     
 }

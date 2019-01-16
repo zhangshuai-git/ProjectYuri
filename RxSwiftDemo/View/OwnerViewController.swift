@@ -10,6 +10,8 @@ import UIKit
 
 class OwnerViewController: BaseViewController {
     
+    var owner = BehaviorRelay(value: RepositoryOwner())
+    
     lazy var scrollerView: UIScrollView = {
         let scrollerView = UIScrollView()
         scrollerView.isScrollEnabled = false
@@ -45,8 +47,6 @@ class OwnerViewController: BaseViewController {
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
-    
-    var owner: RepositoryOwner?
     
     override func buildSubViews() {
         self.title = "Owner"
@@ -94,10 +94,12 @@ class OwnerViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        guard let owner = owner else { return }
-        
-        iconImg.sd_setImage(with: URL(string: owner.avatarUrl))
-        titleLab.text = owner.login
-        detailLab.text = owner.url
+        owner.bind {
+            [weak self] in guard let `self` = self else { return }
+            self.iconImg.sd_setImage(with: URL(string: $0.avatarUrl))
+            self.titleLab.text = $0.login
+            self.detailLab.text = $0.url
+        }
+        .disposed(by: disposeBag)
     }
 }

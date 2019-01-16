@@ -29,9 +29,10 @@ class DataBaseAPI {
         }
         
         db.executeStatements("""
-        CREATE TABLE 'repository' (\
+        CREATE TABLE IF NOT EXISTS 'repository' (\
             'id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,\
-            'name' INT,\
+            'own_id' INT,\
+            'name' VARCHAR(255),\
             'full_name' VARCHAR(255),\
             'html_url' VARCHAR(255),\
             'description' VARCHAR(255),\
@@ -40,9 +41,8 @@ class DataBaseAPI {
         """)
         
         db.executeStatements("""
-        CREATE TABLE 'repository_owner' (\
+        CREATE TABLE IF NOT EXISTS 'repository_owner' (\
             'id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,\
-            'repository_id' INT,\
             'login' VARCHAR(255),\
             'url' VARCHAR(255),\
             'avatar_url' VARCHAR(255)\
@@ -56,9 +56,9 @@ class DataBaseAPI {
             db.close()
         }
         
-        db.executeUpdate("INSERT INTO repository(id, name, full_name, html_url, description, comment)VALUES(?,?,?,?,?,?)", withArgumentsIn: [repository.id, repository.name, repository.fullName, repository.htmlUrl, repository.desp, repository.comment])
+        db.executeUpdate("INSERT INTO repository(id, own_id, name, full_name, html_url, description, comment)VALUES(?,?,?,?,?,?,?)", withArgumentsIn: [repository.id, repository.owner.id, repository.name, repository.fullName, repository.htmlUrl, repository.desp, repository.comment])
         
-        db.executeUpdate("INSERT INTO repository_owner(id, repository_id, login, url, avatar_url)VALUES(?,?,?,?,?)", withArgumentsIn: [repository.owner.id, repository.id, repository.owner.login, repository.owner.url, repository.owner.avatarUrl])
+        db.executeUpdate("INSERT INTO repository_owner(id, login, url, avatar_url)VALUES(?,?,?,?)", withArgumentsIn: [repository.owner.id, repository.owner.login, repository.owner.url, repository.owner.avatarUrl])
     }
     
     func delete(repository: Repository) {
@@ -103,7 +103,7 @@ class DataBaseAPI {
             repository.desp = res.string(forColumn: "description") ?? ""
             repository.comment = res.string(forColumn: "comment") ?? ""
             
-            let ownerRes: FMResultSet = db.executeQuery("SELECT * FROM repository_owner where own_id = ? ", withArgumentsIn: [repository.id]) ?? FMResultSet()
+            let ownerRes: FMResultSet = db.executeQuery("SELECT * FROM repository_owner where id = ? ", withArgumentsIn: [repository.owner.id]) ?? FMResultSet()
             
             while ownerRes.next() {
                 let owner = RepositoryOwner()

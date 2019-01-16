@@ -8,7 +8,7 @@
 
 class HomeTableViewCell: BaseTableViewCell {
     
-    lazy var model = BehaviorRelay<Repository>(value: Repository())
+    lazy var model = BehaviorRelay(value: Repository())
     
     lazy var titleLab: UILabel = {
         let label = UILabel()
@@ -81,15 +81,15 @@ class HomeTableViewCell: BaseTableViewCell {
     }
     
     override func bindViewModel() {
-        model
-            .subscribe(onNext:{
-                [weak self] in guard let `self` = self else { return }
-                self.titleLab.text = $0.name
-                self.detailLab.text = $0.desp
-                self.contentLab.text = $0.htmlUrl
-                self.isButtonActive = $0.isSubscribed
-            })
-            .disposed(by: disposeBag)
+        model.bind {
+            [weak self] in guard let `self` = self else { return }
+            self.titleLab.text = $0.name
+            self.detailLab.text = $0.desp
+            self.contentLab.text = $0.htmlUrl
+            self.isButtonActive = $0.isSubscribed
+//            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
+        }
+        .disposed(by: disposeBag)
         
         actionBtn.rx.tap
             .asObservable()

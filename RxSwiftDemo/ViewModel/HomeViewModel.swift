@@ -12,9 +12,9 @@ class HomeViewModel:ViewModelType {
     
     let disposeBag = DisposeBag()
     
-    private lazy var newRepositoriesParams = BehaviorRelay<RepositoriesParams>(value: RepositoriesParams())
+    private lazy var newRepositoriesParams = BehaviorRelay(value: RepositoriesParams())
     
-    private lazy var moreRepositoriesParams = BehaviorRelay<RepositoriesParams>(value: RepositoriesParams(page: 2))
+    private lazy var moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
     
     private lazy var favourites = BehaviorRelay<[Repository]>(value: [])
     
@@ -45,7 +45,7 @@ class HomeViewModel:ViewModelType {
         })
         .share(replay: 1)
     
-    private lazy var dataSource = BehaviorRelay<Repositories>(value: Repositories())
+    private lazy var dataSource = BehaviorRelay(value: Repositories())
     
     private lazy var dataSourceCount = Observable.merge(
         dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
@@ -118,18 +118,6 @@ extension HomeViewModel {
             .bind(to: favourites)
             .disposed(by: disposeBag)
         
-        dataSource
-            .map { $0.items }
-            .flatMap { Observable.from($0) }
-            .bind {
-                [weak self] in guard let `self` = self else { return }
-                for repository in self.favourites.value {
-                    repository.isSubscribed = repository.id == $0.id
-                    break
-                }
-            }
-            .disposed(by: disposeBag)
-        
         return Output(newData: newData, moreData: moreData, dataSource: dataSource, dataSourceCount: dataSourceCount, favourites: favourites)
     }
     
@@ -137,7 +125,8 @@ extension HomeViewModel {
         for repository in repositories.items {
             for favouriteRepository in self.favourites.value {
                 repository.isSubscribed = repository.id == favouriteRepository.id
-                break
+//                print("\(repository.isSubscribed ? "#" : "") \(repository.name)", tag: "SubscriptionDebug")
+                if repository.isSubscribed { break }
             }
         }
         return repositories
