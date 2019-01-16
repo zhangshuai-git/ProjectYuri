@@ -16,11 +16,17 @@ class HomeViewModel:ViewModelType {
     
     private lazy var moreRepositoriesParams = BehaviorRelay<RepositoriesParams>(value: RepositoriesParams(page: 2))
     
+    private lazy var favourites = BehaviorRelay<[Repository]>(value: [])
+    
     private lazy var newData:Observable<Repositories> = newRepositoriesParams
         .skip(1)
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
+        .map({
+            [weak self] in guard let `self` = self else { return $0 }
+            return self.checkSubscription($0)
+        })
         .share(replay: 1)
     
     private lazy var moreData:Observable<Repositories> = moreRepositoriesParams
@@ -33,6 +39,10 @@ class HomeViewModel:ViewModelType {
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
+        .map({
+            [weak self] in guard let `self` = self else { return $0 }
+            return self.checkSubscription($0)
+        })
         .share(replay: 1)
     
     private lazy var dataSource = BehaviorRelay<Repositories>(value: Repositories())
@@ -57,6 +67,7 @@ extension HomeViewModel {
         let moreData:Observable<Repositories>
         let dataSource:BehaviorRelay<Repositories>
         let dataSourceCount:Observable<String>
+        let favourites:BehaviorRelay<[Repository]>
     }
 
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
@@ -102,7 +113,34 @@ extension HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        return Output(newData: newData, moreData: moreData, dataSource: dataSource, dataSourceCount: dataSourceCount)
+        Observable
+            .of(DataBaseAPI.shared.getAllRepository())
+            .bind(to: favourites)
+            .disposed(by: disposeBag)
+        
+        dataSource
+            .map { $0.items }
+            .flatMap { Observable.from($0) }
+            .bind {
+                [weak self] in guard let `self` = self else { return }
+                for repository in self.favourites.value {
+                    repository.isSubscribed = repository.id == $0.id
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(newData: newData, moreData: moreData, dataSource: dataSource, dataSourceCount: dataSourceCount, favourites: favourites)
+    }
+    
+    private func checkSubscription(_ repositories: Repositories) -> Repositories {
+        for repository in repositories.items {
+            for favouriteRepository in self.favourites.value {
+                repository.isSubscribed = repository.id == favouriteRepository.id
+                break
+            }
+        }
+        return repositories
     }
 }
 

@@ -100,15 +100,6 @@ class HomeViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        
-        actionBtn.rx.tap
-            .asObservable()
-            .bind {
-                [weak self] in guard let `self` = self else { return }
-                self.gotoFavouritesViewController()
-            }
-            .disposed(by: disposeBag)
-        
         let searchAction:Observable<String> = searchBar.rx.text.orEmpty
             .throttle(2.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
@@ -166,6 +157,14 @@ class HomeViewController: BaseViewController {
             .asDriver(onErrorJustReturn: .hidden)
             .drive(tableView.mj_footer.rx.refreshFooterState)
             .disposed(by: disposeBag)
+        
+        actionBtn.rx.tap
+            .asObservable()
+            .bind {
+                [weak self] in guard let `self` = self else { return }
+                self.gotoFavouritesViewController(output.favourites.value)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -189,8 +188,9 @@ extension HomeViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func gotoFavouritesViewController() {
+    func gotoFavouritesViewController(_ favourites: [Repository]?) {
         let vc = FavouritesViewController()
+        vc.favourites = favourites
         navigationController?.pushViewController(vc, animated: true)
     }
 }

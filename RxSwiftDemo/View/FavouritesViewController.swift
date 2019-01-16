@@ -25,6 +25,8 @@ class FavouritesViewController: BaseViewController {
         return tableView
     }()
     
+    var favourites: [Repository]?
+    
     override func buildSubViews() {
         self.title = "Favourites"
         view.addSubview(tableView)
