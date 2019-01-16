@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BaseTableViewCell: UITableViewCell, ViewType {
     
@@ -24,6 +26,7 @@ class BaseTableViewCell: UITableViewCell, ViewType {
         contentView.backgroundColor = UIColor.white
         buildSubViews()
         makeConstraints()
+        bindViewModel()
     }
     
     required init?(coder aDecoder: NSCoder) {

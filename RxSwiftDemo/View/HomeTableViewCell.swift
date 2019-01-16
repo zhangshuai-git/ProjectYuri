@@ -6,6 +6,10 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
+import SnapKit
+
 class HomeTableViewCell: BaseTableViewCell {
     
     lazy var model = BehaviorRelay(value: Repository())
@@ -87,7 +91,7 @@ class HomeTableViewCell: BaseTableViewCell {
             self.detailLab.text = $0.desp
             self.contentLab.text = $0.htmlUrl
             self.isButtonActive = $0.isSubscribed
-//            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
+            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
         }
         .disposed(by: disposeBag)
         

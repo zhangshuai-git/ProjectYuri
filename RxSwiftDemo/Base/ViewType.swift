@@ -6,7 +6,6 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-import Foundation
 
 public protocol ViewType {
     func buildSubViews()

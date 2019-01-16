@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SnapKit
 
 class FavouritesViewController: BaseViewController {
 
@@ -42,13 +43,27 @@ class FavouritesViewController: BaseViewController {
     
     override func bindViewModel() {
         favourites
-            .debug()
             .bind(to: tableView.rx.items) { tableView, row, element in
             let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
             Observable.of(element).bind(to: cell.model).disposed(by: cell.disposeBag)
+//            print("\(element.name), \(cell)")
             return cell
         }
         .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(Repository.self)
+            .subscribe(onNext: {
+                [weak self] in guard let `self` = self else { return }
+                self.gotoOwnerViewController(Observable.of($0.owner))
+            })
+            .disposed(by: disposeBag)
     }
-    
+}
+
+extension FavouritesViewController {
+    func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
+        let vc = OwnerViewController()
+        owner.bind(to: vc.owner).disposed(by: disposeBag)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

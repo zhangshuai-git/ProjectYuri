@@ -6,7 +6,7 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-import Foundation
+import HandyJSON
 
 class RepositoriesParams: HandyJSON {
     var query:String = ""

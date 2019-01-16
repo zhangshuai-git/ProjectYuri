@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class HomeViewModel:ViewModelType {
     
@@ -115,6 +117,20 @@ extension HomeViewModel {
         
         Observable
             .of(DataBaseAPI.shared.getAllRepository())
+            .bind(to: favourites)
+            .disposed(by: disposeBag)
+        
+        dataSource
+            .flatMap {
+                Observable.from( $0.items )
+            }
+            .flatMap({
+                Observable.of($0.isSubscribed)
+            })
+            .distinctUntilChanged()
+            .map({ _ in
+                DataBaseAPI.shared.getAllRepository()
+            })
             .bind(to: favourites)
             .disposed(by: disposeBag)
         

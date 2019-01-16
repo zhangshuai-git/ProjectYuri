@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Moya
+import SVProgressHUD
 
 class NetworkService {
     static let shared = NetworkService()
