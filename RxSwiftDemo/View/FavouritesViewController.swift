@@ -12,7 +12,7 @@ import RxSwift
 import SnapKit
 
 class FavouritesViewController: BaseViewController {
-
+    
     var favourites = BehaviorRelay(value: [Repository]())
     
     lazy var tableView: UITableView = {
@@ -44,12 +44,11 @@ class FavouritesViewController: BaseViewController {
     override func bindViewModel() {
         favourites
             .bind(to: tableView.rx.items) { tableView, row, element in
-            let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-            Observable.of(element).bind(to: cell.model).disposed(by: cell.disposeBag)
-//            print("\(element.name), \(cell)")
-            return cell
-        }
-        .disposed(by: disposeBag)
+                let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
+                Observable.of(element).bind(to: cell.model).disposed(by: cell.disposeBag)
+                return cell
+            }
+            .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(Repository.self)
             .subscribe(onNext: {

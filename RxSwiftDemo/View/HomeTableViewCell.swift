@@ -91,7 +91,7 @@ class HomeTableViewCell: BaseTableViewCell {
             self.detailLab.text = $0.desp
             self.contentLab.text = $0.htmlUrl
             self.isButtonActive = $0.isSubscribed
-            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
+//            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
         }
         .disposed(by: disposeBag)
         
@@ -101,6 +101,7 @@ class HomeTableViewCell: BaseTableViewCell {
             .drive(onNext: {
                 [weak self] in guard let `self` = self else { return }
                 self.isButtonActive.toggle()
+                print(self.isButtonActive)
                 self.model.value.isSubscribed = self.isButtonActive
                 self.isButtonActive
                     ? DataBaseAPI.shared.add(repository: self.model.value)

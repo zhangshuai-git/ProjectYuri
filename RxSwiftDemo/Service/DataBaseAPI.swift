@@ -68,18 +68,6 @@ class DataBaseAPI {
         }
         
         db.executeUpdate("DELETE FROM repository WHERE id = ?", withArgumentsIn: [repository.id])
-//        db.executeUpdate("DELETE FROM repository_owner WHERE id = ?", withArgumentsIn: [repository.owner.id])
-//        let ownerRes: FMResultSet = db.executeQuery("SELECT * FROM repository_owner where id = ? ", withArgumentsIn: [repository.owner.id]) ?? FMResultSet()
-//        
-//        while ownerRes.next() {
-//            let owner = RepositoryOwner()
-//            owner.id = Int(res.int(forColumn: "id"))
-//            owner.login = res.string(forColumn: "login") ?? ""
-//            owner.url = res.string(forColumn: "url") ?? ""
-//            owner.avatarUrl = res.string(forColumn: "avatar_url") ?? ""
-//            
-//            repository.owner = owner
-//        }
     }
 
     func update(repository: Repository) {
@@ -108,6 +96,7 @@ class DataBaseAPI {
         while res.next() {
             let repository = Repository()
             repository.id = Int(res.int(forColumn: "id"))
+            repository.owner.id = Int(res.int(forColumn: "own_id"))
             repository.name = res.string(forColumn: "name") ?? ""
             repository.fullName = res.string(forColumn: "full_name") ?? ""
             repository.htmlUrl = res.string(forColumn: "html_url") ?? ""

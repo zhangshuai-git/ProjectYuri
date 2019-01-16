@@ -121,6 +121,7 @@ extension HomeViewModel {
             .disposed(by: disposeBag)
         
         dataSource
+            .debug()
             .flatMap {
                 Observable.from( $0.items )
             }
