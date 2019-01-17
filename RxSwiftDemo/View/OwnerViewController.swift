@@ -12,7 +12,7 @@ import RxCocoa
 
 class OwnerViewController: BaseViewController {
     
-    let viewModel = OwnerViewModel()
+    var dataSource = BehaviorRelay(value: RepositoryOwner())
     
     lazy var scrollerView: UIScrollView = {
         let scrollerView = UIScrollView()
@@ -96,7 +96,7 @@ class OwnerViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        viewModel.dataSource
+        dataSource
             .bind {
                 [weak self] in guard let `self` = self else { return }
                 self.iconImg.sd_setImage(with: URL(string: $0.avatarUrl))

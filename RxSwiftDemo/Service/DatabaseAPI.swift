@@ -9,8 +9,8 @@
 import Foundation
 import FMDB
 
-class DataBaseAPI {
-    static let shared = DataBaseAPI()
+class DatabaseAPI {
+    static let shared = DatabaseAPI()
     private init() {
         createTable()
     }

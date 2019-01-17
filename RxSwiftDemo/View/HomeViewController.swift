@@ -173,13 +173,13 @@ extension HomeViewController {
     
     func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
         let vc = OwnerViewController()
-        owner.bind(to: vc.viewModel.dataSource).disposed(by: disposeBag)
+        owner.bind(to: vc.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func gotoFavouritesViewController(_ favourites: Observable<[Repository]>) {
         let vc = FavouritesViewController()
-        favourites.bind(to: vc.viewModel.dataSource).disposed(by: disposeBag)
+        favourites.bind(to: vc.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -99,14 +99,7 @@ class HomeViewModel:ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        //        Observable
-        //            .just(())
-        //            .debug()
-        //            .flatMapLatest {
-        //
-        //            }
-        DataBaseService.shared.repositories
-            //            .debug()
+        DatabaseService.shared.repositories
             .bind(to: favourites)
             .disposed(by: disposeBag)
         
@@ -120,21 +113,6 @@ class HomeViewModel:ViewModelType {
             })
             .bind(to: dataSource)
             .disposed(by: disposeBag)
-        
-        //        dataSource
-        //            .debug()
-        //            .flatMap {
-        //                Observable.from( $0.items )
-        //            }
-        //            .flatMap({
-        //                Observable.of($0.isSubscribed)
-        //            })
-        //            .distinctUntilChanged()
-        //            .map({ _ in
-        //                DataBaseAPI.shared.getAllRepository()
-        //            })
-        //            .bind(to: favourites)
-        //            .disposed(by: disposeBag)
     }
     
     private func checkSubscription(_ repositories: Repositories) -> Repositories {
@@ -148,93 +126,4 @@ class HomeViewModel:ViewModelType {
     }
     
 }
-
-//extension HomeViewModel {
-//    struct Actions {
-//        let searchAction: Observable<String>
-//        let headerAction: Observable<String>
-//        let footerAction: Observable<String>
-//    }
-
-//    struct Output {
-//        let newData:Observable<Repositories>
-//        let moreData:Observable<Repositories>
-//        let dataSource:BehaviorRelay<Repositories>
-//        let dataSourceCount:Observable<String>
-//        let favourites:BehaviorRelay<[Repository]>
-//    }
-
-
-//    func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
-//        Observable
-//            .merge(input.searchAction, input.headerAction)
-//            .map{ RepositoriesParams(query: $0) }
-//            .bind(to: newRepositoriesParams)
-//            .disposed(by: disposeBag)
-//
-//        input.footerAction
-//            .map{
-//                self.moreRepositoriesParams.value.query = $0
-//                return self.moreRepositoriesParams.value
-//            }
-//            .bind(to: moreRepositoriesParams)
-//            .disposed(by: disposeBag)
-//
-//        newData
-//            .bind(to: dataSource)
-//            .disposed(by: disposeBag)
-//
-//        moreData
-//            .map{
-//                [weak self] in guard let `self` = self else { return $0 }
-//                return self.dataSource.value + $0
-//            }
-//            .bind(to: dataSource)
-//            .disposed(by: disposeBag)
-//
-//        newData
-//            .filter{ $0.items.count > 0 }
-//            .subscribe(onNext: {
-//                [weak self] _ in guard let `self` = self else { return }
-//                self.dataSource.value.currentPage = 1
-//            })
-//            .disposed(by: disposeBag)
-//
-//        moreData
-//            .filter{ $0.items.count > 0 }
-//            .subscribe(onNext: {
-//                [weak self] _ in guard let `self` = self else { return }
-//                self.dataSource.value.currentPage += 1
-//            })
-//            .disposed(by: disposeBag)
-//
-//        Observable
-//            .just(())
-//            .flatMapLatest {
-//                DataBaseService.shared.getAllRepository()
-//            }
-//            .bind(to: favourites)
-//            .disposed(by: disposeBag)
-//
-////        dataSource
-////            .debug()
-////            .flatMap {
-////                Observable.from( $0.items )
-////            }
-////            .flatMap({
-////                Observable.of($0.isSubscribed)
-////            })
-////            .distinctUntilChanged()
-////            .map({ _ in
-////                DataBaseAPI.shared.getAllRepository()
-////            })
-////            .bind(to: favourites)
-////            .disposed(by: disposeBag)
-//
-//        return Output(newData: newData, moreData: moreData, dataSource: dataSource, dataSourceCount: dataSourceCount, favourites: favourites)
-//    }
-
-
-//}
-
 

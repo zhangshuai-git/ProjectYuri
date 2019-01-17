@@ -9,8 +9,8 @@
 import RxCocoa
 import RxSwift
 
-class DataBaseService {
-    static let shared = DataBaseService()
+class DatabaseService {
+    static let shared = DatabaseService()
     private init() {
         getAllRepository().bind(to: repositories).disposed(by: disposeBag)
     }
@@ -22,7 +22,7 @@ class DataBaseService {
     func add(repository : Repository) {
         Observable<Void>
             .create({ (subscriber) -> Disposable in
-                DataBaseAPI.shared.add(repository: repository)
+                DatabaseAPI.shared.add(repository: repository)
                 subscriber.onNext(())
                 subscriber.onCompleted()
                 return Disposables.create()
@@ -37,7 +37,7 @@ class DataBaseService {
     func delete(repository: Repository) {
         Observable<Void>
             .create({ (subscriber) -> Disposable in
-                DataBaseAPI.shared.delete(repository: repository)
+                DatabaseAPI.shared.delete(repository: repository)
                 subscriber.onNext(())
                 subscriber.onCompleted()
                 return Disposables.create()
@@ -50,17 +50,8 @@ class DataBaseService {
     }
     
     private func getAllRepository() -> Observable<[Repository]> {
-//        return Observable.create({ (subscriber) -> Disposable in
-//            let repositories = DataBaseAPI.shared.getAllRepository()
-//            for repository in repositories {
-//                repository.isSubscribed = true
-//            }
-//            subscriber.onNext(repositories)
-//            subscriber.onCompleted()
-//            return Disposables.create()
-//        })
         return Observable
-            .from(DataBaseAPI.shared.getAllRepository())
+            .from(DatabaseAPI.shared.getAllRepository())
             .map({
                 $0.isSubscribed = true
                 return $0
