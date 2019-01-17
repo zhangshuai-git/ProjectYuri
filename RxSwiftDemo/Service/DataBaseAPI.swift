@@ -50,7 +50,8 @@ class DataBaseAPI {
         """)
     }
     
-    func add(repository : Repository) -> Void {
+    func add(repository : Repository) {
+        print("add", tag: "DataBaseDebug")
         db.open()
         defer {
             db.close()
@@ -62,6 +63,7 @@ class DataBaseAPI {
     }
     
     func delete(repository: Repository) {
+        print("delete", tag: "DataBaseDebug")
         db.open()
         defer {
             db.close()
@@ -71,6 +73,7 @@ class DataBaseAPI {
     }
 
     func update(repository: Repository) {
+        print("update", tag: "DataBaseDebug")
         db.open()
         defer {
             db.close()
@@ -84,6 +87,7 @@ class DataBaseAPI {
     }
     
     func getAllRepository() -> [Repository] {
+        print("getAllRepository", tag: "DataBaseDebug")
         db.open()
         defer {
             db.close()

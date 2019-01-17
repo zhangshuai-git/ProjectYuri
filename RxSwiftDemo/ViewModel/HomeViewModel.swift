@@ -116,7 +116,10 @@ extension HomeViewModel {
             .disposed(by: disposeBag)
         
         Observable
-            .of(DataBaseAPI.shared.getAllRepository())
+            .just(())
+            .flatMapLatest {
+                DataBaseService.shared.getAllRepository()
+            }
             .bind(to: favourites)
             .disposed(by: disposeBag)
         
@@ -142,7 +145,6 @@ extension HomeViewModel {
         for repository in repositories.items {
             for favouriteRepository in self.favourites.value {
                 repository.isSubscribed = repository.id == favouriteRepository.id
-//                print("\(repository.isSubscribed ? "#" : "") \(repository.name)", tag: "SubscriptionDebug")
                 if repository.isSubscribed { break }
             }
         }

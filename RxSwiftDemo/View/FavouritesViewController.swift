@@ -34,7 +34,6 @@ class FavouritesViewController: BaseViewController {
     }
     
     override func makeConstraints() -> Void {
-        
         tableView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(view.snp.bottomMargin)

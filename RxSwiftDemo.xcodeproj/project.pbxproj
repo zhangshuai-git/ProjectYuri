@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		517A6C4F928248C331EA1D44 /* Pods_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */; };
+		EC021E9F21F0102B0058F9E3 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021E9E21F0102B0058F9E3 /* DataBaseService.swift */; };
 		EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */; };
 		EC03452221E881B700DDC12C /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03452121E881B700DDC12C /* FavouritesViewModel.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
@@ -40,6 +41,7 @@
 		6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70551E8D4E1F661459CE6F27 /* Pods-RxSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		EC021E9E21F0102B0058F9E3 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
 		EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		EC03452121E881B700DDC12C /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */,
 				ECB0803121C2032400ED8548 /* NetworkAPI.swift */,
+				EC021E9E21F0102B0058F9E3 /* DataBaseService.swift */,
 				EC3908F121D1D1F8003A9250 /* DataBaseAPI.swift */,
 			);
 			path = Service;
@@ -358,6 +361,7 @@
 				EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */,
 				EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
+				EC021E9F21F0102B0058F9E3 /* DataBaseService.swift in Sources */,
 				EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */,
 				EC3908F221D1D1F8003A9250 /* DataBaseAPI.swift in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
