@@ -42,9 +42,11 @@ class FavouritesViewController: BaseViewController {
     
     override func bindViewModel() {
         viewModel.dataSource
+            .debug("FavouritesViewController bind to tableView")
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.viewModel.dataSource).disposed(by: cell.disposeBag)
+                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+                cell.isSubscribed.flatMapLatest({_ in DataBaseService.shared.repositories}).bind(to: self.viewModel.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)

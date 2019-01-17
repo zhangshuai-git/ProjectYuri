@@ -11,47 +11,60 @@ import RxSwift
 
 class DataBaseService {
     static let shared = DataBaseService()
-    private init() { }
+    private init() {
+        getAllRepository().bind(to: repositories).disposed(by: disposeBag)
+    }
     
     let disposeBag = DisposeBag()
     
     let repositories = BehaviorRelay(value: [Repository]())
     
-//    func add(repository : Repository) -> Observable<Void> {
-//        let signal = Observable<Void>.create({ (subscriber) -> Disposable in
-//            DataBaseAPI.shared.add(repository: repository)
-//            subscriber.onNext(())
-//            subscriber.onCompleted()
-//            return Disposables.create()
-//        })
-//        signal
-//            .bind(to: dataBaseUpdated)
-//            .disposed(by: disposeBag)
-//        return signal
-//    }
-//    
-//    func delete(repository: Repository) -> Observable<Void> {
-//        let signal = Observable<Void>.create({ (subscriber) -> Disposable in
-//            DataBaseAPI.shared.delete(repository: repository)
-//            subscriber.onNext(())
-//            subscriber.onCompleted()
-//            return Disposables.create()
-//        })
-//        signal
-//            .bind(to: dataBaseUpdated)
-//            .disposed(by: disposeBag)
-//        return signal
-//    }
-    
-    func getAllRepository() -> Observable<[Repository]> {
-        return Observable.create({ (subscriber) -> Disposable in
-            let repositories = DataBaseAPI.shared.getAllRepository()
-            for repository in repositories {
-                repository.isSubscribed = true
+    func add(repository : Repository) {
+        Observable<Void>
+            .create({ (subscriber) -> Disposable in
+                DataBaseAPI.shared.add(repository: repository)
+                subscriber.onNext(())
+                subscriber.onCompleted()
+                return Disposables.create()
+            })
+            .flatMapLatest {
+                self.getAllRepository()
             }
-            subscriber.onNext(repositories)
-            subscriber.onCompleted()
-            return Disposables.create()
-        })
+            .bind(to: repositories)
+            .disposed(by: disposeBag)
+    }
+    
+    func delete(repository: Repository) {
+        Observable<Void>
+            .create({ (subscriber) -> Disposable in
+                DataBaseAPI.shared.delete(repository: repository)
+                subscriber.onNext(())
+                subscriber.onCompleted()
+                return Disposables.create()
+            })
+            .flatMapLatest {
+                self.getAllRepository()
+            }
+            .bind(to: repositories)
+            .disposed(by: disposeBag)
+    }
+    
+    private func getAllRepository() -> Observable<[Repository]> {
+//        return Observable.create({ (subscriber) -> Disposable in
+//            let repositories = DataBaseAPI.shared.getAllRepository()
+//            for repository in repositories {
+//                repository.isSubscribed = true
+//            }
+//            subscriber.onNext(repositories)
+//            subscriber.onCompleted()
+//            return Disposables.create()
+//        })
+        return Observable
+            .from(DataBaseAPI.shared.getAllRepository())
+            .map({
+                $0.isSubscribed = true
+                return $0
+            })
+            .toArray()
     }
 }

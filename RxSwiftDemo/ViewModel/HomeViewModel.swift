@@ -54,7 +54,7 @@ class HomeViewModel:ViewModelType {
         dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
         newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
         moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
-        )
+    )
     
     func activate(_ actions: (searchAction: Observable<String>, headerAction: Observable<String>, footerAction: Observable<String>)) {
         Observable
@@ -99,12 +99,26 @@ class HomeViewModel:ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        Observable
-            .just(())
-            .flatMapLatest {
-                DataBaseService.shared.getAllRepository()
-            }
+        //        Observable
+        //            .just(())
+        //            .debug()
+        //            .flatMapLatest {
+        //
+        //            }
+        DataBaseService.shared.repositories
+            //            .debug()
             .bind(to: favourites)
+            .disposed(by: disposeBag)
+        
+        favourites
+            .flatMap { [weak self] _ in
+                Observable.of(self?.dataSource.value ?? Repositories())
+            }
+            .map({
+                [weak self] in guard let `self` = self else { return $0 }
+                return self.checkSubscription($0)
+            })
+            .bind(to: dataSource)
             .disposed(by: disposeBag)
         
         //        dataSource
@@ -122,7 +136,7 @@ class HomeViewModel:ViewModelType {
         //            .bind(to: favourites)
         //            .disposed(by: disposeBag)
     }
-
+    
     private func checkSubscription(_ repositories: Repositories) -> Repositories {
         for repository in repositories.items {
             for favouriteRepository in self.favourites.value {
@@ -141,7 +155,7 @@ class HomeViewModel:ViewModelType {
 //        let headerAction: Observable<String>
 //        let footerAction: Observable<String>
 //    }
-    
+
 //    struct Output {
 //        let newData:Observable<Repositories>
 //        let moreData:Observable<Repositories>
@@ -149,8 +163,8 @@ class HomeViewModel:ViewModelType {
 //        let dataSourceCount:Observable<String>
 //        let favourites:BehaviorRelay<[Repository]>
 //    }
-    
-    
+
+
 //    func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
 //        Observable
 //            .merge(input.searchAction, input.headerAction)
@@ -219,8 +233,8 @@ class HomeViewModel:ViewModelType {
 //
 //        return Output(newData: newData, moreData: moreData, dataSource: dataSource, dataSourceCount: dataSourceCount, favourites: favourites)
 //    }
-    
-    
+
+
 //}
 
 

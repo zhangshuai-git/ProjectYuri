@@ -103,11 +103,12 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.dataSource
+            .debug("HomeViewController bind to tableView")
             .skip(1)
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.viewModel.dataSource).disposed(by: cell.disposeBag)
+                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)

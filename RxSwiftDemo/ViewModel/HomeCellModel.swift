@@ -15,17 +15,18 @@ class HomeCellModel: ViewModelType {
     
     lazy var dataSource = BehaviorRelay(value: Repository())
     
-    lazy var isSubscribed = BehaviorRelay(value: false)
+    lazy var isSubscribed = PublishSubject<Bool>()
     
     func activate(_ subscribeAction: Observable<Bool>) {
         subscribeAction
-            .asDriver(onErrorJustReturn: false)
-            .drive(onNext: {
+            .debug("cell isSubscribed")
+//            .asDriver(onErrorJustReturn: false)
+            .bind(onNext: {
                 [weak self] in guard let `self` = self else { return }
                 print($0)
                 self.dataSource.value.isSubscribed = $0
-                $0 ? DataBaseAPI.shared.add(repository: self.dataSource.value)
-                    : DataBaseAPI.shared.delete(repository: self.dataSource.value)
+                $0 ? DataBaseService.shared.add(repository: self.dataSource.value)
+                   : DataBaseService.shared.delete(repository: self.dataSource.value)
             })
             .disposed(by: disposeBag)
     }
