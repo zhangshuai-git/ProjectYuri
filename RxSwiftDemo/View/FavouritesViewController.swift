@@ -13,7 +13,7 @@ import SnapKit
 
 class FavouritesViewController: BaseViewController {
     
-    var favourites = BehaviorRelay(value: [Repository]())
+    let viewModel = FavouritesViewModel()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
@@ -41,10 +41,10 @@ class FavouritesViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        favourites
+        viewModel.dataSource
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.model).disposed(by: cell.disposeBag)
+                Observable.of(element).bind(to: cell.viewModel.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)
@@ -61,7 +61,7 @@ class FavouritesViewController: BaseViewController {
 extension FavouritesViewController {
     func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
         let vc = OwnerViewController()
-        owner.bind(to: vc.owner).disposed(by: disposeBag)
+        owner.bind(to: vc.viewModel.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

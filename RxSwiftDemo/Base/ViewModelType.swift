@@ -6,11 +6,7 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-import Foundation
-
-public protocol ViewModelType {
-    associatedtype Input
-    associatedtype Output
-    
-    func transform(_ input: Input) -> Output
+public protocol ViewModelType: DisposableType {
+    associatedtype Action
+    func activate(_ action: Action)
 }

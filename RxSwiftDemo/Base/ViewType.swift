@@ -6,8 +6,7 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-
-public protocol ViewType {
+public protocol ViewType: DisposableType {
     func buildSubViews()
     func makeConstraints()
     func bindViewModel()

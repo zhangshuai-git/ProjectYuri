@@ -12,7 +12,7 @@ import SnapKit
 
 class HomeTableViewCell: BaseTableViewCell {
     
-    lazy var model = BehaviorRelay(value: Repository())
+    let viewModel = HomeCellModel()
     
     lazy var titleLab: UILabel = {
         let label = UILabel()
@@ -85,29 +85,39 @@ class HomeTableViewCell: BaseTableViewCell {
     }
     
     override func bindViewModel() {
-        model.bind {
-            [weak self] in guard let `self` = self else { return }
-            self.titleLab.text = $0.name
-            self.detailLab.text = $0.desp
-            self.contentLab.text = $0.htmlUrl
-            self.isButtonActive = $0.isSubscribed
-//            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
-        }
-        .disposed(by: disposeBag)
-        
-        actionBtn.rx.tap
-            .asObservable()
-            .asDriver(onErrorJustReturn: ())
-            .drive(onNext: {
+        viewModel.dataSource
+            .bind {
                 [weak self] in guard let `self` = self else { return }
-                self.isButtonActive.toggle()
-                print(self.isButtonActive)
-                self.model.value.isSubscribed = self.isButtonActive
-                self.isButtonActive
-                    ? DataBaseAPI.shared.add(repository: self.model.value)
-                    : DataBaseAPI.shared.delete(repository: self.model.value)
-            })
+                self.titleLab.text = $0.name
+                self.detailLab.text = $0.desp
+                self.contentLab.text = $0.htmlUrl
+                self.isButtonActive = $0.isSubscribed
+    //            print("\($0.isSubscribed ? "#" : "") \($0.name)", tag: "SubscriptionDebug")
+            }
             .disposed(by: disposeBag)
+        
+        let subscribeAction = actionBtn.rx.tap
+            .asObservable()
+            .map({
+                [weak self] (_) -> Bool in guard let `self` = self else { return false }
+                self.isButtonActive.toggle()
+                return self.isButtonActive
+            })
+        
+        viewModel.activate(subscribeAction)
+        
+//        subscribeAction
+//            .asDriver(onErrorJustReturn: ())
+//            .drive(onNext: {
+//                [weak self] in guard let `self` = self else { return }
+//                self.isButtonActive.toggle()
+//                print(self.isButtonActive)
+//                self.model.value.isSubscribed = self.isButtonActive
+//                self.isButtonActive
+//                    ? DataBaseAPI.shared.add(repository: self.model.value)
+//                    : DataBaseAPI.shared.delete(repository: self.model.value)
+//            })
+//            .disposed(by: disposeBag)
     }
 }
 

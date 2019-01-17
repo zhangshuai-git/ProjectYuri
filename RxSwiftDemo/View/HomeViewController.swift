@@ -98,37 +98,21 @@ class HomeViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        let searchAction:Observable<String> = searchBar.rx.text.orEmpty
-            .throttle(2.0, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-
-        let headerAction:Observable<String> = tableView.mj_header.rx.refreshing
-            .asObservable()
-            .map{ [weak self] in self?.searchBar.text ?? "" }
-
-        let footerAction:Observable<String> = tableView.mj_footer.rx.refreshing
-            .asObservable()
-            .map{ [weak self] in self?.searchBar.text ?? "" }
-        
-        let input = HomeViewModel.Input(searchAction: searchAction, headerAction: headerAction, footerAction: footerAction)
-        
-        let output = viewModel.transform(input)
-        
-        output.dataSourceCount
+        viewModel.dataSourceCount
             .bind(to: resultLab.rx.text)
             .disposed(by: disposeBag)
         
-        output.dataSource
+        viewModel.dataSource
             .skip(1)
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.model).disposed(by: cell.disposeBag)
+                Observable.of(element).bind(to: cell.viewModel.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)
         
-        output.dataSource
+        viewModel.dataSource
             .subscribe(onNext: {
                 [weak self] _ in guard let `self` = self else { return }
                 self.tableView.zs.reloadData(withEmpty: self.emptyView)
@@ -142,14 +126,14 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        output.newData
+        viewModel.newData
             .map{ _ in false }
             .asDriver(onErrorJustReturn: false)
             .drive(tableView.mj_header.rx.isRefreshing)
             .disposed(by: disposeBag)
         
         Observable
-            .merge(output.newData.map(footerState), output.moreData.map(footerState))
+            .merge(viewModel.newData.map(footerState), viewModel.moreData.map(footerState))
             .startWith(.hidden)
             .asDriver(onErrorJustReturn: .hidden)
             .drive(tableView.mj_footer.rx.refreshFooterState)
@@ -159,9 +143,23 @@ class HomeViewController: BaseViewController {
             .asObservable()
             .bind {
                 [weak self] in guard let `self` = self else { return }
-                self.gotoFavouritesViewController(output.favourites.asObservable())
+                self.gotoFavouritesViewController(self.viewModel.favourites.asObservable())
             }
             .disposed(by: disposeBag)
+        
+        let searchAction:Observable<String> = searchBar.rx.text.orEmpty
+            .throttle(2.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+        
+        let headerAction:Observable<String> = tableView.mj_header.rx.refreshing
+            .asObservable()
+            .map{ [weak self] in self?.searchBar.text ?? "" }
+        
+        let footerAction:Observable<String> = tableView.mj_footer.rx.refreshing
+            .asObservable()
+            .map{ [weak self] in self?.searchBar.text ?? "" }
+        
+        viewModel.activate((searchAction: searchAction, headerAction: headerAction, footerAction: footerAction))
     }
 }
 
@@ -174,13 +172,13 @@ extension HomeViewController {
     
     func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
         let vc = OwnerViewController()
-        owner.bind(to: vc.owner).disposed(by: disposeBag)
+        owner.bind(to: vc.viewModel.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func gotoFavouritesViewController(_ favourites: Observable<[Repository]>) {
         let vc = FavouritesViewController()
-        favourites.bind(to: vc.favourites).disposed(by: disposeBag)
+        favourites.bind(to: vc.viewModel.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

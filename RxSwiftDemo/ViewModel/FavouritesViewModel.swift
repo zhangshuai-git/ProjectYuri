@@ -14,23 +14,13 @@ class FavouritesViewModel: ViewModelType {
     
     let disposeBag = DisposeBag()
     
-    lazy var dataSource = BehaviorRelay<[Repository]>(value: [])
+    lazy var dataSource = BehaviorRelay(value: [Repository]())
+    
+    func activate(_ action: ()) { }
     
 }
 
-extension FavouritesViewModel {
-    struct Input {
-    }
-    
-    struct Output {
-    }
-    
-    func transform(_ input: FavouritesViewModel.Input) -> FavouritesViewModel.Output {
-        Observable
-            .of(DataBaseAPI.shared.getAllRepository())
-            .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        return Output()
-    }
-}
+//extension FavouritesViewModel {
+//    
+//    
+//}
