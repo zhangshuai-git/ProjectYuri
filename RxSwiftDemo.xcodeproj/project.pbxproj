@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		517A6C4F928248C331EA1D44 /* Pods_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */; };
+		EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */; };
+		EC021EA721F050E20058F9E3 /* TypeDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021EA621F050E20058F9E3 /* TypeDefine.swift */; };
+		EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0FA00121CB693800EA685A /* ActivityIndicator.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
@@ -16,7 +19,6 @@
 		EC1B9D7721BE84DE000E2C5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7521BE84DE000E2C5B /* LaunchScreen.storyboard */; };
 		EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */; };
 		EC1B9D8421BE8690000E2C5B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */; };
-		EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8121BE8690000E2C5B /* ViewType.swift */; };
 		EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8221BE8690000E2C5B /* Global.swift */; };
 		EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8821BE86CF000E2C5B /* ZSExtension.swift */; };
 		EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D8921BE86CF000E2C5B /* UITableView+ZSExtension.swift */; };
@@ -25,9 +27,9 @@
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
 		EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */; };
+		EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
-		ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0805121CA37DB00ED8548 /* ViewModelType.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
 		ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* HomeViewModel.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
@@ -37,6 +39,9 @@
 		6CC31E712D5EFFCF9A1F3E67 /* Pods_RxSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70551E8D4E1F661459CE6F27 /* Pods-RxSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		EC021EA621F050E20058F9E3 /* TypeDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDefine.swift; sourceTree = "<group>"; };
+		EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC0FA00121CB693800EA685A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* RxSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +52,6 @@
 		EC1B9D7821BE84DE000E2C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		EC1B9D8121BE8690000E2C5B /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		EC1B9D8221BE8690000E2C5B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		EC1B9D8821BE86CF000E2C5B /* ZSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZSExtension.swift; sourceTree = "<group>"; };
 		EC1B9D8921BE86CF000E2C5B /* UITableView+ZSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ZSExtension.swift"; sourceTree = "<group>"; };
@@ -56,9 +60,9 @@
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
-		ECB0805121CA37DB00ED8548 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECB6D89421BFD77500017274 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
@@ -123,8 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				EC1B9D8221BE8690000E2C5B /* Global.swift */,
-				EC1B9D8121BE8690000E2C5B /* ViewType.swift */,
-				ECB0805121CA37DB00ED8548 /* ViewModelType.swift */,
+				EC021EA621F050E20058F9E3 /* TypeDefine.swift */,
 				EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */,
 				EC1B9D7F21BE8690000E2C5B /* BaseViewController.swift */,
 				EC1B9D8021BE8690000E2C5B /* BaseTableViewCell.swift */,
@@ -152,6 +155,7 @@
 				EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */,
 				EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */,
 				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
+				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +173,8 @@
 			children = (
 				EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */,
 				ECB0803121C2032400ED8548 /* NetworkAPI.swift */,
+				EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */,
+				EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -284,6 +291,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -331,7 +339,6 @@
 			files = (
 				EC1B9D8421BE8690000E2C5B /* BaseTableViewCell.swift in Sources */,
 				ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */,
-				EC1B9D8521BE8690000E2C5B /* ViewType.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
@@ -344,10 +351,13 @@
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */,
 				EC1B9D8B21BE86CF000E2C5B /* UITableView+ZSExtension.swift in Sources */,
+				EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
+				EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */,
 				EC1B9D8321BE8690000E2C5B /* BaseViewController.swift in Sources */,
+				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
+				EC021EA721F050E20058F9E3 /* TypeDefine.swift in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
-				ECB0805221CA37DC00ED8548 /* ViewModelType.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,
 				EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */,
 			);

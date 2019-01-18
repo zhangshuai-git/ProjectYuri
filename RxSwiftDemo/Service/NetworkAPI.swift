@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya
 
 let PER_PAGE:UInt = 10
 

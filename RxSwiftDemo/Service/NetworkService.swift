@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Moya
+import SVProgressHUD
 
 class NetworkService {
     static let shared = NetworkService()
@@ -27,12 +28,13 @@ class NetworkService {
     
     private lazy var isShowIndicator : Driver<Bool> = indicator.asDriver()
     
-    func searchRepositories(_ params:RepositoriesParams) -> Observable<GitHubRepositories> {
+    func searchRepositories(_ params:RepositoriesParams) -> Observable<Repositories> {
         return GitHubProvider.rx
             .request(.repositories(params.toJSON() ?? [:]))
             .trackActivity(indicator)
             .asObservable()
-            .mapModel(GitHubRepositories.self)
+            .mapModel(Repositories.self)
+            .catchErrorJustReturn(Repositories())
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
     }

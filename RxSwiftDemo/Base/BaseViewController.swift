@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SDWebImage
 
 class BaseViewController: UIViewController, ViewType {
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,4 +32,5 @@ class BaseViewController: UIViewController, ViewType {
     func makeConstraints() -> Void { }
     func bindViewModel() -> Void { }
     func reBindViewModel() -> Void { }
+    
 }

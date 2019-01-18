@@ -6,6 +6,8 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
+import UIKit
+
 extension ZSExtension where Target: UITableView {
     func register(_ cellClass: AnyClass?) {
         guard let cellClass = cellClass else {

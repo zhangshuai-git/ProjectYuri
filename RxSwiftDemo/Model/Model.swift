@@ -6,9 +6,11 @@
 //  Copyright © 2018 張帥. All rights reserved.
 //
 
-import Foundation
+import HandyJSON
+import RxSwift
+import RxCocoa
 
-class RepositoriesParams:HandyJSON {
+class RepositoriesParams: HandyJSON {
     var query:String = ""
     var sort:String = "stars"
     var order:String = "desc"
@@ -20,17 +22,17 @@ class RepositoriesParams:HandyJSON {
         mapper <<< perPage <-- "per_page"
     }
     
-    required init() { }
-    
     init(query:String = "", page:Int = 1) {
         self.query = query
         self.page = page
     }
+    
+    required init() { }
 }
 
-class GitHubRepositories: HandyJSON {
+class Repositories: HandyJSON {
     var totalCount:UInt = 0
-    var items: [GitHubRepository] = []
+    var items: [Repository] = []
     var currentPage:Int = 1
     var totalPage:UInt {
         return totalCount / PER_PAGE
@@ -40,8 +42,8 @@ class GitHubRepositories: HandyJSON {
         mapper <<< totalCount <-- "total_count"
     }
     
-    static func + (obj0: GitHubRepositories, obj1: GitHubRepositories) -> GitHubRepositories {
-        let obj = GitHubRepositories()
+    static func + (obj0: Repositories, obj1: Repositories) -> Repositories {
+        let obj = Repositories()
         obj.totalCount = max(obj0.totalCount, obj1.totalCount)
         obj.items = obj0.items + obj1.items
         obj.currentPage = max(obj0.currentPage, obj1.currentPage)
@@ -51,17 +53,20 @@ class GitHubRepositories: HandyJSON {
     required init() { }
 }
 
-class GitHubRepository: HandyJSON {
+class Repository: HandyJSON {
     var id: Int = 0
     var name: String = ""
     var fullName: String = ""
     var htmlUrl: String = ""
-    var description: String = ""
+    var desp: String = ""
+    var comment: String = ""
+    var isSubscribed:Bool = false
     var owner: RepositoryOwner = RepositoryOwner()
-    
+
     public func mapping(mapper: HelpingMapper) {
         mapper <<< fullName <-- "full_name"
         mapper <<< htmlUrl <-- "html_url"
+        mapper <<< desp <-- "description"
     }
     
     required init() { }
@@ -76,6 +81,6 @@ class RepositoryOwner: HandyJSON {
     public func mapping(mapper: HelpingMapper) {
         mapper <<< avatarUrl <-- "avatar_url"
     }
-    
+ 
     required init() { }
 }

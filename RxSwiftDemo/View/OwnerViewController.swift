@@ -7,8 +7,23 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class OwnerViewController: BaseViewController {
+    
+    var dataSource = BehaviorRelay(value: RepositoryOwner())
+    
+    lazy var scrollerView: UIScrollView = {
+        let scrollerView = UIScrollView()
+        scrollerView.isScrollEnabled = false
+        return scrollerView
+    }()
+    
+    lazy var scrollerContentView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     lazy var mainView: UIView = {
         let view = UIView()
@@ -35,16 +50,27 @@ class OwnerViewController: BaseViewController {
         return label
     }()
     
-    var owner: RepositoryOwner?
-    
     override func buildSubViews() {
-        view.addSubview(mainView)
+        self.title = "Owner"
+        view.addSubview(scrollerView)
+        scrollerView.addSubview(scrollerContentView)
+        scrollerContentView.addSubview(mainView)
         mainView.addSubview(iconImg)
         mainView.addSubview(titleLab)
         mainView.addSubview(detailLab)
     }
-
+    
     override func makeConstraints() {
+        scrollerView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottomMargin)
+        }
+        
+        scrollerContentView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+            make.width.height.equalToSuperview()
+        }
+        
         mainView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.top.left.greaterThanOrEqualToSuperview()
@@ -70,10 +96,13 @@ class OwnerViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        guard let owner = owner else { return }
-        
-        iconImg.sd_setImage(with: URL(string: owner.avatarUrl))
-        titleLab.text = owner.login
-        detailLab.text = owner.url
+        dataSource
+            .bind {
+                [weak self] in guard let `self` = self else { return }
+                self.iconImg.sd_setImage(with: URL(string: $0.avatarUrl))
+                self.titleLab.text = $0.login
+                self.detailLab.text = $0.url
+            }
+            .disposed(by: disposeBag)
     }
 }
