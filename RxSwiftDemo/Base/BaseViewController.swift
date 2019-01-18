@@ -34,3 +34,17 @@ class BaseViewController: UIViewController, ViewType {
     func reBindViewModel() -> Void { }
     
 }
+
+extension BaseViewController {
+    func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
+        let vc = OwnerViewController()
+        owner.bind(to: vc.dataSource).disposed(by: disposeBag)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoFavouritesViewController(_ favourites: Observable<[Repository]>) {
+        let vc = FavouritesViewController()
+        favourites.bind(to: vc.dataSource).disposed(by: disposeBag)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}

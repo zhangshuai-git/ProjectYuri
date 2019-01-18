@@ -12,7 +12,9 @@ import RxSwift
 class DatabaseService {
     static let shared = DatabaseService()
     private init() {
-        getAllRepository().bind(to: repositories).disposed(by: disposeBag)
+        getAllRepository()
+            .bind(to: repositories)
+            .disposed(by: disposeBag)
     }
     
     let disposeBag = DisposeBag()
