@@ -20,15 +20,9 @@ class OwnerViewController: BaseViewController {
         return scrollerView
     }()
     
-    lazy var scrollerContentView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    lazy var scrollerContentView = UIView()
     
-    lazy var mainView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    lazy var mainView = UIView()
     
     lazy var iconImg: UIImageView = {
         let imageView = UIImageView()

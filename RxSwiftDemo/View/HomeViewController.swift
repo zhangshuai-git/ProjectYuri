@@ -35,10 +35,7 @@ class HomeViewController: BaseViewController {
         return searchBar
     }()
     
-    lazy var topView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    lazy var topView = UIView()
     
     lazy var resultLab: UILabel = {
         let label = UILabel()
@@ -58,11 +55,7 @@ class HomeViewController: BaseViewController {
         return button
     }()
     
-    lazy var emptyView: ZSEmptyView = {
-        let emptyView = ZSEmptyView(message: "请输入关键字\n实时搜索GitHub上的repositories\n下拉列表刷新数据，上拉加载更多数据\n点击条目查看作者信息\n点击Subscribe收藏条目(存入数据库)")
-        emptyView.backgroundColor = UIColor.white
-        return emptyView
-    }()
+    lazy var emptyView = ZSEmptyView(message: "请输入关键字\n实时搜索GitHub上的repositories\n下拉列表刷新数据，上拉加载更多数据\n点击条目查看作者信息\n点击Subscribe收藏条目(存入数据库)")
     
     override func buildSubViews() {
         navigationItem.titleView = searchBar

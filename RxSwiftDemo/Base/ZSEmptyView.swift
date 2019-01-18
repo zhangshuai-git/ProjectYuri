@@ -38,6 +38,7 @@ class ZSEmptyView: UIView {
     }
     
     func buildSubViews() {
+        backgroundColor = UIColor.white
         addSubview(iconImg)
         addSubview(messageLab)
     }

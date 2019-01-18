@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class HomeViewModel:ViewModelType {
+class HomeViewModel: ViewModelType {
     
     let disposeBag = DisposeBag()
     
@@ -18,7 +18,7 @@ class HomeViewModel:ViewModelType {
     
     private lazy var moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
     
-    lazy var favourites = BehaviorRelay<[Repository]>(value: [])
+    lazy var favourites = BehaviorRelay(value: [Repository]())
     
     lazy var newData:Observable<Repositories> = newRepositoriesParams
         .skip(1)
