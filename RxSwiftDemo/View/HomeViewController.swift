@@ -170,17 +170,5 @@ extension HomeViewController {
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
-    
-    func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
-        let vc = OwnerViewController()
-        owner.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func gotoFavouritesViewController(_ favourites: Observable<[Repository]>) {
-        let vc = FavouritesViewController()
-        favourites.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
 }
 

@@ -58,11 +58,3 @@ class FavouritesViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
 }
-
-extension FavouritesViewController {
-    func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
-        let vc = OwnerViewController()
-        owner.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-}
