@@ -114,7 +114,9 @@ class HomeViewModel: ViewModelType {
             .bind(to: dataSource)
             .disposed(by: disposeBag)
     }
-    
+}
+
+extension HomeViewModel {
     private func checkSubscription(_ repositories: Repositories) -> Repositories {
         for repository in repositories.items {
             for favouriteRepository in self.favourites.value {
@@ -124,6 +126,5 @@ class HomeViewModel: ViewModelType {
         }
         return repositories
     }
-    
 }
 
