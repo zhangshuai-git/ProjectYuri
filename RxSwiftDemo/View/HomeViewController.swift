@@ -126,6 +126,12 @@ class HomeViewController: BaseViewController {
             .drive(tableView.mj_header.rx.isRefreshing)
             .disposed(by: disposeBag)
         
+        let footerState = { (repositories: Repositories) -> RxMJRefreshFooterState in
+            if repositories.items.count == 0 { return .hidden }
+            print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
+            return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
+        }
+        
         Observable
             .merge(viewModel.newData.map(footerState), viewModel.moreData.map(footerState))
             .startWith(.hidden)
@@ -154,14 +160,6 @@ class HomeViewController: BaseViewController {
             .map{ [weak self] in self?.searchBar.text ?? "" }
         
         viewModel.activate((searchAction: searchAction, headerAction: headerAction, footerAction: footerAction))
-    }
-}
-
-extension HomeViewController {
-    func footerState(_ repositories: Repositories) -> RxMJRefreshFooterState {
-        if repositories.items.count == 0 { return .hidden }
-        print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
-        return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
 }
 
