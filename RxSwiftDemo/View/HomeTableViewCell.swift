@@ -107,7 +107,7 @@ class HomeTableViewCell: BaseTableViewCell {
                 print($0)
                 self.dataSource.value.isSubscribed = $0
                 $0 ? DatabaseService.shared.add(repository: self.dataSource.value)
-                    : DatabaseService.shared.delete(repository: self.dataSource.value)
+                   : DatabaseService.shared.delete(repository: self.dataSource.value)
             })
             .disposed(by: disposeBag)
     }
