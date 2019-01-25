@@ -27,7 +27,7 @@ class HomeViewModel: ViewModelType {
         }
         .map({
             [weak self] in guard let `self` = self else { return $0 }
-            return self.checkSubscription($0)
+            return self.synchronizeSubscription($0)
         })
         .share(replay: 1)
     
@@ -43,7 +43,7 @@ class HomeViewModel: ViewModelType {
         }
         .map({
             [weak self] in guard let `self` = self else { return $0 }
-            return self.checkSubscription($0)
+            return self.synchronizeSubscription($0)
         })
         .share(replay: 1)
     
@@ -56,7 +56,7 @@ class HomeViewModel: ViewModelType {
         moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
     )
     
-    func activate(_ actions: (searchAction: Observable<String>, headerAction: Observable<String>, footerAction: Observable<String>)) {
+    func activate(_ actions: (searchAction: Observable<String>, headerAction: Observable<String>, footerAction: Observable<String>, refrashAction:Observable<Void>)) {
         Observable
             .merge(actions.searchAction, actions.headerAction)
             .map{ RepositoriesParams(query: $0) }
@@ -103,13 +103,13 @@ class HomeViewModel: ViewModelType {
             .bind(to: favourites)
             .disposed(by: disposeBag)
         
-        favourites
+        actions.refrashAction
             .flatMap { [weak self] _ in
                 Observable.of(self?.dataSource.value ?? Repositories())
             }
             .map({
                 [weak self] in guard let `self` = self else { return $0 }
-                return self.checkSubscription($0)
+                return self.synchronizeSubscription($0)
             })
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
@@ -119,7 +119,7 @@ class HomeViewModel: ViewModelType {
 }
 
 extension HomeViewModel {
-    private func checkSubscription(_ repositories: Repositories) -> Repositories {
+    private func synchronizeSubscription(_ repositories: Repositories) -> Repositories {
         for repository in repositories.items {
             for favouriteRepository in self.favourites.value {
                 repository.isSubscribed = repository.id == favouriteRepository.id

@@ -23,15 +23,9 @@ class BaseViewController: UIViewController, ViewType {
         bindViewModel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        reBindViewModel()
-    }
-
     func buildSubViews() -> Void { }
     func makeConstraints() -> Void { }
     func bindViewModel() -> Void { }
-    func reBindViewModel() -> Void { }
     
 }
 

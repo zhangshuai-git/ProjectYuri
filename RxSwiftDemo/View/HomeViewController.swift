@@ -109,9 +109,8 @@ class HomeViewController: BaseViewController {
         viewModel.dataSource
             .map { $0.totalCount == 0 }
             .distinctUntilChanged()
-            .subscribe(onNext: {
-                [weak self] _ in guard let `self` = self else { return }
-                self.tableView.zs.reloadData(withEmpty: self.emptyView)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.zs.reloadData(withEmpty: self?.emptyView)
             })
             .disposed(by: disposeBag)
         
@@ -143,19 +142,23 @@ class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        let searchAction:Observable<String> = searchBar.rx.text.orEmpty
+        let searchAction: Observable<String> = searchBar.rx.text.orEmpty
             .throttle(2.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
         
-        let headerAction:Observable<String> = tableView.mj_header.rx.refreshing
+        let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
             .asObservable()
             .map{ [weak self] in self?.searchBar.text ?? "" }
         
-        let footerAction:Observable<String> = tableView.mj_footer.rx.refreshing
+        let footerAction: Observable<String> = tableView.mj_footer.rx.refreshing
             .asObservable()
             .map{ [weak self] in self?.searchBar.text ?? "" }
         
-        viewModel.activate((searchAction: searchAction, headerAction: headerAction, footerAction: footerAction))
+        let refrashAction: Observable<Void> = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .asObservable()
+            .map { _ in () }
+        
+        viewModel.activate((searchAction: searchAction, headerAction: headerAction, footerAction: footerAction, refrashAction: refrashAction))
     }
 }
 
