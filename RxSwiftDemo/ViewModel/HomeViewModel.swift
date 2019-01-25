@@ -111,6 +111,8 @@ class HomeViewModel: ViewModelType {
                 [weak self] in guard let `self` = self else { return $0 }
                 return self.checkSubscription($0)
             })
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
             .bind(to: dataSource)
             .disposed(by: disposeBag)
     }

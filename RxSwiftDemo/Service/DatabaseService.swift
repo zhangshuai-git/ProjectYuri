@@ -59,5 +59,7 @@ class DatabaseService {
                 return $0
             })
             .toArray()
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
     }
 }

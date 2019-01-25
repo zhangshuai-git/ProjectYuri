@@ -107,6 +107,8 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.dataSource
+            .map { $0.totalCount == 0 }
+            .distinctUntilChanged()
             .subscribe(onNext: {
                 [weak self] _ in guard let `self` = self else { return }
                 self.tableView.zs.reloadData(withEmpty: self.emptyView)
