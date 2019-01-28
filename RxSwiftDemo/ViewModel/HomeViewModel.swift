@@ -21,7 +21,7 @@ class HomeViewModel: ViewModelType {
     lazy var favourites = BehaviorRelay(value: [Repository]())
     
     lazy var newData:Observable<Repositories> = newRepositoriesParams
-        .skip(1)
+        .skip(2)
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
@@ -54,7 +54,7 @@ class HomeViewModel: ViewModelType {
         dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
         newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
         moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
-    )
+    ).skip(4)
     
     func activate(_ actions: (searchAction: Observable<String>, headerAction: Observable<String>, footerAction: Observable<String>, refrashAction:Observable<Void>)) {
         Observable

@@ -42,7 +42,6 @@ class FavouritesViewController: BaseViewController {
     
     override func bindViewModel() {
         dataSource
-            .debug("FavouritesViewController bind to tableView")
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
                 Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)

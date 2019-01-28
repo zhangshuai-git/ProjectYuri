@@ -96,7 +96,6 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.dataSource
-            .debug("HomeViewController bind to tableView")
             .skip(2)
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
@@ -143,7 +142,7 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         let searchAction: Observable<String> = searchBar.rx.text.orEmpty
-            .throttle(2.0, scheduler: MainScheduler.instance)
+            .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
         
         let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
