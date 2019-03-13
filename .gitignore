@@ -1,2 +1,31 @@
-Pods/Pods.xcodeproj/xcuserdata/bitware010.xcuserdatad/xcschemes/xcschememanagement.plist
-RxSwiftDemo.xcodeproj/xcuserdata/bitware010.xcuserdatad/xcschemes/xcschememanagement.plist
+# Android
+*.class
+*.apk
+
+# Xcode
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+xcshareddata/
+.metadata/
+
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
