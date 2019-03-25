@@ -55,7 +55,7 @@ class HomeViewController: BaseViewController {
         return button
     }()
     
-    lazy var emptyView = ZSEmptyView(message: "请输入关键字\n实时搜索GitHub上的repositories\n下拉列表刷新数据，上拉加载更多数据\n点击条目查看作者信息\n点击Subscribe收藏条目(存入数据库)")
+    lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
         navigationItem.titleView = searchBar
