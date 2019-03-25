@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class HomeTableViewCell: BaseTableViewCell {
+class HomeTableViewCell: ZSTableViewCell {
     
     lazy var dataSource = BehaviorRelay(value: Repository())
     

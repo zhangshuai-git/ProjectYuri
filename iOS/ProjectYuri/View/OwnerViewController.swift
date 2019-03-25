@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class OwnerViewController: BaseViewController {
+class OwnerViewController: ZSViewController {
     
     var dataSource = BehaviorRelay(value: RepositoryOwner())
     

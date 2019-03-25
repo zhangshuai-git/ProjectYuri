@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import MJRefresh
 
-class HomeViewController: BaseViewController {
+class HomeViewController: ZSViewController {
     
     let viewModel = HomeViewModel()
     

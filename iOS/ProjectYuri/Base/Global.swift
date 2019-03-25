@@ -18,4 +18,7 @@ func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, method
     #endif
 }
 
+let MAIN_COLOR = "#afedc5"
+let TABBAR_NORMAL_COLOR = "#626065"
+
 

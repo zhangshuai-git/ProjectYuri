@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import SnapKit
 
-class FavouritesViewController: BaseViewController {
+class FavouritesViewController: ZSViewController {
     
     lazy var dataSource = BehaviorRelay(value: [Repository]())
     

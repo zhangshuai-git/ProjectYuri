@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class BaseViewController: UIViewController, ViewType {
+class ZSViewController: UIViewController, ViewType {
     
     let disposeBag = DisposeBag()
     
@@ -29,7 +29,7 @@ class BaseViewController: UIViewController, ViewType {
     
 }
 
-extension BaseViewController {
+extension ZSViewController {
     func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
         let vc = OwnerViewController()
         owner.bind(to: vc.dataSource).disposed(by: disposeBag)
