@@ -19,8 +19,6 @@ class ZSNavigationController: UINavigationController, UIGestureRecognizerDelegat
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        
-        
         /// 如果当前控制器的子控制器个数大于等于1, 说明推出的控制器为子控制器
         if children.count > 0 {
             
@@ -43,7 +41,6 @@ class ZSNavigationController: UINavigationController, UIGestureRecognizerDelegat
     
     /// 滑动返回手势
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
         /// 判断是否需要滑动返回手势
         if gestureRecognizer == navigationController?.interactivePopGestureRecognizer {
             return navigationController!.children.count > 1
