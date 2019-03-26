@@ -16,8 +16,8 @@ class ZSTabBarController: UITabBarController {
     }
     
     func createChildController() {
-        addChildVC(HomeViewController.self, title: "首页".localized, image: "home-tab", selectedImage: "home-tab-selected")
-        addChildVC(UIViewController.self, title: "我的".localized, image: "menu-tab", selectedImage: "menu-tab-selected")
+        addChildVC(HomeViewController.self, title: "首页", image: "home-tab", selectedImage: "home-tab-selected")
+        addChildVC(UIViewController.self, title: "我的", image: "menu-tab", selectedImage: "menu-tab-selected")
     }
     
     func addChildVC(_ childVcType: UIViewController.Type, title:String, image: String, selectedImage: String) {

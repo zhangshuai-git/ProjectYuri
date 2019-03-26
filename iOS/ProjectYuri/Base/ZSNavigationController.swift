@@ -13,12 +13,18 @@ class ZSNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registGestureDelegate()
+        setupNavigationBarStyle()
+    }
+    
+    func setupNavigationBarStyle() {
+        UINavigationBar.appearance().barTintColor = UIColor(hex: MAIN_COLOR)
+        UINavigationBar.appearance().barStyle = .black
     }
 
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if children.count > 0 {
             let backBtn = UIButton()
-            backBtn.setImage(UIImage(named: "back-navi"), for: .normal)
+            backBtn.setImage(UIImage(named: "back-navi-white"), for: .normal)
             backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
             /// 子控制器隐藏TabBar

@@ -30,14 +30,20 @@ class HomeViewController: ZSViewController {
         return tableView
     }()
     
-    lazy var navigationTitleView = UIView()
-    
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         return searchBar
     }()
     
     lazy var topView = UIView()
+    
+    lazy var groupBtn: UISegmentedControl = {
+        let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
+        groupBtn.selectedSegmentIndex = 0
+        groupBtn.tintColor = UIColor(hex: MAIN_COLOR)
+        groupBtn.style = .clear
+        return groupBtn
+    }()
     
     lazy var resultLab: UILabel = {
         let label = UILabel()
@@ -60,37 +66,36 @@ class HomeViewController: ZSViewController {
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
-//        navigationTitleView.addSubview(searchBar)
         navigationItem.titleView = searchBar
-//        searchBar.backgroundColor = UIColor.gray
         view.addSubview(topView)
         view.addSubview(tableView)
-        topView.addSubview(resultLab)
-        topView.addSubview(actionBtn)
+        topView.addSubview(groupBtn)
+//        topView.addSubview(resultLab)
+//        topView.addSubview(actionBtn)
     }
     
     override func makeConstraints() -> Void {
-//        searchBar.snp.makeConstraints { (make) in
-//            make.left.right.top.equalToSuperview()
-//            make.height.equalTo(44)
-//        }
-        
         topView.snp.makeConstraints { (make) in
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
             make.left.right.equalToSuperview()
         }
         
-        resultLab.snp.makeConstraints { (make) in
-            make.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+        groupBtn.snp.makeConstraints { (make) in
+            make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
             make.height.equalTo(30)
-            make.centerY.equalTo(actionBtn)
         }
         
-        actionBtn.snp.makeConstraints { (make) in
-            make.top.right.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-            make.size.equalTo(CGSize(width: 80, height: 30))
-            make.left.equalTo(resultLab.snp.right).offset(20)
-        }
+//        resultLab.snp.makeConstraints { (make) in
+//            make.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+//            make.height.equalTo(30)
+//            make.centerY.equalTo(actionBtn)
+//        }
+//
+//        actionBtn.snp.makeConstraints { (make) in
+//            make.top.right.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+//            make.size.equalTo(CGSize(width: 80, height: 30))
+//            make.left.equalTo(resultLab.snp.right).offset(20)
+//        }
         
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(topView.snp.bottom)
@@ -100,6 +105,13 @@ class HomeViewController: ZSViewController {
     }
     
     override func bindViewModel() {
+        groupBtn.rx.selectedSegmentIndex
+            .asObservable()
+            .bind {
+                print("selected \($0)")
+            }
+            .disposed(by: disposeBag)
+        
         viewModel.dataSourceCount
             .bind(to: resultLab.rx.text)
             .disposed(by: disposeBag)

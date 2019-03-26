@@ -50,6 +50,7 @@
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
 		ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* HomeViewModel.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
+		ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,8 @@
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECB6D89421BFD77500017274 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
+		ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+ZSExtension.h"; sourceTree = "<group>"; };
+		ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+ZSExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,8 @@
 				EC6E2B9C2248C87600DFCFE6 /* UIView+ZSExtension.m */,
 				EC6E2BA92248C87900DFCFE6 /* UIViewController+ZSExtension.h */,
 				EC6E2B952248C87500DFCFE6 /* UIViewController+ZSExtension.m */,
+				ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */,
+				ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */,
 				EC6E2B992248C87600DFCFE6 /* ZSUtils.h */,
 				EC6E2BAA2248C87A00DFCFE6 /* ZSUtils.m */,
 				EC6E2B912248C87300DFCFE6 /* ProjectYuri-Bridging-Header.h */,
@@ -447,6 +452,7 @@
 				EC6E2BB62248C87C00DFCFE6 /* UIView+ZSExtension.m in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
 				EC6E2BB32248C87C00DFCFE6 /* UIColor+ZSExtension.m in Sources */,
+				ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
