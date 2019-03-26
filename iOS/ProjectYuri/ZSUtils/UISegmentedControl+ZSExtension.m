@@ -15,7 +15,7 @@ static const char *key = "UISEGMENTEDCONTROL_STYLE_ENUM";
 @implementation UISegmentedControl (ZSExtension)
 
 - (SegmentedControlStyle)style {
-    return [objc_getAssociatedObject(self, &key) intValue];
+    return [objc_getAssociatedObject(self, &key) unsignedIntegerValue];
 }
 
 - (void)setStyle:(SegmentedControlStyle)style {
