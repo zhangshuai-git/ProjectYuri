@@ -22,15 +22,13 @@ static const char *key = "UISEGMENTEDCONTROL_STYLE_ENUM";
     objc_setAssociatedObject(self, &key, @(style), OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     switch (style) {
-        case SegmentedControlStyleDefault:{
-            
-        }break;
+        case SegmentedControlStyleDefault:break;
         case SegmentedControlStyleClear:{
             //定义选中状态的样式selected
-            NSDictionary *selected = @{NSFontAttributeName:[UIFont systemFontOfSize:12],
+            NSDictionary *selected = @{NSFontAttributeName:[UIFont systemFontOfSize:14],
                                        NSForegroundColorAttributeName:self.tintColor};
             //定义未选中状态下的样式normal
-            NSDictionary *normal = @{NSFontAttributeName:[UIFont systemFontOfSize:12],
+            NSDictionary *normal = @{NSFontAttributeName:[UIFont systemFontOfSize:14],
                                      NSForegroundColorAttributeName:[UIColor grayColor]};
             [self setTitleTextAttributes:normal forState:UIControlStateNormal];
             [self setTitleTextAttributes:selected forState:UIControlStateSelected];
