@@ -8,6 +8,9 @@
 
 import Foundation
 
+//let MAIN_COLOR = "#cd85d3"
+let MAIN_COLOR = "#004833"
+
 func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, methodName: String = #function, lineNumber: Int = #line) {
     #if DEBUG
     let formatter = DateFormatter()
@@ -17,8 +20,5 @@ func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, method
     Swift.print("\(tag ?? date) <\(fileName)> \(methodName) [Line \(lineNumber)] \(message)")
     #endif
 }
-
-let MAIN_COLOR = "#afedc5"
-let TABBAR_NORMAL_COLOR = "#626065"
 
 

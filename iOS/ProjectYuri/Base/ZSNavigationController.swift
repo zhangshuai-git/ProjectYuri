@@ -8,35 +8,35 @@
 
 import UIKit
 
-class ZSNavigationController: UINavigationController, UIGestureRecognizerDelegate {
-
+class ZSNavigationController: UINavigationController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /// 自定义返回按钮后返回手势失效
-        /// 手动实现返回手势代理
-        interactivePopGestureRecognizer?.delegate = self
+        registGestureDelegate()
     }
-    
+
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        /// 如果当前控制器的子控制器个数大于等于1, 说明推出的控制器为子控制器
         if children.count > 0 {
-            
-            /// 自定义返回按钮
             let backBtn = UIButton()
-            backBtn.setImage(UIImage(named: "IMG_Back"), for: .normal)
+            backBtn.setImage(UIImage(named: "back-navi"), for: .normal)
             backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
-            
-            /// 子控制器隐藏 bottomBar
+            /// 子控制器隐藏TabBar
             viewController.hidesBottomBarWhenPushed = true
         }
         super.pushViewController(viewController, animated: animated)
     }
-    
-    /// 返回按钮点击事件
+
     @objc func goBack() {
         popViewController(animated: true)
+    }
+}
+
+extension ZSNavigationController: UIGestureRecognizerDelegate {
+    func registGestureDelegate() {
+        /// 自定义返回按钮后返回手势失效
+        /// 手动实现返回手势代理
+        interactivePopGestureRecognizer?.delegate = self
     }
     
     /// 滑动返回手势
@@ -45,13 +45,10 @@ class ZSNavigationController: UINavigationController, UIGestureRecognizerDelegat
         if gestureRecognizer == navigationController?.interactivePopGestureRecognizer {
             return navigationController!.children.count > 1
         }
-        
         /// 解决当前控制器为根控制器的时候, 返回手势卡屏的问题
         if children.count == 1 {
             return false
         }
-        
         return true
     }
-
 }

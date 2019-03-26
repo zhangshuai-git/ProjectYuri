@@ -16,8 +16,8 @@ class ZSTabBarController: UITabBarController {
     }
     
     func createChildController() {
-        addChildVC(HomeViewController.self, title: "首页".localized, image: "IMG_Home", selectedImage: "IMG_Home_Selected")
-        addChildVC(UIViewController.self, title: "我的".localized, image: "IMG_More", selectedImage: "IMG_More_Selected")
+        addChildVC(HomeViewController.self, title: "首页".localized, image: "home-tab", selectedImage: "home-tab-selected")
+        addChildVC(UIViewController.self, title: "我的".localized, image: "menu-tab", selectedImage: "menu-tab-selected")
     }
     
     func addChildVC(_ childVcType: UIViewController.Type, title:String, image: String, selectedImage: String) {
@@ -34,7 +34,7 @@ class ZSTabBarController: UITabBarController {
         let selectedImage = selectedImage?.withRenderingMode(.alwaysOriginal)
         let tabBarItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
         tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hex: MAIN_COLOR)], for: .selected)
-        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hex: TABBAR_NORMAL_COLOR)], for: .normal)
+        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray], for: .normal)
         return tabBarItem
     }
 

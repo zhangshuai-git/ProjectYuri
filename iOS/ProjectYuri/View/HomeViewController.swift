@@ -30,6 +30,8 @@ class HomeViewController: ZSViewController {
         return tableView
     }()
     
+    lazy var navigationTitleView = UIView()
+    
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         return searchBar
@@ -58,7 +60,9 @@ class HomeViewController: ZSViewController {
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
+//        navigationTitleView.addSubview(searchBar)
         navigationItem.titleView = searchBar
+//        searchBar.backgroundColor = UIColor.gray
         view.addSubview(topView)
         view.addSubview(tableView)
         topView.addSubview(resultLab)
@@ -66,8 +70,13 @@ class HomeViewController: ZSViewController {
     }
     
     override func makeConstraints() -> Void {
+//        searchBar.snp.makeConstraints { (make) in
+//            make.left.right.top.equalToSuperview()
+//            make.height.equalTo(44)
+//        }
+        
         topView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.topMargin)
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
             make.left.right.equalToSuperview()
         }
         
@@ -86,7 +95,7 @@ class HomeViewController: ZSViewController {
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(topView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.snp.bottomMargin)
+            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
         }
     }
     
