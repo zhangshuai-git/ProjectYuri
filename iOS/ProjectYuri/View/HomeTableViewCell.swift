@@ -14,6 +14,14 @@ class HomeTableViewCell: ZSTableViewCell {
     
     lazy var dataSource = BehaviorRelay(value: Repository())
     
+    lazy var iconImg: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
     lazy var titleLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
