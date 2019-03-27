@@ -34,7 +34,11 @@ class SearchViewController: ZSViewController {
         return searchBar
     }()
     
-    lazy var topView = UIView()
+    lazy var topView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
     
     lazy var groupBtn: UISegmentedControl = {
         let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
@@ -168,12 +172,12 @@ class SearchViewController: ZSViewController {
         ).skip(4)
     
     override func bindViewModel() {
-//        groupBtn.rx.selectedSegmentIndex
-//            .asObservable()
-//            .bind {
-//                print("selected \($0)")
-//            }
-//            .disposed(by: disposeBag)
+        groupBtn.rx.selectedSegmentIndex
+            .asObservable()
+            .bind {
+                print("selected \($0)")
+            }
+            .disposed(by: disposeBag)
         
         dataSourceCount
             .bind(to: resultLab.rx.text)
