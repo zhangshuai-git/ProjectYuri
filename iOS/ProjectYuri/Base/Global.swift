@@ -11,6 +11,8 @@ import Foundation
 let MAIN_COLOR = "#e18996"
 //let MAIN_COLOR = "#383838"
 //let MAIN_COLOR = "#004833"
+let SCREEN_MAX_LENGTH = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+let SCREEN_MIN_LENGTH = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
 
 func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, methodName: String = #function, lineNumber: Int = #line) {
     #if DEBUG

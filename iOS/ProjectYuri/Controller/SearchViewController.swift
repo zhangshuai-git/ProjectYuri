@@ -61,9 +61,19 @@ class SearchViewController: ZSViewController {
         return button
     }()
     
+    lazy var cancelBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        return button
+    }()
+    
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelBtn)
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)
@@ -147,6 +157,13 @@ class SearchViewController: ZSViewController {
         ).skip(4)
     
     override func bindViewModel() {
+        cancelBtn.rx.tap
+            .asObservable()
+            .bind { [weak self] in
+            self?.navigationController?.popViewController(animated: false)
+        }
+        .disposed(by: disposeBag)
+        
         groupBtn.rx.selectedSegmentIndex
             .asObservable()
             .bind {

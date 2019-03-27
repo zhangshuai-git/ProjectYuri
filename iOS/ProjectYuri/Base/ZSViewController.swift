@@ -18,6 +18,7 @@ class ZSViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        navigationItem.backBarButtonItem?.tintColor = .white
         buildSubViews()
         makeConstraints()
         bindViewModel()
@@ -40,5 +41,10 @@ extension ZSViewController {
         let vc = FavouritesViewController()
         favourites.bind(to: vc.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoSearchViewController() {
+        let vc = SearchViewController()
+        navigationController?.pushViewController(vc, animated: false)
     }
 }

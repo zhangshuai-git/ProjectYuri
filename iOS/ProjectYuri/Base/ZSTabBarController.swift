@@ -22,9 +22,11 @@ class ZSTabBarController: UITabBarController {
     }
     
     func addChildVC(_ childVcType: UIViewController.Type, title:String, image: String, selectedImage: String) {
-        let nav = ZSNavigationController(rootViewController: childVcType.init())
+        let vc = childVcType.init()
+        vc.title = title
         let image = UIImage(named: image)
         let selectedImage = UIImage(named: selectedImage)
+        let nav = ZSNavigationController(rootViewController: vc)
         nav.navigationItem.title = title
         nav.tabBarItem = tabbarItem(with: title, image: image, selectedImage: selectedImage)
         addChild(nav)
