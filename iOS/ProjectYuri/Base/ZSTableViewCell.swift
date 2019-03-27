@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ZSTableViewCell: UITableViewCell, ViewType {
+class ZSTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
     

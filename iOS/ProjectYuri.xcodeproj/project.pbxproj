@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D6911DE05F27452B8BA0DA1 /* Pods_ProjectYuri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC8D36D7AA6AC9A953E0138 /* Pods_ProjectYuri.framework */; };
 		EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */; };
-		EC021EA721F050E20058F9E3 /* TypeDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021EA621F050E20058F9E3 /* TypeDefine.swift */; };
 		EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0FA00121CB693800EA685A /* ActivityIndicator.swift */; };
@@ -48,11 +47,11 @@
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
-		ECB6D89521BFD77500017274 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* SearchViewModel.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
 		ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */; };
 		ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */; };
 		ECE4A57D224B1D2A00A0E69B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */; };
+		ECE4A581224B319200A0E69B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A580224B319200A0E69B /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +62,6 @@
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BEC8D36D7AA6AC9A953E0138 /* Pods_ProjectYuri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectYuri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
-		EC021EA621F050E20058F9E3 /* TypeDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDefine.swift; sourceTree = "<group>"; };
 		EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC0FA00121CB693800EA685A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -120,12 +118,12 @@
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		ECB6D89421BFD77500017274 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+ZSExtension.h"; sourceTree = "<group>"; };
 		ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+ZSExtension.m"; sourceTree = "<group>"; };
 		ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		ECE4A580224B319200A0E69B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +171,6 @@
 				ECB6D88F21BFCB9F00017274 /* Model */,
 				EC1B9D9921BE88C1000E2C5B /* Controller */,
 				ECE4A57B224B1AB100A0E69B /* Cell */,
-				EC1B9D9A21BE88C8000E2C5B /* ViewModel */,
 				EC1B9D9B21BE88CE000E2C5B /* Service */,
 				EC1B9D7E21BE867F000E2C5B /* Base */,
 				EC1B9D8721BE86B7000E2C5B /* ZSExtension */,
@@ -190,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				EC1B9D8221BE8690000E2C5B /* Global.swift */,
-				EC021EA621F050E20058F9E3 /* TypeDefine.swift */,
 				EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */,
 				EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */,
 				EC1B9D8021BE8690000E2C5B /* ZSTableViewCell.swift */,
@@ -218,20 +214,13 @@
 			isa = PBXGroup;
 			children = (
 				ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */,
+				ECE4A580224B319200A0E69B /* CategoryViewController.swift */,
 				EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */,
 				ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */,
 				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
 				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		EC1B9D9A21BE88C8000E2C5B /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				ECB6D89421BFD77500017274 /* SearchViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EC1B9D9B21BE88CE000E2C5B /* Service */ = {
@@ -456,7 +445,6 @@
 			files = (
 				EC6E2BB22248C87C00DFCFE6 /* UIBarButtonItem+ZSExtension.m in Sources */,
 				EC1B9D8421BE8690000E2C5B /* ZSTableViewCell.swift in Sources */,
-				ECB6D89521BFD77500017274 /* SearchViewModel.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC6E2BB72248C87C00DFCFE6 /* UIScreen+ZSExtension.m in Sources */,
 				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
@@ -474,6 +462,7 @@
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
 				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
+				ECE4A581224B319200A0E69B /* CategoryViewController.swift in Sources */,
 				EC6E2B8C2248B2B700DFCFE6 /* ZSNavigationController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */,
@@ -491,7 +480,6 @@
 				EC6E2B8A2248B2A400DFCFE6 /* ZSTabBarController.swift in Sources */,
 				EC6E2BBB2248C87C00DFCFE6 /* ZSUtils.m in Sources */,
 				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
-				EC021EA721F050E20058F9E3 /* TypeDefine.swift in Sources */,
 				EC6E2BBE2248C87C00DFCFE6 /* NSString+ZSExtension.m in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
 				ECE4A57D224B1D2A00A0E69B /* ProfileViewController.swift in Sources */,

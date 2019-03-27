@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class ZSViewController: UIViewController, ViewType {
+class ZSViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     

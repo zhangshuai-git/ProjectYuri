@@ -13,8 +13,6 @@ import MJRefresh
 
 class SearchViewController: ZSViewController {
     
-    let viewModel = SearchViewModel()
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.tableFooterView = UIView()
@@ -104,6 +102,50 @@ class SearchViewController: ZSViewController {
         }
     }
     
+    // MARK: - dataSource
+    
+    private lazy var newRepositoriesParams = BehaviorRelay(value: RepositoriesParams())
+    
+    private lazy var moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
+    
+    lazy var favourites = BehaviorRelay(value: [Repository]())
+    
+    lazy var newData:Observable<Repositories> = newRepositoriesParams
+        .skip(2)
+        .flatMapLatest {
+            NetworkService.shared.searchRepositories($0)
+        }
+        .map({
+            [weak self] in guard let `self` = self else { return $0 }
+            return self.synchronizeSubscription($0)
+        })
+        .share(replay: 1)
+    
+    lazy var moreData:Observable<Repositories> = moreRepositoriesParams
+        .skip(1)
+        .map{
+            [weak self] in guard let `self` = self else { return $0 }
+            $0.page = self.dataSource.value.currentPage + 1
+            return $0
+        }
+        .flatMapLatest {
+            NetworkService.shared.searchRepositories($0)
+        }
+        .map({
+            [weak self] in guard let `self` = self else { return $0 }
+            return self.synchronizeSubscription($0)
+        })
+        .share(replay: 1)
+    
+    lazy var dataSource = BehaviorRelay(value: Repositories())
+    
+    lazy var dataSourceCount = Observable.merge(
+        dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
+        dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
+        newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
+        moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
+        ).skip(4)
+    
     override func bindViewModel() {
         groupBtn.rx.selectedSegmentIndex
             .asObservable()
@@ -112,11 +154,11 @@ class SearchViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.dataSourceCount
+        dataSourceCount
             .bind(to: resultLab.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel.dataSource
+        dataSource
             .skip(2)
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
@@ -126,7 +168,7 @@ class SearchViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.dataSource
+        dataSource
             .map { $0.totalCount == 0 }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
@@ -141,14 +183,14 @@ class SearchViewController: ZSViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.newData
+        newData
             .map{ _ in false }
             .asDriver(onErrorJustReturn: false)
             .drive(tableView.mj_header.rx.isRefreshing)
             .disposed(by: disposeBag)
         
         Observable
-            .merge(viewModel.newData.map(footerState), viewModel.moreData.map(footerState))
+            .merge(newData.map(footerState), moreData.map(footerState))
             .startWith(.hidden)
             .asDriver(onErrorJustReturn: .hidden)
             .drive(tableView.mj_footer.rx.refreshFooterState)
@@ -158,7 +200,7 @@ class SearchViewController: ZSViewController {
             .asObservable()
             .bind {
                 [weak self] in guard let `self` = self else { return }
-                self.gotoFavouritesViewController(self.viewModel.favourites.asObservable())
+                self.gotoFavouritesViewController(self.favourites.asObservable())
             }
             .disposed(by: disposeBag)
         
@@ -178,7 +220,64 @@ class SearchViewController: ZSViewController {
             .asObservable()
             .map { _ in () }
         
-        viewModel.activate((searchAction: searchAction, headerAction: headerAction, footerAction: footerAction, refrashAction: refrashAction))
+        Observable
+            .merge(searchAction, headerAction)
+            .map{ RepositoriesParams(query: $0) }
+            .bind(to: newRepositoriesParams)
+            .disposed(by: disposeBag)
+        
+        footerAction
+            .map{
+                self.moreRepositoriesParams.value.query = $0
+                return self.moreRepositoriesParams.value
+            }
+            .bind(to: moreRepositoriesParams)
+            .disposed(by: disposeBag)
+        
+        newData
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        moreData
+            .map{
+                [weak self] in guard let `self` = self else { return $0 }
+                return self.dataSource.value + $0
+            }
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        newData
+            .filter{ $0.items.count > 0 }
+            .subscribe(onNext: {
+                [weak self] _ in guard let `self` = self else { return }
+                self.dataSource.value.currentPage = 1
+            })
+            .disposed(by: disposeBag)
+        
+        moreData
+            .filter{ $0.items.count > 0 }
+            .subscribe(onNext: {
+                [weak self] _ in guard let `self` = self else { return }
+                self.dataSource.value.currentPage += 1
+            })
+            .disposed(by: disposeBag)
+        
+        DatabaseService.shared.repositories
+            .bind(to: favourites)
+            .disposed(by: disposeBag)
+        
+        refrashAction
+            .flatMap { [weak self] _ in
+                Observable.of(self?.dataSource.value ?? Repositories())
+            }
+            .map({
+                [weak self] in guard let `self` = self else { return $0 }
+                return self.synchronizeSubscription($0)
+            })
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -187,6 +286,16 @@ extension SearchViewController {
         if repositories.items.count == 0 { return .hidden }
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
+    }
+    
+    func synchronizeSubscription(_ repositories: Repositories) -> Repositories {
+        for repository in repositories.items {
+            for favouriteRepository in favourites.value {
+                repository.isSubscribed = repository.id == favouriteRepository.id
+                if repository.isSubscribed { break }
+            }
+        }
+        return repositories
     }
 }
 
