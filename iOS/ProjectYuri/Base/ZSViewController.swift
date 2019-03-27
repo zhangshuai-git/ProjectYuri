@@ -17,8 +17,8 @@ class ZSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
-        navigationItem.backBarButtonItem?.tintColor = .white
+        view.backgroundColor = UIColor.groupTableViewBackground
+//        navigationItem.backBarButtonItem?.tintColor = .white
         buildSubViews()
         makeConstraints()
         bindViewModel()

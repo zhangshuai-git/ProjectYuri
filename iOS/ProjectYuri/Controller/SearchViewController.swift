@@ -31,19 +31,18 @@ class SearchViewController: ZSViewController {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "搜索"
-        searchBar.scopeButtonTitles = ["全部", "游戏", "动画", "漫画", "小说"]
         return searchBar
     }()
     
     lazy var topView = UIView()
     
-//    lazy var groupBtn: UISegmentedControl = {
-//        let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
-//        groupBtn.selectedSegmentIndex = 0
-//        groupBtn.tintColor = UIColor(hex: MAIN_COLOR)
+    lazy var groupBtn: UISegmentedControl = {
+        let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
+        groupBtn.selectedSegmentIndex = 0
+        groupBtn.tintColor = UIColor(hex: MAIN_COLOR)
 //        groupBtn.style = .clear
-//        return groupBtn
-//    }()
+        return groupBtn
+    }()
     
     lazy var resultLab: UILabel = {
         let label = UILabel()
@@ -66,13 +65,17 @@ class SearchViewController: ZSViewController {
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
-        navigationItem.setHidesBackButton(true, animated: false)
+//        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)
-//        topView.addSubview(groupBtn)
+        topView.addSubview(groupBtn)
 //        topView.addSubview(resultLab)
 //        topView.addSubview(actionBtn)
+        
+//        let height: CGFloat = searchBar.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+//        searchBar.frame = CGRect(x: 0, y: 0, width: 0, height: height)
+//        tableView.tableHeaderView = searchBar
     }
     
     override func makeConstraints() -> Void {
@@ -81,10 +84,10 @@ class SearchViewController: ZSViewController {
             make.left.right.equalToSuperview()
         }
         
-//        groupBtn.snp.makeConstraints { (make) in
-//            make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-//            make.height.equalTo(30)
-//        }
+        groupBtn.snp.makeConstraints { (make) in
+            make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.height.equalTo(30)
+        }
         
 //        resultLab.snp.makeConstraints { (make) in
 //            make.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
@@ -103,6 +106,21 @@ class SearchViewController: ZSViewController {
             make.left.right.equalToSuperview()
             make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
         }
+    }
+    
+    override func updateViewConstraints() {
+        if searchBar.showsCancelButton {
+            groupBtn.snp.remakeConstraints { (make) in
+                make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+                make.height.equalTo(30)
+            }
+        } else {
+            groupBtn.snp.remakeConstraints { (make) in
+                make.edges.equalTo(UIEdgeInsets.zero)
+                make.height.equalTo(0)
+            }
+        }
+        super.updateViewConstraints()
     }
     
     // MARK: - dataSource
@@ -208,16 +226,18 @@ class SearchViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         searchBar.rx.textDidBeginEditing
-        .asObservable()
+            .asObservable()
             .bind { [weak self] in guard let `self` = self else { return }
                 self.searchBar.showsCancelButton = true
-            }
+                self.view.setNeedsUpdateConstraints()
+            } 
             .disposed(by: disposeBag)
         
         searchBar.rx.textDidEndEditing
             .asObservable()
             .bind { [weak self] in guard let `self` = self else { return }
                 self.searchBar.showsCancelButton = false
+                self.view.setNeedsUpdateConstraints()
             }
             .disposed(by: disposeBag)
         
