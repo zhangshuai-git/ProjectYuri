@@ -14,7 +14,7 @@
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0FA00121CB693800EA685A /* ActivityIndicator.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
-		EC1B9D6F21BE84DB000E2C5B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */; };
+		EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */; };
 		EC1B9D7421BE84DE000E2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */; };
 		EC1B9D7721BE84DE000E2C5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7521BE84DE000E2C5B /* LaunchScreen.storyboard */; };
 		EC1B9D8321BE8690000E2C5B /* ZSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */; };
@@ -26,7 +26,7 @@
 		EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */; };
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
-		EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */; };
+		EC1B9D9F21BE895A000E2C5B /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */; };
 		EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */; };
 		EC6E2B8A2248B2A400DFCFE6 /* ZSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6E2B892248B2A400DFCFE6 /* ZSTabBarController.swift */; };
 		EC6E2B8C2248B2B700DFCFE6 /* ZSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6E2B8B2248B2B700DFCFE6 /* ZSNavigationController.swift */; };
@@ -48,9 +48,11 @@
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
-		ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* HomeViewModel.swift */; };
+		ECB6D89521BFD77500017274 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89421BFD77500017274 /* SearchViewModel.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
 		ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */; };
+		ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */; };
+		ECE4A57D224B1D2A00A0E69B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +69,7 @@
 		EC0FA00121CB693800EA685A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* ProjectYuri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectYuri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1B9D7621BE84DE000E2C5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1B9D7821BE84DE000E2C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshFooter+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
 		EC6E2B892248B2A400DFCFE6 /* ZSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSTabBarController.swift; sourceTree = "<group>"; };
 		EC6E2B8B2248B2B700DFCFE6 /* ZSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSNavigationController.swift; sourceTree = "<group>"; };
@@ -118,10 +120,12 @@
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		ECB6D89421BFD77500017274 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		ECB6D89421BFD77500017274 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+ZSExtension.h"; sourceTree = "<group>"; };
 		ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+ZSExtension.m"; sourceTree = "<group>"; };
+		ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				ECB6D88F21BFCB9F00017274 /* Model */,
-				EC1B9D9921BE88C1000E2C5B /* View */,
+				EC1B9D9921BE88C1000E2C5B /* Controller */,
+				ECE4A57B224B1AB100A0E69B /* Cell */,
 				EC1B9D9A21BE88C8000E2C5B /* ViewModel */,
 				EC1B9D9B21BE88CE000E2C5B /* Service */,
 				EC1B9D7E21BE867F000E2C5B /* Base */,
@@ -209,21 +214,22 @@
 			path = ZSExtension;
 			sourceTree = "<group>";
 		};
-		EC1B9D9921BE88C1000E2C5B /* View */ = {
+		EC1B9D9921BE88C1000E2C5B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EC1B9D6E21BE84DB000E2C5B /* HomeViewController.swift */,
-				EC1B9D9E21BE8959000E2C5B /* HomeTableViewCell.swift */,
+				ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */,
+				EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */,
+				ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */,
 				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
 				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 			);
-			path = View;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		EC1B9D9A21BE88C8000E2C5B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				ECB6D89421BFD77500017274 /* HomeViewModel.swift */,
+				ECB6D89421BFD77500017274 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -285,6 +291,14 @@
 				ECB6D89021BFCBB200017274 /* Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ECE4A57B224B1AB100A0E69B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FE623F039F49E69F2A4C7E89 /* Pods */ = {
@@ -442,22 +456,23 @@
 			files = (
 				EC6E2BB22248C87C00DFCFE6 /* UIBarButtonItem+ZSExtension.m in Sources */,
 				EC1B9D8421BE8690000E2C5B /* ZSTableViewCell.swift in Sources */,
-				ECB6D89521BFD77500017274 /* HomeViewModel.swift in Sources */,
+				ECB6D89521BFD77500017274 /* SearchViewModel.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC6E2BB72248C87C00DFCFE6 /* UIScreen+ZSExtension.m in Sources */,
+				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
 				EC6E2BBC2248C87C00DFCFE6 /* NSObject+ZSExtension.m in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC6E2BB42248C87C00DFCFE6 /* UIImage+ZSExtension.m in Sources */,
 				EC6E2BB52248C87C00DFCFE6 /* UIButton+ZSExtension.m in Sources */,
 				EC6E2BB62248C87C00DFCFE6 /* UIView+ZSExtension.m in Sources */,
-				EC1B9D9F21BE895A000E2C5B /* HomeTableViewCell.swift in Sources */,
+				EC1B9D9F21BE895A000E2C5B /* SearchTableViewCell.swift in Sources */,
 				EC6E2BB32248C87C00DFCFE6 /* UIColor+ZSExtension.m in Sources */,
 				ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
-				EC1B9D6F21BE84DB000E2C5B /* HomeViewController.swift in Sources */,
+				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
 				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
 				EC6E2B8C2248B2B700DFCFE6 /* ZSNavigationController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
@@ -479,6 +494,7 @@
 				EC021EA721F050E20058F9E3 /* TypeDefine.swift in Sources */,
 				EC6E2BBE2248C87C00DFCFE6 /* NSString+ZSExtension.m in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
+				ECE4A57D224B1D2A00A0E69B /* ProfileViewController.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,
 				EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */,
 			);

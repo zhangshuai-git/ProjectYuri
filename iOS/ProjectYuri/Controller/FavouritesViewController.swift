@@ -24,7 +24,7 @@ class FavouritesViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
-        tableView.zs.register(HomeTableViewCell.self)
+        tableView.zs.register(SearchTableViewCell.self)
         return tableView
     }()
     
@@ -43,7 +43,7 @@ class FavouritesViewController: ZSViewController {
     override func bindViewModel() {
         dataSource
             .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
+                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
                 Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }

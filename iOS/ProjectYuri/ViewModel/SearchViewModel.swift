@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class HomeViewModel: ViewModelType {
+class SearchViewModel: ViewModelType {
     
     let disposeBag = DisposeBag()
     
@@ -118,7 +118,7 @@ class HomeViewModel: ViewModelType {
     }
 }
 
-extension HomeViewModel {
+extension SearchViewModel {
     private func synchronizeSubscription(_ repositories: Repositories) -> Repositories {
         for repository in repositories.items {
             for favouriteRepository in self.favourites.value {

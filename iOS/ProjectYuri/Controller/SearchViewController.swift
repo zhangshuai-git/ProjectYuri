@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 import MJRefresh
 
-class HomeViewController: ZSViewController {
+class SearchViewController: ZSViewController {
     
-    let viewModel = HomeViewModel()
+    let viewModel = SearchViewModel()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
@@ -24,7 +24,7 @@ class HomeViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
-        tableView.zs.register(HomeTableViewCell.self)
+        tableView.zs.register(SearchTableViewCell.self)
         tableView.mj_header = MJRefreshNormalHeader()
         tableView.mj_footer = MJRefreshAutoNormalFooter()
         return tableView
@@ -120,7 +120,7 @@ class HomeViewController: ZSViewController {
             .skip(2)
             .map{ $0.items }
             .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.zs.dequeueReusableCell(HomeTableViewCell.self, for: IndexPath(row: row, section: 0))
+                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
                 Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
@@ -182,7 +182,7 @@ class HomeViewController: ZSViewController {
     }
 }
 
-extension HomeViewController {
+extension SearchViewController {
     func footerState(_ repositories: Repositories) -> RxMJRefreshFooterState {
         if repositories.items.count == 0 { return .hidden }
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")

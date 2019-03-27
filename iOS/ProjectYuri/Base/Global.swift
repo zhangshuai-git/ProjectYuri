@@ -8,8 +8,9 @@
 
 import Foundation
 
-//let MAIN_COLOR = "#cd85d3"
-let MAIN_COLOR = "#004833"
+let MAIN_COLOR = "#e18996"
+//let MAIN_COLOR = "#383838"
+//let MAIN_COLOR = "#004833"
 
 func print<T>(_ message: T, tag: String? = nil, filePath: String = #file, methodName: String = #function, lineNumber: Int = #line) {
     #if DEBUG
