@@ -17,7 +17,7 @@ class ZSTabBarController: UITabBarController {
     
     func createChildController() {
         addChildVC(HomeViewController.self, title: "首页", image: "index_tabbar_index", selectedImage: "index_tabbar_index_1")
-        addChildVC(CategoryViewController.self, title: "分类", image: "index_tabbar_backlog", selectedImage: "index_tabbar_backlog_1")
+        addChildVC(SearchViewController.self, title: "分类", image: "index_tabbar_backlog", selectedImage: "index_tabbar_backlog_1")
         addChildVC(ProfileViewController.self, title: "我的", image: "index_tabbar_mine", selectedImage: "index_tabbar_mine_1")
     }
     

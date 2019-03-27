@@ -30,18 +30,20 @@ class SearchViewController: ZSViewController {
     
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.placeholder = "搜索"
+        searchBar.scopeButtonTitles = ["全部", "游戏", "动画", "漫画", "小说"]
         return searchBar
     }()
     
     lazy var topView = UIView()
     
-    lazy var groupBtn: UISegmentedControl = {
-        let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
-        groupBtn.selectedSegmentIndex = 0
-        groupBtn.tintColor = UIColor(hex: MAIN_COLOR)
-        groupBtn.style = .clear
-        return groupBtn
-    }()
+//    lazy var groupBtn: UISegmentedControl = {
+//        let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
+//        groupBtn.selectedSegmentIndex = 0
+//        groupBtn.tintColor = UIColor(hex: MAIN_COLOR)
+//        groupBtn.style = .clear
+//        return groupBtn
+//    }()
     
     lazy var resultLab: UILabel = {
         let label = UILabel()
@@ -61,23 +63,14 @@ class SearchViewController: ZSViewController {
         return button
     }()
     
-    lazy var cancelBtn: UIButton = {
-        let button = UIButton()
-        button.setTitle("Cancel", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        return button
-    }()
-    
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
         navigationItem.setHidesBackButton(true, animated: false)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cancelBtn)
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)
-        topView.addSubview(groupBtn)
+//        topView.addSubview(groupBtn)
 //        topView.addSubview(resultLab)
 //        topView.addSubview(actionBtn)
     }
@@ -88,10 +81,10 @@ class SearchViewController: ZSViewController {
             make.left.right.equalToSuperview()
         }
         
-        groupBtn.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-            make.height.equalTo(30)
-        }
+//        groupBtn.snp.makeConstraints { (make) in
+//            make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+//            make.height.equalTo(30)
+//        }
         
 //        resultLab.snp.makeConstraints { (make) in
 //            make.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
@@ -157,19 +150,12 @@ class SearchViewController: ZSViewController {
         ).skip(4)
     
     override func bindViewModel() {
-        cancelBtn.rx.tap
-            .asObservable()
-            .bind { [weak self] in
-            self?.navigationController?.popViewController(animated: false)
-        }
-        .disposed(by: disposeBag)
-        
-        groupBtn.rx.selectedSegmentIndex
-            .asObservable()
-            .bind {
-                print("selected \($0)")
-            }
-            .disposed(by: disposeBag)
+//        groupBtn.rx.selectedSegmentIndex
+//            .asObservable()
+//            .bind {
+//                print("selected \($0)")
+//            }
+//            .disposed(by: disposeBag)
         
         dataSourceCount
             .bind(to: resultLab.rx.text)
@@ -221,6 +207,20 @@ class SearchViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
+        searchBar.rx.textDidBeginEditing
+        .asObservable()
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.searchBar.showsCancelButton = true
+            }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.textDidEndEditing
+            .asObservable()
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.searchBar.showsCancelButton = false
+            }
+            .disposed(by: disposeBag)
+        
         let searchAction: Observable<String> = searchBar.rx.text.orEmpty
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
@@ -236,6 +236,13 @@ class SearchViewController: ZSViewController {
         let refrashAction: Observable<Void> = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .asObservable()
             .map { _ in () }
+        
+        Observable
+            .merge(searchAction.map{_ in }, searchBar.rx.cancelButtonClicked.asObservable(), tableView.rx.didScroll.asObservable())
+            .bind { [weak self] _ in
+                self?.searchBar.endEditing(true)
+            }
+            .disposed(by: disposeBag)
         
         Observable
             .merge(searchAction, headerAction)
