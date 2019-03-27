@@ -48,23 +48,23 @@ class SearchViewController: ZSViewController {
         return groupBtn
     }()
     
-    lazy var resultLab: UILabel = {
-        let label = UILabel()
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }()
+//    lazy var resultLab: UILabel = {
+//        let label = UILabel()
+//        label.adjustsFontSizeToFitWidth = true
+//        return label
+//    }()
     
-    lazy var actionBtn: UIButton = {
-        let button = UIButton()
-        button.setTitle("Favourites", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
-        button.layer.borderColor = UIColor.darkGray.cgColor
-        button.layer.borderWidth = 1
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        return button
-    }()
+//    lazy var actionBtn: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Favourites", for: .normal)
+//        button.setTitleColor(UIColor.black, for: .normal)
+//        button.layer.cornerRadius = 5
+//        button.layer.masksToBounds = true
+//        button.layer.borderColor = UIColor.darkGray.cgColor
+//        button.layer.borderWidth = 1
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//        return button
+//    }()
     
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
@@ -133,17 +133,17 @@ class SearchViewController: ZSViewController {
     
     private lazy var moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
     
-    lazy var favourites = BehaviorRelay(value: [Repository]())
+//    lazy var favourites = BehaviorRelay(value: [Repository]())
     
     lazy var newData:Observable<Repositories> = newRepositoriesParams
         .skip(2)
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
-        .map({
-            [weak self] in guard let `self` = self else { return $0 }
-            return self.synchronizeSubscription($0)
-        })
+//        .map({
+//            [weak self] in guard let `self` = self else { return $0 }
+//            return self.synchronizeSubscription($0)
+//        })
         .share(replay: 1)
     
     lazy var moreData:Observable<Repositories> = moreRepositoriesParams
@@ -156,32 +156,25 @@ class SearchViewController: ZSViewController {
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
-        .map({
-            [weak self] in guard let `self` = self else { return $0 }
-            return self.synchronizeSubscription($0)
-        })
+//        .map({
+//            [weak self] in guard let `self` = self else { return $0 }
+//            return self.synchronizeSubscription($0)
+//        })
         .share(replay: 1)
     
     lazy var dataSource = BehaviorRelay(value: Repositories())
     
-    lazy var dataSourceCount = Observable.merge(
-        dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
-        dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
-        newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
-        moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
-        ).skip(4)
+//    lazy var dataSourceCount = Observable.merge(
+//        dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
+//        dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
+//        newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
+//        moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
+//        ).skip(4)
     
     override func bindViewModel() {
-        groupBtn.rx.selectedSegmentIndex
-            .asObservable()
-            .bind {
-                print("selected \($0)")
-            }
-            .disposed(by: disposeBag)
-        
-        dataSourceCount
-            .bind(to: resultLab.rx.text)
-            .disposed(by: disposeBag)
+//        dataSourceCount
+//            .bind(to: resultLab.rx.text)
+//            .disposed(by: disposeBag)
         
         dataSource
             .skip(2)
@@ -221,13 +214,13 @@ class SearchViewController: ZSViewController {
             .drive(tableView.mj_footer.rx.refreshFooterState)
             .disposed(by: disposeBag)
         
-        actionBtn.rx.tap
-            .asObservable()
-            .bind {
-                [weak self] in guard let `self` = self else { return }
-                self.gotoFavouritesViewController(self.favourites.asObservable())
-            }
-            .disposed(by: disposeBag)
+//        actionBtn.rx.tap
+//            .asObservable()
+//            .bind {
+//                [weak self] in guard let `self` = self else { return }
+//                self.gotoFavouritesViewController(self.favourites.asObservable())
+//            }
+//            .disposed(by: disposeBag)
         
         searchBar.rx.textDidBeginEditing
             .asObservable()
@@ -248,23 +241,39 @@ class SearchViewController: ZSViewController {
         let searchAction: Observable<String> = searchBar.rx.text.orEmpty
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
+            .share()
+            .skip(1)
+        
+        let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
+            .asObservable()
+            .distinctUntilChanged()
+            .share()
         
         let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
             .asObservable()
             .map{ [weak self] in self?.searchBar.text ?? "" }
+            .share()
         
         let footerAction: Observable<String> = tableView.mj_footer.rx.refreshing
             .asObservable()
             .map{ [weak self] in self?.searchBar.text ?? "" }
+            .share()
         
         let refrashAction: Observable<Void> = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .asObservable()
             .map { _ in () }
+            .share()
         
         Observable
             .merge(searchAction.map{_ in }, searchBar.rx.cancelButtonClicked.asObservable(), tableView.rx.didScroll.asObservable())
             .bind { [weak self] _ in
                 self?.searchBar.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
+        groupBtnAction
+            .bind {
+                print("selected \($0)")
             }
             .disposed(by: disposeBag)
         
@@ -310,18 +319,18 @@ class SearchViewController: ZSViewController {
             })
             .disposed(by: disposeBag)
         
-        DatabaseService.shared.repositories
-            .bind(to: favourites)
-            .disposed(by: disposeBag)
+//        DatabaseService.shared.repositories
+//            .bind(to: favourites)
+//            .disposed(by: disposeBag)
         
         refrashAction
             .flatMap { [weak self] _ in
                 Observable.of(self?.dataSource.value ?? Repositories())
             }
-            .map({
-                [weak self] in guard let `self` = self else { return $0 }
-                return self.synchronizeSubscription($0)
-            })
+//            .map({
+//                [weak self] in guard let `self` = self else { return $0 }
+//                return self.synchronizeSubscription($0)
+//            })
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
             .bind(to: dataSource)
@@ -336,14 +345,14 @@ extension SearchViewController {
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
     
-    func synchronizeSubscription(_ repositories: Repositories) -> Repositories {
-        for repository in repositories.items {
-            for favouriteRepository in favourites.value {
-                repository.isSubscribed = repository.id == favouriteRepository.id
-                if repository.isSubscribed { break }
-            }
-        }
-        return repositories
-    }
+//    func synchronizeSubscription(_ repositories: Repositories) -> Repositories {
+//        for repository in repositories.items {
+//            for favouriteRepository in favourites.value {
+//                repository.isSubscribed = repository.id == favouriteRepository.id
+//                if repository.isSubscribed { break }
+//            }
+//        }
+//        return repositories
+//    }
 }
 
