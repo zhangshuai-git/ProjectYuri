@@ -97,16 +97,15 @@ class SearchTableViewCell: ZSTableViewCell {
     
     override func bindViewModel() {
         dataSource
-            .bind {
-                [weak self] in guard let `self` = self else { return }
+            .bind { [weak self] in guard let `self` = self else { return }
                 self.iconImg.sd_setImage(with: URL(string: $0.owner.avatarUrl))
                 self.nameLab.text = $0.name
                 self.originNameLab.text = $0.fullName
                 self.contentLab.text = $0.desp
-                self.categoryLab.text = ProductType.allCases.randomElement()?.rawValue
+                self.categoryLab.text = ProductionCategory.allCases.randomElement()?.rawValue
             }
             .disposed(by: disposeBag)
-        
     }
+    
 }
 

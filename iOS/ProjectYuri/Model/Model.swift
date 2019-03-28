@@ -10,7 +10,7 @@ import HandyJSON
 import RxSwift
 import RxCocoa
 
-enum ProductType: String, CaseIterable {
+enum ProductionCategory: String, CaseIterable {
     case game = "游戏"
     case anime = "动画"
     case comic = "漫画"
@@ -40,6 +40,7 @@ class RepositoriesParams: HandyJSON {
 class Repositories: HandyJSON {
     var totalCount:UInt = 0
     var items: [Repository] = []
+    
     var currentPage:Int = 1
     var totalPage:UInt {
         return totalCount / PER_PAGE
@@ -66,9 +67,10 @@ class Repository: HandyJSON {
     var fullName: String = ""
     var htmlUrl: String = ""
     var desp: String = ""
+    var owner: RepositoryOwner = RepositoryOwner()
+    
     var comment: String = ""
     var isSubscribed:Bool = false
-    var owner: RepositoryOwner = RepositoryOwner()
 
     public func mapping(mapper: HelpingMapper) {
         mapper <<< fullName <-- "full_name"
