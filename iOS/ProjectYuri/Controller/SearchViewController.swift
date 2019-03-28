@@ -242,7 +242,6 @@ class SearchViewController: ZSViewController {
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .share()
-            .skip(1)
         
         let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
             .asObservable()
@@ -265,7 +264,7 @@ class SearchViewController: ZSViewController {
             .share()
         
         Observable
-            .merge(searchAction.map{_ in }, searchBar.rx.cancelButtonClicked.asObservable(), tableView.rx.didScroll.asObservable())
+            .merge(searchAction.map{_ in }.skip(1), searchBar.rx.cancelButtonClicked.asObservable(), tableView.rx.didScroll.asObservable())
             .bind { [weak self] _ in
                 self?.searchBar.endEditing(true)
             }
