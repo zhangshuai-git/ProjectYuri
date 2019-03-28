@@ -21,6 +21,7 @@
 xcuserdata/
 xcshareddata/
 .metadata/
+*.xcworkspacedataß
 
 # MacOS
 .DS_Store
