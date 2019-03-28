@@ -123,6 +123,22 @@ class SearchViewController: ZSViewController {
             })
             .disposed(by: disposeBag)
         
+        searchBar.rx.textDidBeginEditing
+            .asObservable()
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.searchBar.showsCancelButton = true
+                self.view.setNeedsUpdateConstraints()
+            }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.textDidEndEditing
+            .asObservable()
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.searchBar.showsCancelButton = false
+                self.view.setNeedsUpdateConstraints()
+            }
+            .disposed(by: disposeBag)
+        
         let newData:Observable<Repositories> = newRepositoriesParams
             .skip(2)
             .flatMapLatest {
@@ -155,20 +171,32 @@ class SearchViewController: ZSViewController {
             .drive(tableView.mj_footer.rx.refreshFooterState)
             .disposed(by: disposeBag)
         
-        searchBar.rx.textDidBeginEditing
-            .asObservable()
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.searchBar.showsCancelButton = true
-                self.view.setNeedsUpdateConstraints()
-            } 
+        newData
+            .bind(to: dataSource)
             .disposed(by: disposeBag)
         
-        searchBar.rx.textDidEndEditing
-            .asObservable()
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.searchBar.showsCancelButton = false
-                self.view.setNeedsUpdateConstraints()
+        moreData
+            .map{
+                [weak self] in guard let `self` = self else { return $0 }
+                return self.dataSource.value + $0
             }
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        newData
+            .filter{ $0.items.count > 0 }
+            .subscribe(onNext: {
+                [weak self] _ in guard let `self` = self else { return }
+                self.dataSource.value.currentPage = 1
+            })
+            .disposed(by: disposeBag)
+        
+        moreData
+            .filter{ $0.items.count > 0 }
+            .subscribe(onNext: {
+                [weak self] _ in guard let `self` = self else { return }
+                self.dataSource.value.currentPage += 1
+            })
             .disposed(by: disposeBag)
         
         let searchAction: Observable<String> = searchBar.rx.text.orEmpty
@@ -221,34 +249,6 @@ class SearchViewController: ZSViewController {
                 return self.moreRepositoriesParams.value
             }
             .bind(to: moreRepositoriesParams)
-            .disposed(by: disposeBag)
-        
-        newData
-            .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        moreData
-            .map{
-                [weak self] in guard let `self` = self else { return $0 }
-                return self.dataSource.value + $0
-            }
-            .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        newData
-            .filter{ $0.items.count > 0 }
-            .subscribe(onNext: {
-                [weak self] _ in guard let `self` = self else { return }
-                self.dataSource.value.currentPage = 1
-            })
-            .disposed(by: disposeBag)
-        
-        moreData
-            .filter{ $0.items.count > 0 }
-            .subscribe(onNext: {
-                [weak self] _ in guard let `self` = self else { return }
-                self.dataSource.value.currentPage += 1
-            })
             .disposed(by: disposeBag)
         
         refrashAction
