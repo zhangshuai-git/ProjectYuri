@@ -19,4 +19,6 @@
  */
 + (instancetype)colorWithHex:(NSString *)hexString;
 
+@property (class, nonatomic, readonly) UIColor *main;
+
 @end

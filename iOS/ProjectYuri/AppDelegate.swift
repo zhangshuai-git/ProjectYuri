@@ -19,7 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = ZSTabBarController()
         window?.makeKeyAndVisible()
+        setupStyle()
         return true
+    }
+    
+    func setupStyle() {
+        UINavigationBar.appearance().barTintColor = UIColor.main
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().barStyle = .black
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

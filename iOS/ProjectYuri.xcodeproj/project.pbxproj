@@ -52,6 +52,8 @@
 		ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */; };
 		ECE4A57D224B1D2A00A0E69B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */; };
 		ECE4A581224B319200A0E69B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A580224B319200A0E69B /* CategoryViewController.swift */; };
+		ECE4A586224C604000A0E69B /* RuntimeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A585224C604000A0E69B /* RuntimeHandler.m */; };
+		ECE4A588224C625600A0E69B /* Runtime+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +126,9 @@
 		ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		ECE4A580224B319200A0E69B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		ECE4A584224C604000A0E69B /* RuntimeHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeHandler.h; sourceTree = "<group>"; };
+		ECE4A585224C604000A0E69B /* RuntimeHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeHandler.m; sourceTree = "<group>"; };
+		ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime+ZSExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +211,7 @@
 				EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */,
 				EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */,
 				ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */,
+				ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */,
 			);
 			path = ZSExtension;
 			sourceTree = "<group>";
@@ -267,6 +273,8 @@
 				EC6E2B952248C87500DFCFE6 /* UIViewController+ZSExtension.m */,
 				ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */,
 				ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */,
+				ECE4A584224C604000A0E69B /* RuntimeHandler.h */,
+				ECE4A585224C604000A0E69B /* RuntimeHandler.m */,
 				EC6E2B992248C87600DFCFE6 /* ZSUtils.h */,
 				EC6E2BAA2248C87A00DFCFE6 /* ZSUtils.m */,
 				EC6E2B912248C87300DFCFE6 /* ProjectYuri-Bridging-Header.h */,
@@ -444,12 +452,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC6E2BB22248C87C00DFCFE6 /* UIBarButtonItem+ZSExtension.m in Sources */,
+				ECE4A588224C625600A0E69B /* Runtime+ZSExtension.swift in Sources */,
 				EC1B9D8421BE8690000E2C5B /* ZSTableViewCell.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC6E2BB72248C87C00DFCFE6 /* UIScreen+ZSExtension.m in Sources */,
 				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
 				EC6E2BBC2248C87C00DFCFE6 /* NSObject+ZSExtension.m in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
+				ECE4A586224C604000A0E69B /* RuntimeHandler.m in Sources */,
 				EC6E2BB42248C87C00DFCFE6 /* UIImage+ZSExtension.m in Sources */,
 				EC6E2BB52248C87C00DFCFE6 /* UIButton+ZSExtension.m in Sources */,
 				EC6E2BB62248C87C00DFCFE6 /* UIView+ZSExtension.m in Sources */,

@@ -10,5 +10,8 @@ import UIKit
 
 class HomeViewController: ZSViewController {
 
+    override func buildSubViews() {
+        
+    }
 
 }

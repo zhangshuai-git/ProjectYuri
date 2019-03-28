@@ -36,7 +36,7 @@ class ZSTabBarController: UITabBarController {
         let image = image?.withRenderingMode(.alwaysOriginal)
         let selectedImage = selectedImage?.withRenderingMode(.alwaysOriginal)
         let tabBarItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
-        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hex: MAIN_COLOR)], for: .selected)
+        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.main], for: .selected)
         tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray], for: .normal)
         return tabBarItem
     }

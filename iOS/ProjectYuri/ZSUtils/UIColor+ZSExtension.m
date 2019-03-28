@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+ZSExtension.h"
+#import "ZSUtils.h"
 
 @implementation UIColor (ZSExtension)
 
@@ -31,6 +32,10 @@
     float blue = ((baseValue >> 0) & 0xFF)/255.0f;
     
     return [self colorWithRed:red green:green blue:blue alpha:alpha];
+}
+
++ (UIColor *)main {
+    return MAIN_COLOR;
 }
 
 @end

@@ -26,7 +26,7 @@
 #import "UIButton+ZSExtension.h"
 #import "UISegmentedControl+ZSExtension.h"
 
-#define MAIN_COLOR                          [UIColor colorWithHex:@"#99ccff"]
+#define MAIN_COLOR                          [UIColor colorWithHex:@"#e18996"]
 
 #if DEBUG
 #define ZSLog(format, ...)                  NSLog((@"%s [Line %d] " format ), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)

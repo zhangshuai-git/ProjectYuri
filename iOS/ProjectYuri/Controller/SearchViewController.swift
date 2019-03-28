@@ -43,43 +43,17 @@ class SearchViewController: ZSViewController {
     lazy var groupBtn: UISegmentedControl = {
         let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
         groupBtn.selectedSegmentIndex = 0
-        groupBtn.tintColor = UIColor(hex: MAIN_COLOR)
-//        groupBtn.style = .clear
+        groupBtn.tintColor = UIColor.main
         return groupBtn
     }()
-    
-//    lazy var resultLab: UILabel = {
-//        let label = UILabel()
-//        label.adjustsFontSizeToFitWidth = true
-//        return label
-//    }()
-    
-//    lazy var actionBtn: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Favourites", for: .normal)
-//        button.setTitleColor(UIColor.black, for: .normal)
-//        button.layer.cornerRadius = 5
-//        button.layer.masksToBounds = true
-//        button.layer.borderColor = UIColor.darkGray.cgColor
-//        button.layer.borderWidth = 1
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//        return button
-//    }()
     
     lazy var emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
-//        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)
         topView.addSubview(groupBtn)
-//        topView.addSubview(resultLab)
-//        topView.addSubview(actionBtn)
-        
-//        let height: CGFloat = searchBar.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-//        searchBar.frame = CGRect(x: 0, y: 0, width: 0, height: height)
-//        tableView.tableHeaderView = searchBar
     }
     
     override func makeConstraints() -> Void {
@@ -92,18 +66,6 @@ class SearchViewController: ZSViewController {
             make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
             make.height.equalTo(30)
         }
-        
-//        resultLab.snp.makeConstraints { (make) in
-//            make.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-//            make.height.equalTo(30)
-//            make.centerY.equalTo(actionBtn)
-//        }
-//
-//        actionBtn.snp.makeConstraints { (make) in
-//            make.top.right.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-//            make.size.equalTo(CGSize(width: 80, height: 30))
-//            make.left.equalTo(resultLab.snp.right).offset(20)
-//        }
         
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(topView.snp.bottom)
@@ -133,17 +95,11 @@ class SearchViewController: ZSViewController {
     
     private lazy var moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
     
-//    lazy var favourites = BehaviorRelay(value: [Repository]())
-    
     lazy var newData:Observable<Repositories> = newRepositoriesParams
         .skip(2)
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
-//        .map({
-//            [weak self] in guard let `self` = self else { return $0 }
-//            return self.synchronizeSubscription($0)
-//        })
         .share(replay: 1)
     
     lazy var moreData:Observable<Repositories> = moreRepositoriesParams
@@ -156,26 +112,11 @@ class SearchViewController: ZSViewController {
         .flatMapLatest {
             NetworkService.shared.searchRepositories($0)
         }
-//        .map({
-//            [weak self] in guard let `self` = self else { return $0 }
-//            return self.synchronizeSubscription($0)
-//        })
         .share(replay: 1)
     
     lazy var dataSource = BehaviorRelay(value: Repositories())
     
-//    lazy var dataSourceCount = Observable.merge(
-//        dataSource.filter{ $0.totalCount > 0 }.map{ "共有 \($0.totalCount) 个结果" },
-//        dataSource.filter{ $0.totalCount == 0 }.map{ _ in "未搜索到结果或请求太频繁请稍后再试" },
-//        newRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" },
-//        moreRepositoriesParams.filter{ $0.query.isEmpty }.map{ _ in "" }
-//        ).skip(4)
-    
     override func bindViewModel() {
-//        dataSourceCount
-//            .bind(to: resultLab.rx.text)
-//            .disposed(by: disposeBag)
-        
         dataSource
             .skip(2)
             .map{ $0.items }
@@ -213,14 +154,6 @@ class SearchViewController: ZSViewController {
             .asDriver(onErrorJustReturn: .hidden)
             .drive(tableView.mj_footer.rx.refreshFooterState)
             .disposed(by: disposeBag)
-        
-//        actionBtn.rx.tap
-//            .asObservable()
-//            .bind {
-//                [weak self] in guard let `self` = self else { return }
-//                self.gotoFavouritesViewController(self.favourites.asObservable())
-//            }
-//            .disposed(by: disposeBag)
         
         searchBar.rx.textDidBeginEditing
             .asObservable()
@@ -318,18 +251,10 @@ class SearchViewController: ZSViewController {
             })
             .disposed(by: disposeBag)
         
-//        DatabaseService.shared.repositories
-//            .bind(to: favourites)
-//            .disposed(by: disposeBag)
-        
         refrashAction
             .flatMap { [weak self] _ in
                 Observable.of(self?.dataSource.value ?? Repositories())
             }
-//            .map({
-//                [weak self] in guard let `self` = self else { return $0 }
-//                return self.synchronizeSubscription($0)
-//            })
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
             .bind(to: dataSource)
@@ -343,15 +268,5 @@ extension SearchViewController {
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
-    
-//    func synchronizeSubscription(_ repositories: Repositories) -> Repositories {
-//        for repository in repositories.items {
-//            for favouriteRepository in favourites.value {
-//                repository.isSubscribed = repository.id == favouriteRepository.id
-//                if repository.isSubscribed { break }
-//            }
-//        }
-//        return repositories
-//    }
 }
 

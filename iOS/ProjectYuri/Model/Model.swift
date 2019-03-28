@@ -10,6 +10,13 @@ import HandyJSON
 import RxSwift
 import RxCocoa
 
+enum ProductType: String, CaseIterable {
+    case game = "游戏"
+    case anime = "动画"
+    case comic = "漫画"
+    case novel = "小说"
+}
+
 class RepositoriesParams: HandyJSON {
     var query:String = ""
     var sort:String = "stars"

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let MAIN_COLOR = "#e18996"
+//let MAIN_COLOR = "#e18996"
 //let MAIN_COLOR = "#383838"
 //let MAIN_COLOR = "#004833"
 let SCREEN_MAX_LENGTH = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)

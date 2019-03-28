@@ -13,15 +13,8 @@ class ZSNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        registGestureDelegate()
-        setupNavigationBarStyle()
     }
     
-    func setupNavigationBarStyle() {
-        UINavigationBar.appearance().barTintColor = UIColor(hex: MAIN_COLOR)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().barStyle = .black
-    }
-
 //    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 //        if children.count > 0 {
 //            let backBtn = UIButton()
