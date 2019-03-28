@@ -117,8 +117,7 @@ class SearchViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(Repository.self)
-            .subscribe(onNext: {
-                [weak self] in guard let `self` = self else { return }
+            .subscribe(onNext: { [weak self] in guard let `self` = self else { return }
                 self.gotoOwnerViewController(Observable.of($0.owner))
             })
             .disposed(by: disposeBag)
@@ -148,8 +147,7 @@ class SearchViewController: ZSViewController {
         
         let moreData:Observable<Repositories> = moreRepositoriesParams
             .skip(1)
-            .map{
-                [weak self] in guard let `self` = self else { return $0 }
+            .map{ [weak self] in guard let `self` = self else { return $0 }
                 $0.page = self.dataSource.value.currentPage + 1
                 return $0
             }
@@ -176,8 +174,7 @@ class SearchViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         moreData
-            .map{
-                [weak self] in guard let `self` = self else { return $0 }
+            .map{ [weak self] in guard let `self` = self else { return $0 }
                 return self.dataSource.value + $0
             }
             .bind(to: dataSource)
@@ -185,16 +182,14 @@ class SearchViewController: ZSViewController {
         
         newData
             .filter{ $0.items.count > 0 }
-            .subscribe(onNext: {
-                [weak self] _ in guard let `self` = self else { return }
+            .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
                 self.dataSource.value.currentPage = 1
             })
             .disposed(by: disposeBag)
         
         moreData
             .filter{ $0.items.count > 0 }
-            .subscribe(onNext: {
-                [weak self] _ in guard let `self` = self else { return }
+            .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
                 self.dataSource.value.currentPage += 1
             })
             .disposed(by: disposeBag)
