@@ -55,6 +55,8 @@
 		ECE4A586224C604000A0E69B /* RuntimeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A585224C604000A0E69B /* RuntimeHandler.m */; };
 		ECE4A588224C625600A0E69B /* Runtime+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */; };
 		ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */; };
+		ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58D224C90DD00A0E69B /* ZSView.swift */; };
+		ECE4A590224C940300A0E69B /* UIViewWithTitleAndContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58F224C940300A0E69B /* UIViewWithTitleAndContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +133,8 @@
 		ECE4A585224C604000A0E69B /* RuntimeHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeHandler.m; sourceTree = "<group>"; };
 		ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionViewController.swift; sourceTree = "<group>"; };
+		ECE4A58D224C90DD00A0E69B /* ZSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSView.swift; sourceTree = "<group>"; };
+		ECE4A58F224C940300A0E69B /* UIViewWithTitleAndContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewWithTitleAndContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +181,7 @@
 			children = (
 				ECB6D88F21BFCB9F00017274 /* Model */,
 				EC1B9D9921BE88C1000E2C5B /* Controller */,
-				ECE4A57B224B1AB100A0E69B /* Cell */,
+				ECE4A57B224B1AB100A0E69B /* View */,
 				EC1B9D9B21BE88CE000E2C5B /* Service */,
 				EC1B9D7E21BE867F000E2C5B /* Base */,
 				EC1B9D8721BE86B7000E2C5B /* ZSExtension */,
@@ -195,8 +199,9 @@
 			children = (
 				EC1B9D8221BE8690000E2C5B /* Global.swift */,
 				EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */,
-				EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */,
+				ECE4A58D224C90DD00A0E69B /* ZSView.swift */,
 				EC1B9D8021BE8690000E2C5B /* ZSTableViewCell.swift */,
+				EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */,
 				EC6E2B892248B2A400DFCFE6 /* ZSTabBarController.swift */,
 				EC6E2B8B2248B2B700DFCFE6 /* ZSNavigationController.swift */,
 			);
@@ -293,12 +298,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		ECE4A57B224B1AB100A0E69B /* Cell */ = {
+		ECE4A57B224B1AB100A0E69B /* View */ = {
 			isa = PBXGroup;
 			children = (
 				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
+				ECE4A58F224C940300A0E69B /* UIViewWithTitleAndContent.swift */,
 			);
-			path = Cell;
+			path = View;
 			sourceTree = "<group>";
 		};
 		FE623F039F49E69F2A4C7E89 /* Pods */ = {
@@ -472,6 +478,7 @@
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
+				ECE4A590224C940300A0E69B /* UIViewWithTitleAndContent.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
 				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
@@ -493,6 +500,7 @@
 				EC6E2BB92248C87C00DFCFE6 /* NSDate+ZSExtension.m in Sources */,
 				EC6E2B8A2248B2A400DFCFE6 /* ZSTabBarController.swift in Sources */,
 				EC6E2BBB2248C87C00DFCFE6 /* ZSUtils.m in Sources */,
+				ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */,
 				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
 				EC6E2BBE2248C87C00DFCFE6 /* NSString+ZSExtension.m in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,

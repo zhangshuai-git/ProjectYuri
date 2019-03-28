@@ -10,8 +10,28 @@ import UIKit
 
 class ProductionViewController: ZSViewController {
 
+    lazy var scrollerContentView = UIView()
+    lazy var scrollerView: UIScrollView = {
+        let scrollerView = UIScrollView()
+        scrollerView.isScrollEnabled = false
+        return scrollerView
+    }()
+    
     override func buildSubViews() {
+        view.addSubview(scrollerView)
+        scrollerView.addSubview(scrollerContentView)
+    }
+    
+    override func makeConstraints() {
+        scrollerView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottomMargin)
+        }
         
+        scrollerContentView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
     }
 
 }
