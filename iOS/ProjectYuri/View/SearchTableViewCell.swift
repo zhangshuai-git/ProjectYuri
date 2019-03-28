@@ -12,7 +12,7 @@ import SnapKit
 
 class SearchTableViewCell: ZSTableViewCell {
     
-    lazy var iconImg: UIImageView = {
+    let iconImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
@@ -20,26 +20,26 @@ class SearchTableViewCell: ZSTableViewCell {
         return imageView
     }()
     
-    lazy var nameLab: UILabel = {
+    let nameLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
-    lazy var originNameLab: UILabel = {
+    let originNameLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
-    lazy var contentLab: UILabel = {
+    let contentLab: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.numberOfLines = 0
         return label
     }()
     
-    lazy var categoryLab: UILabel = {
+    let categoryLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.systemFont(ofSize: 10)
@@ -93,7 +93,7 @@ class SearchTableViewCell: ZSTableViewCell {
     
     // MARK: - dataSource
     
-    lazy var dataSource = BehaviorRelay(value: Repository())
+    let dataSource = BehaviorRelay(value: Repository())
     
     override func bindViewModel() {
         dataSource

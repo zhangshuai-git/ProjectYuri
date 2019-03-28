@@ -10,8 +10,8 @@ import UIKit
 
 class ProductionViewController: ZSViewController {
 
-    lazy var scrollerContentView = UIView()
-    lazy var scrollerView: UIScrollView = {
+    let scrollerContentView = UIView()
+    let scrollerView: UIScrollView = {
         let scrollerView = UIScrollView()
         scrollerView.isScrollEnabled = false
         return scrollerView

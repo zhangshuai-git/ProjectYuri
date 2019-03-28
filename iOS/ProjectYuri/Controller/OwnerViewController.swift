@@ -12,19 +12,19 @@ import RxCocoa
 
 class OwnerViewController: ZSViewController {
     
-    var dataSource = BehaviorRelay(value: RepositoryOwner())
+    let dataSource = BehaviorRelay(value: RepositoryOwner())
     
-    lazy var scrollerView: UIScrollView = {
+    let scrollerView: UIScrollView = {
         let scrollerView = UIScrollView()
         scrollerView.isScrollEnabled = false
         return scrollerView
     }()
     
-    lazy var scrollerContentView = UIView()
+    let scrollerContentView = UIView()
     
-    lazy var mainView = UIView()
+    let mainView = UIView()
     
-    lazy var iconImg: UIImageView = {
+    let iconImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
@@ -32,13 +32,13 @@ class OwnerViewController: ZSViewController {
         return imageView
     }()
     
-    lazy var titleLab: UILabel = {
+    let titleLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
-    lazy var detailLab: UILabel = {
+    let detailLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         return label

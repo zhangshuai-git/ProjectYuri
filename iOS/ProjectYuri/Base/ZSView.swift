@@ -12,7 +12,7 @@ import RxCocoa
 
 class ZSView: UIView {
 
-    var disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     convenience init() {
         self.init(frame: CGRect.zero)

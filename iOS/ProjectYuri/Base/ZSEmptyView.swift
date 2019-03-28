@@ -10,12 +10,12 @@ import UIKit
 
 class ZSEmptyView: UIView {
     
-    lazy var iconImg: UIImageView = {
+    let iconImg: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    lazy var messageLab: UILabel = {
+    let messageLab: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0

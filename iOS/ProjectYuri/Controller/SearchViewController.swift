@@ -13,7 +13,7 @@ import MJRefresh
 
 class SearchViewController: ZSViewController {
     
-    lazy var tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableView.automaticDimension
@@ -28,26 +28,26 @@ class SearchViewController: ZSViewController {
         return tableView
     }()
     
-    lazy var searchBar: UISearchBar = {
+    let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "搜索"
         return searchBar
     }()
     
-    lazy var topView: UIView = {
+    let topView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
     
-    lazy var groupBtn: UISegmentedControl = {
+    let groupBtn: UISegmentedControl = {
         let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
         groupBtn.selectedSegmentIndex = 0
         groupBtn.tintColor = UIColor.main
         return groupBtn
     }()
     
-    lazy var emptyView = ZSEmptyView(message: "xxx")
+    let emptyView = ZSEmptyView(message: "xxx")
     
     override func buildSubViews() {
         navigationItem.titleView = searchBar
@@ -91,30 +91,11 @@ class SearchViewController: ZSViewController {
     
     // MARK: - dataSource
     
-    private lazy var newRepositoriesParams = BehaviorRelay(value: RepositoriesParams())
+    let newRepositoriesParams = BehaviorRelay(value: RepositoriesParams())
     
-    private lazy var moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
+    let moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
     
-    lazy var newData:Observable<Repositories> = newRepositoriesParams
-        .skip(2)
-        .flatMapLatest {
-            NetworkService.shared.searchRepositories($0)
-        }
-        .share(replay: 1)
-    
-    lazy var moreData:Observable<Repositories> = moreRepositoriesParams
-        .skip(1)
-        .map{
-            [weak self] in guard let `self` = self else { return $0 }
-            $0.page = self.dataSource.value.currentPage + 1
-            return $0
-        }
-        .flatMapLatest {
-            NetworkService.shared.searchRepositories($0)
-        }
-        .share(replay: 1)
-    
-    lazy var dataSource = BehaviorRelay(value: Repositories())
+    let dataSource = BehaviorRelay(value: Repositories())
     
     override func bindViewModel() {
         dataSource
@@ -141,6 +122,25 @@ class SearchViewController: ZSViewController {
                 self.gotoOwnerViewController(Observable.of($0.owner))
             })
             .disposed(by: disposeBag)
+        
+        let newData:Observable<Repositories> = newRepositoriesParams
+            .skip(2)
+            .flatMapLatest {
+                NetworkService.shared.searchRepositories($0)
+            }
+            .share(replay: 1)
+        
+        let moreData:Observable<Repositories> = moreRepositoriesParams
+            .skip(1)
+            .map{
+                [weak self] in guard let `self` = self else { return $0 }
+                $0.page = self.dataSource.value.currentPage + 1
+                return $0
+            }
+            .flatMapLatest {
+                NetworkService.shared.searchRepositories($0)
+            }
+            .share(replay: 1)
         
         newData
             .map{ _ in false }

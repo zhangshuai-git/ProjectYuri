@@ -14,7 +14,7 @@ import SVProgressHUD
 class NetworkService {
     static let shared = NetworkService()
     private init() {
-        isShowIndicator
+        indicator
             .asObservable()
             .subscribe(onNext: {
                 $0 ? SVProgressHUD.show() : SVProgressHUD.dismiss()
@@ -25,8 +25,6 @@ class NetworkService {
     let disposeBag = DisposeBag()
     
     private let indicator = ActivityIndicator()
-    
-    private lazy var isShowIndicator : Driver<Bool> = indicator.asDriver()
     
     func searchRepositories(_ params:RepositoriesParams) -> Observable<Repositories> {
         return GitHubProvider.rx

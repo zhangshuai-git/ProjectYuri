@@ -15,7 +15,7 @@ class DatabaseAPI {
         createTable()
     }
     
-    lazy var db: FMDatabase = {
+    let db: FMDatabase = {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last ?? ""
         let filePath = URL(fileURLWithPath: documentsPath).appendingPathComponent("repositories.sqlite").absoluteString
         print("[database init] \(filePath)")

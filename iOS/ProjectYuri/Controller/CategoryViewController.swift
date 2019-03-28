@@ -10,7 +10,7 @@ import UIKit
 
 class CategoryViewController: ZSViewController {
 
-    lazy var navigationTitleBtn: UIButton = {
+    let navigationTitleBtn: UIButton = {
         let button = UIButton()
         button.setTitle("搜索", for: .normal)
         button.setTitleColor(.gray, for: .normal)

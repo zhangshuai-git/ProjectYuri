@@ -13,9 +13,9 @@ import SnapKit
 
 class FavouritesViewController: ZSViewController {
     
-    lazy var dataSource = BehaviorRelay(value: [Repository]())
+    let dataSource = BehaviorRelay(value: [Repository]())
     
-    lazy var tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableView.automaticDimension
