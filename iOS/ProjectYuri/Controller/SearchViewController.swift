@@ -48,7 +48,7 @@ class SearchViewController: ZSViewController {
         return groupBtn
     }()
     
-    let emptyView = ZSEmptyView(message: "xxx")
+    let emptyView = ZSEmptyView()
     
     override func buildSubViews() {
         navigationItem.titleView = searchBar
