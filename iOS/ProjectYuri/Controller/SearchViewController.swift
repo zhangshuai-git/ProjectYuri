@@ -31,6 +31,7 @@ class SearchViewController: ZSViewController {
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "搜索"
+        searchBar.returnKeyType = .done
         return searchBar
     }()
     
@@ -220,7 +221,11 @@ class SearchViewController: ZSViewController {
             .share()
         
         Observable
-            .merge(searchAction.map{_ in }.skip(1), searchBar.rx.cancelButtonClicked.asObservable(), tableView.rx.didScroll.asObservable())
+            .merge(
+                searchBar.rx.searchButtonClicked.asObservable(),
+                searchBar.rx.cancelButtonClicked.asObservable(),
+                tableView.rx.didScroll.asObservable()
+            )
             .bind { [weak self] _ in
                 self?.searchBar.endEditing(true)
             }

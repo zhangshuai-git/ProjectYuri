@@ -56,7 +56,7 @@
 		ECE4A588224C625600A0E69B /* Runtime+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */; };
 		ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */; };
 		ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58D224C90DD00A0E69B /* ZSView.swift */; };
-		ECE4A590224C940300A0E69B /* UIViewWithTitleAndContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58F224C940300A0E69B /* UIViewWithTitleAndContent.swift */; };
+		ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,7 +134,7 @@
 		ECE4A587224C625600A0E69B /* Runtime+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionViewController.swift; sourceTree = "<group>"; };
 		ECE4A58D224C90DD00A0E69B /* ZSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSView.swift; sourceTree = "<group>"; };
-		ECE4A58F224C940300A0E69B /* UIViewWithTitleAndContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewWithTitleAndContent.swift; sourceTree = "<group>"; };
+		ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSExpandableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +201,7 @@
 				EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */,
 				ECE4A58D224C90DD00A0E69B /* ZSView.swift */,
 				EC1B9D8021BE8690000E2C5B /* ZSTableViewCell.swift */,
+				ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */,
 				EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */,
 				EC6E2B892248B2A400DFCFE6 /* ZSTabBarController.swift */,
 				EC6E2B8B2248B2B700DFCFE6 /* ZSNavigationController.swift */,
@@ -302,7 +303,6 @@
 			isa = PBXGroup;
 			children = (
 				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
-				ECE4A58F224C940300A0E69B /* UIViewWithTitleAndContent.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,7 +478,7 @@
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
-				ECE4A590224C940300A0E69B /* UIViewWithTitleAndContent.swift in Sources */,
+				ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
 				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
