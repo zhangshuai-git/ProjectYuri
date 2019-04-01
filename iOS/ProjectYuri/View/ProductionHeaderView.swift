@@ -12,21 +12,69 @@ import RxCocoa
 
 class ProductionHeaderView: ZSView {
     
+    let dataSource = PublishRelay<Repository>()
+    
+    let iconImg: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
+    let nameLab: UILabel = {
+        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = .white
+        return label
+    }()
+    
+    let contentLab: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.textColor = .white
+        return label
+    }()
+    
     override func buildSubViews() {
         super.buildSubViews()
-        backgroundColor = UIColor.main
+        addSubview(iconImg)
+        addSubview(nameLab)
+        addSubview(contentLab)
     }
     
     override func makeConstraints() {
         super.makeConstraints()
-        snp.makeConstraints { (make) in
-            make.height.equalTo(100)
+        iconImg.snp.makeConstraints { (make) in
+            make.top.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 80, height: 80))
+        }
+        
+        nameLab.snp.makeConstraints { (make) in
+            make.left.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.top.equalTo(iconImg.snp.bottom).offset(10)
+            make.height.equalTo(20)
+        }
+        
+        contentLab.snp.makeConstraints { (make) in
+            make.left.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.top.equalTo(nameLab.snp.bottom).offset(10)
+            make.height.equalTo(20)
+            make.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
     }
     
     override func bindViewModel() {
         super.bindViewModel()
-        
+        dataSource
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.iconImg.sd_setImage(with: URL(string: $0.owner.avatarUrl))
+                self.nameLab.text = $0.name
+                self.contentLab.text = $0.desp
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -37,20 +85,20 @@ class ProductionSectionHeaderView: ZSView {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.white
-        label.backgroundColor = UIColor.gray
         label.textAlignment = .center
         return label
     }()
     
     override func buildSubViews() {
         super.buildSubViews()
+        backgroundColor = UIColor.gray
         addSubview(titleLab)
     }
     
     override func makeConstraints() {
         super.makeConstraints()
         titleLab.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
             make.height.equalTo(20)
         }
     }

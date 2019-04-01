@@ -38,7 +38,6 @@ class ZSEmptyView: UIView {
     }
     
     func buildSubViews() {
-        backgroundColor = UIColor.white
         addSubview(iconImg)
         addSubview(messageLab)
     }
@@ -64,7 +63,6 @@ class ZSEmptyView: UIView {
             iconImg.image = image
         } else {
             iconImg.image = UIImage(named: "index_default_stats")
-            iconImg.backgroundColor = UIColor.white
         }
         
         if message != nil {

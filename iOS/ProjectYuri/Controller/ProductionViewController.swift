@@ -56,20 +56,16 @@ class ProductionViewController: ZSViewController {
             make.leading.trailing.top.equalToSuperview()
             make.bottom.equalTo(bottomLayoutGuide.snp.top)
         }
-
     }
     
     let dataSource = BehaviorRelay(value: Repository())
     
-//    lazy var sectionedDataSource: Observable<[SectionModel<String, Any>]> = dataSource
-//        .map {
-//            return [
-//                SectionModel(model: "介绍", items: [$0.desp]),
-//                SectionModel(model: "信息", items: [$0.htmlUrl]),
-//                SectionModel(model: "制作人员", items: [$0.owner]),
-//                SectionModel(model: "角色", items: [$0.owner])
-//            ]
-//        }
+    lazy var sectionedDataSource: [ProductionCellModel<Repository>] = [
+        ProductionCellModel(dataSource.value),
+        ProductionCellModel(dataSource.value),
+        ProductionCellModel(dataSource.value),
+        ProductionCellModel(dataSource.value),
+        ]
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -78,53 +74,20 @@ class ProductionViewController: ZSViewController {
             .bind{
                 [weak self] in guard let `self` = self else { return }
                 self.visualView.backgroundImg.sd_setImage(with: URL(string: $0.owner.avatarUrl))
+                self.title = $0.name
             }
             .disposed(by: disposeBag)
         
-//        sectionedDataSource
-//            .bind(to: tableView.rx.items(dataSource: RxTableViewSectionedReloadDataSource(
-//                configureCell: { (dataSource, tableView, indexPath, element) in
-//                    switch indexPath.section {
-//                    case 0:
-//                        let cell = tableView.zs.dequeueReusableCell(ProductionCell.self, for: indexPath)
-//                        Observable.of(element as! String).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-//                        return cell
-//                    case 1:
-//                        let cell = tableView.zs.dequeueReusableCell(ProductionCell1.self, for: indexPath)
-//                        Observable.of(element as! String).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-//                        return cell
-//                    case 2:
-//                        let cell = tableView.zs.dequeueReusableCell(ProductionCell2.self, for: indexPath)
-//                        Observable.of(element as! RepositoryOwner).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-//                        return cell
-//                    case 3:
-//                        let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
-//                        Observable.of(element as! RepositoryOwner).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-//                        return cell
-//                    default: return UITableViewCell()
-//                    }
-//                },
-//                titleForHeaderInSection: { dataSource, sectionIndex in
-//                    return dataSource[sectionIndex].model
-//                }
-//            )))
-//            .disposed(by: disposeBag)
-        
-//        dataSource
-//            .bind(to: tableView.rx.items) { tableView, row, element in
-//                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
-//                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-//                return cell
-//            }
-//            .disposed(by: disposeBag)
-        
+        dataSource
+            .bind(to: headerView.dataSource)
+            .disposed(by: headerView.disposeBag)
     }
 
 }
 
-extension ProductionViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProductionViewController: UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return sectionedDataSource.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -132,40 +95,47 @@ extension ProductionViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = sectionedDataSource[indexPath.section]
         switch indexPath.section {
         case 0:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(dataSource.value.desp).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            cell.expandAction.bind {
+                data.isExpanded = $0
+                tableView.reloadSections([indexPath.section], with: .fade)
+                }
+                .disposed(by: cell.disposeBag)
             return cell
         case 1:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell1.self, for: indexPath)
-            Observable.of(dataSource.value.htmlUrl).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            cell.expandAction.bind {
+                data.isExpanded = $0
+                tableView.reloadSections([indexPath.section], with: .fade)
+                }
+                .disposed(by: cell.disposeBag)
             return cell
         case 2:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell2.self, for: indexPath)
-            Observable.of(dataSource.value.owner).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            cell.expandAction.bind {
+                    data.isExpanded = $0
+                    tableView.reloadSections([indexPath.section], with: .fade)
+                }
+                .disposed(by: cell.disposeBag)
             return cell
         case 3:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
-            Observable.of(dataSource.value.owner).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+            cell.expandAction.bind {
+                data.isExpanded = $0
+                tableView.reloadSections([indexPath.section], with: .fade)
+                }
+                .disposed(by: cell.disposeBag)
             return cell
         default: return UITableViewCell()
         }
     }
-
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        switch section {
-//        case 0:
-//            return "介绍"
-//        case 1:
-//            return "信息"
-//        case 2:
-//            return "制作人员"
-//        case 3:
-//            return "角色"
-//        default: return ""
-//        }
-//    }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = ProductionSectionHeaderView()
@@ -183,8 +153,18 @@ extension ProductionViewController: UITableViewDelegate, UITableViewDataSource {
         return view
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 20
-//    }
+}
+
+extension ProductionViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(color: .gray), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController!.navigationBar.shadowImage = nil
+    }
 }

@@ -12,6 +12,7 @@ class ZSVisualEffectView: ZSView {
     
     let backgroundImg: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFit
         return img
     }()
     

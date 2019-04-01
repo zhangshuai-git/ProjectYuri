@@ -34,7 +34,7 @@ class ZSExpandableCell: ZSTableViewCell {
         return view
     }()
     
-    let actionBtn: UIButton = {
+    let expandBtn: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.main
@@ -48,9 +48,9 @@ class ZSExpandableCell: ZSTableViewCell {
         willSet {
             switch newValue {
             case true:
-                actionBtn.setTitle("收起", for: .normal)
+                expandBtn.setTitle("收起", for: .normal)
             case false:
-                actionBtn.setTitle("展开", for: .normal)
+                expandBtn.setTitle("展开", for: .normal)
             }
             setNeedsUpdateConstraints()
         }
@@ -58,8 +58,8 @@ class ZSExpandableCell: ZSTableViewCell {
 
     override func buildSubViews() {
         contentView.addSubview(containerView)
+        contentView.addSubview(expandBtn)
         containerView.addSubview(mainView)
-        containerView.addSubview(actionBtn)
         mainView.addSubview(expandableView)
     }
     
@@ -68,6 +68,12 @@ class ZSExpandableCell: ZSTableViewCell {
             make.edges.equalToSuperview()
             make.height.equalTo(fixedHeight)
         }
+        
+        expandBtn.snp.makeConstraints { (make) in
+            make.right.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 5, right: 20))
+            make.size.equalTo(CGSize(width: 35, height: 20))
+        }
+        
         mainView.snp.remakeConstraints { (make) in
             make.top.left.right.equalToSuperview()
         }
@@ -76,25 +82,22 @@ class ZSExpandableCell: ZSTableViewCell {
             make.edges.equalToSuperview()
         }
         
-        actionBtn.snp.makeConstraints { (make) in
-            make.right.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-            make.size.equalTo(CGSize(width: 35, height: 20))
-        }
-        
     }
     
     override func updateConstraints() {
         if isExpanded {
             containerView.snp.remakeConstraints { (make) in
-                make.edges.equalToSuperview()
+                make.left.top.right.equalToSuperview()
+                make.bottom.equalTo(expandBtn.snp.top).offset(-5)
             }
             mainView.snp.remakeConstraints { (make) in
                 make.edges.equalToSuperview()
             }
         } else {
             containerView.snp.remakeConstraints { (make) in
-                make.edges.equalToSuperview()
+                make.left.top.right.equalToSuperview()
                 make.height.equalTo(fixedHeight)
+                make.bottom.equalTo(expandBtn.snp.top).offset(-5)
             }
             mainView.snp.remakeConstraints { (make) in
                 make.top.left.right.equalToSuperview()
@@ -106,7 +109,7 @@ class ZSExpandableCell: ZSTableViewCell {
     let expandAction = PublishRelay<Bool>()
     
     override func bindViewModel() {
-        actionBtn.rx.tap
+        expandBtn.rx.tap
             .asObservable()
             .map { [weak self] in guard let `self` = self else { return false }
                 self.isExpanded.toggle()
