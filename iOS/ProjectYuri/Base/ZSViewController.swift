@@ -30,22 +30,22 @@ class ZSViewController: UIViewController {
 }
 
 extension ZSViewController {
-    func gotoOwnerViewController(_ owner: Observable<RepositoryOwner>) {
-        let vc = OwnerViewController()
-        owner.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func gotoFavouritesViewController(_ favourites: Observable<[Repository]>) {
-        let vc = FavouritesViewController()
-        favourites.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func gotoSearchViewController() {
-        let vc = SearchViewController()
+    func gotoProductionViewController(_ data: Observable<Repository>) {
+        let vc = ProductionViewController()
+        data.bind(to: vc.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: false)
-//        let vc = UISearchController()
-//        present(vc, animated: false, completion: nil)
     }
+    
+    func gotoOwnerViewController(_ data: Observable<RepositoryOwner>) {
+        let vc = OwnerViewController()
+        data.bind(to: vc.dataSource).disposed(by: disposeBag)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoFavouritesViewController(_ data: Observable<[Repository]>) {
+        let vc = FavouritesViewController()
+        data.bind(to: vc.dataSource).disposed(by: disposeBag)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }

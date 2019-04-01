@@ -22,9 +22,34 @@ class ProductionCell: ZSExpandableCell {
         
     }
     
+    let dataSource = PublishRelay<Any>()
+    
     override func bindViewModel() {
         super.bindViewModel()
         
     }
 
 }
+
+//class ProductionCell1: ZSExpandableCell {
+//    
+//     let dataSource = PublishRelay<RepositoryOwner>()
+//    
+//    override func buildSubViews() {
+//        super.buildSubViews()
+//        
+//    }
+//    
+//    override func makeConstraints() {
+//        super.makeConstraints()
+//        
+//    }
+//    
+//    override func bindViewModel() {
+//        super.bindViewModel()
+//        
+//    }
+//    
+//}
+
+

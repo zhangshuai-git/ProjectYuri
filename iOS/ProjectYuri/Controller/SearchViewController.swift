@@ -59,7 +59,7 @@ class SearchViewController: ZSViewController {
     
     override func makeConstraints() -> Void {
         topView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+            make.top.equalTo(topLayoutGuide.snp.bottom)
             make.left.right.equalToSuperview()
         }
         
@@ -71,7 +71,7 @@ class SearchViewController: ZSViewController {
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(topView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+            make.bottom.equalTo(bottomLayoutGuide.snp.top)
         }
     }
     
@@ -119,7 +119,7 @@ class SearchViewController: ZSViewController {
         
         tableView.rx.modelSelected(Repository.self)
             .subscribe(onNext: { [weak self] in guard let `self` = self else { return }
-                self.gotoOwnerViewController(Observable.of($0.owner))
+                self.gotoProductionViewController(Observable.of($0))
             })
             .disposed(by: disposeBag)
         

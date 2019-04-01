@@ -65,8 +65,8 @@ class Repository: HandyJSON {
     var id: Int = 0
     var name: String = ""
     var fullName: String = ""
-    var htmlUrl: String = ""
     var desp: String = ""
+    var htmlUrl: String = ""
     var owner: RepositoryOwner = RepositoryOwner()
     
     var comment: String = ""

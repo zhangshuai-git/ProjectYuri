@@ -51,11 +51,12 @@
 		ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */; };
 		ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */; };
 		ECE4A57D224B1D2A00A0E69B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */; };
-		ECE4A581224B319200A0E69B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A580224B319200A0E69B /* CategoryViewController.swift */; };
 		ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */; };
 		ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58D224C90DD00A0E69B /* ZSView.swift */; };
 		ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */; };
 		ECE4A593224DDED300A0E69B /* ProductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A592224DDED300A0E69B /* ProductionCell.swift */; };
+		ECE4A595224DEB6600A0E69B /* ProductionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A594224DEB6600A0E69B /* ProductionHeaderView.swift */; };
+		ECE4A5C1224E0DCC00A0E69B /* ZSSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A5C0224E0DCC00A0E69B /* ZSSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,11 +128,12 @@
 		ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+ZSExtension.m"; sourceTree = "<group>"; };
 		ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		ECE4A580224B319200A0E69B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionViewController.swift; sourceTree = "<group>"; };
 		ECE4A58D224C90DD00A0E69B /* ZSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSView.swift; sourceTree = "<group>"; };
 		ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSExpandableCell.swift; sourceTree = "<group>"; };
 		ECE4A592224DDED300A0E69B /* ProductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCell.swift; sourceTree = "<group>"; };
+		ECE4A594224DEB6600A0E69B /* ProductionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionHeaderView.swift; sourceTree = "<group>"; };
+		ECE4A5C0224E0DCC00A0E69B /* ZSSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */,
 				EC6E2B892248B2A400DFCFE6 /* ZSTabBarController.swift */,
 				EC6E2B8B2248B2B700DFCFE6 /* ZSNavigationController.swift */,
+				ECE4A5C0224E0DCC00A0E69B /* ZSSection.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -227,7 +230,6 @@
 				EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */,
 				ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */,
 				ECE4A57C224B1D2A00A0E69B /* ProfileViewController.swift */,
-				ECE4A580224B319200A0E69B /* CategoryViewController.swift */,
 				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
 				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 			);
@@ -298,6 +300,7 @@
 			children = (
 				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionCell.swift */,
+				ECE4A594224DEB6600A0E69B /* ProductionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -399,6 +403,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -409,6 +414,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -416,6 +422,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -463,6 +470,7 @@
 				EC6E2BBC2248C87C00DFCFE6 /* NSObject+ZSExtension.m in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC6E2BB42248C87C00DFCFE6 /* UIImage+ZSExtension.m in Sources */,
+				ECE4A595224DEB6600A0E69B /* ProductionHeaderView.swift in Sources */,
 				EC6E2BB52248C87C00DFCFE6 /* UIButton+ZSExtension.m in Sources */,
 				EC6E2BB62248C87C00DFCFE6 /* UIView+ZSExtension.m in Sources */,
 				EC1B9D9F21BE895A000E2C5B /* SearchTableViewCell.swift in Sources */,
@@ -474,8 +482,8 @@
 				ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
+				ECE4A5C1224E0DCC00A0E69B /* ZSSection.swift in Sources */,
 				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
-				ECE4A581224B319200A0E69B /* CategoryViewController.swift in Sources */,
 				EC6E2B8C2248B2B700DFCFE6 /* ZSNavigationController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */,

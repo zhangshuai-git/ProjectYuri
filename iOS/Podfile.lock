@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.0)
+  - Differentiator (3.1.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -15,6 +16,10 @@ PODS:
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
   - SDWebImage (4.4.2):
@@ -29,6 +34,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.15.7)
   - Moya/RxSwift (~> 12.0.1)
   - RxCocoa (~> 4.4.0)
+  - RxDataSources (~> 3.1.0)
   - RxSwift (~> 4.4.0)
   - SDWebImage (~> 4.4.2)
   - SnapKit (~> 4.2.0)
@@ -37,6 +43,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Differentiator
     - FMDB
     - HandyJSON
     - MJRefresh
@@ -44,6 +51,7 @@ SPEC REPOS:
     - Result
     - RxAtomic
     - RxCocoa
+    - RxDataSources
     - RxSwift
     - SDWebImage
     - SnapKit
@@ -51,6 +59,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
@@ -58,11 +67,12 @@ SPEC CHECKSUMS:
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: f416770715dd370c8daefaf14f27c4ff7443595a
+PODFILE CHECKSUM: 9b3277f1add1c8aae98d9688f718072de44ec9b4
 
 COCOAPODS: 1.5.3
