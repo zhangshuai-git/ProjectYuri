@@ -30,3 +30,38 @@ class ProductionHeaderView: ZSView {
     }
 
 }
+
+class ProductionSectionHeaderView: ZSView {
+    
+    let titleLab: UILabel = {
+        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.gray
+        label.textAlignment = .center
+        return label
+    }()
+    
+    override func buildSubViews() {
+        super.buildSubViews()
+        addSubview(titleLab)
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        titleLab.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+            make.height.equalTo(20)
+        }
+    }
+    
+    let dataSource = PublishRelay<String>()
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        dataSource
+            .bind(to: titleLab.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+}
