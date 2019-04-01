@@ -40,7 +40,7 @@ class ZSExpandableCell: ZSTableViewCell {
         button.backgroundColor = UIColor.main
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
     

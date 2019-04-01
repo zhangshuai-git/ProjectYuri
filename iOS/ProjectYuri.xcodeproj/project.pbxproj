@@ -57,6 +57,9 @@
 		ECE4A593224DDED300A0E69B /* ProductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A592224DDED300A0E69B /* ProductionCell.swift */; };
 		ECE4A595224DEB6600A0E69B /* ProductionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A594224DEB6600A0E69B /* ProductionHeaderView.swift */; };
 		ECFD0FBB2251B6A90074550D /* ZSVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */; };
+		ECFD0FBE22520A810074550D /* ZSCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBD22520A810074550D /* ZSCharacterView.swift */; };
+		ECFD0FC1225212590074550D /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBF225212590074550D /* ConstraintArrayDSL.swift */; };
+		ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FC0225212590074550D /* ConstraintArray+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +137,9 @@
 		ECE4A592224DDED300A0E69B /* ProductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCell.swift; sourceTree = "<group>"; };
 		ECE4A594224DEB6600A0E69B /* ProductionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionHeaderView.swift; sourceTree = "<group>"; };
 		ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSVisualEffectView.swift; sourceTree = "<group>"; };
+		ECFD0FBD22520A810074550D /* ZSCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSCharacterView.swift; sourceTree = "<group>"; };
+		ECFD0FBF225212590074550D /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
+		ECFD0FC0225212590074550D /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,7 @@
 		EC1B9D6B21BE84DB000E2C5B /* ProjectYuri */ = {
 			isa = PBXGroup;
 			children = (
+				ECFD0FBC225209F40074550D /* CustomUI */,
 				ECB6D88F21BFCB9F00017274 /* Model */,
 				EC1B9D9921BE88C1000E2C5B /* Controller */,
 				ECE4A57B224B1AB100A0E69B /* View */,
@@ -200,11 +207,9 @@
 				EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */,
 				ECE4A58D224C90DD00A0E69B /* ZSView.swift */,
 				EC1B9D8021BE8690000E2C5B /* ZSTableViewCell.swift */,
-				ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */,
 				EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */,
 				EC6E2B892248B2A400DFCFE6 /* ZSTabBarController.swift */,
 				EC6E2B8B2248B2B700DFCFE6 /* ZSNavigationController.swift */,
-				ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -215,6 +220,8 @@
 				EC1B9D8921BE86CF000E2C5B /* UITableView+ZSExtension.swift */,
 				EC1B9D8821BE86CF000E2C5B /* ZSExtension.swift */,
 				EC0FA00121CB693800EA685A /* ActivityIndicator.swift */,
+				ECFD0FC0225212590074550D /* ConstraintArray+Extensions.swift */,
+				ECFD0FBF225212590074550D /* ConstraintArrayDSL.swift */,
 				EC1B9D8E21BE8765000E2C5B /* MJRefreshComponent+Rx.swift */,
 				EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */,
 				EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */,
@@ -303,6 +310,16 @@
 				ECE4A594224DEB6600A0E69B /* ProductionHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		ECFD0FBC225209F40074550D /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */,
+				ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */,
+				ECFD0FBD22520A810074550D /* ZSCharacterView.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		FE623F039F49E69F2A4C7E89 /* Pods */ = {
@@ -462,11 +479,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFD0FC1225212590074550D /* ConstraintArrayDSL.swift in Sources */,
 				EC6E2BB22248C87C00DFCFE6 /* UIBarButtonItem+ZSExtension.m in Sources */,
 				EC1B9D8421BE8690000E2C5B /* ZSTableViewCell.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC6E2BB72248C87C00DFCFE6 /* UIScreen+ZSExtension.m in Sources */,
 				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
+				ECFD0FBE22520A810074550D /* ZSCharacterView.swift in Sources */,
 				EC6E2BBC2248C87C00DFCFE6 /* NSObject+ZSExtension.m in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC6E2BB42248C87C00DFCFE6 /* UIImage+ZSExtension.m in Sources */,
@@ -478,6 +497,7 @@
 				ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
+				ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
 				ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,

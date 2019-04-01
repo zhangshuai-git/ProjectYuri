@@ -21,4 +21,6 @@
 
 @property (class, nonatomic, readonly) UIColor *main;
 
+@property (class, nonatomic, readonly) UIColor *random;
+
 @end

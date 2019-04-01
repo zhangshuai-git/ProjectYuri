@@ -53,8 +53,7 @@ class ProductionViewController: ZSViewController {
     override func makeConstraints() {
         super.makeConstraints()
         tableView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.equalToSuperview()
-            make.bottom.equalTo(bottomLayoutGuide.snp.top)
+            make.leading.trailing.top.bottom.equalToSuperview()
         }
     }
     
@@ -99,18 +98,20 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
         case 0:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-            cell.expandAction.bind {
-                data.isExpanded = $0
-                tableView.reloadSections([indexPath.section], with: .fade)
+            cell.expandAction
+                .bind {
+                    data.isExpanded = $0
+                    tableView.reloadSections([indexPath.section], with: .fade)
                 }
                 .disposed(by: cell.disposeBag)
             return cell
         case 1:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell1.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-            cell.expandAction.bind {
-                data.isExpanded = $0
-                tableView.reloadSections([indexPath.section], with: .fade)
+            cell.expandAction
+                .bind {
+                    data.isExpanded = $0
+                    tableView.reloadSections([indexPath.section], with: .fade)
                 }
                 .disposed(by: cell.disposeBag)
             return cell
@@ -146,13 +147,13 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
 extension ProductionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(color: .gray), for: .default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: .gray), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController!.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
     }
 }
