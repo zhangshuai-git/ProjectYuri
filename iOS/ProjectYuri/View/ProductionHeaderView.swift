@@ -47,22 +47,21 @@ class ProductionHeaderView: ZSView {
     override func makeConstraints() {
         super.makeConstraints()
         iconImg.snp.makeConstraints { (make) in
-            make.top.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 80, height: 80))
+            make.top.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.size.equalTo(CGSize(width: 100, height: 100))
+            make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
         
         nameLab.snp.makeConstraints { (make) in
-            make.left.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-            make.top.equalTo(iconImg.snp.bottom).offset(10)
-            make.height.equalTo(20)
+            make.top.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.left.equalTo(iconImg.snp.right).offset(10)
         }
         
         contentLab.snp.makeConstraints { (make) in
-            make.left.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.left.equalTo(iconImg.snp.right).offset(10)
             make.top.equalTo(nameLab.snp.bottom).offset(10)
-            make.height.equalTo(20)
-            make.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
     }
     

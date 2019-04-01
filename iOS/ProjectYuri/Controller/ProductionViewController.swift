@@ -71,8 +71,7 @@ class ProductionViewController: ZSViewController {
         super.bindViewModel()
         
         dataSource
-            .bind{
-                [weak self] in guard let `self` = self else { return }
+            .bind{ [weak self] in guard let `self` = self else { return }
                 self.visualView.backgroundImg.sd_setImage(with: URL(string: $0.owner.avatarUrl))
                 self.title = $0.name
             }
@@ -118,20 +117,10 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
         case 2:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell2.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-            cell.expandAction.bind {
-                    data.isExpanded = $0
-                    tableView.reloadSections([indexPath.section], with: .fade)
-                }
-                .disposed(by: cell.disposeBag)
             return cell
         case 3:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-            cell.expandAction.bind {
-                data.isExpanded = $0
-                tableView.reloadSections([indexPath.section], with: .fade)
-                }
-                .disposed(by: cell.disposeBag)
             return cell
         default: return UITableViewCell()
         }
@@ -152,7 +141,6 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
         }
         return view
     }
-    
 }
 
 extension ProductionViewController {
