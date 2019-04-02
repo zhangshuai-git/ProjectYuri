@@ -9,7 +9,22 @@
 import UIKit
 
 class ZSUserView: ZSView {
-
+    
+    var iconSize: CGSize = CGSize(width: 40, height: 40)
+    var titleFont: UIFont = UIFont.systemFont(ofSize: 14)
+    var contentFont: UIFont = UIFont.systemFont(ofSize: 10)
+    
+    init(iconSize: CGSize, titleFont:UIFont, contentFont: UIFont) {
+        self.iconSize = iconSize
+        self.titleFont = titleFont
+        self.contentFont = contentFont
+        super.init(frame: CGRect.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     let iconImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -21,7 +36,6 @@ class ZSUserView: ZSView {
     let titleLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .white
         return label
     }()
@@ -29,13 +43,14 @@ class ZSUserView: ZSView {
     let contentLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .white
         return label
     }()
     
     override func buildSubViews() {
         super.buildSubViews()
+        titleLab.font = titleFont
+        contentLab.font = contentFont
         addSubview(iconImg)
         addSubview(titleLab)
         addSubview(contentLab)
@@ -45,7 +60,7 @@ class ZSUserView: ZSView {
         super.makeConstraints()
         iconImg.snp.makeConstraints { (make) in
             make.top.left.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            make.size.equalTo(CGSize(width: 40, height: 40))
+            make.size.equalTo(iconSize)
             make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
         

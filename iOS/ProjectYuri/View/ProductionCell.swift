@@ -191,7 +191,7 @@ class ProductionCell3: ZSTableViewCell {
     var characterArray: [ZSUserView] = {
         var arr = [ZSUserView]()
         for _ in 0..<6 {
-            let view = ZSUserView()
+            let view = ZSUserView(iconSize: CGSize(width: 40, height: 40), titleFont: UIFont.systemFont(ofSize: 10), contentFont: UIFont.systemFont(ofSize: 10))
             view.iconImg.backgroundColor = UIColor.random
             view.titleLab.text = String.random(len: 8)
             view.contentLab.text = "CV: \(String.random(len: 8))"

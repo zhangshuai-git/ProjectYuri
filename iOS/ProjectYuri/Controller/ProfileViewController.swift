@@ -10,5 +10,21 @@ import UIKit
 
 class ProfileViewController: ZSViewController {
 
+    let topView: ProfileTopView = {
+        let view = ProfileTopView()
+        return view
+    }()
 
+    override func buildSubViews() {
+        super.buildSubViews()
+        view.addSubview(topView)
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        topView.snp.makeConstraints { (make) in
+            make.top.equalTo(topLayoutGuide.snp.bottom)
+            make.left.right.equalToSuperview()
+        }
+    }
 }

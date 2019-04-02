@@ -14,8 +14,11 @@ class ZSView: UIView {
 
     let disposeBag = DisposeBag()
     
-    convenience init() {
-        self.init(frame: CGRect.zero)
+    init() {
+        super.init(frame: CGRect.zero)
+        buildSubViews()
+        makeConstraints()
+        bindViewModel()
     }
 
     override init(frame: CGRect) {
