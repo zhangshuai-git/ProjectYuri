@@ -99,6 +99,35 @@ class SearchViewController: ZSViewController {
     let dataSource = BehaviorRelay(value: Repositories())
     
     override func bindViewModel() {
+        let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
+            .asObservable()
+            .distinctUntilChanged()
+            .share()
+        
+        let filteredData: Observable<[Repository]> = groupBtnAction
+            .flatMap{ [weak self] in
+                self?.filteredItems($0) ?? Observable.of(Repositories().items)
+        }
+
+        Observable.merge(
+            filteredData,
+            dataSource.skip(2).map{ $0.items }
+            )
+            .bind(to: tableView.rx.items) { tableView, row, element in
+                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
+                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        dataSource
+            .map { $0.totalCount == 0 }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.zs.reloadData(withEmpty: self?.emptyView)
+            })
+            .disposed(by: disposeBag)
+        
         tableView.rx.modelSelected(Repository.self)
             .subscribe(onNext: { [weak self] in guard let `self` = self else { return }
                 self.gotoProductionViewController(Observable.of($0))
@@ -182,11 +211,6 @@ class SearchViewController: ZSViewController {
             .distinctUntilChanged()
             .share()
         
-        let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
-            .asObservable()
-            .distinctUntilChanged()
-            .share()
-        
         let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
             .asObservable()
             .map{ [weak self] in self?.searchBar.text ?? "" }
@@ -234,30 +258,6 @@ class SearchViewController: ZSViewController {
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
             .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        let filteredData: Observable<[Repository]> = groupBtnAction
-            .flatMap{ [weak self] in
-                self?.filteredItems($0) ?? Observable.of(Repositories().items)
-            }
-        
-        dataSource
-            .map { $0.totalCount == 0 }
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] _ in
-                self?.tableView.zs.reloadData(withEmpty: self?.emptyView)
-            })
-            .disposed(by: disposeBag)
-        
-        Observable.merge(
-            filteredData,
-            dataSource.skip(2).map{ $0.items }
-            )
-            .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-                return cell
-            }
             .disposed(by: disposeBag)
     }
 }
