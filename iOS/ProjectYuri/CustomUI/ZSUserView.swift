@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ZSCharacterView: ZSView {
+class ZSUserView: ZSView {
 
     let iconImg: UIImageView = {
         let imageView = UIImageView()
@@ -18,7 +18,7 @@ class ZSCharacterView: ZSView {
         return imageView
     }()
     
-    let charaLab: UILabel = {
+    let titleLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.systemFont(ofSize: 10)
@@ -26,7 +26,7 @@ class ZSCharacterView: ZSView {
         return label
     }()
     
-    let cvLab: UILabel = {
+    let contentLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.systemFont(ofSize: 10)
@@ -37,27 +37,27 @@ class ZSCharacterView: ZSView {
     override func buildSubViews() {
         super.buildSubViews()
         addSubview(iconImg)
-        addSubview(charaLab)
-        addSubview(cvLab)
+        addSubview(titleLab)
+        addSubview(contentLab)
     }
     
     override func makeConstraints() {
         super.makeConstraints()
         iconImg.snp.makeConstraints { (make) in
-            make.top.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.top.left.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
             make.size.equalTo(CGSize(width: 40, height: 40))
             make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
         
-        charaLab.snp.makeConstraints { (make) in
-            make.top.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+        titleLab.snp.makeConstraints { (make) in
+            make.top.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
             make.left.equalTo(iconImg.snp.right).offset(10)
         }
         
-        cvLab.snp.makeConstraints { (make) in
-            make.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+        contentLab.snp.makeConstraints { (make) in
+            make.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
             make.left.equalTo(iconImg.snp.right).offset(10)
-            make.top.equalTo(charaLab.snp.bottom).offset(10)
+            make.top.equalTo(titleLab.snp.bottom).offset(10)
             make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
     }

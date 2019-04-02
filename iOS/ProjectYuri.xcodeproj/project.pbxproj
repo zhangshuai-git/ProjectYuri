@@ -57,8 +57,9 @@
 		ECE4A593224DDED300A0E69B /* ProductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A592224DDED300A0E69B /* ProductionCell.swift */; };
 		ECE4A595224DEB6600A0E69B /* ProductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A594224DEB6600A0E69B /* ProductionView.swift */; };
 		ECF0E7392253072400E265B9 /* String+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0E7382253072400E265B9 /* String+ZSExtension.swift */; };
+		ECF0E73B22532B2100E265B9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0E73A22532B2100E265B9 /* ProfileView.swift */; };
 		ECFD0FBB2251B6A90074550D /* ZSVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */; };
-		ECFD0FBE22520A810074550D /* ZSCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBD22520A810074550D /* ZSCharacterView.swift */; };
+		ECFD0FBE22520A810074550D /* ZSUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBD22520A810074550D /* ZSUserView.swift */; };
 		ECFD0FC1225212590074550D /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBF225212590074550D /* ConstraintArrayDSL.swift */; };
 		ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FC0225212590074550D /* ConstraintArray+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -138,8 +139,9 @@
 		ECE4A592224DDED300A0E69B /* ProductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCell.swift; sourceTree = "<group>"; };
 		ECE4A594224DEB6600A0E69B /* ProductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionView.swift; sourceTree = "<group>"; };
 		ECF0E7382253072400E265B9 /* String+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ZSExtension.swift"; sourceTree = "<group>"; };
+		ECF0E73A22532B2100E265B9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSVisualEffectView.swift; sourceTree = "<group>"; };
-		ECFD0FBD22520A810074550D /* ZSCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSCharacterView.swift; sourceTree = "<group>"; };
+		ECFD0FBD22520A810074550D /* ZSUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSUserView.swift; sourceTree = "<group>"; };
 		ECFD0FBF225212590074550D /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		ECFD0FC0225212590074550D /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -311,6 +313,7 @@
 				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionCell.swift */,
 				ECE4A594224DEB6600A0E69B /* ProductionView.swift */,
+				ECF0E73A22532B2100E265B9 /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,7 +323,7 @@
 			children = (
 				ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */,
 				ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */,
-				ECFD0FBD22520A810074550D /* ZSCharacterView.swift */,
+				ECFD0FBD22520A810074550D /* ZSUserView.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -488,7 +491,7 @@
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC6E2BB72248C87C00DFCFE6 /* UIScreen+ZSExtension.m in Sources */,
 				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
-				ECFD0FBE22520A810074550D /* ZSCharacterView.swift in Sources */,
+				ECFD0FBE22520A810074550D /* ZSUserView.swift in Sources */,
 				EC6E2BBC2248C87C00DFCFE6 /* NSObject+ZSExtension.m in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC6E2BB42248C87C00DFCFE6 /* UIImage+ZSExtension.m in Sources */,
@@ -522,6 +525,7 @@
 				EC1B9D8321BE8690000E2C5B /* ZSViewController.swift in Sources */,
 				EC6E2BB02248C87C00DFCFE6 /* UIControl+ZSExtension.m in Sources */,
 				EC6E2BB12248C87C00DFCFE6 /* UIViewController+ZSExtension.m in Sources */,
+				ECF0E73B22532B2100E265B9 /* ProfileView.swift in Sources */,
 				EC6E2BB92248C87C00DFCFE6 /* NSDate+ZSExtension.m in Sources */,
 				ECE4A593224DDED300A0E69B /* ProductionCell.swift in Sources */,
 				EC6E2B8A2248B2A400DFCFE6 /* ZSTabBarController.swift in Sources */,

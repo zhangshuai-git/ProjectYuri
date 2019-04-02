@@ -188,13 +188,13 @@ class ProductionCell3: ZSTableViewCell {
         return view
     }()
     
-    var characterArray: [ZSCharacterView] = {
-        var arr = [ZSCharacterView]()
+    var characterArray: [ZSUserView] = {
+        var arr = [ZSUserView]()
         for _ in 0..<6 {
-            let view = ZSCharacterView()
+            let view = ZSUserView()
             view.iconImg.backgroundColor = UIColor.random
-            view.charaLab.text = String.random(len: 8)
-            view.cvLab.text = "CV: \(String.random(len: 8))"
+            view.titleLab.text = String.random(len: 8)
+            view.contentLab.text = "CV: \(String.random(len: 8))"
             arr.append(view)
         }
         return arr
@@ -230,7 +230,7 @@ class ProductionCell3: ZSTableViewCell {
             make.top.equalTo(moreBtn.snp.bottom).offset(10)
         }
         
-        characterArray.snp.distributeSudokuViews(fixedLineSpacing: 10, fixedInteritemSpacing: 10, warpCount: 2)
+        characterArray.snp.distributeSudokuViews(fixedLineSpacing: 0, fixedInteritemSpacing: 0, warpCount: 2)
     }
     
     let dataSource = PublishRelay<ProductionCellModel<Repository>>()
