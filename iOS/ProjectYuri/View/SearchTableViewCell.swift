@@ -102,7 +102,7 @@ class SearchTableViewCell: ZSTableViewCell {
                 self.nameLab.text = $0.name
                 self.originNameLab.text = $0.fullName
                 self.contentLab.text = $0.desp
-                self.categoryLab.text = ProductionCategory.allCases.randomElement()?.rawValue
+                self.categoryLab.text = $0.category?.rawValue
             }
             .disposed(by: disposeBag)
     }

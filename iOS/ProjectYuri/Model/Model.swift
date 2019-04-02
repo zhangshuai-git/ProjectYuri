@@ -72,6 +72,7 @@ class Repository: HandyJSON {
     var comment: String = ""
     var isSubscribed:Bool = false
     var isExpanded:Bool = false
+    var category: ProductionCategory? = ProductionCategory.allCases.randomElement()
 
     public func mapping(mapper: HelpingMapper) {
         mapper <<< fullName <-- "full_name"

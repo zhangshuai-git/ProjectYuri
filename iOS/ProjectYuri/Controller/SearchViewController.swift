@@ -99,24 +99,6 @@ class SearchViewController: ZSViewController {
     let dataSource = BehaviorRelay(value: Repositories())
     
     override func bindViewModel() {
-        dataSource
-            .skip(2)
-            .map{ $0.items }
-            .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-                return cell
-            }
-            .disposed(by: disposeBag)
-        
-        dataSource
-            .map { $0.totalCount == 0 }
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] _ in
-                self?.tableView.zs.reloadData(withEmpty: self?.emptyView)
-            })
-            .disposed(by: disposeBag)
-        
         tableView.rx.modelSelected(Repository.self)
             .subscribe(onNext: { [weak self] in guard let `self` = self else { return }
                 self.gotoProductionViewController(Observable.of($0))
@@ -231,12 +213,6 @@ class SearchViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        groupBtnAction
-            .bind {
-                print("selected \($0)")
-            }
-            .disposed(by: disposeBag)
-        
         Observable
             .merge(searchAction, headerAction)
             .map{ RepositoriesParams(query: $0) }
@@ -259,6 +235,30 @@ class SearchViewController: ZSViewController {
             .observeOn(MainScheduler.instance)
             .bind(to: dataSource)
             .disposed(by: disposeBag)
+        
+        let filteredData: Observable<[Repository]> = groupBtnAction
+            .flatMap{ [weak self] in
+                self?.filteredItems($0) ?? Observable.of(Repositories().items)
+            }
+        
+        dataSource
+            .map { $0.totalCount == 0 }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.zs.reloadData(withEmpty: self?.emptyView)
+            })
+            .disposed(by: disposeBag)
+        
+        Observable.merge(
+            filteredData,
+            dataSource.skip(2).map{ $0.items }
+            )
+            .bind(to: tableView.rx.items) { tableView, row, element in
+                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
+                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+                return cell
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -267,6 +267,13 @@ extension SearchViewController {
         if repositories.items.count == 0 { return .hidden }
         print("page = \(repositories.currentPage), totalPage = \(repositories.totalPage)")
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
+    }
+    
+    func filteredItems(_ index: Int) -> Observable<[Repository]> {
+        return Observable
+            .from(dataSource.value.items)
+            .filter{ index == 0 ? true : $0.category == ProductionCategory.allCases[index-1] }
+            .toArray()
     }
 }
 
