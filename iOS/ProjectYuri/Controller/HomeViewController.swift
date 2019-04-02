@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: ZSViewController {
 
     override func buildSubViews() {
-        
+        title = "首页"
     }
 
 }

@@ -51,6 +51,7 @@ class SearchViewController: ZSViewController {
     let emptyView = ZSEmptyView()
     
     override func buildSubViews() {
+        title = "搜索"
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)
@@ -104,14 +105,21 @@ class SearchViewController: ZSViewController {
             .distinctUntilChanged()
             .share()
         
-        let filteredData: Observable<[Repository]> = groupBtnAction
+        let filteredDataFromGroupBtnAction: Observable<[Repository]> = groupBtnAction
             .flatMap{ [weak self] in
-                self?.filteredItems($0) ?? Observable.of([Repository]())
+                self?.filteredItems($0, self?.dataSource.value.items ?? [Repository]()) ?? Observable.of([Repository]())
             }
 
+        let filteredDataFromDataSource: Observable<[Repository]> = dataSource
+            .skip(2)
+            .map{ $0.items }
+            .flatMap{ [weak self] in
+                self?.filteredItems(self?.groupBtn.selectedSegmentIndex ?? 0, $0) ?? Observable.of([Repository]())
+            }
+            
         Observable.merge(
-            filteredData,
-            dataSource.skip(2).map{ $0.items }
+            filteredDataFromGroupBtnAction,
+            filteredDataFromDataSource
             )
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
@@ -269,9 +277,9 @@ extension SearchViewController {
         return repositories.totalPage == 0 || repositories.currentPage < repositories.totalPage ? .default : .noMoreData
     }
     
-    func filteredItems(_ index: Int) -> Observable<[Repository]> {
+    func filteredItems(_ index: Int, _ items: [Repository]) -> Observable<[Repository]> {
         return Observable
-            .from(dataSource.value.items)
+            .from(items)
             .filter{ index == 0 ? true : $0.category == ProductionCategory.allCases[index-1] }
             .toArray()
     }

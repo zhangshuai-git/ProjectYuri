@@ -193,8 +193,8 @@ class ProductionCell3: ZSTableViewCell {
         for _ in 0..<6 {
             let view = ZSCharacterView()
             view.iconImg.backgroundColor = UIColor.random
-            view.charaLab.text = String.random(len: 6)
-            view.cvLab.text = "CV: \(String.random(len: 6))" 
+            view.charaLab.text = String.random(len: 8)
+            view.cvLab.text = "CV: \(String.random(len: 8))"
             arr.append(view)
         }
         return arr
