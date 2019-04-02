@@ -21,6 +21,7 @@ class ZSCharacterView: ZSView {
     let charaLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .white
         return label
     }()
@@ -28,6 +29,7 @@ class ZSCharacterView: ZSView {
     let cvLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .white
         return label
     }()
@@ -44,7 +46,7 @@ class ZSCharacterView: ZSView {
         iconImg.snp.makeConstraints { (make) in
             make.top.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
             make.size.equalTo(CGSize(width: 40, height: 40))
-            make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
         
         charaLab.snp.makeConstraints { (make) in
@@ -56,7 +58,7 @@ class ZSCharacterView: ZSView {
             make.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
             make.left.equalTo(iconImg.snp.right).offset(10)
             make.top.equalTo(charaLab.snp.bottom).offset(10)
-            make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
     }
 

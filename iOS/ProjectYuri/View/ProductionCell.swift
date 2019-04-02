@@ -193,6 +193,8 @@ class ProductionCell3: ZSTableViewCell {
         for _ in 0..<6 {
             let view = ZSCharacterView()
             view.iconImg.backgroundColor = UIColor.random
+            view.charaLab.text = String.random(len: 6)
+            view.cvLab.text = "CV: \(String.random(len: 6))" 
             arr.append(view)
         }
         return arr
@@ -229,7 +231,6 @@ class ProductionCell3: ZSTableViewCell {
         }
         
         characterArray.snp.distributeSudokuViews(fixedLineSpacing: 10, fixedInteritemSpacing: 10, warpCount: 2)
-        
     }
     
     let dataSource = PublishRelay<ProductionCellModel<Repository>>()
