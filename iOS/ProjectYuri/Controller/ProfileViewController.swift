@@ -17,7 +17,7 @@ class ProfileViewController: ZSViewController {
 
     override func buildSubViews() {
         super.buildSubViews()
-        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black"))
+        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black")?.toScale(0.7))
         view.addSubview(topView)
     }
     
