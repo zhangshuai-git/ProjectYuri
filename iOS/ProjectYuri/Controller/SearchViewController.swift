@@ -106,8 +106,8 @@ class SearchViewController: ZSViewController {
         
         let filteredData: Observable<[Repository]> = groupBtnAction
             .flatMap{ [weak self] in
-                self?.filteredItems($0) ?? Observable.of(Repositories().items)
-        }
+                self?.filteredItems($0) ?? Observable.of([Repository]())
+            }
 
         Observable.merge(
             filteredData,
