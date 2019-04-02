@@ -17,6 +17,7 @@ class ProfileViewController: ZSViewController {
 
     override func buildSubViews() {
         super.buildSubViews()
+        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black"))
         view.addSubview(topView)
     }
     
@@ -26,5 +27,15 @@ class ProfileViewController: ZSViewController {
             make.top.equalTo(topLayoutGuide.snp.bottom)
             make.left.right.equalToSuperview()
         }
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        rightBarButtonItem?.button?.rx.tap
+            .bind{
+                print($0)
+            }
+            .disposed(by: disposeBag)
     }
 }

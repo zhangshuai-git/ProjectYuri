@@ -11,15 +11,6 @@
 @interface UIImage (ZSExtension)
 
 /**
- *  相当于系统的imageNamed方法,但此方法可适配iOS6
- *
- *  @param name 用于iOS6的图片名, iOS的图片名必须是iOS6图片名后面加上"_os7"
- *
- *  @return UIImage *
- */
-+ (UIImage *)imageWithName:(NSString *)name;
-
-/**
  *  拉伸图片的中点(.9.png)
  *
  *  @param name 图片名

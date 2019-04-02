@@ -10,6 +10,8 @@
 
 @interface UIBarButtonItem (ZSExtension)
 
+@property (nullable, nonatomic, readonly) UIButton *button;
+
 /**
  根据文字和图片生成UIBarButtonItem
  
@@ -19,7 +21,7 @@
  @param image image
  @return 生成的UIBarButtonItem
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title image:(UIImage *)image;
++ (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title image:(UIImage *)image;
 
 /**
  根据图片生成UIBarButtonItem
@@ -29,7 +31,10 @@
  @param image image
  @return 生成的UIBarButtonItem
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(UIImage *)image;
++ (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(UIImage *)image;
++ (UIBarButtonItem *)itemWithImage:(UIImage *)image;
++ (UIBarButtonItem *)itemWithImage:(UIImage *)image handler:(void(^)(id sender))handler;
+
 /**
  根据图片生成UIBarButtonItem
  
@@ -39,7 +44,7 @@
  @param imageEdgeInsets 图片偏移
  @return 生成的UIBarButtonItem
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(UIImage *)image imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets;
++ (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(UIImage *)image imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets;
 
 /**
  根据图片生成UIBarButtonItem
@@ -51,7 +56,7 @@
  @param imageEdgeInsets 图片偏移
  @return 生成的UIBarButtonItem
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target
++ (UIBarButtonItem *)itemWithTarget:(id)target
                             action:(SEL)action
                         nomalImage:(UIImage *)nomalImage
                   higeLightedImage:(UIImage *)higeLightedImage
@@ -65,7 +70,7 @@
  @param action 响应方法
  @param title title
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title;
++ (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title;
 
 /**
  根据文字生成UIBarButtonItem
@@ -76,7 +81,7 @@
  @param titleEdgeInsets 文字偏移
  @return 生成的UIBarButtonItem
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title titleEdgeInsets:(UIEdgeInsets)titleEdgeInsets;
++ (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title titleEdgeInsets:(UIEdgeInsets)titleEdgeInsets;
 
 /**
  根据文字生成UIBarButtonItem
@@ -90,7 +95,7 @@
  @param titleEdgeInsets 文字偏移
  @return 生成的UIBarButtonItem
  */
-+(UIBarButtonItem *)itemWithTarget:(id)target
++ (UIBarButtonItem *)itemWithTarget:(id)target
                             action:(SEL)action
                              title:(NSString *)title
                               font:(UIFont *)font
@@ -105,7 +110,7 @@
  @param width 修正宽度
  @return 修正位置的UIBarButtonItem
  */
-+(UIBarButtonItem *)fixedSpaceWithWidth:(CGFloat)width;
++ (UIBarButtonItem *)fixedSpaceWithWidth:(CGFloat)width;
 
 
 @end

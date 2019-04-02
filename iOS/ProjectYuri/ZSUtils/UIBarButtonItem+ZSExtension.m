@@ -7,8 +7,46 @@
 //
 
 #import "UIBarButtonItem+ZSExtension.h"
+#import "UIControl+ZSExtension.h"
 
 @implementation UIBarButtonItem (ZSExtension)
+
+- (UIButton *)button {
+    if ([self.customView isKindOfClass:UIButton.class]) {
+        return self.customView;
+    } else {
+        return nil;
+    }
+    
+}
+
++ (UIBarButtonItem *)itemWithImage:(UIImage *)image handler:(void(^)(id sender))handler {
+    return [self itemWithImage:image higeLightedImage:nil imageEdgeInsets:UIEdgeInsetsZero handler:handler];
+}
+
++ (UIBarButtonItem *)itemWithImage:(UIImage *)nomalImage
+                  higeLightedImage:(UIImage *)higeLightedImage
+                   imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets
+                           handler:(void(^)(id sender))handler {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button handleTapWithBlock:handler];
+    
+    [button setImage:[nomalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    if (higeLightedImage) {
+        [button setImage:higeLightedImage forState:UIControlStateHighlighted];
+    }
+    [button sizeToFit];
+    if (button.bounds.size.width < 40) {
+        CGFloat width = 40 / button.bounds.size.height * button.bounds.size.width;
+        button.bounds = CGRectMake(0, 0, width, 40);
+    }
+    if (button.bounds.size.height > 40) {
+        CGFloat height = 40 / button.bounds.size.width * button.bounds.size.height;
+        button.bounds = CGRectMake(0, 0, 40, height);
+    }
+    button.imageEdgeInsets = imageEdgeInsets;
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
 
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title image:(UIImage *)image {
     return [self itemWithTarget:target action:action title:title font:nil titleColor:nil highlightedColor:nil titleEdgeInsets:UIEdgeInsetsMake(0, 3, 0, -3) nomalImage:image higeLightedImage:nil imageEdgeInsets:UIEdgeInsetsMake(0, -3, 0, 3)];
@@ -54,6 +92,9 @@
 
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(UIImage *)image {
     return [self itemWithTarget:target action:action nomalImage:image higeLightedImage:nil imageEdgeInsets:UIEdgeInsetsZero];
+}
++ (UIBarButtonItem *)itemWithImage:(UIImage *)image {
+    return [self itemWithTarget:nil action:nil image:image];
 }
 
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(UIImage *)image imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets {

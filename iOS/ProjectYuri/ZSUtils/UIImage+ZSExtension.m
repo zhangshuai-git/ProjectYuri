@@ -11,21 +11,6 @@
 
 @implementation UIImage (ZSExtension)
 
-+ (UIImage *)imageWithName:(NSString *)name {
-    // iOS7 以后
-    if ([UIDevice iOSVersion] >= 7.0) {
-        NSString *newName = [name stringByAppendingString:@"_os7"];
-        UIImage *image = [UIImage imageNamed:newName];
-        if (image == nil) { // 没有_os7后缀的图片
-            image = [UIImage imageNamed:name];
-        }
-        return image;
-    }
-    
-    // iOS6
-    return [UIImage imageNamed:name];
-}
-
 /**
  *  拉伸图片的中点(.9.png)
  *
@@ -34,7 +19,7 @@
  *  @return 拉伸后的图片
  */
 + (UIImage *)resizedImageWithName:(NSString *)name {
-    UIImage *normal = [UIImage imageWithName:name];
+    UIImage *normal = [UIImage imageNamed:name];
     return [normal resizedImage];
 }
 
@@ -46,7 +31,7 @@
 }
 
 + (UIImage *)resizedImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top {
-    UIImage *image = [UIImage imageWithName:name];
+    UIImage *image = [UIImage imageNamed:name];
     return [image resizedImageAtLeft:left top:top];
 }
 
@@ -60,7 +45,7 @@
 }
 
 + (UIImage *)stretchableImageWithName:(NSString *)name {
-    UIImage *normal = [UIImage imageWithName:name];
+    UIImage *normal = [UIImage imageNamed:name];
     return [normal stretchableImage];
 }
 
@@ -69,7 +54,7 @@
 }
 
 + (UIImage *)stretchableImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top {
-    UIImage *image = [UIImage imageWithName:name];
+    UIImage *image = [UIImage imageNamed:name];
     return [image stretchableImageAtLeft:left top:top];
 }
 

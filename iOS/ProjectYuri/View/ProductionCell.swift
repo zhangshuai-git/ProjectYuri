@@ -124,7 +124,7 @@ class ProductionCell2: ZSTableViewCell {
     let arrowImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(name: "ipad_player_setup_arrow")
+        imageView.image = UIImage(named: "ipad_player_setup_arrow")
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         return imageView
@@ -177,7 +177,7 @@ class ProductionCell3: ZSTableViewCell {
     let arrowImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(name: "ipad_player_setup_arrow")
+        imageView.image = UIImage(named: "ipad_player_setup_arrow")
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         return imageView

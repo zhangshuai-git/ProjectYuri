@@ -23,7 +23,7 @@ class ProfileTopView: ZSView {
     let arrowImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(name: "ipad_player_setup_arrow")
+        imageView.image = UIImage(named: "ipad_player_setup_arrow")
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         return imageView
@@ -45,7 +45,7 @@ class ProfileTopView: ZSView {
         }
         
         arrowImg.snp.makeConstraints { (make) in
-            make.trailing.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.trailing.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 20))
             make.top.greaterThanOrEqualToSuperview().offset(0)
             make.bottom.lessThanOrEqualToSuperview().offset(-20)
             make.centerY.equalTo(userView)
