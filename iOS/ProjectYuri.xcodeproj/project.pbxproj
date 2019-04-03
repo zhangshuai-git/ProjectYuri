@@ -43,11 +43,12 @@
 		EC6E2BBD2248C87C00DFCFE6 /* NSURL+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6E2BAD2248C87B00DFCFE6 /* NSURL+ZSExtension.m */; };
 		EC6E2BBE2248C87C00DFCFE6 /* NSString+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6E2BAF2248C87C00DFCFE6 /* NSString+ZSExtension.m */; };
 		EC7BAF2C225436BE00F3E28F /* UITabBarController+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF2B225436BE00F3E28F /* UITabBarController+ZSExtension.swift */; };
-		EC7BAF302254800000F3E28F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF2F2254800000F3E28F /* ProfileViewController.swift */; };
+		EC7BAF302254800000F3E28F /* ProfileContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */; };
 		EC7BAF32225485FA00F3E28F /* ZSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */; };
 		EC7BAF342254866C00F3E28F /* ZSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */; };
 		EC7BAF36225488DF00F3E28F /* MeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF35225488DF00F3E28F /* MeCell.swift */; };
 		EC7BAF3922548C5A00F3E28F /* UIScreen+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3822548C5A00F3E28F /* UIScreen+ZSExtension.m */; };
+		EC7BAF3B225493BF00F3E28F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
@@ -128,12 +129,13 @@
 		EC6E2BAE2248C87B00DFCFE6 /* UIDevice+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+ZSExtension.h"; sourceTree = "<group>"; };
 		EC6E2BAF2248C87C00DFCFE6 /* NSString+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZSExtension.m"; sourceTree = "<group>"; };
 		EC7BAF2B225436BE00F3E28F /* UITabBarController+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+ZSExtension.swift"; sourceTree = "<group>"; };
-		EC7BAF2F2254800000F3E28F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainerViewController.swift; sourceTree = "<group>"; };
 		EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSNavigationController.swift; sourceTree = "<group>"; };
 		EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSTabBarController.swift; sourceTree = "<group>"; };
 		EC7BAF35225488DF00F3E28F /* MeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCell.swift; sourceTree = "<group>"; };
 		EC7BAF3722548C5A00F3E28F /* UIScreen+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ZSExtension.h"; sourceTree = "<group>"; };
 		EC7BAF3822548C5A00F3E28F /* UIScreen+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ZSExtension.m"; sourceTree = "<group>"; };
+		EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -252,7 +254,8 @@
 				EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */,
 				ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */,
 				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
-				EC7BAF2F2254800000F3E28F /* ProfileViewController.swift */,
+				EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */,
+				EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */,
 				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
 				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 			);
@@ -510,9 +513,10 @@
 				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
 				ECFD0FBE22520A810074550D /* ZSUserView.swift in Sources */,
 				EC6E2BBC2248C87C00DFCFE6 /* NSObject+ZSExtension.m in Sources */,
+				EC7BAF3B225493BF00F3E28F /* ProfileViewController.swift in Sources */,
 				EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */,
 				EC6E2BB42248C87C00DFCFE6 /* UIImage+ZSExtension.m in Sources */,
-				EC7BAF302254800000F3E28F /* ProfileViewController.swift in Sources */,
+				EC7BAF302254800000F3E28F /* ProfileContainerViewController.swift in Sources */,
 				ECE4A595224DEB6600A0E69B /* ProductionView.swift in Sources */,
 				EC6E2BB52248C87C00DFCFE6 /* UIButton+ZSExtension.m in Sources */,
 				EC6E2BB62248C87C00DFCFE6 /* UIView+ZSExtension.m in Sources */,

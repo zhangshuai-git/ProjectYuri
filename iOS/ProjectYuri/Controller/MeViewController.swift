@@ -59,7 +59,7 @@ class MeViewController: ZSViewController {
         view.addGestureRecognizer(topViewTapedAction)
         topViewTapedAction.rx.event
             .bind{ [weak self] _ in
-                self?.gotoProfileViewController()
+                self?.gotoProfileContainerViewController()
             }
             .disposed(by: disposeBag)
         

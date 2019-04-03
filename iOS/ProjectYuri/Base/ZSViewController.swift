@@ -40,8 +40,8 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: false)
     }
     
-    func gotoProfileViewController() {
-        let vc = ProfileViewController()
+    func gotoProfileContainerViewController() {
+        let vc = ProfileContainerViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
     
