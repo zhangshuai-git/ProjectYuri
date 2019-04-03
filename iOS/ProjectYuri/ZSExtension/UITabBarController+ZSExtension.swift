@@ -12,7 +12,7 @@ extension UITabBarController {
     func addChildVC(_ childVcType: UIViewController.Type, title:String, image: String, selectedImage: String) {
         let image = UIImage(named: image)
         let selectedImage = UIImage(named: selectedImage)
-        let nav = UINavigationController(rootViewController: childVcType.init())
+        let nav = ZSNavigationController(rootViewController: childVcType.init())
         nav.navigationItem.title = title
         nav.tabBarItem = tabbarItem(with: title, image: image, selectedImage: selectedImage)
         addChild(nav)

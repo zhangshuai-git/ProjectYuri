@@ -19,13 +19,6 @@ class ZSViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.groupTableViewBackground
-        NSLog("navigationController.viewControllers.count = %@", NSNumber(value: navigationController?.viewControllers.count ?? 0))
-        if (navigationController?.viewControllers.count ?? 0) > 1 {
-            //        self.leftBarButtonItem = [self createdBarButtonWithImageName:@"returin_icon" action:@selector(back)];
-            leftBarButtonItem = UIBarButtonItem(target: self, action: #selector(self.back), image: UIImage(named: "returin_icon"))
-        }
-        
-        view.backgroundColor = UIColor.groupTableViewBackground
         buildSubViews()
         makeConstraints()
         bindViewModel()
