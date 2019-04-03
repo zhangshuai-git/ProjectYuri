@@ -12,20 +12,13 @@ import SGPagingView
 class ProfileViewController: ZSViewController {
     
     var pageTitleView: SGPageTitleView?
-    var pageContentScrollView: SGPageContentScrollView?
+    var pageContentScrollView: SGPageContentCollectionView?
 
     override func buildSubViews() {
         super.buildSubViews()
-        let statusHeight: CGFloat = UIApplication.shared.statusBarFrame.height
-        var pageTitleViewY: CGFloat = 0
-        if statusHeight == 20.0 {
-            pageTitleViewY = 64
-        } else {
-            pageTitleViewY = 88
-        }
         
         let configure = SGPageTitleViewConfigure()
-        pageTitleView = SGPageTitleView(frame: CGRect(x: 0, y: 0, width: UIScreen.width, height: 40), delegate: self, titleNames: ["游戏", "动画", "漫画", "小说"], configure: configure)
+        pageTitleView = SGPageTitleView(frame: CGRect.zero, delegate: self, titleNames: ["游戏", "动画", "漫画", "小说"], configure: configure)
         view.addSubview(pageTitleView!)
         
         var vcArray: [AnyHashable] = []
@@ -34,27 +27,41 @@ class ProfileViewController: ZSViewController {
             vc.view.backgroundColor = UIColor.random
             vcArray.append(vc)
         }
-        
-        let contentViewHeight: CGFloat = view.frame.size.height - pageTitleView!.frame.maxY - pageTitleViewY
-        pageContentScrollView = SGPageContentScrollView(frame: CGRect(x: 0, y: pageTitleView!.frame.maxY, width: view.frame.size.width, height: contentViewHeight), parentVC: self, childVCs: vcArray)
-        pageContentScrollView!.delegatePageContentScrollView = self
+        pageContentScrollView = SGPageContentCollectionView(frame: CGRect.zero, parentVC: self, childVCs: vcArray)
+        pageContentScrollView?.delegatePageContentCollectionView = self
         view.addSubview(pageContentScrollView!)
     }
     
     override func makeConstraints() {
         super.makeConstraints()
         
+        if let pageTitleView = pageTitleView, let pageContentScrollView = pageContentScrollView {
+            pageTitleView.snp.makeConstraints({ (make) in
+                make.top.equalTo(topLayoutGuide.snp.bottom)
+                make.leading.trailing.equalToSuperview()
+                make.height.equalTo(40)
+            })
+            
+            pageContentScrollView.snp.makeConstraints({ (make) in
+                make.top.equalTo(pageTitleView.snp.bottom)
+                make.bottom.equalTo(bottomLayoutGuide.snp.top)
+                make.leading.trailing.equalToSuperview()
+                make.height.equalTo(40)
+            })
+        }
+        
     }
 }
 
-extension ProfileViewController: SGPageTitleViewDelegate, SGPageContentScrollViewDelegate {
-    func pageTitleView(_ pageTitleView: SGPageTitleView?, selectedIndex: Int) {
+extension ProfileViewController: SGPageTitleViewDelegate, SGPageContentCollectionViewDelegate {
+    func pageTitleView(_ pageTitleView: SGPageTitleView, selectedIndex: Int) {
         NSLog("%ld", selectedIndex)
-        pageContentScrollView?.setPageContentScrollViewCurrentIndex(selectedIndex)
+        pageContentScrollView?.setPageContentCollectionViewCurrentIndex(selectedIndex)
     }
     
-    func pageContentScrollView(_ pageContentScrollView: SGPageContentScrollView?, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
+    func pageContentCollectionView(_ pageContentCollectionView: SGPageContentCollectionView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
         NSLog("%ld - %ld", originalIndex, targetIndex)
         pageTitleView?.setPageTitleViewWithProgress(progress, originalIndex: originalIndex, targetIndex: targetIndex)
     }
+    
 }
