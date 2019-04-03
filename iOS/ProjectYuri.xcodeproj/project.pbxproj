@@ -46,6 +46,7 @@
 		EC7BAF302254800000F3E28F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF2F2254800000F3E28F /* ProfileViewController.swift */; };
 		EC7BAF32225485FA00F3E28F /* ZSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */; };
 		EC7BAF342254866C00F3E28F /* ZSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */; };
+		EC7BAF36225488DF00F3E28F /* MeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF35225488DF00F3E28F /* MeCell.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
@@ -129,6 +130,7 @@
 		EC7BAF2F2254800000F3E28F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSNavigationController.swift; sourceTree = "<group>"; };
 		EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSTabBarController.swift; sourceTree = "<group>"; };
+		EC7BAF35225488DF00F3E28F /* MeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCell.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionCell.swift */,
 				ECE4A594224DEB6600A0E69B /* ProductionView.swift */,
+				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
 				ECF0E73A22532B2100E265B9 /* MeView.swift */,
 			);
 			path = View;
@@ -516,6 +519,7 @@
 				ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
 				ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */,
+				EC7BAF36225488DF00F3E28F /* MeCell.swift in Sources */,
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				ECFD0FBB2251B6A90074550D /* ZSVisualEffectView.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,

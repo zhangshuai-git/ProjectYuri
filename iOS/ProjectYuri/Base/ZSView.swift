@@ -37,6 +37,6 @@ class ZSView: UIView {
     func bindViewModel() { }
     
     deinit {
-        print("\(self) deinit")
+        print("deinit \(self)")
     }
 }

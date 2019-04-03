@@ -15,17 +15,24 @@ class MeViewController: ZSViewController {
         return view
     }()
     
-    let mainView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        return view
+    let tableView: UITableView = {
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionHeaderHeight = 0
+        tableView.sectionFooterHeight = 0
+        tableView.estimatedRowHeight = 44.0
+        tableView.estimatedSectionHeaderHeight = 24.0
+        tableView.estimatedSectionFooterHeight = 24.0
+        tableView.zs.register(MeCell.self)
+        return tableView
     }()
     
     override func buildSubViews() {
         super.buildSubViews()
         rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black")?.toScale(0.7))
         view.addSubview(topView)
-        view.addSubview(mainView)
+        view.addSubview(tableView)
         
     }
     
@@ -37,7 +44,7 @@ class MeViewController: ZSViewController {
             make.height.equalTo(topView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height)
         }
         
-        mainView.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.top.equalTo(topView.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(bottomLayoutGuide.snp.top)

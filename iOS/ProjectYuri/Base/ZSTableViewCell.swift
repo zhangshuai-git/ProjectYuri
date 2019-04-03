@@ -37,6 +37,6 @@ class ZSTableViewCell: UITableViewCell {
     func bindViewModel() { }
     
     deinit {
-        print("\(self) deinit")
+        print("deinit \(self)")
     }
 }

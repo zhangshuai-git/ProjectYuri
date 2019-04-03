@@ -17,7 +17,6 @@ class ZSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.groupTableViewBackground
         buildSubViews()
         makeConstraints()
@@ -29,7 +28,7 @@ class ZSViewController: UIViewController {
     func bindViewModel() -> Void { }
     
     deinit {
-        print("\(self) deinit")
+        print("deinit \(self)")
     }
     
 }
