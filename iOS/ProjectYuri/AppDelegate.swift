@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.addChildVC(HomeViewController.self, title: "首页", image: "index_tabbar_index", selectedImage: "index_tabbar_index_1")
         tabBarController.addChildVC(SearchViewController.self, title: "搜索", image: "index_tabbar_backlog", selectedImage: "index_tabbar_backlog_1")
-        tabBarController.addChildVC(ProfileViewController.self, title: "我的", image: "index_tabbar_mine", selectedImage: "index_tabbar_mine_1")
+        tabBarController.addChildVC(MeViewController.self, title: "我的", image: "index_tabbar_mine", selectedImage: "index_tabbar_mine_1")
         return tabBarController
     }
     

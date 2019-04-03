@@ -35,4 +35,8 @@ class ZSTableViewCell: UITableViewCell {
     func buildSubViews() { }
     func makeConstraints() { }
     func bindViewModel() { }
+    
+    deinit {
+        print("\(self) deinit")
+    }
 }

@@ -35,4 +35,8 @@ class ZSView: UIView {
     func buildSubViews() { }
     func makeConstraints() { }
     func bindViewModel() { }
+    
+    deinit {
+        print("\(self) deinit")
+    }
 }

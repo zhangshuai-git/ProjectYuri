@@ -14,5 +14,6 @@ target 'ProjectYuri' do
   pod 'SDWebImage', '~> 4.4.2'
   pod 'SVProgressHUD', '~> 2.2.5'
   pod 'FMDB', '~> 2.7.5'
+  pod 'SGPagingView', '~> 1.6.0'
   
 end

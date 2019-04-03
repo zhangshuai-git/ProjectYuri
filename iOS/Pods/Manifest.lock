@@ -25,6 +25,7 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - SGPagingView (1.6.0)
   - SnapKit (4.2.0)
   - SVProgressHUD (2.2.5)
 
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - RxDataSources (~> 3.1.0)
   - RxSwift (~> 4.4.0)
   - SDWebImage (~> 4.4.2)
+  - SGPagingView (~> 1.6.0)
   - SnapKit (~> 4.2.0)
   - SVProgressHUD (~> 2.2.5)
 
@@ -54,6 +56,7 @@ SPEC REPOS:
     - RxDataSources
     - RxSwift
     - SDWebImage
+    - SGPagingView
     - SnapKit
     - SVProgressHUD
 
@@ -70,9 +73,10 @@ SPEC CHECKSUMS:
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SGPagingView: 4b4f443b365bc70979f890da63d93bc22103be32
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 9b3277f1add1c8aae98d9688f718072de44ec9b4
+PODFILE CHECKSUM: e286751b1c197bdb74cf98c95c3d88103d55eb23
 
 COCOAPODS: 1.5.3

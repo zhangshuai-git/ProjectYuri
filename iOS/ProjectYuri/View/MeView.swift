@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileTopView: ZSView {
+class MeTopView: ZSView {
 
     let userView: ZSUserView = {
         let view = ZSUserView(iconSize: CGSize(width: 60, height: 60), titleFont: UIFont.systemFont(ofSize: 16), contentFont: UIFont.systemFont(ofSize: 10))
