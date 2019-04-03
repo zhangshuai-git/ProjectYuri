@@ -10,4 +10,11 @@ import UIKit
 
 class ProfileViewController: ZSViewController {
 
+    let collectionView: UICollectionView = {
+        var layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor.groupTableViewBackground
+        collectionView.register(PurchaseCell.self, forCellWithReuseIdentifier: NSStringFromClass(PurchaseCell.self.self))
+        return collectionView
+    }()
 }
