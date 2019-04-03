@@ -56,7 +56,7 @@ class MeViewController: ZSViewController {
         super.bindViewModel()
         
         let topViewTapedAction = UITapGestureRecognizer()
-        view.addGestureRecognizer(topViewTapedAction)
+        topView.addGestureRecognizer(topViewTapedAction)
         topViewTapedAction.rx.event
             .bind{ [weak self] _ in
                 self?.gotoProfileContainerViewController()
