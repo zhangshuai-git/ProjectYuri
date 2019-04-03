@@ -10,20 +10,20 @@
 
 @implementation UIScreen (ZSExtension)
 
-+ (CGFloat)getScreenWidth {
++ (CGFloat)width {
     return [[UIScreen mainScreen] bounds].size.width;
 }
 
-+ (CGFloat)getScreenHeight {
++ (CGFloat)height {
     return [[UIScreen mainScreen] bounds].size.height;
 }
 
-+ (CGFloat)getScreenMinLength {
-    return MIN([self getScreenWidth], [self getScreenHeight]);
++ (CGFloat)minLength {
+    return MIN([self width], [self height]);
 }
 
-+ (CGFloat)getScreenMaxLength {
-    return MAX([self getScreenWidth], [self getScreenHeight]);
++ (CGFloat)maxLength {
+    return MAX([self width], [self height]);
 }
 
 @end

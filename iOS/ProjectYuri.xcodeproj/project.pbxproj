@@ -47,6 +47,7 @@
 		EC7BAF32225485FA00F3E28F /* ZSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */; };
 		EC7BAF342254866C00F3E28F /* ZSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */; };
 		EC7BAF36225488DF00F3E28F /* MeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF35225488DF00F3E28F /* MeCell.swift */; };
+		EC7BAF3922548C5A00F3E28F /* UIScreen+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3822548C5A00F3E28F /* UIScreen+ZSExtension.m */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
 		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
@@ -131,6 +132,8 @@
 		EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSNavigationController.swift; sourceTree = "<group>"; };
 		EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSTabBarController.swift; sourceTree = "<group>"; };
 		EC7BAF35225488DF00F3E28F /* MeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCell.swift; sourceTree = "<group>"; };
+		EC7BAF3722548C5A00F3E28F /* UIScreen+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ZSExtension.h"; sourceTree = "<group>"; };
+		EC7BAF3822548C5A00F3E28F /* UIScreen+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ZSExtension.m"; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 		EC6E2B902248C81900DFCFE6 /* ZSUtils */ = {
 			isa = PBXGroup;
 			children = (
+				EC7BAF3722548C5A00F3E28F /* UIScreen+ZSExtension.h */,
+				EC7BAF3822548C5A00F3E28F /* UIScreen+ZSExtension.m */,
 				EC6E2BA42248C87800DFCFE6 /* NSDate+ZSExtension.h */,
 				EC6E2BA62248C87800DFCFE6 /* NSDate+ZSExtension.m */,
 				EC6E2BAB2248C87A00DFCFE6 /* NSFileManager+ZSExtension.h */,
@@ -548,6 +553,7 @@
 				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
 				EC6E2BBE2248C87C00DFCFE6 /* NSString+ZSExtension.m in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
+				EC7BAF3922548C5A00F3E28F /* UIScreen+ZSExtension.m in Sources */,
 				ECE4A57D224B1D2A00A0E69B /* MeViewController.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,
 				EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */,

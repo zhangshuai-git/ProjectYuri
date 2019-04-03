@@ -25,7 +25,7 @@ class ProfileViewController: ZSViewController {
         }
         
         let configure = SGPageTitleViewConfigure()
-        pageTitleView = SGPageTitleView(frame: CGRect(x: 0, y: 0, width: SCREEN_MIN_LENGTH, height: 40), delegate: self, titleNames: ["游戏", "动画", "漫画", "小说"], configure: configure)
+        pageTitleView = SGPageTitleView(frame: CGRect(x: 0, y: 0, width: UIScreen.width, height: 40), delegate: self, titleNames: ["游戏", "动画", "漫画", "小说"], configure: configure)
         view.addSubview(pageTitleView!)
         
         var vcArray: [AnyHashable] = []
@@ -39,6 +39,11 @@ class ProfileViewController: ZSViewController {
         pageContentScrollView = SGPageContentScrollView(frame: CGRect(x: 0, y: pageTitleView!.frame.maxY, width: view.frame.size.width, height: contentViewHeight), parentVC: self, childVCs: vcArray)
         pageContentScrollView!.delegatePageContentScrollView = self
         view.addSubview(pageContentScrollView!)
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        
     }
 }
 

@@ -10,12 +10,9 @@
 
 @interface UIScreen (ZSExtension)
 
-+ (CGFloat)getScreenWidth;
-
-+ (CGFloat)getScreenHeight;
-
-+ (CGFloat)getScreenMinLength;
-
-+ (CGFloat)getScreenMaxLength;
+@property (class, nonatomic, assign, readonly) CGFloat width;
+@property (class, nonatomic, assign, readonly) CGFloat height;
+@property (class, nonatomic, assign, readonly) CGFloat minLength;
+@property (class, nonatomic, assign, readonly) CGFloat maxLength;
 
 @end
