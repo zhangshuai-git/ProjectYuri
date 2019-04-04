@@ -10,12 +10,7 @@ import HandyJSON
 import RxSwift
 import RxCocoa
 
-enum ProductionCategory: String, CaseIterable {
-    case game = "游戏"
-    case anime = "动画"
-    case comic = "漫画"
-    case novel = "小说"
-}
+
 
 class ProductionCellModel<T> {
     var isExpanded: Bool = false
@@ -25,5 +20,6 @@ class ProductionCellModel<T> {
         self.data = data
     }
 }
+
 
 

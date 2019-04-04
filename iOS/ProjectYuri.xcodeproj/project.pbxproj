@@ -53,7 +53,7 @@
 		EC7BAF462255CE5A00F3E28F /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF452255CE5A00F3E28F /* Entity.swift */; };
 		EC7BAF482255CEFF00F3E28F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF472255CEFF00F3E28F /* Request.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
-		ECB6D89121BFCBB200017274 /* ProductionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* ProductionModel.swift */; };
+		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
 		ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */; };
 		ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */; };
@@ -143,7 +143,7 @@
 		EC7BAF452255CE5A00F3E28F /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		EC7BAF472255CEFF00F3E28F /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
-		ECB6D89021BFCBB200017274 /* ProductionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionModel.swift; sourceTree = "<group>"; };
+		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+ZSExtension.h"; sourceTree = "<group>"; };
 		ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+ZSExtension.m"; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 			children = (
 				EC7BAF452255CE5A00F3E28F /* Entity.swift */,
 				EC7BAF472255CEFF00F3E28F /* Request.swift */,
-				ECB6D89021BFCBB200017274 /* ProductionModel.swift */,
+				ECB6D89021BFCBB200017274 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -531,7 +531,7 @@
 				EC6E2BB32248C87C00DFCFE6 /* UIColor+ZSExtension.m in Sources */,
 				ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
-				ECB6D89121BFCBB200017274 /* ProductionModel.swift in Sources */,
+				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
 				ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */,

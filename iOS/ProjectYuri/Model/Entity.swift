@@ -31,7 +31,7 @@ class Repositories: HandyJSON {
         return obj
     }
     
-    required init() { }
+    required init(){}
 }
 
 class Repository: HandyJSON {
@@ -53,7 +53,7 @@ class Repository: HandyJSON {
         mapper <<< desp <-- "description"
     }
     
-    required init() { }
+    required init(){}
 }
 
 class RepositoryOwner: HandyJSON {
@@ -66,5 +66,73 @@ class RepositoryOwner: HandyJSON {
         mapper <<< avatarUrl <-- "avatar_url"
     }
     
-    required init() { }
+    required init(){}
 }
+
+class Production: HandyJSON {
+    var name = ""
+    var nameCN = ""
+    var desp: String = ""
+    var info: String = ""
+    var coverUrl: String = ""
+    var category: ProductionCategory?
+    var producerList: [Producer] = []
+    var characterList: [Character] = []
+    var commentList: [Comment] = []
+    
+    required init(){}
+}
+
+class Producer: HandyJSON {
+    
+    required init(){}
+}
+
+class Character: HandyJSON {
+    
+    required init(){}
+}
+
+class Comment: HandyJSON {
+    var content: String = ""
+    var author: User = User()
+    var date: Date = Date()
+    
+    required init(){}
+}
+
+class User: HandyJSON {
+    var name = ""
+    var avatarUrl: String = ""
+    var productionList: [UserProduction] = []
+    
+    required init(){}
+}
+
+class UserProduction: HandyJSON {
+    var production: Production?
+    var evaluation: Evaluation?
+    var schedule: Schedule?
+    
+    required init(){}
+}
+
+enum Schedule: Int, CaseIterable {
+    case todo
+    case doing
+    case done
+}
+
+enum Evaluation: Int, CaseIterable {
+    case like
+    case criticism
+}
+
+enum ProductionCategory: String, CaseIterable {
+    case game = "游戏"
+    case anime = "动画"
+    case comic = "漫画"
+    case novel = "小说"
+}
+
+
