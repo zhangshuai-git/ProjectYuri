@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D6911DE05F27452B8BA0DA1 /* Pods_ProjectYuri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC8D36D7AA6AC9A953E0138 /* Pods_ProjectYuri.framework */; };
 		EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */; };
-		EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC0FA00221CB693800EA685A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0FA00121CB693800EA685A /* ActivityIndicator.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
@@ -53,7 +52,6 @@
 		EC7BAF3F2254C0AE00F3E28F /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3E2254C0AE00F3E28F /* ProfileCell.swift */; };
 		EC7BAF412254C12000F3E28F /* UICollectionView+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF402254C12000F3E28F /* UICollectionView+ZSExtension.swift */; };
 		ECB0803221C2032400ED8548 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803121C2032400ED8548 /* NetworkAPI.swift */; };
-		ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0803B21C220E300ED8548 /* OwnerViewController.swift */; };
 		ECB6D89121BFCBB200017274 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89021BFCBB200017274 /* Model.swift */; };
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
 		ECE4A578224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A577224A0E3300A0E69B /* UISegmentedControl+ZSExtension.m */; };
@@ -80,7 +78,6 @@
 		900715B0799616286BBFBD70 /* Pods-RxSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftDemo/Pods-RxSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BEC8D36D7AA6AC9A953E0138 /* Pods_ProjectYuri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectYuri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
-		EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC0FA00121CB693800EA685A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* ProjectYuri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectYuri.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +140,6 @@
 		EC7BAF3E2254C0AE00F3E28F /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		EC7BAF402254C12000F3E28F /* UICollectionView+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECB0803121C2032400ED8548 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
-		ECB0803B21C220E300ED8548 /* OwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewController.swift; sourceTree = "<group>"; };
 		ECB6D89021BFCBB200017274 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A576224A0E3300A0E69B /* UISegmentedControl+ZSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+ZSExtension.h"; sourceTree = "<group>"; };
@@ -264,8 +260,6 @@
 				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
 				EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */,
 				EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */,
-				ECB0803B21C220E300ED8548 /* OwnerViewController.swift */,
-				EC03451F21E87CB800DDC12C /* FavouritesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -541,7 +535,6 @@
 				EC1B9D8621BE8690000E2C5B /* Global.swift in Sources */,
 				ECFD0FBB2251B6A90074550D /* ZSVisualEffectView.swift in Sources */,
 				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
-				ECB0803C21C220E300ED8548 /* OwnerViewController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */,
 				EC7BAF412254C12000F3E28F /* UICollectionView+ZSExtension.swift in Sources */,
@@ -553,7 +546,6 @@
 				EC6E2BBD2248C87C00DFCFE6 /* NSURL+ZSExtension.m in Sources */,
 				EC6E2BB82248C87C00DFCFE6 /* UIDevice+ZSExtension.m in Sources */,
 				EC6E2BBA2248C87C00DFCFE6 /* NSFileManager+ZSExtension.m in Sources */,
-				EC03452021E87CB800DDC12C /* FavouritesViewController.swift in Sources */,
 				ECF0E7392253072400E265B9 /* String+ZSExtension.swift in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
 				EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */,

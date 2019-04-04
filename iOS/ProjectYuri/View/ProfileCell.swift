@@ -22,14 +22,12 @@ class ProfileCell: ZSCollectionViewCell {
     let nameLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .white
         label.text = String.random(len: 12)
         return label
     }()
     
     override func buildSubViews() {
         super.buildSubViews()
-        backgroundColor = UIColor.main
         contentView.addSubview(iconImg)
         contentView.addSubview(nameLab)
     }

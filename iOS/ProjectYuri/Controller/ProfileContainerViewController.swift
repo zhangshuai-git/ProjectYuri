@@ -65,7 +65,6 @@ class ProfileContainerViewController: ZSViewController {
             make.top.equalTo(pageTitleView.snp.bottom)
             make.bottom.equalTo(bottomLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(40)
         })
     }
 }

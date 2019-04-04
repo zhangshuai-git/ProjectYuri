@@ -45,16 +45,5 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: false)
     }
     
-    func gotoOwnerViewController(_ data: Observable<RepositoryOwner>) {
-        let vc = OwnerViewController()
-        data.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func gotoFavouritesViewController(_ data: Observable<[Repository]>) {
-        let vc = FavouritesViewController()
-        data.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
 
 }
