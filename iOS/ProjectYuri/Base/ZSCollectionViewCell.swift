@@ -36,6 +36,6 @@ class ZSCollectionViewCell: UICollectionViewCell {
     func bindViewModel() { }
     
     deinit {
-        print("deinit \(self)")
+        print("deinit \(type(of: self))")
     }
 }

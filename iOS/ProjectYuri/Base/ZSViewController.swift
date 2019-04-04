@@ -28,7 +28,7 @@ class ZSViewController: UIViewController {
     func bindViewModel() -> Void { }
     
     deinit {
-        print("deinit \(self)")
+        print("deinit \(type(of: self))")
     }
     
 }
