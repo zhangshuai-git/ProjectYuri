@@ -1,41 +1,14 @@
 //
-//  HomeModel.swift
+//  Entity.swift
 //  ProjectYuri
 //
-//  Created by 張帥 on 2018/12/11.
-//  Copyright © 2018 張帥. All rights reserved.
+//  Created by 張帥 on 2019/04/04.
+//  Copyright © 2019 張帥. All rights reserved.
 //
 
 import HandyJSON
 import RxSwift
 import RxCocoa
-
-enum ProductionCategory: String, CaseIterable {
-    case game = "游戏"
-    case anime = "动画"
-    case comic = "漫画"
-    case novel = "小说"
-}
-
-class RepositoriesParams: HandyJSON {
-    var query:String = ""
-    var sort:String = "stars"
-    var order:String = "desc"
-    var perPage:UInt = PER_PAGE
-    var page:Int = 1
-    
-    func mapping(mapper: HelpingMapper) {
-        mapper <<< query <-- "q"
-        mapper <<< perPage <-- "per_page"
-    }
-    
-    init(query:String = "", page:Int = 1) {
-        self.query = query
-        self.page = page
-    }
-    
-    required init() { }
-}
 
 class Repositories: HandyJSON {
     var totalCount:UInt = 0
@@ -73,7 +46,7 @@ class Repository: HandyJSON {
     var isSubscribed:Bool = false
     var isExpanded:Bool = false
     var category: ProductionCategory? = ProductionCategory.allCases.randomElement()
-
+    
     public func mapping(mapper: HelpingMapper) {
         mapper <<< fullName <-- "full_name"
         mapper <<< htmlUrl <-- "html_url"
@@ -92,6 +65,6 @@ class RepositoryOwner: HandyJSON {
     public func mapping(mapper: HelpingMapper) {
         mapper <<< avatarUrl <-- "avatar_url"
     }
- 
+    
     required init() { }
 }

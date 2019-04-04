@@ -10,15 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProductionCellModel<T> {
-    var isExpanded: Bool = false
-    var data: T
-    
-    init(_ data: T) {
-        self.data = data
-    }
-}
-
 class ProductionCell0: ZSExpandableCell {
     
     let contentLab: UILabel = {

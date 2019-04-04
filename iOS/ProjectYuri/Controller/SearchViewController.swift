@@ -93,9 +93,9 @@ class SearchViewController: ZSViewController {
     
     // MARK: - dataSource
     
-    let newRepositoriesParams = BehaviorRelay(value: RepositoriesParams())
+    let newRepositoriesRequest = BehaviorRelay(value: RepositoriesRequest())
     
-    let moreRepositoriesParams = BehaviorRelay(value: RepositoriesParams(page: 2))
+    let moreRepositoriesRequest = BehaviorRelay(value: RepositoriesRequest(page: 2))
     
     let dataSource = BehaviorRelay(value: Repositories())
     
@@ -158,14 +158,14 @@ class SearchViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        let newData:Observable<Repositories> = newRepositoriesParams
+        let newData:Observable<Repositories> = newRepositoriesRequest
             .skip(2)
             .flatMapLatest {
                 NetworkService.shared.searchRepositories($0)
             }
             .share(replay: 1)
         
-        let moreData:Observable<Repositories> = moreRepositoriesParams
+        let moreData:Observable<Repositories> = moreRepositoriesRequest
             .skip(1)
             .map{ [weak self] in guard let `self` = self else { return $0 }
                 $0.page = self.dataSource.value.currentPage + 1
@@ -247,16 +247,16 @@ class SearchViewController: ZSViewController {
         
         Observable
             .merge(searchAction, headerAction)
-            .map{ RepositoriesParams(query: $0) }
-            .bind(to: newRepositoriesParams)
+            .map{ RepositoriesRequest(query: $0) }
+            .bind(to: newRepositoriesRequest)
             .disposed(by: disposeBag)
         
         footerAction
             .map{
-                self.moreRepositoriesParams.value.query = $0
-                return self.moreRepositoriesParams.value
+                self.moreRepositoriesRequest.value.query = $0
+                return self.moreRepositoriesRequest.value
             }
-            .bind(to: moreRepositoriesParams)
+            .bind(to: moreRepositoriesRequest)
             .disposed(by: disposeBag)
         
         refrashAction

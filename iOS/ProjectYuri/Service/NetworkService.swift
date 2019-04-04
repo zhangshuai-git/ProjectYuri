@@ -26,9 +26,9 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
-    func searchRepositories(_ params:RepositoriesParams) -> Observable<Repositories> {
+    func searchRepositories(_ request:RepositoriesRequest) -> Observable<Repositories> {
         return GitHubProvider.rx
-            .request(.repositories(params.toJSON() ?? [:]))
+            .request(.repositories(request.toJSON() ?? [:]))
             .trackActivity(indicator)
             .asObservable()
             .mapModel(Repositories.self)
