@@ -45,7 +45,6 @@
 		EC7BAF32225485FA00F3E28F /* ZSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF31225485FA00F3E28F /* ZSNavigationController.swift */; };
 		EC7BAF342254866C00F3E28F /* ZSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF332254866C00F3E28F /* ZSTabBarController.swift */; };
 		EC7BAF36225488DF00F3E28F /* MeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF35225488DF00F3E28F /* MeCell.swift */; };
-		EC7BAF3922548C5A00F3E28F /* UIScreen+ZSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3822548C5A00F3E28F /* UIScreen+ZSExtension.m */; };
 		EC7BAF3B225493BF00F3E28F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */; };
 		EC7BAF3D2254BFA800F3E28F /* ZSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3C2254BFA800F3E28F /* ZSCollectionViewCell.swift */; };
 		EC7BAF3F2254C0AE00F3E28F /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF3E2254C0AE00F3E28F /* ProfileCell.swift */; };
@@ -561,7 +560,6 @@
 				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
 				EC6E2BBE2248C87C00DFCFE6 /* NSString+ZSExtension.m in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
-				EC7BAF3922548C5A00F3E28F /* UIScreen+ZSExtension.m in Sources */,
 				ECE4A57D224B1D2A00A0E69B /* MeViewController.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,
 				EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */,
