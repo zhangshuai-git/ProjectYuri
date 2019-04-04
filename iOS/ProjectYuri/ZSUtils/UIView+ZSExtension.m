@@ -176,6 +176,10 @@ static const char* IndexPathKey ="UIView_UserInfo";
     return nil;
 }
 
+- (CGSize)layoutSize {
+    return [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+}
+
 + (void)load {
     SEL layoutSubviews = @selector(layoutSubviews);
     SEL zs_layoutSubviews = @selector(zs_layoutSubviews);

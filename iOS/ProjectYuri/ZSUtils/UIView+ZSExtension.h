@@ -19,6 +19,7 @@
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, assign) CGSize size;
 @property (nonatomic, strong) UIViewController * viewContoller;
+@property (nonatomic, assign, readonly) CGSize layoutSize;
 
 /**
  *  保存参数信息

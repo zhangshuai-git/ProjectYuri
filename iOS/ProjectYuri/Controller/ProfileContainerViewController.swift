@@ -8,8 +8,18 @@
 
 import UIKit
 import SGPagingView
+import RxCocoa
+import RxSwift
 
 class ProfileContainerViewController: ZSViewController {
+    
+    let mockData: [Repository] = {
+        var array = [Repository]()
+        for _ in 0..<40 {
+            array.append(Repository())
+        }
+        return array
+    }()
     
     let titles = ["游戏", "动画", "漫画", "小说"]
     
@@ -17,7 +27,7 @@ class ProfileContainerViewController: ZSViewController {
         var vcArray = [AnyHashable]()
         for _ in 0..<titles.count {
             let vc = ProfileViewController()
-            vc.view.backgroundColor = UIColor.random
+            Observable.of(mockData).bind(to: vc.dataSource).disposed(by: disposeBag)
             vcArray.append(vc)
         }
         return vcArray

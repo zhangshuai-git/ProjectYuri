@@ -16,11 +16,6 @@ extension ZSExtension where Target: UITableView {
         target.register(cellClass, forCellReuseIdentifier: cellClass.description())
     }
     
-    func dequeueReusableCell<T>(_ cellClass: T.Type) -> T? {
-        let cellClass: AnyClass = cellClass as? AnyClass ?? UITableViewCell.self
-        return target.dequeueReusableCell(withIdentifier: cellClass.description()) as? T
-    }
-    
     func dequeueReusableCell<T>(_ cellClass: T.Type, for indexPath: IndexPath) -> T {
         let cellClass: AnyClass = cellClass as? AnyClass ?? UITableViewCell.self
         return target.dequeueReusableCell(withIdentifier: cellClass.description(), for: indexPath) as! T
