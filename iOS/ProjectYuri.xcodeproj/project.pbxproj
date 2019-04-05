@@ -52,11 +52,13 @@
 		ECFD0FBE22520A810074550D /* ZSUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBD22520A810074550D /* ZSUserView.swift */; };
 		ECFD0FC1225212590074550D /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBF225212590074550D /* ConstraintArrayDSL.swift */; };
 		ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FC0225212590074550D /* ConstraintArray+Extensions.swift */; };
+		F045B75D7DF9FFB7DF50872C /* Pods_ProjectYuri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5EA96522B8512FF58C6A2F /* Pods_ProjectYuri.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A300FFD16FDCF6D81850714 /* Pods-ProjectYuri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectYuri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri.debug.xcconfig"; sourceTree = "<group>"; };
 		459D6ED540DE527EBF8BDC37 /* Pods-ProjectYuri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectYuri.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri.release.xcconfig"; sourceTree = "<group>"; };
+		5E5EA96522B8512FF58C6A2F /* Pods_ProjectYuri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectYuri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* ProjectYuri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectYuri.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F045B75D7DF9FFB7DF50872C /* Pods_ProjectYuri.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +123,7 @@
 		CAD6186988F74611FBDBA9A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E5EA96522B8512FF58C6A2F /* Pods_ProjectYuri.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
