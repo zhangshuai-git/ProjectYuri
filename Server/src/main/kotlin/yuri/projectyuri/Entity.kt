@@ -103,17 +103,13 @@ class User(@Id @GeneratedValue var id: Long) {
 
     var avatarUrl: String = ""
 
+    @OneToMany(mappedBy = "UserProduction")
     var productionList: Collection<UserProduction> = emptyList()
 
 }
 
 @Entity
 class UserProduction {
-
-    @Id
-    var sno: Long? = null
-    @Id
-    var cno: Long? = null
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var user: User? = null
