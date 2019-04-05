@@ -108,7 +108,12 @@ class User(@Id @GeneratedValue var id: Long) {
 }
 
 @Entity
-class UserProduction() {
+class UserProduction {
+
+    @Id
+    var sno: Long? = null
+    @Id
+    var cno: Long? = null
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var user: User? = null

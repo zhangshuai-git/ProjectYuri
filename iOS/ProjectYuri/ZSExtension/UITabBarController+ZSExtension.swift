@@ -6,7 +6,7 @@
 //  Copyright © 2019 張帥. All rights reserved.
 //
 
-import Foundation
+import ZSUtils
 
 extension UITabBarController {
     func addChildVC(_ childVcType: UIViewController.Type, title:String, image: String, selectedImage: String) {

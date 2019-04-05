@@ -4,6 +4,7 @@ platform :ios, '8.0'
 
 target 'ProjectYuri' do
     
+  pod 'ZSUtils'
   pod 'SnapKit', '~> 4.2.0'
   pod 'MJRefresh', '~> 3.1.15.7'
   pod 'RxSwift', '~> 4.4.0'
