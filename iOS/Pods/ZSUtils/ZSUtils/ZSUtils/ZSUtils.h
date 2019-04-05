@@ -25,6 +25,7 @@
 #import "UIBarButtonItem+ZSExtension.h"
 #import "UIButton+ZSExtension.h"
 #import "UISegmentedControl+ZSExtension.h"
+#import "UITableView+ZSExtension.h"
 
 #define MAIN_COLOR                          [UIColor colorWithHex:@"#e18996"]
 

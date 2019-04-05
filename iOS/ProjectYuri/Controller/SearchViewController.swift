@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MJRefresh
+import ZSUtils
 
 class SearchViewController: ZSViewController {
     
@@ -132,7 +133,7 @@ class SearchViewController: ZSViewController {
             .map { $0.totalCount == 0 }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
-                self?.tableView.zs.reloadData(withEmpty: self?.emptyView)
+                self?.tableView.reloadData(withEmpty: self?.emptyView)
             })
             .disposed(by: disposeBag)
         

@@ -23,6 +23,7 @@
 #import "UIImage+ZSExtension.h"
 #import "UIScreen+ZSExtension.h"
 #import "UISegmentedControl+ZSExtension.h"
+#import "UITableView+ZSExtension.h"
 #import "UIView+ZSExtension.h"
 #import "UIViewController+ZSExtension.h"
 #import "ZSUtils.h"
