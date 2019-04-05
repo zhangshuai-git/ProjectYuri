@@ -50,44 +50,74 @@ class Department(@Id @GeneratedValue var id: Long) {
 }
 
 
-class Production {
-    var name = ""
-    var nameCN = ""
+
+@Entity
+class Production(@Id @GeneratedValue var id: Long) {
+
+    var name: String = ""
+
+    var nameCN: String = ""
+
     var desp: String = ""
+
     var info: String = ""
+
     var coverUrl: String = ""
+
     var category: ProductionCategory? = null
+
     var producerList: Collection<Producer> = emptyList()
+
     var characterList: Collection<Character> = emptyList()
+
     var commentList: Collection<Comment> = emptyList()
 
 }
 
-class Producer {
+@Entity
+class Producer(@Id @GeneratedValue var id: Long) {
 
 }
 
-class Character {
+@Entity
+class Character(@Id @GeneratedValue var id: Long) {
 
 }
 
-class Comment {
+@Entity
+class Comment(@Id @GeneratedValue var id: Long) {
+
     var content: String = ""
-    var author: User = User()
+
+    @ManyToOne(cascade = [CascadeType.MERGE])
+    var author: User? = null
+
     var date: Date = Date()
 
 }
 
-class User {
-    var name = ""
+@Entity
+class User(@Id @GeneratedValue var id: Long) {
+
+    var name: String = ""
+
     var avatarUrl: String = ""
+
     var productionList: Collection<UserProduction> = emptyList()
 
 }
 
-class UserProduction {
+@Entity
+class UserProduction() {
+
+    @ManyToOne(cascade = [CascadeType.MERGE])
+    var user: User? = null
+
+    @ManyToOne(cascade = [CascadeType.MERGE])
     var production: Production? = null
+
     var evaluation: Evaluation? = null
+
     var schedule: Schedule? = null
 
 }
