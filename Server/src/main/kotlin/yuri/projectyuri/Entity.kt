@@ -87,11 +87,19 @@ class Production(@Id @GeneratedValue var id: Long) {
 @Entity
 class Producer(@Id @GeneratedValue var id: Long) {
 
+    @Column
+    var name: String = ""
+
 }
 
 @Entity
 class Character(@Id @GeneratedValue var id: Long) {
 
+    @Column
+    var name: String = ""
+
+    @ManyToOne
+    var cv: Producer? = null
 }
 
 @Entity
