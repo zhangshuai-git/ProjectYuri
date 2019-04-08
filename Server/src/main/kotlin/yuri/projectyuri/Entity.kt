@@ -2,6 +2,7 @@ package yuri.projectyuri
 
 import org.springframework.data.domain.Page
 import org.springframework.format.annotation.DateTimeFormat
+import java.io.Serializable
 import java.util.*
 import javax.persistence.*
 
@@ -54,22 +55,31 @@ class Department(@Id @GeneratedValue var id: Long) {
 @Entity
 class Production(@Id @GeneratedValue var id: Long) {
 
+    @Column
     var name: String = ""
 
+    @Column
     var nameCN: String = ""
 
+    @Column
     var desp: String = ""
 
+    @Column
     var info: String = ""
 
+    @Column
     var coverUrl: String = ""
 
+    @Column
     var category: ProductionCategory? = null
 
+    @ManyToMany
     var producerList: Collection<Producer> = emptyList()
 
+    @ManyToMany
     var characterList: Collection<Character> = emptyList()
 
+    @OneToMany
     var commentList: Collection<Comment> = emptyList()
 
 }
@@ -87,11 +97,13 @@ class Character(@Id @GeneratedValue var id: Long) {
 @Entity
 class Comment(@Id @GeneratedValue var id: Long) {
 
+    @Column
     var content: String = ""
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var author: User? = null
 
+    @Column
     var date: Date = Date()
 
 }
@@ -99,17 +111,22 @@ class Comment(@Id @GeneratedValue var id: Long) {
 @Entity
 class User(@Id @GeneratedValue var id: Long) {
 
+    @Column
     var name: String = ""
 
+    @Column
     var avatarUrl: String = ""
 
-    @OneToMany(mappedBy = "UserProduction")
+    @OneToMany(mappedBy = "user")
     var productionList: Collection<UserProduction> = emptyList()
 
 }
 
 @Entity
-class UserProduction {
+class UserProduction(@EmbeddedId var id: UserProductionID) {
+
+    @Embeddable
+    class UserProductionID(var userID: Long, var productID: Long): Serializable
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var user: User? = null
@@ -117,8 +134,10 @@ class UserProduction {
     @ManyToOne(cascade = [CascadeType.MERGE])
     var production: Production? = null
 
+    @Column
     var evaluation: Evaluation? = null
 
+    @Column
     var schedule: Schedule? = null
 
 }
