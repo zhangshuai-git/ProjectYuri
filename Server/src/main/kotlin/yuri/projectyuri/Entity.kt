@@ -18,59 +18,19 @@ class PageResult<T>(page: Page<T>) {
     var items: Collection<T> = page.content
 }
 
-enum class Gender { MALE, FEMALE }
-
-@Entity
-class Employee(@Id @GeneratedValue var id: Long) {
-
-    @Column
-    var name: String? = null
-
-    @Column
-    @Enumerated
-    var gender: Gender? = null
-
-    @ManyToOne(cascade = [CascadeType.MERGE])
-    var department: Department? = null
-
-    @Column
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    var birthDate: Date = Date()
-
-    override fun toString(): String = toJsonString()
-}
-
-@Entity
-class Department(@Id @GeneratedValue var id: Long) {
-
-    @Column(unique = true)
-    var departmentName: String? = null
-
-    override fun toString(): String = toJsonString()
-}
-
-
-
 @Entity
 class Production(@Id @GeneratedValue var id: Long) {
 
-    @Column
     var name: String = ""
 
-    @Column
     var nameCN: String = ""
 
-    @Column
     var desp: String = ""
 
-    @Column
     var info: String = ""
 
-    @Column
     var coverUrl: String = ""
 
-    @Column
     var category: ProductionCategory? = null
 
     @ManyToMany
@@ -87,31 +47,33 @@ class Production(@Id @GeneratedValue var id: Long) {
 @Entity
 class Producer(@Id @GeneratedValue var id: Long) {
 
-    @Column
+    var avatarUrl: String = ""
+
     var name: String = ""
+
+    var role: String = ""
 
 }
 
 @Entity
 class Character(@Id @GeneratedValue var id: Long) {
 
-    @Column
+    var avatarUrl: String = ""
+
     var name: String = ""
 
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.MERGE])
     var cv: Producer? = null
 }
 
 @Entity
 class Comment(@Id @GeneratedValue var id: Long) {
 
-    @Column
     var content: String = ""
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var author: User? = null
 
-    @Column
     var date: Date = Date()
 
 }
@@ -119,10 +81,8 @@ class Comment(@Id @GeneratedValue var id: Long) {
 @Entity
 class User(@Id @GeneratedValue var id: Long) {
 
-    @Column
     var name: String = ""
 
-    @Column
     var avatarUrl: String = ""
 
     @OneToMany(mappedBy = "user")
@@ -134,7 +94,7 @@ class User(@Id @GeneratedValue var id: Long) {
 class UserProduction(@EmbeddedId var id: UserProductionID) {
 
     @Embeddable
-    class UserProductionID(var userID: Long, var productID: Long): Serializable
+    data class UserProductionID(var userID: Long, var productionID: Long): Serializable
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var user: User? = null
@@ -142,10 +102,8 @@ class UserProduction(@EmbeddedId var id: UserProductionID) {
     @ManyToOne(cascade = [CascadeType.MERGE])
     var production: Production? = null
 
-    @Column
     var evaluation: Evaluation? = null
 
-    @Column
     var schedule: Schedule? = null
 
 }
@@ -161,3 +119,41 @@ enum class Evaluation {
 enum class ProductionCategory {
     GAME, ANIME, COMIC, NOVEL
 }
+
+
+
+
+//enum class Gender { MALE, FEMALE }
+
+//@Entity
+//class Employee(@Id @GeneratedValue var id: Long) {
+//
+//    @Column
+//    var name: String? = null
+//
+//    @Column
+//    @Enumerated
+//    var gender: Gender? = null
+//
+//    @ManyToOne(cascade = [CascadeType.MERGE])
+//    var department: Department? = null
+//
+//    @Column
+//    @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    var birthDate: Date = Date()
+//
+//    override fun toString(): String = toJsonString()
+//}
+//
+//@Entity
+//class Department(@Id @GeneratedValue var id: Long) {
+//
+//    @Column(unique = true)
+//    var departmentName: String? = null
+//
+//    override fun toString(): String = toJsonString()
+//}
+
+
+
