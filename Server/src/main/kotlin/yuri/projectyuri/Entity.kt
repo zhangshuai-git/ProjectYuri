@@ -31,13 +31,14 @@ class Production(@Id @GeneratedValue var id: Long) {
 
     var coverUrl: String = ""
 
+    @Enumerated(EnumType.STRING)
     var category: ProductionCategory? = null
 
     @ManyToMany
     var producerList: Collection<Producer> = emptyList()
 
     @ManyToMany
-    var characterList: Collection<Character> = emptyList()
+    var charactersList: Collection<Characters> = emptyList()
 
     @OneToMany
     var commentList: Collection<Comment> = emptyList()
@@ -56,7 +57,7 @@ class Producer(@Id @GeneratedValue var id: Long) {
 }
 
 @Entity
-class Character(@Id @GeneratedValue var id: Long) {
+class Characters(@Id @GeneratedValue var id: Long) {
 
     var avatarUrl: String = ""
 
@@ -74,6 +75,7 @@ class Comment(@Id @GeneratedValue var id: Long) {
     @ManyToOne(cascade = [CascadeType.MERGE])
     var author: User? = null
 
+    @Temporal(TemporalType.TIMESTAMP)
     var date: Date = Date()
 
 }
@@ -102,8 +104,10 @@ class UserProduction(@EmbeddedId var id: UserProductionID) {
     @ManyToOne(cascade = [CascadeType.MERGE])
     var production: Production? = null
 
+    @Enumerated(EnumType.STRING)
     var evaluation: Evaluation? = null
 
+    @Enumerated(EnumType.STRING)
     var schedule: Schedule? = null
 
 }

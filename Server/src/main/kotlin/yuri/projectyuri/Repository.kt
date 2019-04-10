@@ -6,7 +6,7 @@ interface ProductionRepository: JpaRepository<Production, Long>
 
 interface ProducerRepository: JpaRepository<Producer, Long>
 
-interface CharacterRepository: JpaRepository<Character, Long>
+interface CharactersRepository: JpaRepository<Characters, Long>
 
 interface CommentRepository: JpaRepository<Comment, Long>
 
