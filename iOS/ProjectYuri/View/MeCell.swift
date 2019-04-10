@@ -10,5 +10,9 @@ import UIKit
 
 class MeCell: ZSTableViewCell {
 
+    override func buildSubViews() {
+        super.buildSubViews()
+        accessoryType = .disclosureIndicator
+    }
 
 }

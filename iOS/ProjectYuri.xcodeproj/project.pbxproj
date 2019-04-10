@@ -23,7 +23,6 @@
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
 		EC1B9D9F21BE895A000E2C5B /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */; };
-		EC2A0FB7225DD362001256B2 /* AddProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A0FB6225DD362001256B2 /* AddProductionViewController.swift */; };
 		EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */; };
 		EC7BAF2C225436BE00F3E28F /* UITabBarController+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF2B225436BE00F3E28F /* UITabBarController+ZSExtension.swift */; };
 		EC7BAF302254800000F3E28F /* ProfileContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */; };
@@ -78,7 +77,6 @@
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		EC2A0FB6225DD362001256B2 /* AddProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductionViewController.swift; sourceTree = "<group>"; };
 		EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
 		EC7BAF2B225436BE00F3E28F /* UITabBarController+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+ZSExtension.swift"; sourceTree = "<group>"; };
 		EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainerViewController.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
 				EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */,
 				EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */,
-				EC2A0FB6225DD362001256B2 /* AddProductionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -458,7 +455,6 @@
 				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
 				ECE4A57D224B1D2A00A0E69B /* MeViewController.swift in Sources */,
-				EC2A0FB7225DD362001256B2 /* AddProductionViewController.swift in Sources */,
 				EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */,
 				EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */,
 			);

@@ -26,7 +26,7 @@ class MeViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
-        tableView.zs.register(UITableViewCell.self)
+        tableView.zs.register(MeCell.self)
         return tableView
     }()
     
@@ -55,7 +55,7 @@ class MeViewController: ZSViewController {
     
     lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
         MeCellModel("添加条目", { [weak self] in
-            self?.gotoAddProductionViewController()
+            self?.gotoProductionViewController(Observable.of(Repository()))
         }),
         MeCellModel("设置", {}),
         ])
@@ -80,9 +80,7 @@ class MeViewController: ZSViewController {
         dataSource
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let indexPath = IndexPath(row: row, section: 0)
-                let cell = tableView.zs.dequeueReusableCell(UITableViewCell.self, for: indexPath)
-                cell.selectionStyle = .none
-                cell.accessoryType = .disclosureIndicator
+                let cell = tableView.zs.dequeueReusableCell(MeCell.self, for: indexPath)
                 cell.textLabel?.text = element.title
                 return cell
             }
