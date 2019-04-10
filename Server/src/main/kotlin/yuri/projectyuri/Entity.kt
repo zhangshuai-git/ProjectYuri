@@ -31,7 +31,7 @@ class Production(@Id @GeneratedValue var id: Long) {
 
     var coverUrl: String = ""
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     var category: ProductionCategory? = null
 
     @ManyToMany
@@ -104,10 +104,10 @@ class UserProduction(@EmbeddedId var id: UserProductionID) {
     @ManyToOne(cascade = [CascadeType.MERGE])
     var production: Production? = null
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     var evaluation: Evaluation? = null
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     var schedule: Schedule? = null
 
 }

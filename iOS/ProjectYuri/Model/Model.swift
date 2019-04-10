@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 
-
 class ProductionCellModel<T> {
     var isExpanded: Bool = false
     var data: T
@@ -21,5 +20,13 @@ class ProductionCellModel<T> {
     }
 }
 
-
+class MeCellModel {
+    var title: String
+    var selectedAction: () -> Void
+    
+    init(_ title: String, _ selectedAction: @escaping () -> Void) {
+        self.title = title
+        self.selectedAction = selectedAction
+    }
+}
 

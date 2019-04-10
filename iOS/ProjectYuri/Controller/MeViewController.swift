@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MeViewController: ZSViewController {
 
@@ -24,16 +26,15 @@ class MeViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
-        tableView.zs.register(MeCell.self)
+        tableView.zs.register(UITableViewCell.self)
         return tableView
     }()
     
     override func buildSubViews() {
         super.buildSubViews()
-        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black")?.toScale(0.7))
+//        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black")?.toScale(0.7))
         view.addSubview(topView)
         view.addSubview(tableView)
-        
     }
     
     override func makeConstraints() {
@@ -52,6 +53,13 @@ class MeViewController: ZSViewController {
         
     }
     
+    lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
+        MeCellModel("添加条目", { [weak self] in
+            self?.gotoAddProductionViewController()
+        }),
+        MeCellModel("设置", {}),
+        ])
+    
     override func bindViewModel() {
         super.bindViewModel()
         
@@ -63,10 +71,25 @@ class MeViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        rightBarButtonItem?.button?.rx.tap
-            .bind{
-                print("\($0) rightBarButtonItem")
+//        rightBarButtonItem?.button?.rx.tap
+//            .bind{
+//                print("\($0) rightBarButtonItem")
+//            }
+//            .disposed(by: disposeBag)
+        
+        dataSource
+            .bind(to: tableView.rx.items) { tableView, row, element in
+                let indexPath = IndexPath(row: row, section: 0)
+                let cell = tableView.zs.dequeueReusableCell(UITableViewCell.self, for: indexPath)
+                cell.selectionStyle = .none
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = element.title
+                return cell
             }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(MeCellModel.self)
+            .bind { $0.selectedAction() }
             .disposed(by: disposeBag)
         
     }
