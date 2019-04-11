@@ -55,7 +55,7 @@ class MeViewController: ZSViewController {
     
     lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
         MeCellModel("添加条目", { [weak self] in
-            self?.gotoProductionViewController(Observable.of(Repository()))
+            self?.gotoAddProductionViewController()
         }),
         MeCellModel("设置", {}),
         ])
@@ -81,7 +81,7 @@ class MeViewController: ZSViewController {
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = tableView.zs.dequeueReusableCell(MeCell.self, for: indexPath)
-                cell.textLabel?.text = element.title
+                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
             .disposed(by: disposeBag)

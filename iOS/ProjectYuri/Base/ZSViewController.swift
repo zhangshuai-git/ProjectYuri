@@ -44,4 +44,9 @@ extension ZSViewController {
         let vc = ProfileContainerViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
+    
+    func gotoAddProductionViewController() {
+        let vc = AddProductionViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
 }
