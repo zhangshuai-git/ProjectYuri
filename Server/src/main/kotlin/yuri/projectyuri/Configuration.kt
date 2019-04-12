@@ -46,8 +46,8 @@ class SwaggerConfig {
 
 @Component
 @ConfigurationProperties(prefix = "file")
-@PropertySource("classpath:file-storage.yml")
+@PropertySource("classpath:file-storage.properties")
 class FileStorageProperties {
-    var uploadDir: String = ""
+    var uploadDir: String? = null
 }
 
