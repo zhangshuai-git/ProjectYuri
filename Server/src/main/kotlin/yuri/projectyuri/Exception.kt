@@ -15,6 +15,8 @@ enum class ErrorEnum (val code: Int, val msg: String) {
     PARAM_ERROR(101, "参数错误"),
     RESOURCE_ERROR(102, "资源不存在"),
     ALREADY_EXISTS_ERROR(103, "资源已存在"),
+    FILE_STORAGE_ERROR(104, "文件存储错误"),
+
 }
 
 class CustomException(errorEnum: ErrorEnum) : RuntimeException(errorEnum.msg) {

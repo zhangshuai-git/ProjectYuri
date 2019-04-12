@@ -17,3 +17,14 @@ spring:
       hibernate:
 #        show_sql: true
 #        format_sql: true
+
+  servlet:
+    multipart:
+      # Enable multipart uploads
+      enabled: true
+      # Threshold after which files are written to disk.
+      file-size-threshold: 2KB
+      # Max file size.
+      max-file-size: 200MB
+      # Max Request Size
+      max-request-size: 215MB

@@ -45,16 +45,9 @@ class SwaggerConfig {
 
 
 @Component
-@ConfigurationProperties(prefix = "message")
-@PropertySource("classpath:file-message.yml")
-class MessageProperties {
-
-    var fileSize: Long = 0  //压缩大小
-
-    var scaleRatio: Double = 0.0 //压缩比例
-
-    var upPath: String = "" //保存路径
-
-    var imageType: String = "" //图片类型
-
+@ConfigurationProperties(prefix = "file")
+@PropertySource("classpath:file-storage.yml")
+class FileStorageProperties {
+    var uploadDir: String = ""
 }
+

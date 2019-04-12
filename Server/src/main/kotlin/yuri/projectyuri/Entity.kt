@@ -18,6 +18,8 @@ class PageResult<T>(page: Page<T>) {
     var items: Collection<T> = page.content
 }
 
+class UploadFileResponse(var fileName: String?, var fileDownloadUri: String?, var fileType: String?, var size: Long)
+
 @Entity
 class Production(@Id @GeneratedValue var id: Long) {
 

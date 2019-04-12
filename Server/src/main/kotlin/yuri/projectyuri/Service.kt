@@ -4,10 +4,75 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import org.hibernate.service.spi.ServiceException
+import org.springframework.core.io.Resource
+import org.springframework.core.io.UrlResource
+import org.springframework.util.StringUtils
+import java.util.UUID
+import java.text.SimpleDateFormat
+import org.springframework.util.StringUtils.endsWithIgnoreCase
+import java.util.HashMap
+import org.springframework.web.multipart.MultipartFile
+import java.io.IOException
+import java.net.MalformedURLException
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
 
 
+@Service
+class FileStorageService {
 
+    @Autowired
+    constructor(fileStorageProperties: FileStorageProperties) {
+        this.fileStorageLocation = Paths.get(fileStorageProperties.uploadDir)
+                .toAbsolutePath().normalize()
+        try {
+            Files.createDirectories(this.fileStorageLocation)
+        } catch (ex: Exception) {
+            throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
+        }
+    }
 
+    private val fileStorageLocation: Path
+
+    fun storeFile(file: MultipartFile): String {
+        // Normalize file name
+        val fileName = file.originalFilename?.let { StringUtils.cleanPath(it) } ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
+
+        try {
+            // Check if the file's name contains invalid characters
+            if (fileName.contains("..")) {
+                throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
+            }
+
+            // Copy file to the target location (Replacing existing file with the same name)
+            val targetLocation = this.fileStorageLocation.resolve(fileName)
+            Files.copy(file.inputStream, targetLocation, StandardCopyOption.REPLACE_EXISTING)
+
+            return fileName
+        } catch (ex: IOException) {
+            throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
+        }
+
+    }
+
+    fun loadFileAsResource(fileName: String): Resource {
+        try {
+            val filePath = this.fileStorageLocation.resolve(fileName).normalize()
+            val resource = UrlResource(filePath.toUri())
+            return if (resource.exists()) {
+                resource
+            } else {
+                throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
+            }
+        } catch (ex: MalformedURLException) {
+            throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
+        }
+
+    }
+}
 
 
 //@Service
