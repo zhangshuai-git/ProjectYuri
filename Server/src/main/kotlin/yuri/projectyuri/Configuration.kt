@@ -51,10 +51,10 @@ class MessageProperties {
 
     var fileSize: Long = 0  //压缩大小
 
-    var scaleRatio: Double = 0.toDouble() //压缩比例
+    var scaleRatio: Double = 0.0 //压缩比例
 
-    var upPath: String? = null //保存路径
+    var upPath: String = "" //保存路径
 
-    var imageType: String? = null //图片类型
+    var imageType: String = "" //图片类型
 
 }
