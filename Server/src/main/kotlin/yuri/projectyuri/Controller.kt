@@ -16,7 +16,10 @@ import java.util.stream.Collectors
 import javax.servlet.http.HttpServletRequest
 
 @RestController
+@Api(tags = ["File"])
 class FileController {
+
+    private val logger = LoggerFactory.getLogger(FileController::class.java)
 
     @Autowired
     lateinit var fileStorageService: FileStorageService
@@ -35,11 +38,13 @@ class FileController {
     }
 
     @PostMapping("/uploadMultipleFiles")
-    fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): List<UploadFileResponse> {
-        return Arrays.asList(*files)
+    fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> {
+        return Result(Arrays
+                .asList(*files)
                 .stream()
                 .map { file -> uploadFile(file).data }
-                .collect(Collectors.toList()).orEmpty()
+                .collect(Collectors.toList())
+                .orEmpty())
     }
 
     @GetMapping("/downloadFile/{fileName:.+}")
@@ -64,11 +69,6 @@ class FileController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.filename + "\"")
                 .body(resource)
-    }
-
-    companion object {
-
-        private val logger = LoggerFactory.getLogger(FileController::class.java)
     }
 
 }
