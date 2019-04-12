@@ -63,7 +63,7 @@
 /**
  *  点击发送执行此代理，向上一级控制器传递数据
  *
- *  @param pickerBrowser
+ *  @param pickerBrowser  pickerBrowser
  *  @param isOriginal     是否原图
  *  备注：这里不传selectedAssets,选择的照片每点击一次右上角的选择框就传第一次
  */

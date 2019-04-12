@@ -106,10 +106,10 @@ typedef enum{
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     
-    _rightItem = [ChooseDefImgItem itemFrame:CGRectMake(0, 0, 100, 40) title:[NSString stringWithFormat:@"完成(%ld/%ld)",0,self.cropImages.count] target:self action:@selector(complainItemClick:)];
+    _rightItem = [ChooseDefImgItem itemFrame:CGRectMake(0, 0, 100, 40) title:[NSString stringWithFormat:@"完成(%d/%ld)",0,self.cropImages.count] target:self action:@selector(complainItemClick:)];
     _rightItem.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -40);
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightItem];
-    _navRightItem.text = [NSString stringWithFormat:@"完成(%ld/%ld)",0,self.cropImages.count];
+    _navRightItem.text = [NSString stringWithFormat:@"完成(%d/%ld)",0,self.cropImages.count];
     
     
     _tkImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 147, SCREENWIDTH, SCREENHEIGHT-147-50)];
@@ -625,12 +625,12 @@ typedef enum{
                 i++;
             }
         }
-        _navRightItem.text = [NSString stringWithFormat:@"完成(%ld/%ld)",i,self.cropImages.count];
-        _rightItem.title = [NSString stringWithFormat:@"完成(%ld/%ld)",i,self.cropImages.count];
+    _navRightItem.text = [NSString stringWithFormat:@"完成(%d/%ld)",i,self.cropImages.count];
+    _rightItem.title = [NSString stringWithFormat:@"完成(%d/%ld)",i,self.cropImages.count];
 
 }
 
-+ (instancetype)coreImages:(NSArray *)images proportion:(NSNumber *)proportion coreComplainBlock:(void(^)(NSArray * images))coredBlock cancelBlick:(void(^)())cancelBlock {
++ (instancetype)coreImages:(NSArray *)images proportion:(NSNumber *)proportion coreComplainBlock:(void(^)(NSArray * images))coredBlock cancelBlick:(void(^)(void))cancelBlock {
     CropImageViewController * vc = [[CropImageViewController alloc] initWithNibName:@"CropImageViewController" bundle:nil];
     vc.cropImages = images;
     vc.proportion = proportion;

@@ -11,7 +11,7 @@
 @interface CropImageViewController : UIViewController
 @property (strong, nonatomic) UIImage *image;
 @property (nonatomic, copy) void(^coredBlock)(NSArray * images);
-@property (nonatomic, copy) void(^cancelBlock)();
+@property (nonatomic, copy) void(^cancelBlock)(void);
 @property (strong, nonatomic) NSNumber *proportion; // 裁剪比例
 @property (weak, nonatomic) IBOutlet UIButton *cropBtn;
 @property (weak, nonatomic) IBOutlet UILabel *navRightItem;
@@ -25,7 +25,7 @@
 + (instancetype)coreImages:(NSArray *)images
                 proportion:(NSNumber *)proportion
          coreComplainBlock:(void(^)(NSArray * images))coredBlock
-               cancelBlick:(void(^)())cancelBlock;
+               cancelBlick:(void(^)(void))cancelBlock;
 
 - (IBAction)cropClick:(UIButton *)sender;
 @end

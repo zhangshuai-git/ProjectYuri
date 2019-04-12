@@ -30,7 +30,7 @@
 + (instancetype)photoManager:(UIView *)carryView
             withCameraImages:(void(^)(NSArray *cameraImages))cameraImages
               withAlbumArray:(void(^)(NSArray *albumArray))albumArray
-                 cancelBlock:(void(^)())cancelBlock
+                 cancelBlock:(void(^)(void))cancelBlock
 {
     MLDPhotoManager *objct = [[MLDPhotoManager alloc] init];
     objct.AlbumArray = albumArray;

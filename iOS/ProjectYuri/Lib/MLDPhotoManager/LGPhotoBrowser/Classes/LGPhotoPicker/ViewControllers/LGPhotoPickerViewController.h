@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger , PickerViewShowStatus) {
 // 可以用代理来返回值或者用block来返回值
 @property (nonatomic , copy) LGcallBackBlock callBack;
 // 取消选择图片
-@property (nonatomic , copy) void(^cancelBlock)();
+@property (nonatomic , copy) void(^cancelBlock)(void);
 // 每次选择图片的最小数, 默认与最大数是3
 @property (nonatomic , assign) NSInteger maxCount;
 // 记录选中的值

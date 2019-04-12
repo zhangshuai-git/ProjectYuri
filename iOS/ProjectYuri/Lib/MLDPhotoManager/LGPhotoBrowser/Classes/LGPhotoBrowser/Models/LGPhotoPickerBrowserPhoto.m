@@ -76,21 +76,21 @@
 
 - (void)notifyImageDidStartLoad {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _isLoading = YES;
+        self->_isLoading = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:LGPhotoImageDidStartLoad object:self];
     });
 }
 
 - (void)notifyImageDidFinishLoad {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _isLoading = NO;
+        self->_isLoading = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:LGPhotoImageDidFinishLoad object:self];
     });
 }
 
 - (void)notifyImageDidFailLoadWithError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _isLoading = NO;
+        self->_isLoading = NO;
         NSDictionary *notifyInfo = [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:LGPhotoImageDidFailLoadWithError object:self userInfo:notifyInfo];
     });

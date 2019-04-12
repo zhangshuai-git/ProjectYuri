@@ -435,10 +435,10 @@
 				EC64AFEC226096AA00961A5E /* VPImageCropper */,
 				EC64AFEF226096AA00961A5E /* 边框.png */,
 				EC64AFF0226096AA00961A5E /* TKImageView.h */,
-				EC64AFF1226096AA00961A5E /* CropImageViewController.m */,
 				EC64AFF2226096AA00961A5E /* TKImageView.m */,
 				EC64AFF3226096AA00961A5E /* CropImageViewController.xib */,
 				EC64AFFE226096AA00961A5E /* CropImageViewController.h */,
+				EC64AFF1226096AA00961A5E /* CropImageViewController.m */,
 			);
 			path = TKImageView;
 			sourceTree = "<group>";
@@ -551,8 +551,8 @@
 		EC64B020226096AA00961A5E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				EC64B021226096AA00961A5E /* LGPhotoPickerBrowserViewController.m */,
 				EC64B022226096AA00961A5E /* LGPhotoPickerBrowserViewController.h */,
+				EC64B021226096AA00961A5E /* LGPhotoPickerBrowserViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -618,10 +618,10 @@
 			isa = PBXGroup;
 			children = (
 				EC64B042226096AA00961A5E /* LGPhotoPickerViewController.h */,
-				EC64B043226096AA00961A5E /* LGPhotoPickerGroupViewController.h */,
-				EC64B044226096AA00961A5E /* LGPhotoPickerAssetsViewController.h */,
-				EC64B045226096AA00961A5E /* LGPhotoPickerGroupViewController.m */,
 				EC64B046226096AA00961A5E /* LGPhotoPickerViewController.m */,
+				EC64B043226096AA00961A5E /* LGPhotoPickerGroupViewController.h */,
+				EC64B045226096AA00961A5E /* LGPhotoPickerGroupViewController.m */,
+				EC64B044226096AA00961A5E /* LGPhotoPickerAssetsViewController.h */,
 				EC64B047226096AA00961A5E /* LGPhotoPickerAssetsViewController.m */,
 			);
 			path = ViewControllers;

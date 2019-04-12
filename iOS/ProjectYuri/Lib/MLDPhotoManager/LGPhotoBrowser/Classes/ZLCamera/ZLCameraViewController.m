@@ -15,7 +15,7 @@
 #import "LGPhoto.h"
 #import "LGCameraImageView.h"
 
-typedef void(^codeBlock)();
+typedef void(^codeBlock)(void);
 static CGFloat ZLCameraColletionViewW = 80;
 static CGFloat ZLCameraColletionViewPadding = 20;
 static CGFloat BOTTOM_HEIGHT = 60;

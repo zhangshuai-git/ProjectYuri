@@ -100,7 +100,7 @@
     if (sender.state == UIGestureRecognizerStateEnded) {
         
         [UIView animateWithDuration:0.3f animations:^{
-            _imageV.frame = _norRect;
+            self->_imageV.frame = self->_norRect;
         }];
     }
 }
@@ -114,7 +114,7 @@
     if (sender.state == UIGestureRecognizerStateEnded) {
         
         [UIView animateWithDuration:0.3f animations:^{
-            _imageV.frame = _norRect;
+            self->_imageV.frame = self->_norRect;
         }];
     }
 }

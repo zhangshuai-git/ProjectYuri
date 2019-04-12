@@ -14,7 +14,7 @@
 @property (strong, nonatomic) UIImage *image;
 
 /** 重新拍照block */
-@property (copy, nonatomic) void(^remakeBlock)();
+@property (copy, nonatomic) void(^remakeBlock)(void);
 
 /** 裁剪完成block */
 @property (copy, nonatomic) void(^sureUseBlock)(UIImage *image);
