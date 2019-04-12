@@ -13,6 +13,10 @@ import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 import java.text.SimpleDateFormat
 import java.util.*
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.context.annotation.PropertySource
+import org.springframework.stereotype.Component
+
 
 fun <T> ZSLog(msg: T, tag: String? = null, index: Int = 2) {
     val date: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date())
@@ -37,4 +41,20 @@ class SwaggerConfig {
             .title("REST API")
             .version("1.0")
             .build()
+}
+
+
+@Component
+@ConfigurationProperties(prefix = "message")
+@PropertySource("classpath:file-message.yml")
+class MessageProperties {
+
+    var fileSize: Long = 0  //压缩大小
+
+    var scaleRatio: Double = 0.toDouble() //压缩比例
+
+    var upPath: String? = null //保存路径
+
+    var imageType: String? = null //图片类型
+
 }

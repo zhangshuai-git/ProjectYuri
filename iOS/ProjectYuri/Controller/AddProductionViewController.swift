@@ -10,6 +10,21 @@ import UIKit
 
 class AddProductionViewController: ZSViewController {
     
+    let nameTextField: UITextField = {
+        let textField = UITextField()
+        return textField
+    }()
+    
+    let originNameTextField: UITextField = {
+        let textField = UITextField()
+        return textField
+    }()
+    
+    let despTextView: UITextView = {
+        let textView = UITextView()
+        return textView
+    }()
+    
     override func buildSubViews() {
         super.buildSubViews()
         

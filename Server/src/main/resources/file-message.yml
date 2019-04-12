@@ -1,0 +1,9 @@
+message:
+  #文件压缩大小(大于4兆压缩)
+  fileSize: 4194304
+  #图片保存路径
+  upPath: /Users/bitware010/Documents/project/ProjectYuri/Server/out/production/resources/images
+  #压缩比例
+  scaleRatio: 0.20f
+  #图片类型
+  imageType: png,jpg,jpeg
