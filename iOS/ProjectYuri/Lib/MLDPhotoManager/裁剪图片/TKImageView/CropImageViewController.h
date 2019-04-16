@@ -20,12 +20,9 @@
 @property (nonatomic, assign) NSInteger tag;
 @property (nonatomic, assign) CGRect cropFrame;
 
-- (id)initWithImage:(UIImage *)originalImage cropFrame:(CGRect)cropFrame limitScaleRatio:(NSInteger)limitRatio;
-
 + (instancetype)coreImages:(NSArray *)images
                 proportion:(NSNumber *)proportion
          coreComplainBlock:(void(^)(NSArray * images))coredBlock
                cancelBlick:(void(^)(void))cancelBlock;
 
-- (IBAction)cropClick:(UIButton *)sender;
 @end

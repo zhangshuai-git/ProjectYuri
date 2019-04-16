@@ -37,7 +37,7 @@
         }
         if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
             [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-            [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsLandscapePhone];
+            [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsCompact];
         }
         _toolbar.barStyle = UIBarStyleBlackTranslucent;
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
@@ -89,7 +89,7 @@
     
     //发送按钮
     NSString *rightBtnName = @"发送";
-    self.sendBtn = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%ld)",rightBtnName,(long)count] style:UIBarButtonItemStyleBordered target:self action:@selector(sendAction)];
+    self.sendBtn = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%ld)",rightBtnName,(long)count] style:UIBarButtonItemStylePlain target:self action:@selector(sendAction)];
     self.sendBtn.tintColor = [UIColor colorWithRed:0.49 green:0.84 blue:0.25 alpha:1.00];
     
     UIBarButtonItem *fiexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];

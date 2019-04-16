@@ -115,7 +115,7 @@ static CGFloat BOTTOM_HEIGHT = 60;
     }
     
     CGFloat viewWidth = self.view.frame.size.width;
-    CGFloat viewHeight = viewWidth / 480 * 640;;
+//    CGFloat viewHeight = viewWidth / 480 * 640;;
     self.preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
     self.preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     self.preview.frame = CGRectMake(0, 20,viewWidth, self.view.frame.size.height-20-BOTTOM_HEIGHT);

@@ -700,7 +700,7 @@ typedef enum{
         btn.selected = NO;
     }
     proportionBtn.selected = YES;
-    NSInteger index = [proportionBtnArr indexOfObject:proportionBtn];
+//    NSInteger index = [proportionBtnArr indexOfObject:proportionBtn];
 //    currentProportion = [_proportionArr[index] floatValue];
     
 //    _tkImageView.cropAspectRatio = currentProportion;
