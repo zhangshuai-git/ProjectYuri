@@ -13,7 +13,6 @@ class AddProductionViewController: ZSViewController {
     let scrollerContentView = UIView()
     let scrollerView: UIScrollView = {
         let scrollerView = UIScrollView()
-        scrollerView.isScrollEnabled = false
         return scrollerView
     }()
     
@@ -63,6 +62,32 @@ class AddProductionViewController: ZSViewController {
         return groupBtn
     }()
     
+    let imgTitleLab: UILabel = {
+        let label = UILabel()
+        label.text = "上传封面"
+        return label
+    }()
+    
+    let imgBtn: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor.main, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.setImage(UIImage(named: "taking_pictures"), for: .normal)
+        button.backgroundColor = UIColor.groupTableViewBackground
+        return button
+    }()
+    
+    let submittalBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("提交", for: .normal)
+        button.backgroundColor = UIColor.main
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        return button
+    }()
+    
     override func buildSubViews() {
         super.buildSubViews()
         view.addSubview(scrollerView)
@@ -75,6 +100,9 @@ class AddProductionViewController: ZSViewController {
         scrollerContentView.addSubview(despTextView)
         scrollerContentView.addSubview(catalogTitleLab)
         scrollerContentView.addSubview(groupBtn)
+        scrollerContentView.addSubview(imgTitleLab)
+        scrollerContentView.addSubview(imgBtn)
+        scrollerContentView.addSubview(submittalBtn)
     }
     
     override func makeConstraints() {
@@ -129,8 +157,26 @@ class AddProductionViewController: ZSViewController {
         
         groupBtn.snp.makeConstraints { (make) in
             make.top.equalTo(catalogTitleLab.snp.bottom).offset(10)
-            make.bottom.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
         }
+        
+        imgTitleLab.snp.makeConstraints { (make) in
+            make.top.equalTo(groupBtn.snp.bottom).offset(30)
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        }
+        
+        imgBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(imgTitleLab.snp.bottom).offset(10)
+            make.leading.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.size.equalTo(CGSize(width: 60, height: 60))
+        }
+        
+        submittalBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(imgBtn.snp.bottom).offset(30)
+            make.bottom.leading.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.size.equalTo(CGSize(width: 60, height: 30))
+        }
+        
     }
     
     override func bindViewModel() {
