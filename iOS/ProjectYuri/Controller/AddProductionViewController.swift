@@ -21,45 +21,72 @@ class AddProductionViewController: ZSViewController {
     let nameTitleLab: UILabel = {
         let label = UILabel()
         label.text = "作品中文名"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     let nameTextField: UITextField = {
         let textField = UITextField()
+        textField.backgroundColor = UIColor.groupTableViewBackground
+        textField.layer.cornerRadius = 5
+        textField.layer.masksToBounds = true
+        textField.placeholder = "例如:无夜国度"
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.clearButtonMode = .whileEditing
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        textField.leftViewMode = .always
         return textField
     }()
     
     let originNameTitleLab: UILabel = {
         let label = UILabel()
         label.text = "作品原名"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     let originNameTextField: UITextField = {
         let textField = UITextField()
+        textField.backgroundColor = UIColor.groupTableViewBackground
+        textField.layer.cornerRadius = 5
+        textField.layer.masksToBounds = true
+        textField.placeholder = "例如:よるのないくに"
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.clearButtonMode = .whileEditing
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        textField.leftViewMode = .always
         return textField
     }()
     
     let despTitleLab: UILabel = {
         let label = UILabel()
         label.text = "作品简介"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     let despTextView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = UIColor.groupTableViewBackground
+        textView.layer.cornerRadius = 5
+        textView.layer.masksToBounds = true
+        textView.font = UIFont.systemFont(ofSize: 14)
         return textView
     }()
     
     let catalogTitleLab: UILabel = {
         let label = UILabel()
         label.text = "作品类别"
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
-    let groupBtn: UISegmentedControl = {
-        let groupBtn = UISegmentedControl(items: ["游戏", "动画", "漫画", "小说"])
-        groupBtn.selectedSegmentIndex = 0
+    let categoryArray: [String] = ["游戏", "动画", "漫画", "小说"]
+    lazy var groupBtn: UISegmentedControl = {
+        let groupBtn = UISegmentedControl(items: categoryArray)
         groupBtn.tintColor = UIColor.main
         return groupBtn
     }()
@@ -67,6 +94,8 @@ class AddProductionViewController: ZSViewController {
     let imgTitleLab: UILabel = {
         let label = UILabel()
         label.text = "上传封面"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -86,12 +115,14 @@ class AddProductionViewController: ZSViewController {
         button.backgroundColor = UIColor.main
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         return button
     }()
     
     override func buildSubViews() {
         super.buildSubViews()
+        title = "添加作品"
+        view.backgroundColor = UIColor.white
         view.addSubview(scrollerView)
         scrollerView.addSubview(scrollerContentView)
         scrollerContentView.addSubview(nameTitleLab)
@@ -121,62 +152,64 @@ class AddProductionViewController: ZSViewController {
         }
         
         nameTitleLab.snp.makeConstraints { (make) in
-            make.top.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.top.leading.right.equalTo(UIEdgeInsets(top: 30, left: 20, bottom: 10, right: 20))
         }
         
         nameTextField.snp.makeConstraints { (make) in
             make.top.equalTo(nameTitleLab.snp.bottom).offset(10)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            make.height.equalTo(20)
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.height.equalTo(30)
         }
         
         originNameTitleLab.snp.makeConstraints { (make) in
             make.top.equalTo(nameTextField.snp.bottom).offset(30)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
         
         originNameTextField.snp.makeConstraints { (make) in
             make.top.equalTo(originNameTitleLab.snp.bottom).offset(10)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            make.height.equalTo(20)
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.height.equalTo(30)
         }
         
         despTitleLab.snp.makeConstraints { (make) in
             make.top.equalTo(originNameTextField.snp.bottom).offset(30)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
         
         despTextView.snp.makeConstraints { (make) in
             make.top.equalTo(despTitleLab.snp.bottom).offset(10)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            make.height.equalTo(100)
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.height.equalTo(200)
         }
         
         catalogTitleLab.snp.makeConstraints { (make) in
             make.top.equalTo(despTextView.snp.bottom).offset(30)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
         
         groupBtn.snp.makeConstraints { (make) in
             make.top.equalTo(catalogTitleLab.snp.bottom).offset(10)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
         
         imgTitleLab.snp.makeConstraints { (make) in
             make.top.equalTo(groupBtn.snp.bottom).offset(30)
-            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.leading.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
         
         imgBtn.snp.makeConstraints { (make) in
             make.top.equalTo(imgTitleLab.snp.bottom).offset(10)
-            make.leading.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            make.size.equalTo(CGSize(width: 60, height: 60))
+            make.centerX.equalToSuperview()
+//            make.leading.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.size.equalTo(CGSize(width: 100, height: 100))
         }
         
         submittalBtn.snp.makeConstraints { (make) in
             make.top.equalTo(imgBtn.snp.bottom).offset(30)
-            make.bottom.leading.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            make.size.equalTo(CGSize(width: 60, height: 30))
+            make.bottom.leading.trailing.equalTo(UIEdgeInsets(top: 10, left: 40, bottom: 40, right: 40))
+//            make.size.equalTo(CGSize(width: 60, height: 30))
+            make.height.equalTo(40)
         }
         
     }
@@ -211,6 +244,16 @@ class AddProductionViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
+        groupBtn.rx.selectedSegmentIndex
+            .filter{
+                [weak self] in guard let `self` = self else { return false }
+                return $0 >= 0 && $0 < self.categoryArray.count
+            }
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.addProductionRequest.value.category = ProductionCategory(rawValue: self.categoryArray[$0])
+            }
+            .disposed(by: disposeBag)
+        
         imgBtn.rx.tap
             .bind { [weak self] in guard let `self` = self else { return }
                 let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
@@ -233,6 +276,12 @@ class AddProductionViewController: ZSViewController {
             }
             .bind {
                 print($0.toJSON())
+            }
+            .disposed(by: disposeBag)
+        
+        scrollerView.rx.didScroll
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.view.endEditing(true)
             }
             .disposed(by: disposeBag)
         
