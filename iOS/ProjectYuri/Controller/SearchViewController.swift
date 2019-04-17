@@ -42,8 +42,9 @@ class SearchViewController: ZSViewController {
         return view
     }()
     
-    let groupBtn: UISegmentedControl = {
-        let groupBtn = UISegmentedControl(items: ["全部", "游戏", "动画", "漫画", "小说"])
+    let categoryArray: [ProductionCategory] = ProductionCategory.allCases
+    lazy var groupBtn: UISegmentedControl = {
+        let groupBtn = UISegmentedControl(items: ["全部"] + categoryArray.map{$0.rawValue})
         groupBtn.selectedSegmentIndex = 0
         groupBtn.tintColor = UIColor.main
         return groupBtn

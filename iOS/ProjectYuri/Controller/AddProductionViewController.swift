@@ -84,9 +84,9 @@ class AddProductionViewController: ZSViewController {
         return label
     }()
     
-    let categoryArray: [String] = ["游戏", "动画", "漫画", "小说"]
+    let categoryArray: [ProductionCategory] = ProductionCategory.allCases
     lazy var groupBtn: UISegmentedControl = {
-        let groupBtn = UISegmentedControl(items: categoryArray)
+        let groupBtn = UISegmentedControl(items: categoryArray.map{$0.rawValue})
         groupBtn.tintColor = UIColor.main
         return groupBtn
     }()
@@ -250,7 +250,7 @@ class AddProductionViewController: ZSViewController {
                 return $0 >= 0 && $0 < self.categoryArray.count
             }
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.addProductionRequest.value.category = ProductionCategory(rawValue: self.categoryArray[$0])
+                self.addProductionRequest.value.category = self.categoryArray[$0].rawValue
             }
             .disposed(by: disposeBag)
         

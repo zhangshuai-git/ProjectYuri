@@ -21,11 +21,11 @@ class ProfileContainerViewController: ZSViewController {
         return array
     }()
     
-    let titles = ["游戏", "动画", "漫画", "小说"]
+    let categoryArray: [ProductionCategory] = ProductionCategory.allCases
     
     lazy var vcArray: [AnyHashable] = {
         var vcArray = [AnyHashable]()
-        for _ in 0..<titles.count {
+        for _ in 0..<categoryArray.count {
             let vc = ProfileViewController()
             Observable.of(mockData).bind(to: vc.dataSource).disposed(by: disposeBag)
             vcArray.append(vc)
@@ -37,7 +37,7 @@ class ProfileContainerViewController: ZSViewController {
         let configure = SGPageTitleViewConfigure()
         configure.indicatorColor = UIColor.main
         configure.titleSelectedColor = UIColor.main
-        let pageTitleView: SGPageTitleView = SGPageTitleView(frame: CGRect.zero, delegate: self, titleNames:titles, configure: configure)
+        let pageTitleView: SGPageTitleView = SGPageTitleView(frame: CGRect.zero, delegate: self, titleNames:categoryArray.map{$0.rawValue}, configure: configure)
         return pageTitleView
     }()
     

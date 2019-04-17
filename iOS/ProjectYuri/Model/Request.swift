@@ -14,7 +14,7 @@ class AddProductionRequest: HandyJSON {
     var name: String = ""
     var nameCN: String = ""
     var desp: String = ""
-    var category: ProductionCategory?
+    var category: ProductionCategory.RawValue?
     
     required init() { }
 }
