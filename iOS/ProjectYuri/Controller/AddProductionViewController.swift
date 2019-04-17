@@ -271,6 +271,11 @@ class AddProductionViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         submittalBtn.rx.tap
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.addProductionRequest.value.name.isEmpty
+                if !valid {self.showMessage("请输入作品中文名")}
+                return valid
+            }
             .flatMapLatest {_ in
                 NetworkService.shared.addProduction(self.addProductionRequest.value, self.addProductionImageRequest.value)
             }
@@ -287,3 +292,6 @@ class AddProductionViewController: ZSViewController {
         
     }
 }
+
+
+

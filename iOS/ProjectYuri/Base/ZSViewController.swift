@@ -50,3 +50,11 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: false)
     }
 }
+
+extension ZSViewController {
+    func showMessage(_ msg: String) -> Void {
+        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+}
