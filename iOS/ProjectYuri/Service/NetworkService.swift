@@ -26,6 +26,17 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
+    func addProduction(_ request:AddProductionRequest) -> Observable<Result<Production>> {
+        return ProjectYuriProvider.rx
+            .request(.addProduction(request.toJSON() ?? [:]))
+            .trackActivity(indicator)
+            .asObservable()
+            .mapModel(Result.self)
+            .catchErrorJustReturn(Result())
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+    }
+    
     func searchRepositories(_ request:RepositoriesRequest) -> Observable<Repositories> {
         return GitHubProvider.rx
             .request(.repositories(request.toJSON() ?? [:]))
