@@ -11,6 +11,55 @@ import Moya
 
 let PER_PAGE:UInt = 20
 
+let ProjectYuriProvider = MoyaProvider<ProjectYuriAPI>()
+
+public enum ProjectYuriAPI {
+    case addProduction(_ params:[String : Any])
+}
+
+extension ProjectYuriAPI: TargetType {
+    
+    public var baseURL: URL {
+        return URL(string: "http://localhost:8070")!
+    }
+    
+    public var path: String {
+        switch self {
+        case .addProduction:
+            return "/api/v1/file/uploadFile"
+        }
+    }
+    
+    public var method: Moya.Method {
+        switch self {
+        case .addProduction:
+            return .post
+        }
+    }
+    
+    public var task: Task {
+        switch self {
+        case .addProduction(let params):
+            print("发起请求: \(params)")
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        }
+    }
+    
+    public var headers: [String: String]? {
+        return nil
+    }
+    
+    public var validate: Bool {
+        return false
+    }
+    
+    public var sampleData: Data {
+        return "{}".data(using: String.Encoding.utf8)!
+    }
+    
+}
+
+
 let GitHubProvider = MoyaProvider<GitHubAPI>()
 
 public enum GitHubAPI {

@@ -179,8 +179,22 @@ class AddProductionViewController: ZSViewController {
         
     }
     
+    
     override func bindViewModel() {
         super.bindViewModel()
         
+        imgBtn.rx.tap
+            .bind { [weak self] in guard let `self` = self else { return }
+                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { _ in
+                    
+                }, withAlbumArray: { _ in
+                    
+                }, cancel: {
+                    
+                })
+                pm?.maxPhotoCount = 1
+                pm?.showAlert(self.imgBtn)
+            }
+            .disposed(by: disposeBag)
     }
 }
