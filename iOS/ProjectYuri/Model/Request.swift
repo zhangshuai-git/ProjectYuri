@@ -15,11 +15,13 @@ class AddProductionRequest: HandyJSON {
     var nameCN: String = ""
     var desp: String = ""
     var category: ProductionCategory?
-    var coverImg: UIImage?
     
     required init() { }
 }
 
+class AddProductionImageRequest {
+    var coverImg: UIImage = UIImage()
+}
 
 class RepositoriesRequest: HandyJSON {
     var query:String = ""

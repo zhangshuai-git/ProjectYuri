@@ -14,7 +14,7 @@ let PER_PAGE:UInt = 20
 let ProjectYuriProvider = MoyaProvider<ProjectYuriAPI>()
 
 public enum ProjectYuriAPI {
-    case addProduction(_ params:[String : Any])
+    case addProduction([MultipartFormData], urlParameters: [String: Any])
 }
 
 extension ProjectYuriAPI: TargetType {
@@ -39,9 +39,9 @@ extension ProjectYuriAPI: TargetType {
     
     public var task: Task {
         switch self {
-        case .addProduction(let params):
-            print("发起请求: \(params)")
-            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case .addProduction(let formData, let params):
+            print("发起请求: \(formData) \(params)")
+            return .uploadCompositeMultipart(formData, urlParameters: params)
         }
     }
     

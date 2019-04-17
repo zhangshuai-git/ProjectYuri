@@ -26,9 +26,13 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
-    func addProduction(_ request:AddProductionRequest) -> Observable<Result<Production>> {
+    func addProduction(_ request:AddProductionRequest, _ imageRequest: AddProductionImageRequest) -> Observable<Result<Production>> {
+        var formDataArray = [MultipartFormData]()
+        for data in [imageRequest.coverImg.jpegData(compressionQuality: 0.5)] {
+            formDataArray.append(MultipartFormData(provider: .data(data ?? Data()), name: "image"))
+        }
         return ProjectYuriProvider.rx
-            .request(.addProduction(request.toJSON() ?? [:]))
+            .request(.addProduction(formDataArray, urlParameters: request.toJSON() ?? [:]))
             .trackActivity(indicator)
             .asObservable()
             .mapModel(Result.self)

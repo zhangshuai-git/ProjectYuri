@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class AddProductionViewController: ZSViewController {
     
@@ -179,22 +181,60 @@ class AddProductionViewController: ZSViewController {
         
     }
     
+    let addProductionRequest = BehaviorRelay(value: AddProductionRequest())
+    let addProductionImageRequest = BehaviorRelay(value: AddProductionImageRequest())
     
     override func bindViewModel() {
         super.bindViewModel()
         
+        nameTextField.rx.text.orEmpty
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.addProductionRequest.value.nameCN = $0
+            }
+            .disposed(by: disposeBag)
+        
+        originNameTextField.rx.text.orEmpty
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.addProductionRequest.value.name = $0
+            }
+            .disposed(by: disposeBag)
+        
+        despTextView.rx.text.orEmpty
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.addProductionRequest.value.desp = $0
+            }
+            .disposed(by: disposeBag)
+        
         imgBtn.rx.tap
             .bind { [weak self] in guard let `self` = self else { return }
-                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { _ in
-                    
-                }, withAlbumArray: { _ in
-                    
-                }, cancel: {
-                    
-                })
+                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.addProductionImageRequest.value.coverImg = image ?? UIImage()
+                }, withAlbumArray: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.addProductionImageRequest.value.coverImg = image ?? UIImage()
+                }, cancel: nil)
                 pm?.maxPhotoCount = 1
                 pm?.showAlert(self.imgBtn)
             }
             .disposed(by: disposeBag)
+        
+        submittalBtn.rx.tap
+            .flatMapLatest {_ in
+                NetworkService.shared.addProduction(self.addProductionRequest.value, self.addProductionImageRequest.value)
+            }
+            .bind {
+                print($0.toJSON())
+            }
+            .disposed(by: disposeBag)
+        
     }
 }

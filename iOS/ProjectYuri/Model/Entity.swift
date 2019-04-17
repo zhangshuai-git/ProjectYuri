@@ -77,7 +77,7 @@ enum Evaluation: Int, CaseIterable {
     case criticism
 }
 
-enum ProductionCategory: String, CaseIterable {
+public enum ProductionCategory: String, CaseIterable {
     case game = "游戏"
     case anime = "动画"
     case comic = "漫画"
