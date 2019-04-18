@@ -26,7 +26,7 @@ extension ProjectYuriAPI: TargetType {
     public var path: String {
         switch self {
         case .addProduction:
-            return "/api/v1/file/uploadFile"
+            return "/api/v1/production"
         }
     }
     
