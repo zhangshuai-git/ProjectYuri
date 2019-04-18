@@ -47,7 +47,7 @@ class ProductionHeaderView: ZSView {
     override func makeConstraints() {
         super.makeConstraints()
         iconImg.snp.makeConstraints { (make) in
-            make.top.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)).priority(.high)
+            make.top.left.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
             make.size.equalTo(CGSize(width: 100, height: 100))
             make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
@@ -58,8 +58,8 @@ class ProductionHeaderView: ZSView {
         }
         
         contentLab.snp.makeConstraints { (make) in
-            make.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)).priority(.high)
-            make.left.equalTo(iconImg.snp.right).offset(10).priority(.high)
+            make.right.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+            make.left.equalTo(iconImg.snp.right).offset(10)
             make.top.equalTo(nameLab.snp.bottom).offset(10)
             make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }

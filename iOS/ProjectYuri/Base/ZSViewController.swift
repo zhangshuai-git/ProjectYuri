@@ -37,17 +37,17 @@ extension ZSViewController {
     func gotoProductionViewController(_ data: Observable<Repository>) {
         let vc = ProductionViewController()
         data.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: false)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func gotoProfileContainerViewController() {
         let vc = ProfileContainerViewController()
-        navigationController?.pushViewController(vc, animated: false)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func gotoAddProductionViewController() {
         let vc = AddProductionViewController()
-        navigationController?.pushViewController(vc, animated: false)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
