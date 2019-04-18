@@ -201,14 +201,12 @@ class AddProductionViewController: ZSViewController {
         imgBtn.snp.makeConstraints { (make) in
             make.top.equalTo(imgTitleLab.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-//            make.leading.equalTo(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
             make.size.equalTo(CGSize(width: 100, height: 100))
         }
         
         submittalBtn.snp.makeConstraints { (make) in
             make.top.equalTo(imgBtn.snp.bottom).offset(30)
             make.bottom.leading.trailing.equalTo(UIEdgeInsets(top: 10, left: 40, bottom: 40, right: 40))
-//            make.size.equalTo(CGSize(width: 60, height: 30))
             make.height.equalTo(40)
         }
         
@@ -272,8 +270,28 @@ class AddProductionViewController: ZSViewController {
         
         submittalBtn.rx.tap
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.addProductionRequest.value.name.isEmpty
+                let valid = !self.addProductionRequest.value.nameCN.isEmpty
                 if !valid {self.showMessage("请输入作品中文名")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.addProductionRequest.value.name.isEmpty
+                if !valid {self.showMessage("请输入作品原名")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.addProductionRequest.value.desp.isEmpty
+                if !valid {self.showMessage("请输入作品简介")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = self.addProductionRequest.value.category != nil
+                if !valid {self.showMessage("请选择作品类型")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = self.addProductionImageRequest.value.coverImg != nil
+                if !valid {self.showMessage("请上传封面图")}
                 return valid
             }
             .flatMapLatest {_ in

@@ -28,7 +28,7 @@ class NetworkService {
     
     func addProduction(_ request:AddProductionRequest, _ imageRequest: AddProductionImageRequest) -> Observable<Result<Production>> {
         var formDataArray = [MultipartFormData]()
-        for data in [imageRequest.coverImg.jpegData(compressionQuality: 0.5)] {
+        for data in [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)] {
             formDataArray.append(MultipartFormData(provider: .data(data ?? Data()), name: "image"))
         }
         return ProjectYuriProvider.rx

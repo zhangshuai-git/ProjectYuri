@@ -20,7 +20,7 @@ class AddProductionRequest: HandyJSON {
 }
 
 class AddProductionImageRequest {
-    var coverImg: UIImage = UIImage()
+    var coverImg: UIImage?
 }
 
 class RepositoriesRequest: HandyJSON {
