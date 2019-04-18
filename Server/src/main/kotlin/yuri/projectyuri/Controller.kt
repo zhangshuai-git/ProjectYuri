@@ -16,6 +16,25 @@ import java.util.stream.Collectors
 import javax.servlet.http.HttpServletRequest
 
 @RestController
+@Api(tags = ["Production"])
+@RequestMapping("/api/v1/production")
+class ProductionController {
+
+    @PostMapping
+    fun createProduction(
+            @RequestParam nameCN: String,
+            @RequestParam name: String,
+            @RequestParam desp: String,
+            @RequestParam category: String,
+            @RequestParam image: MultipartFile
+    ): Result<String> {
+        ZSLog("$nameCN, $name, $desp, $category, $image")
+        return Result("")
+    }
+
+}
+
+@RestController
 @Api(tags = ["File"])
 @RequestMapping("/api/v1/file")
 class FileController {
@@ -26,7 +45,7 @@ class FileController {
     lateinit var fileStorageService: FileStorageService
 
     @PostMapping("/uploadFile")
-    fun uploadFile(@RequestParam("file") file: MultipartFile): Result<UploadFileResponse> {
+    fun uploadFile(@RequestParam("image") file: MultipartFile): Result<UploadFileResponse> {
         val fileName = fileStorageService.storeFile(file)
 
         val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
