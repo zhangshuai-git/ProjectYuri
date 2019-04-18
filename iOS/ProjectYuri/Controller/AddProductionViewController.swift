@@ -257,11 +257,11 @@ class AddProductionViewController: ZSViewController {
                 let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
                     let image = images?.first as? UIImage
                     self.imgBtn.setImage(image, for: .normal)
-                    self.addProductionImageRequest.value.coverImg = image ?? UIImage()
+                    self.addProductionImageRequest.value.coverImg = image
                 }, withAlbumArray: { images in
                     let image = images?.first as? UIImage
                     self.imgBtn.setImage(image, for: .normal)
-                    self.addProductionImageRequest.value.coverImg = image ?? UIImage()
+                    self.addProductionImageRequest.value.coverImg = image
                 }, cancel: nil)
                 pm?.maxPhotoCount = 1
                 pm?.showAlert(self.imgBtn)
