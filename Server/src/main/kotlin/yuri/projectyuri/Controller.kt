@@ -28,19 +28,10 @@ class ProductionController {
 
     @PostMapping
     fun createProduction(
-            request: HttpServletRequest,
             @RequestParam param: String,
             @RequestParam image: MultipartFile
     ): Result<Production> {
-        println(request.parameterMap.toJsonString())
-
         val production = param.toBean<Production>()
-//        println("$nameCN, $name, $desp, $category, ${image.bytes.size}")
-//        production.name = name
-//        production.nameCN = nameCN
-//        production.desp = desp
-//        production.category = category
-
         val fileName = fileStorageService.storeFile(image)
         val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
