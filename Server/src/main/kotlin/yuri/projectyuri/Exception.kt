@@ -29,7 +29,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(CustomException::class)
     fun handleException(request: HttpServletRequest, exception: CustomException): String {
         val date: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date())
-        println("$date  ${exception.stackTrace[0]}")
+        kotlin.io.println("$date  ${exception.stackTrace[0]}")
         request.setAttribute("javax.servlet.error.status_code", 500)
         request.setAttribute("custom", exception)
         return "forward:/error"

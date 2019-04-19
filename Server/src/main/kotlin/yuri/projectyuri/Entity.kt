@@ -33,7 +33,7 @@ class Production(@Id @GeneratedValue var id: Long) {
 
     var coverUrl: String = ""
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     var category: ProductionCategory? = null
 
     @ManyToMany
@@ -106,10 +106,10 @@ class UserProduction(@EmbeddedId var id: UserProductionID) {
     @ManyToOne(cascade = [CascadeType.MERGE])
     var production: Production? = null
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     var evaluation: Evaluation? = null
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     var schedule: Schedule? = null
 
 }
@@ -122,8 +122,12 @@ enum class Evaluation {
     LIKE, CRITICISM
 }
 
-enum class ProductionCategory {
-    GAME, ANIME, COMIC, NOVEL
+enum class ProductionCategory(val rawValue: String) {
+    GAME("游戏"), ANIME("动画"), COMIC("漫画"), NOVEL("小说");
+
+    companion object {
+        fun rawValueOf(rawValue: String): ProductionCategory? = ProductionCategory.values().find { it.rawValue == rawValue }
+    }
 }
 
 

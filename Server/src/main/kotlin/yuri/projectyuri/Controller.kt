@@ -20,16 +20,34 @@ import javax.servlet.http.HttpServletRequest
 @RequestMapping("/api/v1/production")
 class ProductionController {
 
+    @Autowired
+    lateinit var fileStorageService: FileStorageService
+
     @PostMapping
     fun createProduction(
-            @RequestParam nameCN: String,
             @RequestParam name: String,
+            @RequestParam nameCN: String,
             @RequestParam desp: String,
             @RequestParam category: String,
             @RequestParam image: MultipartFile
-    ): Result<String> {
-        ZSLog("$nameCN, $name, $desp, $category, $image")
-        return Result("")
+    ): Result<Production> {
+        println("$nameCN, $name, $desp, $category, ${image.bytes.size}")
+        val fileName = fileStorageService.storeFile(image)
+
+        val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString()
+
+        val production = Production(0)
+        production.name = name
+        production.nameCN = nameCN
+        production.desp = desp
+        production.category = ProductionCategory.rawValueOf(category)
+        production.coverUrl = fileDownloadUri
+        println(production.category)
+
+        return Result(production)
     }
 
 }

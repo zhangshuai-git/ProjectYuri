@@ -18,10 +18,10 @@ import org.springframework.context.annotation.PropertySource
 import org.springframework.stereotype.Component
 
 
-fun <T> ZSLog(msg: T, tag: String? = null, index: Int = 2) {
+fun <T> println(msg: T, tag: String? = null, index: Int = 2) {
     val date: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date())
     val s: StackTraceElement = Throwable().stackTrace[index]
-    println("${tag ?: date}  $s  $msg")
+    kotlin.io.println("${tag ?: date}  $s  $msg")
 }
 
 @Configuration

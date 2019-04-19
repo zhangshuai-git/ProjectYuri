@@ -14,4 +14,4 @@ fun <T : Any> Map<String, *>.toBean(kClass: KClass<T>): T = jacksonObjectMapper(
 
 fun <T> Optional<T>.toNullable(): T? = orElse(null)
 
-fun <T : Any> T.debug(msg: String = toString(), tag: String? = null): T = also { ZSLog(msg, tag = tag, index = 3) }
+fun <T : Any> T.debug(msg: String = toString(), tag: String? = null): T = also { println(msg, tag = tag, index = 3) }
