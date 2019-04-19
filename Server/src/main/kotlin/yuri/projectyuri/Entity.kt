@@ -122,12 +122,8 @@ enum class Evaluation {
     LIKE, CRITICISM
 }
 
-enum class ProductionCategory(val rawValue: String) {
-    GAME("游戏"), ANIME("动画"), COMIC("漫画"), NOVEL("小说");
-
-    companion object {
-        fun rawValueOf(rawValue: String): ProductionCategory? = ProductionCategory.values().find { it.rawValue == rawValue }
-    }
+enum class ProductionCategory {
+    GAME, ANIME, COMIC, NOVEL;
 }
 
 

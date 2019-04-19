@@ -37,7 +37,7 @@ class ProfileContainerViewController: ZSViewController {
         let configure = SGPageTitleViewConfigure()
         configure.indicatorColor = UIColor.main
         configure.titleSelectedColor = UIColor.main
-        let pageTitleView: SGPageTitleView = SGPageTitleView(frame: CGRect.zero, delegate: self, titleNames:categoryArray.map{$0.rawValue}, configure: configure)
+        let pageTitleView: SGPageTitleView = SGPageTitleView(frame: CGRect.zero, delegate: self, titleNames:categoryArray.map{$0.displayValue}, configure: configure)
         return pageTitleView
     }()
     

@@ -86,7 +86,7 @@ class AddProductionViewController: ZSViewController {
     
     let categoryArray: [ProductionCategory] = ProductionCategory.allCases
     lazy var groupBtn: UISegmentedControl = {
-        let groupBtn = UISegmentedControl(items: categoryArray.map{$0.rawValue})
+        let groupBtn = UISegmentedControl(items: categoryArray.map{$0.displayValue})
         groupBtn.tintColor = UIColor.main
         return groupBtn
     }()

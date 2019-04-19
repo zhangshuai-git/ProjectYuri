@@ -78,10 +78,23 @@ enum Evaluation: Int, CaseIterable {
 }
 
 public enum ProductionCategory: String, CaseIterable {
-    case game = "游戏"
-    case anime = "动画"
-    case comic = "漫画"
-    case novel = "小说"
+    case game = "GAME"
+    case anime = "ANIME"
+    case comic = "COMIC"
+    case novel = "NOVEL"
+    
+    var displayValue: String {
+        switch self {
+        case .game:
+            return "游戏"
+        case .anime:
+            return "动画"
+        case .comic:
+            return "漫画"
+        case .novel:
+            return "小说"
+        }
+    }
 }
 
 

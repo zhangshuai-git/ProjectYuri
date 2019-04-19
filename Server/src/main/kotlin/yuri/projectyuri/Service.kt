@@ -74,6 +74,19 @@ class FileStorageService {
     }
 }
 
+@Service
+class ProductionService {
+
+    @Autowired
+    lateinit var productionRepository: ProductionRepository
+
+    @Transactional
+    fun update(production: Production): Production {
+        return production
+                ?.let { productionRepository.save(it) }
+    }
+
+}
 
 //@Service
 //class EmployeeService {

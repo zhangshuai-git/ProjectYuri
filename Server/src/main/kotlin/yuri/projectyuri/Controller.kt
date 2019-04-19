@@ -21,31 +21,36 @@ import javax.servlet.http.HttpServletRequest
 class ProductionController {
 
     @Autowired
+    lateinit var productionService: ProductionService
+
+    @Autowired
     lateinit var fileStorageService: FileStorageService
 
     @PostMapping
     fun createProduction(
-            @RequestParam name: String,
-            @RequestParam nameCN: String,
-            @RequestParam desp: String,
-            @RequestParam category: String,
+            request: HttpServletRequest,
+            @RequestParam param: String,
             @RequestParam image: MultipartFile
     ): Result<Production> {
-        println("$nameCN, $name, $desp, $category, ${image.bytes.size}")
-        val fileName = fileStorageService.storeFile(image)
+        println(request.parameterMap.toJsonString())
 
+        val production = param.toBean<Production>()
+//        println("$nameCN, $name, $desp, $category, ${image.bytes.size}")
+//        production.name = name
+//        production.nameCN = nameCN
+//        production.desp = desp
+//        production.category = category
+
+        val fileName = fileStorageService.storeFile(image)
         val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString()
 
-        val production = Production(0)
-        production.name = name
-        production.nameCN = nameCN
-        production.desp = desp
-        production.category = ProductionCategory.rawValueOf(category)
         production.coverUrl = fileDownloadUri
         println(production.category)
+
+        productionService.update(production)
 
         return Result(production)
     }

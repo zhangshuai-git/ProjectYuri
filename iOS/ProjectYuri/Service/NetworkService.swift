@@ -35,7 +35,7 @@ class NetworkService {
             formDataArray.append(MultipartFormData(provider: .data(data ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg"))
         }
         return ProjectYuriProvider.rx
-            .request(.addProduction(formDataArray, urlParameters: request.toJSON() ?? [:]))
+            .request(.addProduction(formDataArray, urlParameters: ["param" : request.toJSONString() ?? [:]]))
             .trackActivity(indicator)
             .asObservable()
             .mapModel(Result.self)
