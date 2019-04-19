@@ -27,21 +27,17 @@ class ProductionController {
     lateinit var fileStorageService: FileStorageService
 
     @PostMapping
-    fun createProduction(
-            @RequestParam param: String,
-            @RequestParam image: MultipartFile
-    ): Result<Production> {
+    fun createProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
         val production = param.toBean<Production>()
         val fileName = fileStorageService.storeFile(image)
         val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString()
-
         production.coverUrl = fileDownloadUri
         println(production.category)
 
-        productionService.update(production)
+        productionService.save(production)
 
         return Result(production)
     }

@@ -81,7 +81,7 @@ class ProductionService {
     lateinit var productionRepository: ProductionRepository
 
     @Transactional
-    fun update(production: Production): Production {
+    fun save(production: Production): Production {
         return production
                 ?.let { productionRepository.save(it) }
     }
