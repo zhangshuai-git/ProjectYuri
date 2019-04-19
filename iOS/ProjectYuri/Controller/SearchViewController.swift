@@ -53,7 +53,7 @@ class SearchViewController: ZSViewController {
     let emptyView = ZSEmptyView()
     
     override func buildSubViews() {
-        title = "搜索"
+//        title = "搜索"
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)

@@ -123,7 +123,7 @@ enum class Evaluation {
 }
 
 enum class ProductionCategory {
-    GAME, ANIME, COMIC, NOVEL;
+    GAME, ANIME, COMIC, NOVEL
 }
 
 

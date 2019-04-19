@@ -17,19 +17,16 @@ class ZSNavigationController: UINavigationController {
     
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {
             if children.count > 0 {
-//                let backBtn = UIButton()
-//                backBtn.setImage(UIImage(named: "back-navi-white"), for: .normal)
-//                backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-//                viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
+                viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(target: self, action: #selector(goBack), image: UIImage(named: "back-navi-white"))
                 /// 子控制器隐藏TabBar
                 viewController.hidesBottomBarWhenPushed = true
             }
             super.pushViewController(viewController, animated: animated)
         }
     
-//        @objc func goBack() {
-//            popViewController(animated: true)
-//        }
+        @objc func goBack() {
+            popViewController(animated: true)
+        }
 }
 
 //extension ZSNavigationController: UIGestureRecognizerDelegate {

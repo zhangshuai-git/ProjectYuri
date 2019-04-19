@@ -16,35 +16,6 @@ import java.util.stream.Collectors
 import javax.servlet.http.HttpServletRequest
 
 @RestController
-@Api(tags = ["Production"])
-@RequestMapping("/api/v1/production")
-class ProductionController {
-
-    @Autowired
-    lateinit var productionService: ProductionService
-
-    @Autowired
-    lateinit var fileStorageService: FileStorageService
-
-    @PostMapping
-    fun createProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
-        val production = param.toBean<Production>()
-        val fileName = fileStorageService.storeFile(image)
-        val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString()
-        production.coverUrl = fileDownloadUri
-        println(production.category)
-
-        productionService.save(production)
-
-        return Result(production)
-    }
-
-}
-
-@RestController
 @Api(tags = ["File"])
 @RequestMapping("/api/v1/file")
 class FileController {
@@ -100,6 +71,36 @@ class FileController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.filename + "\"")
                 .body(resource)
+    }
+
+}
+
+@RestController
+@Api(tags = ["Production"])
+@RequestMapping("/api/v1/production")
+class ProductionController {
+
+    @Autowired
+    lateinit var productionService: ProductionService
+
+    @Autowired
+    lateinit var fileStorageService: FileStorageService
+
+    @PostMapping
+    fun createProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
+        val production: Production = param.toBean()
+        val fileName: String = fileStorageService.storeFile(image)
+        val fileDownloadUri: String = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString()
+        production.coverUrl = fileDownloadUri
+        println(production.category)
+
+        productionService.save(production)
+
+        return Result(production)
     }
 
 }
