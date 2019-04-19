@@ -298,7 +298,7 @@ class AddProductionViewController: ZSViewController {
                 NetworkService.shared.addProduction(self.addProductionRequest.value, self.addProductionImageRequest.value)
             }
             .bind {
-                print($0.toJSON())
+                print($0.data?.toJSON() ?? [:])
             }
             .disposed(by: disposeBag)
         
