@@ -33,11 +33,17 @@ class Production: HandyJSON {
 }
 
 class Producer: HandyJSON {
+    var avatarUrl: String = ""
+    var name: String = ""
+    var role: String = ""
     
     required init(){}
 }
 
 class Character: HandyJSON {
+    var avatarUrl: String = ""
+    var name: String = ""
+    var cv: Producer?
     
     required init(){}
 }
