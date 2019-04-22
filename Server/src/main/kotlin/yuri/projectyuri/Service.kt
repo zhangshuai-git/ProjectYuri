@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 import org.hibernate.service.spi.ServiceException
 import org.springframework.core.io.Resource
 import org.springframework.core.io.UrlResource
+import org.springframework.data.domain.Page
 import org.springframework.util.StringUtils
 import java.util.UUID
 import java.text.SimpleDateFormat
@@ -19,6 +20,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
+import javax.transaction.TransactionScoped
 
 
 @Service
@@ -84,6 +86,15 @@ class ProductionService {
     fun save(production: Production): Production {
         return production
                 ?.let { productionRepository.save(it) }
+    }
+
+    @Transactional
+    fun findAll(page: Int, size: Int): Page<Production> {
+        return PageRequest.of(page, size)
+                .debug()
+                .let { productionRepository.findAll(it) }
+                .takeIf { it.pageable.pageNumber < it.totalPages }
+                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
     }
 
 }

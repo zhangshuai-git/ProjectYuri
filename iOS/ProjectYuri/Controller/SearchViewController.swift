@@ -104,7 +104,7 @@ class SearchViewController: ZSViewController {
     override func bindViewModel() {
         let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
             .distinctUntilChanged()
-            .share()
+            .share(replay: 1)
         
         let filteredDataFromGroupBtnAction: Observable<[Repository]> = groupBtnAction
             .flatMap{ [weak self] in

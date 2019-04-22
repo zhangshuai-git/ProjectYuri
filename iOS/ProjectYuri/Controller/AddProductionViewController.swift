@@ -268,7 +268,7 @@ class AddProductionViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        submittalBtn.rx.tap
+        let submitAction: Observable<Result<Production>> = submittalBtn.rx.tap
             .filter{ [weak self] in guard let `self` = self else { return false }
                 let valid = !self.addProductionRequest.value.nameCN.isEmpty
                 if !valid {self.showMessage("请输入作品中文名")}
@@ -297,8 +297,21 @@ class AddProductionViewController: ZSViewController {
             .flatMapLatest {_ in
                 NetworkService.shared.addProduction(self.addProductionRequest.value, self.addProductionImageRequest.value)
             }
-            .bind {
-                print($0.data?.toJSON() ?? [:])
+            .share(replay: 1)
+            
+        submitAction
+            .filter{$0.code == 0}
+            .bind { [weak self] _ in guard let `self` = self else { return }
+                self.showMessage("添加成功", handler: { 
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+            .disposed(by: disposeBag)
+        
+        submitAction
+            .filter{$0.code != 0}
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.showMessage($0.message)
             }
             .disposed(by: disposeBag)
         

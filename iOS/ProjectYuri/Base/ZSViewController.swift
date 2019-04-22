@@ -52,9 +52,9 @@ extension ZSViewController {
 }
 
 extension ZSViewController {
-    func showMessage(_ msg: String) -> Void {
+    func showMessage(_ msg: String?, handler: (() -> Void)? = nil) -> Void {
         let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in handler?()}))
         navigationController?.present(alert, animated: true, completion: nil)
     }
 }
