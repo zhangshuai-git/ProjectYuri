@@ -107,9 +107,7 @@ class ProductionController {
     fun getAllProduction(
             @RequestParam(required = false, defaultValue = "0") page: Int,
             @RequestParam(required = false, defaultValue = "10") size: Int
-    ): Result<PageResult<Production>> {
-        return Result(PageResult(productionService.findAll(page, size)))
-    }
+    ): Result<PageResult<Production>> = Result(PageResult(productionService.findAll(page, size)))
 
 }
 

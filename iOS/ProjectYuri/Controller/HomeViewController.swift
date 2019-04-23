@@ -92,9 +92,33 @@ class HomeViewController: ZSViewController {
         }
         super.updateViewConstraints()
     }
+    
+    let newProductionRequest = BehaviorRelay(value: ProductionRequest())
+    
+    let moreProductionRequest = BehaviorRelay(value: ProductionRequest(page: 2))
+    
+    let dataSource = BehaviorRelay(value: PageResult<Production>())
 
     override func bindViewModel() {
         super.bindViewModel()
+        
+        let newData:Observable<Result<PageResult<Production>>> = newProductionRequest
+            .skip(2)
+            .flatMapLatest {
+                NetworkService.shared.searchProductions($0)
+            }
+            .share(replay: 1)
+        
+        let moreData:Observable<Result<PageResult<Production>>> = moreProductionRequest
+            .skip(1)
+            .map{ [weak self] in guard let `self` = self else { return $0 }
+                $0.page = self.dataSource.value.currentPage + 1
+                return $0
+            }
+            .flatMapLatest {
+                NetworkService.shared.searchProductions($0)
+            }
+            .share(replay: 1)
         
     }
 }

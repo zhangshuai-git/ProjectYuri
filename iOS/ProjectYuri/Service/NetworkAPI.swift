@@ -14,7 +14,8 @@ let PER_PAGE:UInt = 20
 let ProjectYuriProvider = MoyaProvider<ProjectYuriAPI>()
 
 public enum ProjectYuriAPI {
-    case addProduction([MultipartFormData], urlParameters: [String: Any])
+    case addProduction([MultipartFormData], [String: Any])
+    case findAllProductions([String : Any])
 }
 
 extension ProjectYuriAPI: TargetType {
@@ -27,6 +28,8 @@ extension ProjectYuriAPI: TargetType {
         switch self {
         case .addProduction:
             return "/api/v1/production"
+        case .findAllProductions:
+            return "/api/v1/production"
         }
     }
     
@@ -34,6 +37,8 @@ extension ProjectYuriAPI: TargetType {
         switch self {
         case .addProduction:
             return .post
+        case .findAllProductions:
+            return .get
         }
     }
     
@@ -42,6 +47,9 @@ extension ProjectYuriAPI: TargetType {
         case .addProduction(let formData, let params):
             print("发起请求: \(formData) \(params)")
             return .uploadCompositeMultipart(formData, urlParameters: params)
+        case .findAllProductions(let params):
+            print("发起请求: \(params)")
+             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }
     

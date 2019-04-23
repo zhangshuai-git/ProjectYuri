@@ -36,7 +36,18 @@ class NetworkService {
             }
         let param = ["param" : request.toJSONString() ?? ""]
         return ProjectYuriProvider.rx
-            .request(.addProduction(formDataArray, urlParameters: param))
+            .request(.addProduction(formDataArray, param))
+            .trackActivity(indicator)
+            .asObservable()
+            .mapModel(Result.self)
+            .catchErrorJustReturn(Result())
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+    }
+    
+    func searchProductions(_ request:ProductionRequest) -> Observable<Result<PageResult<Production>>> {
+        return ProjectYuriProvider.rx
+            .request(.findAllProductions(request.toJSON() ?? [:]))
             .trackActivity(indicator)
             .asObservable()
             .mapModel(Result.self)

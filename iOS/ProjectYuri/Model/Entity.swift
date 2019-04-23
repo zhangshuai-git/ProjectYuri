@@ -18,6 +18,13 @@ class Result<T>: HandyJSON {
     required init() { }
 }
 
+class PageResult<T> {
+    var totalCount: Int64?
+    var totalPage: Int?
+    var currentPage: Int = 0
+    var items: [T] = []
+}
+
 class Production: HandyJSON {
     var name = ""
     var nameCN = ""

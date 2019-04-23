@@ -23,6 +23,17 @@ class AddProductionImageRequest {
     var coverImg: UIImage?
 }
 
+class ProductionRequest: HandyJSON {
+    var page:Int = 1
+    var size:Int = 10
+    
+    init(page:Int = 1) {
+        self.page = page
+    }
+    
+    required init() { }
+}
+
 class RepositoriesRequest: HandyJSON {
     var query:String = ""
     var sort:String = "stars"
