@@ -12,7 +12,7 @@
 
 static const char* IndexPathKey ="UIView_UserInfo";
 
-@implementation UIView (ZSExtension)
+@implementation UIView (PhotoManager)
 
 + (instancetype)viewWithColor:(UIColor *)color {
     UIView *view = [[self alloc] init];

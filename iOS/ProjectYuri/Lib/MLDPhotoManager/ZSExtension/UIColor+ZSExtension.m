@@ -9,7 +9,7 @@
 #import "UIColor+ZSExtension.h"
 #import "ZSUtils.h"
 
-@implementation UIColor (ZSExtension)
+@implementation UIColor (PhotoManager)
 
 + (instancetype)colorWithHex:(NSString *)hexString {
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];

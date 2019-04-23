@@ -604,9 +604,9 @@ static CGFloat BOTTOM_HEIGHT = 60;
     return UIInterfaceOrientationMaskAll;
 }
 // 支持屏幕旋转
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return YES;
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+//    return YES;
+//}
 // 画面一开始加载时就是竖向
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return UIInterfaceOrientationPortrait;

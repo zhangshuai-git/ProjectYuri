@@ -33,7 +33,7 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
 @property (nonatomic , weak) UIToolbar *toolBar;
 @property (assign,nonatomic) NSUInteger privateTempMaxCount;
 @property (nonatomic , strong) NSMutableArray *assets;
-@property (nonatomic , strong) NSMutableArray<__kindof LGPhotoAssets*> *selectAssets;
+@property (nonatomic , strong) NSMutableArray *selectAssets;
 @property (strong,nonatomic) NSMutableArray *takePhotoImages;
 // 1 - 相册浏览器的数据源是 selectAssets， 0 - 相册浏览器的数据源是 assets
 @property (nonatomic, assign) BOOL isPreview;

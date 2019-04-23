@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (ZSExtension)
+@interface UIColor (PhotoManager)
 
 /**
  *  将十六进制的颜色值转为UIColor

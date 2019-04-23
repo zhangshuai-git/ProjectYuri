@@ -100,7 +100,7 @@ typedef enum{
     _cropIndex = 0;
      _cropedStatus = [NSMutableArray array];
  
-    for (id obj in self.cropImages) {
+    for (int i = 0; i < self.cropImages.count; i++) {
         [_cropedStatus addObject:@0];
     }
     self.automaticallyAdjustsScrollViewInsets = NO;
