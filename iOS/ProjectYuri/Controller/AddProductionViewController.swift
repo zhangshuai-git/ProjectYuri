@@ -243,8 +243,7 @@ class AddProductionViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         groupBtn.rx.selectedSegmentIndex
-            .filter{
-                [weak self] in guard let `self` = self else { return false }
+            .filter{ [weak self] in guard let `self` = self else { return false }
                 return $0 >= 0 && $0 < self.categoryArray.count
             }
             .bind{ [weak self] in guard let `self` = self else { return }
@@ -294,8 +293,8 @@ class AddProductionViewController: ZSViewController {
                 if !valid {self.showMessage("请上传封面图")}
                 return valid
             }
-            .flatMapLatest {_ in
-                NetworkService.shared.addProduction(self.addProductionRequest.value, self.addProductionImageRequest.value)
+            .flatMapLatest { [weak self] _ in
+                NetworkService.shared.addProduction(self?.addProductionRequest.value ?? AddProductionRequest(), self?.addProductionImageRequest.value ?? AddProductionImageRequest())
             }
             .share(replay: 1)
             
