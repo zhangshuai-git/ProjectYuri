@@ -100,7 +100,7 @@ enum Evaluation: Int, CaseIterable {
     case criticism
 }
 
-public enum ProductionCategory: String, CaseIterable {
+public enum ProductionCategory: String, CaseIterable, HandyJSONEnum {
     case game = "GAME"
     case anime = "ANIME"
     case comic = "COMIC"
