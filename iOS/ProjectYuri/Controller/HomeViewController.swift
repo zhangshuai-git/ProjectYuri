@@ -53,7 +53,6 @@ class HomeViewController: ZSViewController {
     let emptyView = ZSEmptyView()
     
     override func buildSubViews() {
-        //        title = "搜索"
         navigationItem.titleView = searchBar
         view.addSubview(topView)
         view.addSubview(tableView)
@@ -254,7 +253,6 @@ class HomeViewController: ZSViewController {
         Observable
             .merge(searchAction, headerAction)
             .map{ ProductionRequest(query: $0) }
-//            .map{_ in ProductionRequest()}
             .bind(to: newProductionRequest)
             .disposed(by: disposeBag)
         
