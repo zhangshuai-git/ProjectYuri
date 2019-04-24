@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest
 
 @RestController
 @Api(tags = ["File"])
-@RequestMapping("/api/v1/file")
 class FileController {
 
     private val logger = LoggerFactory.getLogger(FileController::class.java)
