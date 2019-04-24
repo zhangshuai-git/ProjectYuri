@@ -10,19 +10,29 @@ import HandyJSON
 import RxSwift
 import RxCocoa
 
-class Result<T>: HandyJSON {
-    var code: Int?
-    var message: String?
-    var data: T?
+class Result<T: HandyJSON>: HandyJSON {
+    var code: Int = 999
+    var message: String = "未知错误"
+    var data: T = T()
     
     required init() { }
 }
 
-class PageResult<T> {
-    var totalCount: Int64?
-    var totalPage: Int?
+class PageResult<T>: HandyJSON {
+    var totalCount: Int64 = 0
+    var totalPage: Int = 0
     var currentPage: Int = 0
     var items: [T] = []
+    
+    static func + (obj0: PageResult, obj1: PageResult) -> PageResult {
+        let obj = PageResult()
+        obj.totalCount = max(obj0.totalCount, obj1.totalCount)
+        obj.items = obj0.items + obj1.items
+        obj.currentPage = max(obj0.currentPage, obj1.currentPage)
+        return obj
+    }
+    
+    required init() { }
 }
 
 class Production: HandyJSON {

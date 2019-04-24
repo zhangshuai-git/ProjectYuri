@@ -103,7 +103,7 @@ class HomeViewController: ZSViewController {
         super.bindViewModel()
         
         let newData:Observable<Result<PageResult<Production>>> = newProductionRequest
-            .skip(2)
+            .skip(1)
             .flatMapLatest {
                 NetworkService.shared.searchProductions($0)
             }
@@ -120,5 +120,54 @@ class HomeViewController: ZSViewController {
             }
             .share(replay: 1)
         
+        newData
+            .map{ _ in false }
+            .asDriver(onErrorJustReturn: false)
+            .drive(tableView.mj_header.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
+        Observable
+            .merge(newData.map{$0.data}.map(footerState), moreData.map{$0.data}.map(footerState))
+            .startWith(.hidden)
+            .asDriver(onErrorJustReturn: .hidden)
+            .drive(tableView.mj_footer.rx.refreshFooterState)
+            .disposed(by: disposeBag)
+        
+        newData
+            .map{$0.data}
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        moreData
+            .map{$0.data}
+            .map{ [weak self] in guard let `self` = self else { return $0 }
+                return self.dataSource.value + $0
+            }
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        newData
+            .map{$0.data}
+            .filter{ $0.items.count > 0 }
+            .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
+                self.dataSource.value.currentPage = 1
+            })
+            .disposed(by: disposeBag)
+        
+        moreData
+            .map{$0.data}
+            .filter{ $0.items.count > 0 }
+            .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
+                self.dataSource.value.currentPage += 1
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension HomeViewController {
+    func footerState(_ page: PageResult<Production>?) -> RxMJRefreshFooterState {
+        guard let page = page, page.items.count != 0 else { return .hidden }
+        print("page = \(page.currentPage), totalPage = \(page.totalPage)")
+        return page.totalPage == 0 || page.currentPage < page.totalPage ? .default : .noMoreData
     }
 }
