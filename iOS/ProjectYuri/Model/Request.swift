@@ -24,7 +24,7 @@ class AddProductionImageRequest {
 }
 
 class ProductionRequest: HandyJSON {
-    var page:Int = 1
+    var page:Int = 0
     var size:Int = 10
     
     init(page:Int = 1) {

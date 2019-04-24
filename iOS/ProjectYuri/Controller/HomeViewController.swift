@@ -95,7 +95,7 @@ class HomeViewController: ZSViewController {
     
     let newProductionRequest = BehaviorRelay(value: ProductionRequest())
     
-    let moreProductionRequest = BehaviorRelay(value: ProductionRequest(page: 2))
+    let moreProductionRequest = BehaviorRelay(value: ProductionRequest(page: 1))
     
     let dataSource = BehaviorRelay(value: PageResult<Production>())
 
@@ -207,7 +207,7 @@ class HomeViewController: ZSViewController {
             .map{$0.data}
             .filter{ $0.items.count > 0 }
             .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
-                self.dataSource.value.currentPage = 1
+                self.dataSource.value.currentPage = 0
             })
             .disposed(by: disposeBag)
         
