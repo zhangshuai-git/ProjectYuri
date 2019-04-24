@@ -22,8 +22,9 @@
 		EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */; };
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
-		EC1B9D9F21BE895A000E2C5B /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */; };
+		EC1B9D9F21BE895A000E2C5B /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* SearchCell.swift */; };
 		EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */; };
+		EC5C2EE7227001C0007E036C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE6227001C0007E036C /* HomeCell.swift */; };
 		EC64AFE7225F195900961A5E /* AddProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64AFE6225F195900961A5E /* AddProductionViewController.swift */; };
 		EC64B06B226096AA00961A5E /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC64AFED226096AA00961A5E /* VPImageCropperViewController.m */; };
 		EC64B06C226096AA00961A5E /* 边框.png in Resources */ = {isa = PBXBuildFile; fileRef = EC64AFEF226096AA00961A5E /* 边框.png */; };
@@ -142,8 +143,9 @@
 		EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshFooter+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		EC1B9D9E21BE8959000E2C5B /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
+		EC5C2EE6227001C0007E036C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		EC64AFE6225F195900961A5E /* AddProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductionViewController.swift; sourceTree = "<group>"; };
 		EC64AFEA226096AA00961A5E /* ChooseDefImgItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDefImgItem.h; sourceTree = "<group>"; };
 		EC64AFED226096AA00961A5E /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
@@ -741,7 +743,8 @@
 		ECE4A57B224B1AB100A0E69B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EC1B9D9E21BE8959000E2C5B /* SearchTableViewCell.swift */,
+				EC5C2EE6227001C0007E036C /* HomeCell.swift */,
+				EC1B9D9E21BE8959000E2C5B /* SearchCell.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionCell.swift */,
 				ECE4A594224DEB6600A0E69B /* ProductionView.swift */,
 				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
@@ -961,13 +964,14 @@
 				EC7BAF302254800000F3E28F /* ProfileContainerViewController.swift in Sources */,
 				ECE4A595224DEB6600A0E69B /* ProductionView.swift in Sources */,
 				EC64B08F226096AA00961A5E /* LGPhotoPickerCustomToolBarView.m in Sources */,
-				EC1B9D9F21BE895A000E2C5B /* SearchTableViewCell.swift in Sources */,
+				EC1B9D9F21BE895A000E2C5B /* SearchCell.swift in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */,
 				EC1B9D8A21BE86CF000E2C5B /* ZSExtension.swift in Sources */,
 				EC64B09E226096AA00961A5E /* LGPhotoPickerFooterCollectionReusableView.m in Sources */,
 				ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */,
+				EC5C2EE7227001C0007E036C /* HomeCell.swift in Sources */,
 				EC7BAF36225488DF00F3E28F /* MeCell.swift in Sources */,
 				EC64B0A3226096AA00961A5E /* DACircularProgressView.m in Sources */,
 				EC64B095226096AA00961A5E /* ZLCamera.m in Sources */,

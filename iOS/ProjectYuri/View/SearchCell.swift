@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class SearchTableViewCell: ZSTableViewCell {
+class SearchCell: ZSTableViewCell {
     
     let iconImg: UIImageView = {
         let imageView = UIImageView()

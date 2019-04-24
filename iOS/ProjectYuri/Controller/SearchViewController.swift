@@ -23,7 +23,7 @@ class SearchViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
-        tableView.zs.register(SearchTableViewCell.self)
+        tableView.zs.register(SearchCell.self)
         tableView.mj_header = MJRefreshNormalHeader()
         tableView.mj_footer = MJRefreshAutoNormalFooter()
         return tableView
@@ -123,7 +123,7 @@ class SearchViewController: ZSViewController {
             filteredDataFromDataSource
             )
             .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.zs.dequeueReusableCell(SearchTableViewCell.self, for: IndexPath(row: row, section: 0))
+                let cell = tableView.zs.dequeueReusableCell(SearchCell.self, for: IndexPath(row: row, section: 0))
                 Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
                 return cell
             }
