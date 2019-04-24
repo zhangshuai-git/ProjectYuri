@@ -104,9 +104,15 @@ class ProductionController {
 
     @GetMapping
     fun getAllProduction(
+            @RequestParam(required = false, defaultValue = "") query: String,
             @RequestParam(required = false, defaultValue = "0") page: Int,
             @RequestParam(required = false, defaultValue = "10") size: Int
-    ): Result<PageResult<Production>> = Result(PageResult(productionService.findAll(page, size)))
+    ): Result<PageResult<Production>> {
+        return when {
+            query.isEmpty() -> Result(PageResult(productionService.findAll(page, size)))
+            else -> Result(PageResult(productionService.findSearch(query, page, size)))
+        }
+    }
 
 }
 

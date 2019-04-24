@@ -253,14 +253,14 @@ class HomeViewController: ZSViewController {
         
         Observable
             .merge(searchAction, headerAction)
-//            .map{ RepositoriesRequest(query: $0) }
-            .map{_ in ProductionRequest()}
+            .map{ ProductionRequest(query: $0) }
+//            .map{_ in ProductionRequest()}
             .bind(to: newProductionRequest)
             .disposed(by: disposeBag)
         
         footerAction
-            .map{ _ in
-//                self.moreProductionRequest.value.query = $0
+            .map{
+                self.moreProductionRequest.value.query = $0
                 return self.moreProductionRequest.value
             }
             .bind(to: moreProductionRequest)

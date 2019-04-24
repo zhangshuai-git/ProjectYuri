@@ -24,10 +24,12 @@ class AddProductionImageRequest {
 }
 
 class ProductionRequest: HandyJSON {
+    var query:String = ""
     var page:Int = 0
     var size:Int = 10
     
-    init(page:Int = 1) {
+    init(query:String = "", page:Int = 0) {
+        self.query = query
         self.page = page
     }
     

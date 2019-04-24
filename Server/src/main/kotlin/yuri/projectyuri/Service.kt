@@ -8,6 +8,7 @@ import org.hibernate.service.spi.ServiceException
 import org.springframework.core.io.Resource
 import org.springframework.core.io.UrlResource
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.util.StringUtils
 import java.util.UUID
 import java.text.SimpleDateFormat
@@ -93,6 +94,15 @@ class ProductionService {
         return PageRequest.of(page, size)
                 .debug()
                 .let { productionRepository.findAll(it) }
+                .takeIf { it.pageable.pageNumber < it.totalPages }
+                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
+    }
+
+    @Transactional
+    fun findSearch(query: String, page: Int, size: Int): Page<Production> {
+        return PageRequest.of(page, size)
+                .debug()
+                .let { productionRepository.findSearch(query, it) }
                 .takeIf { it.pageable.pageNumber < it.totalPages }
                 ?: throw CustomException(ErrorEnum.PARAM_ERROR)
     }
