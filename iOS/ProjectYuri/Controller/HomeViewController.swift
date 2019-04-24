@@ -137,9 +137,10 @@ class HomeViewController: ZSViewController {
             })
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(Repository.self)
-            .subscribe(onNext: { [weak self] in guard let `self` = self else { return }
-                self.gotoProductionViewController(Observable.of($0))
+        tableView.rx.modelSelected(Production.self)
+            .subscribe(onNext: { //[weak self] in guard let `self` = self else { return }
+//                self.gotoProductionViewController(Observable.of($0))
+                print($0.toJSON() ?? [:])
             })
             .disposed(by: disposeBag)
         

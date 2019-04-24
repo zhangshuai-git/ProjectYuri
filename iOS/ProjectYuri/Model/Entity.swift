@@ -89,13 +89,13 @@ class UserProduction: HandyJSON {
     required init(){}
 }
 
-enum Schedule: Int, CaseIterable {
+enum Schedule: Int, CaseIterable, HandyJSONEnum {
     case todo
     case doing
     case done
 }
 
-enum Evaluation: Int, CaseIterable {
+enum Evaluation: Int, CaseIterable, HandyJSONEnum {
     case like
     case criticism
 }
