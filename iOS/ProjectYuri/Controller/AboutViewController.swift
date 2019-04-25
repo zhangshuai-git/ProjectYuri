@@ -28,7 +28,7 @@ class AboutViewController: ZSViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
-        title = "关于ProjectYuri"
+        title = "关于\(UIDevice.appName() ?? "")"
         view.addSubview(tableView)
     }
     

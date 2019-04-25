@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ZSUtils
 
 class MeViewController: ZSViewController {
 
@@ -58,7 +59,7 @@ class MeViewController: ZSViewController {
             self?.gotoAddProductionViewController()
         }),
         MeCellModel("设置"),
-        MeCellModel("关于", selectedAction:{ [weak self] in
+        MeCellModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [weak self] in
             self?.gotoAboutViewController()
         }),
         ])
