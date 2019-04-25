@@ -12,13 +12,9 @@ import RxCocoa
 
 class ProfileViewController: ZSViewController {
     
-    class var itemCount: Int {
-        get{ return 4 }
-    }
+    class var itemCount: Int { return 4 }
     
-    class var itemWidth: CGFloat {
-        get{ return (UIScreen.width - (CGFloat(itemCount) + 1) * 10.0) / CGFloat(itemCount) }
-    }
+    class var itemWidth: CGFloat { return (UIScreen.width - (CGFloat(itemCount) + 1) * 10.0) / CGFloat(itemCount) }
 
     let collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
