@@ -1,9 +1,6 @@
 PODS:
   - Alamofire (4.8.0)
   - Differentiator (3.1.0)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - HandyJSON (4.2.1)
   - MJRefresh (3.1.15.7)
   - Moya/Core (12.0.1):
@@ -31,7 +28,6 @@ PODS:
   - ZSUtils (0.0.4)
 
 DEPENDENCIES:
-  - FMDB (~> 2.7.5)
   - HandyJSON (~> 4.2.1)
   - MJRefresh (~> 3.1.15.7)
   - Moya/RxSwift (~> 12.0.1)
@@ -48,7 +44,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Differentiator
-    - FMDB
     - HandyJSON
     - MJRefresh
     - Moya
@@ -66,7 +61,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
@@ -81,6 +75,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   ZSUtils: 730ecc31d38537dd177bdaa91fa316f7ab242609
 
-PODFILE CHECKSUM: c794bd25511a4d3836c45c9381779212ebf99f5f
+PODFILE CHECKSUM: 454ff66378aab8d9c60c54ff0f040d2c996f6ef7
 
 COCOAPODS: 1.5.3
