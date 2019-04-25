@@ -19,7 +19,7 @@ enum class ErrorEnum (val code: Int, val msg: String) {
 
 }
 
-class CustomException(errorEnum: ErrorEnum) : RuntimeException(errorEnum.msg) {
+class CustomException(errorEnum: ErrorEnum): RuntimeException(errorEnum.msg) {
     var code: Int = errorEnum.code
 }
 
@@ -37,7 +37,7 @@ class GlobalExceptionHandler {
 }
 
 @Component
-class MyErrorAttributes : DefaultErrorAttributes() {
+class MyErrorAttributes: DefaultErrorAttributes() {
 
     override fun getErrorAttributes(request: WebRequest, includeStackTrace: Boolean): Map<String, Any> {
         val map: MutableMap<String, Any> = super.getErrorAttributes(request, includeStackTrace)

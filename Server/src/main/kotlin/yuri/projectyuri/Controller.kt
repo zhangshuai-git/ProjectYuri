@@ -24,7 +24,7 @@ class FileController {
     @Autowired
     lateinit var fileStorageService: FileStorageService
 
-    @PostMapping("/uploadFile")
+//    @PostMapping("/uploadFile")
     fun uploadFile(@RequestParam("image") file: MultipartFile): Result<UploadFileResponse> {
         val fileName = fileStorageService.storeFile(file)
 
@@ -36,7 +36,7 @@ class FileController {
         return Result(UploadFileResponse(fileName, fileDownloadUri, file.contentType, file.size))
     }
 
-    @PostMapping("/uploadMultipleFiles")
+//    @PostMapping("/uploadMultipleFiles")
     fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> {
         return Result(Arrays
                 .asList(*files)
@@ -102,7 +102,7 @@ class ProductionController {
     }
 
     @GetMapping
-    fun getAllProduction(
+    fun getProductionList(
             @RequestParam(required = false, defaultValue = "") query: String,
             @RequestParam(required = false, defaultValue = "0") page: Int,
             @RequestParam(required = false, defaultValue = "10") size: Int

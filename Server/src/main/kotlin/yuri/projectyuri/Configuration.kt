@@ -43,7 +43,6 @@ class SwaggerConfig {
             .build()
 }
 
-
 @Component
 @ConfigurationProperties(prefix = "file")
 @PropertySource("classpath:file-storage.properties")
