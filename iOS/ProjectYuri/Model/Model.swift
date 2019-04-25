@@ -22,10 +22,12 @@ class ProductionCellModel<T> {
 
 class MeCellModel {
     var title: String
-    var selectedAction: () -> Void
+    var desp: String?
+    var selectedAction: (() -> Void)?
     
-    init(_ title: String, _ selectedAction: @escaping () -> Void) {
+    init(_ title: String, desp: String? = nil, selectedAction: (() -> Void)? = nil) {
         self.title = title
+        self.desp = desp
         self.selectedAction = selectedAction
     }
 }

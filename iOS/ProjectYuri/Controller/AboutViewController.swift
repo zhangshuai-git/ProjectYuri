@@ -1,8 +1,8 @@
 //
-//  ProfileViewController.swift
+//  AboutViewController.swift
 //  ProjectYuri
 //
-//  Created by 張帥 on 2019/03/27.
+//  Created by 張帥 on 2019/04/25.
 //  Copyright © 2019 張帥. All rights reserved.
 //
 
@@ -10,13 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MeViewController: ZSViewController {
+class AboutViewController: ZSViewController {
 
-    let topView: MeTopView = {
-        let view = MeTopView()
-        return view
-    }()
-    
     let tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.tableFooterView = UIView()
@@ -32,21 +27,14 @@ class MeViewController: ZSViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
-//        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black")?.toScale(0.7))
-        view.addSubview(topView)
+        title = "关于ProjectYuri"
         view.addSubview(tableView)
     }
     
     override func makeConstraints() {
         super.makeConstraints()
-        topView.snp.makeConstraints { (make) in
-            make.top.equalTo(topLayoutGuide.snp.bottom)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(topView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height)
-        }
-        
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(topView.snp.bottom)
+            make.top.equalTo(topLayoutGuide.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(bottomLayoutGuide.snp.top)
         }
@@ -54,31 +42,12 @@ class MeViewController: ZSViewController {
     }
     
     lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
-        MeCellModel("添加条目", selectedAction:{ [weak self] in
-            self?.gotoAddProductionViewController()
-        }),
-        MeCellModel("设置"),
-        MeCellModel("关于", selectedAction:{ [weak self] in
-            self?.gotoAboutViewController()
-        }),
+        MeCellModel("当前版本", desp: "0.0.1"),
+        MeCellModel("开源组件许可"),
         ])
     
     override func bindViewModel() {
         super.bindViewModel()
-        
-        let topViewTapedAction = UITapGestureRecognizer()
-        topView.addGestureRecognizer(topViewTapedAction)
-        topViewTapedAction.rx.event
-            .bind{ [weak self] _ in
-                self?.gotoProfileContainerViewController()
-            }
-            .disposed(by: disposeBag)
-        
-//        rightBarButtonItem?.button?.rx.tap
-//            .bind{
-//                print("\($0) rightBarButtonItem")
-//            }
-//            .disposed(by: disposeBag)
         
         dataSource
             .bind(to: tableView.rx.items) { tableView, row, element in
@@ -94,6 +63,5 @@ class MeViewController: ZSViewController {
             .disposed(by: disposeBag)
         
     }
-    
-}
 
+}

@@ -49,6 +49,11 @@ extension ZSViewController {
         let vc = AddProductionViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func gotoAboutViewController() {
+        let vc = AboutViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ZSViewController {
