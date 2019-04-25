@@ -202,22 +202,6 @@ class HomeViewController: ZSViewController {
             .bind(to: dataSource)
             .disposed(by: disposeBag)
         
-        newData
-            .map{$0.data}
-            .filter{ $0.items.count > 0 }
-            .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
-                self.dataSource.value.currentPage = 0
-            })
-            .disposed(by: disposeBag)
-        
-        moreData
-            .map{$0.data}
-            .filter{ $0.items.count > 0 }
-            .subscribe(onNext: { [weak self] _ in guard let `self` = self else { return }
-                self.dataSource.value.currentPage += 1
-            })
-            .disposed(by: disposeBag)
-        
         let searchAction: Observable<String> = searchBar.rx.text.orEmpty
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
