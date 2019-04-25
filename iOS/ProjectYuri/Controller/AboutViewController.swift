@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ZSUtils
 
 class AboutViewController: ZSViewController {
 
@@ -42,8 +43,9 @@ class AboutViewController: ZSViewController {
     }
     
     lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
-        MeCellModel("当前版本", desp: "0.0.1"),
+        MeCellModel("当前版本", desp: UIDevice.appVersion()),
         MeCellModel("开源组件许可"),
+        MeCellModel("制作人名单"),
         ])
     
     override func bindViewModel() {
