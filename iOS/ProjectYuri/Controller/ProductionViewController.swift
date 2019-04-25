@@ -58,9 +58,9 @@ class ProductionViewController: ZSViewController {
         }
     }
     
-    let dataSource = BehaviorRelay(value: Repository())
+    let dataSource = BehaviorRelay(value: Production())
     
-    lazy var sectionedDataSource: [ProductionCellModel<Repository>] = [
+    lazy var sectionedDataSource: [ProductionCellModel<Production>] = [
         ProductionCellModel(dataSource.value),
         ProductionCellModel(dataSource.value),
         ProductionCellModel(dataSource.value),
@@ -72,7 +72,7 @@ class ProductionViewController: ZSViewController {
         
         dataSource
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.visualView.backgroundImg.sd_setImage(with: URL(string: $0.owner.avatarUrl))
+                self.visualView.backgroundImg.sd_setImage(with: URL(string: $0.coverUrl))
                 self.title = $0.name
             }
             .disposed(by: disposeBag)

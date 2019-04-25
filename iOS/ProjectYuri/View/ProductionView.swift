@@ -12,7 +12,7 @@ import RxCocoa
 
 class ProductionHeaderView: ZSView {
     
-    let dataSource = PublishRelay<Repository>()
+    let dataSource = PublishRelay<Production>()
     
     let iconImg: UIImageView = {
         let imageView = UIImageView()
@@ -69,7 +69,7 @@ class ProductionHeaderView: ZSView {
         super.bindViewModel()
         dataSource
             .bind { [weak self] in guard let `self` = self else { return }
-                self.iconImg.sd_setImage(with: URL(string: $0.owner.avatarUrl))
+                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl))
                 self.nameLab.text = $0.name
                 self.contentLab.text = $0.desp
             }

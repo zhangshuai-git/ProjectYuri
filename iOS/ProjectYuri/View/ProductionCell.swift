@@ -36,7 +36,7 @@ class ProductionCell0: ZSExpandableCell {
         }
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Repository>>()
+    let dataSource = PublishRelay<ProductionCellModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -82,13 +82,13 @@ class ProductionCell1: ZSExpandableCell {
         }
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Repository>>()
+    let dataSource = PublishRelay<ProductionCellModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
         dataSource
             .map{ $0.data }
-            .map{"\($0.htmlUrl) \n\n\($0.htmlUrl) \n\n\($0.htmlUrl) \n\n\($0.htmlUrl) \n\n\($0.htmlUrl) \n\n\($0.htmlUrl) \n\n\($0.htmlUrl) \n\n\($0.htmlUrl)"}
+            .map{"\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl)"}
             .bind(to:contentLab.rx.text)
             .disposed(by: disposeBag)
         
@@ -144,7 +144,7 @@ class ProductionCell2: ZSTableViewCell {
         }
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Repository>>()
+    let dataSource = PublishRelay<ProductionCellModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -224,7 +224,7 @@ class ProductionCell3: ZSTableViewCell {
         characterArray.snp.distributeSudokuViews(fixedLineSpacing: 0, fixedInteritemSpacing: 0, warpCount: 2)
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Repository>>()
+    let dataSource = PublishRelay<ProductionCellModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
