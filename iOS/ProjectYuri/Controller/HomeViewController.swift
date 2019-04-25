@@ -50,7 +50,7 @@ class HomeViewController: ZSViewController {
         return groupBtn
     }()
     
-    let emptyView = ZSEmptyView()
+    let emptyView = ZSEmptyView(message: "")
     
     override func buildSubViews() {
         navigationItem.titleView = searchBar

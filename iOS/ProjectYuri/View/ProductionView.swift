@@ -16,7 +16,7 @@ class ProductionHeaderView: ZSView {
     
     let iconImg: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         return imageView
