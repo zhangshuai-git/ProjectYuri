@@ -12,7 +12,7 @@ import RxCocoa
 
 class Result<T: HandyJSON>: HandyJSON {
     var code: Int = 999
-    var message: String = "未知错误"
+    var message: String = "无法连接到服务器"
     var data: T = T()
     
     required init() { }
