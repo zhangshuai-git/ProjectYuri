@@ -13,10 +13,10 @@ import RxSwift
 
 class ProfileContainerViewController: ZSViewController {
     
-    let mockData: [Repository] = {
-        var array = [Repository]()
+    let mockData: [Production] = {
+        var array = [Production]()
         for _ in 0..<40 {
-            array.append(Repository())
+            array.append(Production())
         }
         return array
     }()

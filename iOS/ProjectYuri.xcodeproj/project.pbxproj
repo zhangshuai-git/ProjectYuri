@@ -10,7 +10,6 @@
 		EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
-		EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */; };
 		EC1B9D7421BE84DE000E2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */; };
 		EC1B9D7721BE84DE000E2C5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7521BE84DE000E2C5B /* LaunchScreen.storyboard */; };
 		EC1B9D8321BE8690000E2C5B /* ZSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D7F21BE8690000E2C5B /* ZSViewController.swift */; };
@@ -22,7 +21,6 @@
 		EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */; };
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
-		EC1B9D9F21BE895A000E2C5B /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9E21BE8959000E2C5B /* SearchCell.swift */; };
 		EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */; };
 		EC5C2EE7227001C0007E036C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE6227001C0007E036C /* HomeCell.swift */; };
 		EC64AFE7225F195900961A5E /* AddProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64AFE6225F195900961A5E /* AddProductionViewController.swift */; };
@@ -130,7 +128,6 @@
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* ProjectYuri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectYuri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1B9D7621BE84DE000E2C5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1B9D7821BE84DE000E2C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,7 +140,6 @@
 		EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshFooter+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		EC1B9D9E21BE8959000E2C5B /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
 		EC5C2EE6227001C0007E036C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		EC64AFE6225F195900961A5E /* AddProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductionViewController.swift; sourceTree = "<group>"; };
@@ -384,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */,
-				EC1B9D6E21BE84DB000E2C5B /* SearchViewController.swift */,
 				ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */,
 				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
 				EC64AFE6225F195900961A5E /* AddProductionViewController.swift */,
@@ -744,7 +739,6 @@
 			isa = PBXGroup;
 			children = (
 				EC5C2EE6227001C0007E036C /* HomeCell.swift */,
-				EC1B9D9E21BE8959000E2C5B /* SearchCell.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionCell.swift */,
 				ECE4A594224DEB6600A0E69B /* ProductionView.swift */,
 				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
@@ -964,7 +958,6 @@
 				EC7BAF302254800000F3E28F /* ProfileContainerViewController.swift in Sources */,
 				ECE4A595224DEB6600A0E69B /* ProductionView.swift in Sources */,
 				EC64B08F226096AA00961A5E /* LGPhotoPickerCustomToolBarView.m in Sources */,
-				EC1B9D9F21BE895A000E2C5B /* SearchCell.swift in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
 				ECFD0FC2225212590074550D /* ConstraintArray+Extensions.swift in Sources */,
@@ -981,7 +974,6 @@
 				EC7BAF442255A0B100F3E28F /* ActivityIndicator.swift in Sources */,
 				EC64B08D226096AA00961A5E /* LGPhotoPickerBrowserViewController.m in Sources */,
 				EC64B08C226096AA00961A5E /* LGPhotoPickerBrowserPhoto.m in Sources */,
-				EC1B9D6F21BE84DB000E2C5B /* SearchViewController.swift in Sources */,
 				EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */,
 				EC64B0B222609D1F00961A5E /* UIColor+ZSExtension.m in Sources */,
 				EC64B094226096AA00961A5E /* ZLCameraImageView.m in Sources */,

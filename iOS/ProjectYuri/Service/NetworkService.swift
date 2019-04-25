@@ -56,14 +56,4 @@ class NetworkService {
             .observeOn(MainScheduler.instance)
     }
     
-    func searchRepositories(_ request:RepositoriesRequest) -> Observable<Repositories> {
-        return GitHubProvider.rx
-            .request(.repositories(request.toJSON() ?? [:]))
-            .trackActivity(indicator)
-            .asObservable()
-            .mapModel(Repositories.self)
-            .catchErrorJustReturn(Repositories())
-            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
-            .observeOn(MainScheduler.instance)
-    }
 }

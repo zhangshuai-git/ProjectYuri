@@ -36,22 +36,3 @@ class ProductionRequest: HandyJSON {
     required init() { }
 }
 
-class RepositoriesRequest: HandyJSON {
-    var query:String = ""
-    var sort:String = "stars"
-    var order:String = "desc"
-    var perPage:UInt = PER_PAGE
-    var page:Int = 1
-
-    func mapping(mapper: HelpingMapper) {
-        mapper <<< query <-- "q"
-        mapper <<< perPage <-- "per_page"
-    }
-
-    init(query:String = "", page:Int = 1) {
-        self.query = query
-        self.page = page
-    }
-
-    required init() { }
-}

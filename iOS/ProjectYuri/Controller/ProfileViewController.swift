@@ -45,7 +45,7 @@ class ProfileViewController: ZSViewController {
         }
     }
     
-    let dataSource = BehaviorRelay(value: [Repository]())
+    let dataSource = BehaviorRelay(value: [Production]())
     
     override func bindViewModel() {
         super.bindViewModel()
