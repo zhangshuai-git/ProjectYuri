@@ -9,8 +9,6 @@
 import Foundation
 import Moya
 
-let PER_PAGE:UInt = 20
-
 let ProjectYuriProvider = MoyaProvider<ProjectYuriAPI>()
 
 public enum ProjectYuriAPI {
