@@ -33,8 +33,7 @@ class FileController {
                 .path(fileName)
                 .toUriString()
 
-        return Result(UploadFileResponse(fileName, fileDownloadUri,
-                file.contentType, file.size))
+        return Result(UploadFileResponse(fileName, fileDownloadUri, file.contentType, file.size))
     }
 
     @PostMapping("/uploadMultipleFiles")

@@ -85,8 +85,7 @@ class ProductionService {
 
     @Transactional
     fun save(production: Production): Production {
-        return production
-                ?.let { productionRepository.save(it) }
+        return production.let { productionRepository.save(it) }
     }
 
     @Transactional

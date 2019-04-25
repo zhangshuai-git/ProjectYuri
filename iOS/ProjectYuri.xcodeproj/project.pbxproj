@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
 		EC1B9D7421BE84DE000E2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 		EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */; };
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
-		EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */; };
 		EC5C2EE7227001C0007E036C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE6227001C0007E036C /* HomeCell.swift */; };
 		EC64AFE7225F195900961A5E /* AddProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64AFE6225F195900961A5E /* AddProductionViewController.swift */; };
 		EC64B06B226096AA00961A5E /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC64AFED226096AA00961A5E /* VPImageCropperViewController.m */; };
@@ -124,7 +122,6 @@
 		2A300FFD16FDCF6D81850714 /* Pods-ProjectYuri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectYuri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri.debug.xcconfig"; sourceTree = "<group>"; };
 		459D6ED540DE527EBF8BDC37 /* Pods-ProjectYuri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectYuri.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri.release.xcconfig"; sourceTree = "<group>"; };
 		5E5EA96522B8512FF58C6A2F /* Pods_ProjectYuri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectYuri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* ProjectYuri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectYuri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,7 +137,6 @@
 		EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshFooter+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
 		EC5C2EE6227001C0007E036C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		EC64AFE6225F195900961A5E /* AddProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductionViewController.swift; sourceTree = "<group>"; };
 		EC64AFEA226096AA00961A5E /* ChooseDefImgItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDefImgItem.h; sourceTree = "<group>"; };
@@ -394,8 +390,6 @@
 			children = (
 				EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */,
 				ECB0803121C2032400ED8548 /* NetworkAPI.swift */,
-				EC021E9E21F0102B0058F9E3 /* DatabaseService.swift */,
-				EC3908F121D1D1F8003A9250 /* DatabaseAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -999,7 +993,6 @@
 				ECF0E7392253072400E265B9 /* String+ZSExtension.swift in Sources */,
 				EC64B074226096AA00961A5E /* AlbumCollectionViewCell.m in Sources */,
 				EC1B9D8F21BE8765000E2C5B /* MJRefreshComponent+Rx.swift in Sources */,
-				EC021E9F21F0102B0058F9E3 /* DatabaseService.swift in Sources */,
 				EC1B9D8321BE8690000E2C5B /* ZSViewController.swift in Sources */,
 				EC64B09C226096AA00961A5E /* LGPhotoPickerViewController.m in Sources */,
 				EC64B0A9226096AA00961A5E /* MLDPhotoManager.m in Sources */,
@@ -1016,7 +1009,6 @@
 				ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */,
 				EC64B076226096AA00961A5E /* AlertLabel.m in Sources */,
 				EC64B0A8226096AA00961A5E /* LKActionItem.m in Sources */,
-				EC3908F221D1D1F8003A9250 /* DatabaseAPI.swift in Sources */,
 				EC64B098226096AA00961A5E /* LGPhotoPickerDatas.m in Sources */,
 				ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */,
 				ECE4A57D224B1D2A00A0E69B /* MeViewController.swift in Sources */,
