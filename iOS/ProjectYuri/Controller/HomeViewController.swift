@@ -108,14 +108,14 @@ class HomeViewController: ZSViewController {
         let filteredDataFromGroupBtnAction: Observable<[Production]> = groupBtnAction
             .flatMap{ [weak self] in
                 self?.filteredItems($0, self?.dataSource.value.items ?? [Production]()) ?? Observable.of([Production]())
-        }
+            }
         
         let filteredDataFromDataSource: Observable<[Production]> = dataSource
             .skip(2)
             .map{ $0.items }
             .flatMap{ [weak self] in
                 self?.filteredItems(self?.groupBtn.selectedSegmentIndex ?? 0, $0) ?? Observable.of([Production]())
-        }
+            }
         
         Observable.merge(
             filteredDataFromGroupBtnAction,
