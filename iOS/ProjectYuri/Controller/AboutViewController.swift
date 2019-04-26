@@ -28,7 +28,6 @@ class AboutViewController: ZSViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
-        title = "关于\(UIDevice.appName() ?? "")"
         view.addSubview(tableView)
     }
     
@@ -42,10 +41,12 @@ class AboutViewController: ZSViewController {
         
     }
     
-    lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
-        MeCellModel("当前版本", desp: UIDevice.appVersion()),
-        MeCellModel("开源组件许可"),
-        MeCellModel("制作人名单"),
+    lazy var dataSource: BehaviorRelay<[MeModel]> = BehaviorRelay(value: [
+        MeModel("当前版本", desp: UIDevice.appVersion()),
+        MeModel("开源组件许可", selectedAction:{ [weak self] in
+            self?.gotoLicenseViewController("开源组件许可")
+        }),
+        MeModel("制作人名单"),
         ])
     
     override func bindViewModel() {
@@ -60,7 +61,7 @@ class AboutViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(MeCellModel.self)
+        tableView.rx.modelSelected(MeModel.self)
             .bind { $0.selectedAction?() }
             .disposed(by: disposeBag)
         

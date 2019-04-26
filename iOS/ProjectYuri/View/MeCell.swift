@@ -44,7 +44,7 @@ class MeCell: ZSTableViewCell {
         }
     }
     
-    let dataSource = PublishRelay<MeCellModel>()
+    let dataSource = PublishRelay<MeModel>()
 
     override func bindViewModel() {
         super.bindViewModel()

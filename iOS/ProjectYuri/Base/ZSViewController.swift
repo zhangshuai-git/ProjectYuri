@@ -50,8 +50,15 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func gotoAboutViewController() {
+    func gotoAboutViewController(_ title: String? = nil) {
         let vc = AboutViewController()
+        vc.title = title
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoLicenseViewController(_ title: String? = nil) {
+        let vc = LicenseViewController()
+        vc.title = title
         navigationController?.pushViewController(vc, animated: true)
     }
 }

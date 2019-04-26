@@ -54,13 +54,13 @@ class MeViewController: ZSViewController {
         
     }
     
-    lazy var dataSource: BehaviorRelay<[MeCellModel]> = BehaviorRelay(value: [
-        MeCellModel("添加条目", selectedAction:{ [weak self] in
+    lazy var dataSource: BehaviorRelay<[MeModel]> = BehaviorRelay(value: [
+        MeModel("添加条目", selectedAction:{ [weak self] in
             self?.gotoAddProductionViewController()
         }),
-        MeCellModel("设置"),
-        MeCellModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [weak self] in
-            self?.gotoAboutViewController()
+        MeModel("设置"),
+        MeModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [weak self] in
+            self?.gotoAboutViewController("关于\(UIDevice.appName() ?? "")")
         }),
         ])
     
@@ -90,7 +90,7 @@ class MeViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(MeCellModel.self)
+        tableView.rx.modelSelected(MeModel.self)
             .bind { $0.selectedAction?() }
             .disposed(by: disposeBag)
         

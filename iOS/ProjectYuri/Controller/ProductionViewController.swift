@@ -9,7 +9,6 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import RxDataSources
 import SDWebImage
 
 class ProductionViewController: ZSViewController {
@@ -60,11 +59,11 @@ class ProductionViewController: ZSViewController {
     
     let dataSource = BehaviorRelay(value: Production())
     
-    lazy var sectionedDataSource: [ProductionCellModel<Production>] = [
-        ProductionCellModel(dataSource.value),
-        ProductionCellModel(dataSource.value),
-        ProductionCellModel(dataSource.value),
-        ProductionCellModel(dataSource.value),
+    lazy var sectionedDataSource: [ProductionModel<Production>] = [
+        ProductionModel(dataSource.value),
+        ProductionModel(dataSource.value),
+        ProductionModel(dataSource.value),
+        ProductionModel(dataSource.value),
         ]
     
     override func bindViewModel() {

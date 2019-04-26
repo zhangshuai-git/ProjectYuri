@@ -36,7 +36,7 @@ class ProductionCell0: ZSExpandableCell {
         }
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Production>>()
+    let dataSource = PublishRelay<ProductionModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -82,7 +82,7 @@ class ProductionCell1: ZSExpandableCell {
         }
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Production>>()
+    let dataSource = PublishRelay<ProductionModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -144,7 +144,7 @@ class ProductionCell2: ZSTableViewCell {
         }
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Production>>()
+    let dataSource = PublishRelay<ProductionModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -224,7 +224,7 @@ class ProductionCell3: ZSTableViewCell {
         characterArray.snp.distributeSudokuViews(fixedLineSpacing: 0, fixedInteritemSpacing: 0, warpCount: 2)
     }
     
-    let dataSource = PublishRelay<ProductionCellModel<Production>>()
+    let dataSource = PublishRelay<ProductionModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
