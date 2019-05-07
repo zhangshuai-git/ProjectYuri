@@ -71,6 +71,7 @@
  @param title title
  */
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title;
++ (UIBarButtonItem *)itemWithTitle:(NSString *)title;
 
 /**
  根据文字生成UIBarButtonItem

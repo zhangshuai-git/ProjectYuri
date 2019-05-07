@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import SDWebImage
+import ZSUtils
 
 class ProductionViewController: ZSViewController {
 
@@ -43,6 +44,7 @@ class ProductionViewController: ZSViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
+        rightBarButtonItem = UIBarButtonItem(target: nil, action: nil, title: "编辑", font: nil, titleColor: .white, highlightedColor: .white, titleEdgeInsets: .zero)
         view.addSubview(tableView)
         tableView.tableHeaderView = headerView
         tableView.backgroundView = visualView
@@ -68,6 +70,12 @@ class ProductionViewController: ZSViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
+        
+        rightBarButtonItem?.button?.rx.tap
+            .bind{
+                print("\($0) rightBarButtonItem")
+            }
+            .disposed(by: disposeBag)
         
         dataSource
             .bind{ [weak self] in guard let `self` = self else { return }

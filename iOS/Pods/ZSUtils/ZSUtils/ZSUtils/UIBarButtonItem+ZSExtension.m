@@ -131,6 +131,9 @@
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title {
     return [self itemWithTarget:target action:action title:title font:nil titleColor:nil highlightedColor:nil titleEdgeInsets:UIEdgeInsetsZero];
 }
++ (UIBarButtonItem *)itemWithTitle:(NSString *)title {
+    return [self itemWithTarget:nil action:nil title:title];
+}
 
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action title:(NSString *)title titleEdgeInsets:(UIEdgeInsets)titleEdgeInsets {
     return [self itemWithTarget:target action:action title:title font:nil titleColor:nil highlightedColor:nil titleEdgeInsets:titleEdgeInsets];
