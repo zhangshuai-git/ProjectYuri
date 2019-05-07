@@ -50,6 +50,12 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func gotoEditProductionViewController(_ data: Observable<Production>) {
+        let vc = EditProductionViewController()
+        data.bind(to: vc.dataSource).disposed(by: disposeBag)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func gotoAboutViewController(_ title: String? = nil) {
         let vc = AboutViewController()
         vc.title = title

@@ -20,6 +20,7 @@
 		EC1B9D9121BE8796000E2C5B /* MJRefreshFooter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */; };
 		EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */; };
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
+		EC416FCB22817A45001FF43E /* EditProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC416FCA22817A45001FF43E /* EditProductionViewController.swift */; };
 		EC5C2EE7227001C0007E036C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE6227001C0007E036C /* HomeCell.swift */; };
 		EC5C2EE922718D1E007E036C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE822718D1E007E036C /* AboutViewController.swift */; };
 		EC5C2EED22719D52007E036C /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EEC22719D52007E036C /* LicenseViewController.swift */; };
@@ -139,6 +140,7 @@
 		EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshFooter+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9421BE87CA000E2C5B /* MJRefreshHeader+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefreshHeader+Rx.swift"; sourceTree = "<group>"; };
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EC416FCA22817A45001FF43E /* EditProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductionViewController.swift; sourceTree = "<group>"; };
 		EC5C2EE6227001C0007E036C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		EC5C2EE822718D1E007E036C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		EC5C2EEC22719D52007E036C /* LicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */,
 				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
 				EC64AFE6225F195900961A5E /* AddProductionViewController.swift */,
+				EC416FCA22817A45001FF43E /* EditProductionViewController.swift */,
 				EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */,
 				EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */,
 				EC5C2EE822718D1E007E036C /* AboutViewController.swift */,
@@ -983,6 +986,7 @@
 				EC64B09A226096AA00961A5E /* LGPhotoAssets.m in Sources */,
 				EC7BAF412254C12000F3E28F /* UICollectionView+ZSExtension.swift in Sources */,
 				EC64B071226096AA00961A5E /* UIImage+Custom.m in Sources */,
+				EC416FCB22817A45001FF43E /* EditProductionViewController.swift in Sources */,
 				EC64B0A6226096AA00961A5E /* LKActionLineView.m in Sources */,
 				EC5C2EED22719D52007E036C /* LicenseViewController.swift in Sources */,
 				EC64B0A1226096AA00961A5E /* LGPhotoPickerGroupTableViewCell.m in Sources */,
