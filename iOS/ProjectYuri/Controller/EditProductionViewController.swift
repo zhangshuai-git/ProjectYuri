@@ -213,8 +213,8 @@ class EditProductionViewController: ZSViewController {
     }
     
     let dataSource = BehaviorRelay(value: Production())
-    let addProductionRequest = BehaviorRelay(value: AddProductionRequest())
-    let addProductionImageRequest = BehaviorRelay(value: AddProductionImageRequest())
+    let addProductionRequest = BehaviorRelay(value: Production())
+    let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -307,7 +307,7 @@ class EditProductionViewController: ZSViewController {
                 return valid
             }
             .flatMapLatest { [weak self] _ in
-                NetworkService.shared.addProduction(self?.addProductionRequest.value ?? AddProductionRequest(), self?.addProductionImageRequest.value ?? AddProductionImageRequest())
+                NetworkService.shared.addProduction(self?.addProductionRequest.value ?? Production(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
             }
             .share(replay: 1)
         

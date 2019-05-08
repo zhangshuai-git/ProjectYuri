@@ -10,16 +10,7 @@ import HandyJSON
 import RxSwift
 import RxCocoa
 
-class AddProductionRequest: HandyJSON {
-    var name: String = ""
-    var nameCN: String = ""
-    var desp: String = ""
-    var category: ProductionCategory?
-    
-    required init() { }
-}
-
-class AddProductionImageRequest {
+class ProductionImageRequest {
     var coverImg: UIImage?
 }
 

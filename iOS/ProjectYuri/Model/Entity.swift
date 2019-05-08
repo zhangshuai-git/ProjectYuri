@@ -36,8 +36,9 @@ class PageResult<T>: HandyJSON {
 }
 
 class Production: HandyJSON {
-    var name = ""
-    var nameCN = ""
+    var id: Int64 = 0
+    var name: String = ""
+    var nameCN: String = ""
     var desp: String = ""
     var info: String = ""
     var coverUrl: String = ""

@@ -32,10 +32,7 @@ class FileStorageService {
 
     private val fileStorageLocation: Path
 
-    fun storeFile(file: MultipartFile): String {
-        // Normalize file name
-        val fileName = file.originalFilename?.let { StringUtils.cleanPath(it) } ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
-
+    fun storeFile(file: MultipartFile, fileName: String = file.originalFilename?.let { StringUtils.cleanPath(it) } ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)): String {
         try {
             // Check if the file's name contains invalid characters
             if (fileName.contains("..")) {
@@ -89,6 +86,12 @@ class ProductionService {
                 .takeIf { productionRepository.existsById(it.id) }
                 ?.let { productionRepository.save(it) }
                 ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+    }
+
+    @Transactional
+    fun find(id: Long): Production {
+        return productionRepository.findById(id).toNullable()
+                ?: throw CustomException(ErrorEnum.RESOURCE_ERROR)
     }
 
     @Transactional

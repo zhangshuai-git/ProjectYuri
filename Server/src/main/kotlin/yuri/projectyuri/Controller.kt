@@ -104,7 +104,7 @@ class ProductionController {
     @PutMapping
     fun updateProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
         val production: Production = param.toBean()
-        val fileName: String = fileStorageService.storeFile(image)
+        val fileName: String = fileStorageService.storeFile(image, production.coverUrl)
         val fileDownloadUri: String = ServletUriComponentsBuilder
                 .fromCurrentContextPath()
                 .path("/downloadFile/")

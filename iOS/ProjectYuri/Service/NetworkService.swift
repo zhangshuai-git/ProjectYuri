@@ -26,7 +26,7 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
-    func addProduction(_ request:AddProductionRequest, _ imageRequest: AddProductionImageRequest) -> Observable<Result<Production>> {
+    func addProduction(_ request:Production, _ imageRequest: ProductionImageRequest) -> Observable<Result<Production>> {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd_HH:mm:ss.SSS"
         let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
