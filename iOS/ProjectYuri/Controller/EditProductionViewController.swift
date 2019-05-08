@@ -17,8 +17,6 @@ class EditProductionViewController: AddProductionViewController {
         title = "编辑作品"
     }
     
-    let dataSource = BehaviorRelay(value: Production())
-    
     override func bindViewModel() {
         super.bindViewModel()
         

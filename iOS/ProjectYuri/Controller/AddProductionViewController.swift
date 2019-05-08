@@ -212,7 +212,7 @@ class AddProductionViewController: ZSViewController {
         
     }
     
-    let addProductionRequest = BehaviorRelay(value: Production())
+    let dataSource = BehaviorRelay(value: Production())
     let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
     override func bindViewModel() {
@@ -222,7 +222,7 @@ class AddProductionViewController: ZSViewController {
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.addProductionRequest.value.nameCN = $0
+                self.dataSource.value.nameCN = $0
             }
             .disposed(by: disposeBag)
         
@@ -230,7 +230,7 @@ class AddProductionViewController: ZSViewController {
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.addProductionRequest.value.name = $0
+                self.dataSource.value.name = $0
             }
             .disposed(by: disposeBag)
         
@@ -238,7 +238,7 @@ class AddProductionViewController: ZSViewController {
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.addProductionRequest.value.desp = $0
+                self.dataSource.value.desp = $0
             }
             .disposed(by: disposeBag)
         
@@ -247,7 +247,7 @@ class AddProductionViewController: ZSViewController {
                 return $0 >= 0 && $0 < self.categoryArray.count
             }
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.addProductionRequest.value.category = self.categoryArray[$0]
+                self.dataSource.value.category = self.categoryArray[$0]
             }
             .disposed(by: disposeBag)
         
@@ -269,22 +269,22 @@ class AddProductionViewController: ZSViewController {
         
         let submitAction: Observable<Result<Production>> = submittalBtn.rx.tap
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.addProductionRequest.value.nameCN.isEmpty
+                let valid = !self.dataSource.value.nameCN.isEmpty
                 if !valid {self.showMessage("请输入作品中文名")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.addProductionRequest.value.name.isEmpty
+                let valid = !self.dataSource.value.name.isEmpty
                 if !valid {self.showMessage("请输入作品原名")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.addProductionRequest.value.desp.isEmpty
+                let valid = !self.dataSource.value.desp.isEmpty
                 if !valid {self.showMessage("请输入作品简介")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = self.addProductionRequest.value.category != nil
+                let valid = self.dataSource.value.category != nil
                 if !valid {self.showMessage("请选择作品类型")}
                 return valid
             }
@@ -294,7 +294,7 @@ class AddProductionViewController: ZSViewController {
                 return valid
             }
             .flatMapLatest { [weak self] _ in
-                NetworkService.shared.addProduction(self?.addProductionRequest.value ?? Production(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
+                NetworkService.shared.addProduction(self?.dataSource.value ?? Production(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
             }
             .share(replay: 1)
             
