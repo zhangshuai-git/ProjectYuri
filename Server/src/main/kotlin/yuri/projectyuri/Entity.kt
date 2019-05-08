@@ -1,7 +1,6 @@
 package yuri.projectyuri
 
 import org.springframework.data.domain.Page
-import org.springframework.format.annotation.DateTimeFormat
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*

@@ -121,7 +121,7 @@ class EditProductionViewController: ZSViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
-        title = "添加作品"
+        title = "编辑作品"
         view.backgroundColor = UIColor.white
         view.addSubview(scrollerView)
         scrollerView.addSubview(scrollerContentView)

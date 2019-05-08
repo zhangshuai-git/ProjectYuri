@@ -22,9 +22,4 @@ interface UserProductionRepository: JpaRepository<UserProduction, UserProduction
 
 
 
-//interface EmployeeRepository: JpaRepository<Employee, Long>
-//
-//interface DepartmentRepository: JpaRepository<Department, Long>
-
-
 

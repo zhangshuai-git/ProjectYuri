@@ -76,8 +76,19 @@ class ProductionService {
     lateinit var productionRepository: ProductionRepository
 
     @Transactional
-    fun save(production: Production): Production {
-        return production.let { productionRepository.save(it) }
+    fun create(production: Production): Production {
+        return production
+                .takeUnless { productionRepository.existsById(it.id) }
+                ?.let { productionRepository.save(it) }
+                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+    }
+
+    @Transactional
+    fun update(production: Production): Production {
+        return production
+                .takeIf { productionRepository.existsById(it.id) }
+                ?.let { productionRepository.save(it) }
+                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     @Transactional

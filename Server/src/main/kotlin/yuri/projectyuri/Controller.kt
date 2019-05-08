@@ -96,13 +96,30 @@ class ProductionController {
         production.coverUrl = fileDownloadUri
         println(production.category)
 
-        productionService.save(production)
+        productionService.create(production)
+
+        return Result(production)
+    }
+
+    @PutMapping
+    fun updateProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
+        val production: Production = param.toBean()
+        val fileName: String = fileStorageService.storeFile(image)
+        val fileDownloadUri: String = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString()
+        production.coverUrl = fileDownloadUri
+        println(production.category)
+
+        productionService.update(production)
 
         return Result(production)
     }
 
     @GetMapping
-    fun getProductionList(
+    fun productionList(
             @RequestParam(required = false, defaultValue = "") query: String,
             @RequestParam(required = false, defaultValue = "0") page: Int,
             @RequestParam(required = false, defaultValue = "10") size: Int
