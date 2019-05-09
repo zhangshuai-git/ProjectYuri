@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class EditProductionViewController: AddProductionViewController {
+class EditProductionViewController: ProductionRepositoryViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
