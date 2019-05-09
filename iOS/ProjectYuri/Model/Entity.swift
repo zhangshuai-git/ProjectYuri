@@ -44,7 +44,7 @@ class Production: HandyJSON {
     var coverUrl: String = ""
     var category: ProductionCategory?
     var producerList: [Producer] = []
-    var characterList: [Character] = []
+    var charactersList: [Character] = []
     var commentList: [Comment] = []
     
     required init(){}
