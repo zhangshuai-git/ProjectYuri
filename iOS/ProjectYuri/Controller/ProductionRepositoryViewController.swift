@@ -214,37 +214,11 @@ class ProductionRepositoryViewController: ZSViewController {
     let dataSource = BehaviorRelay(value: Production())
     let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
-    lazy var submitAction: Observable<Void> = submittalBtn.rx.tap
-        .filter{ [weak self] in guard let `self` = self else { return false }
-            let valid = !self.dataSource.value.nameCN.isEmpty
-            if !valid {self.showMessage("请输入作品中文名")}
-            return valid
-        }
-        .filter{ [weak self] in guard let `self` = self else { return false }
-            let valid = !self.dataSource.value.name.isEmpty
-            if !valid {self.showMessage("请输入作品原名")}
-            return valid
-        }
-        .filter{ [weak self] in guard let `self` = self else { return false }
-            let valid = !self.dataSource.value.desp.isEmpty
-            if !valid {self.showMessage("请输入作品简介")}
-            return valid
-        }
-        .filter{ [weak self] in guard let `self` = self else { return false }
-            let valid = self.dataSource.value.category != nil
-            if !valid {self.showMessage("请选择作品类型")}
-            return valid
-        }
-        .filter{ [weak self] in guard let `self` = self else { return false }
-            let valid = self.addProductionImageRequest.value.coverImg != nil
-            if !valid {self.showMessage("请上传封面图")}
-            return valid
-        }
-    
     override func bindViewModel() {
         super.bindViewModel()
         
         nameTextField.rx.text.orEmpty
+            .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind{ [weak self] in guard let `self` = self else { return }
@@ -253,6 +227,7 @@ class ProductionRepositoryViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         originNameTextField.rx.text.orEmpty
+            .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind{ [weak self] in guard let `self` = self else { return }
@@ -261,6 +236,7 @@ class ProductionRepositoryViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         despTextView.rx.text.orEmpty
+            .skip(2)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind{ [weak self] in guard let `self` = self else { return }

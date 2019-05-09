@@ -20,7 +20,32 @@ class AddProductionViewController: ProductionRepositoryViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
-        let submitResult: Observable<Result<Production>> = submitAction
+        let submitResult: Observable<Result<Production>> = submittalBtn.rx.tap
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.dataSource.value.nameCN.isEmpty
+                if !valid {self.showMessage("请输入作品中文名")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.dataSource.value.name.isEmpty
+                if !valid {self.showMessage("请输入作品原名")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.dataSource.value.desp.isEmpty
+                if !valid {self.showMessage("请输入作品简介")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = self.dataSource.value.category != nil
+                if !valid {self.showMessage("请选择作品类型")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = self.addProductionImageRequest.value.coverImg != nil
+                if !valid {self.showMessage("请上传封面图")}
+                return valid
+            }
             .flatMapLatest { [weak self] _ in
                 NetworkService.shared.addProduction(self?.dataSource.value ?? Production(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
             }

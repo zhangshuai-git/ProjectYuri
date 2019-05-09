@@ -26,25 +26,6 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
-    func addProduction(_ request:Production, _ imageRequest: ProductionImageRequest) -> Observable<Result<Production>> {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd_HH:mm:ss.SSS"
-        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
-            .map{
-                let fileName = "\(formatter.string(from: Date())).jpg"
-                return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
-            }
-        let param = ["param" : request.toJSONString() ?? ""]
-        return ProjectYuriProvider.rx
-            .request(.addProduction(formDataArray, param))
-            .trackActivity(indicator)
-            .asObservable()
-            .mapModel(Result.self)
-            .catchErrorJustReturn(Result())
-            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
-            .observeOn(MainScheduler.instance)
-    }
-    
     func searchProductions(_ request:ProductionRequest) -> Observable<Result<PageResult<Production>>> {
         return ProjectYuriProvider.rx
             .request(.findAllProductions(request.toJSON() ?? [:]))
@@ -56,4 +37,41 @@ class NetworkService {
             .observeOn(MainScheduler.instance)
     }
     
+    func addProduction(_ request:Production, _ imageRequest: ProductionImageRequest) -> Observable<Result<Production>> {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
+        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
+            .map{
+                let fileName = "\(formatter.string(from: Date())).jpg"
+                return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
+        }
+        let param = ["param" : request.toJSONString() ?? ""]
+        return ProjectYuriProvider.rx
+            .request(.addProduction(formDataArray, param))
+            .trackActivity(indicator)
+            .asObservable()
+            .mapModel(Result.self)
+            .catchErrorJustReturn(Result())
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+    }
+    
+    func updateProduction(_ request:Production, _ imageRequest: ProductionImageRequest) -> Observable<Result<Production>> {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
+        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
+            .map{
+                let fileName = "\(formatter.string(from: Date())).jpg"
+                return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
+        }
+        let param = ["param" : request.toJSONString() ?? ""]
+        return ProjectYuriProvider.rx
+            .request(.updateProduction(formDataArray, param))
+            .trackActivity(indicator)
+            .asObservable()
+            .mapModel(Result.self)
+            .catchErrorJustReturn(Result())
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+    }
 }

@@ -12,8 +12,9 @@ import Moya
 let ProjectYuriProvider = MoyaProvider<ProjectYuriAPI>()
 
 public enum ProjectYuriAPI {
-    case addProduction([MultipartFormData], [String: Any])
     case findAllProductions([String : Any])
+    case addProduction([MultipartFormData], [String: Any])
+    case updateProduction([MultipartFormData], [String: Any])
 }
 
 extension ProjectYuriAPI: TargetType {
@@ -24,30 +25,37 @@ extension ProjectYuriAPI: TargetType {
     
     public var path: String {
         switch self {
-        case .addProduction:
+        case .findAllProductions(_):
             return "/api/v1/production"
-        case .findAllProductions:
+        case .addProduction(_, _):
+            return "/api/v1/production"
+        case .updateProduction(_, _):
             return "/api/v1/production"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .addProduction:
-            return .post
-        case .findAllProductions:
+        case .findAllProductions(_):
             return .get
+        case .addProduction(_, _):
+            return .post
+        case .updateProduction(_, _):
+            return .put
         }
     }
     
     public var task: Task {
         switch self {
+        case .findAllProductions(let params):
+            print("发起请求: \(params)")
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         case .addProduction(let formData, let params):
             print("发起请求: \(formData) \(params)")
             return .uploadCompositeMultipart(formData, urlParameters: params)
-        case .findAllProductions(let params):
-            print("发起请求: \(params)")
-             return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case .updateProduction(let formData, let params):
+            print("发起请求: \(formData) \(params)")
+            return .uploadCompositeMultipart(formData, urlParameters: params)
         }
     }
     

@@ -26,6 +26,7 @@ class FileStorageService {
         try {
             Files.createDirectories(this.fileStorageLocation)
         } catch (ex: Exception) {
+            ex.printStackTrace()
             throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
         }
     }
@@ -33,6 +34,7 @@ class FileStorageService {
     private val fileStorageLocation: Path
 
     fun storeFile(file: MultipartFile, fileName: String = file.originalFilename?.let { StringUtils.cleanPath(it) } ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)): String {
+        println(fileName)
         try {
             // Check if the file's name contains invalid characters
             if (fileName.contains("..")) {
@@ -45,6 +47,7 @@ class FileStorageService {
 
             return fileName
         } catch (ex: IOException) {
+            ex.printStackTrace()
             throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
         }
 
@@ -60,6 +63,7 @@ class FileStorageService {
                 throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
             }
         } catch (ex: MalformedURLException) {
+            ex.printStackTrace()
             throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)
         }
 
