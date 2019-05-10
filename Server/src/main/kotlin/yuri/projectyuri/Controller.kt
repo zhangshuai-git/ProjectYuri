@@ -88,7 +88,10 @@ class ProductionController {
     @PostMapping
     fun createProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
         val production: Production = param.toBean()
-        val fileName: String = fileStorageService.storeFile(image)
+        val fileName: String = image
+                .takeIf { it.size > 0 }
+                ?.let { fileStorageService.storeFile(it) }
+                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
         val fileDownloadUri: String = ServletUriComponentsBuilder
                 .fromCurrentContextPath()
                 .path("/downloadFile/")
