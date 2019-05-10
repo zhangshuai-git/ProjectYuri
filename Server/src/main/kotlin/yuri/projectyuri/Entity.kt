@@ -38,7 +38,7 @@ class Production(@Id @GeneratedValue var id: Long) {
     @ManyToMany
     var producerList: Collection<Producer> = emptyList()
 
-    @ManyToMany
+    @OneToMany
     var charactersList: Collection<Characters> = emptyList()
 
     @OneToMany
