@@ -38,12 +38,13 @@ class FileController {
 
 //    @PostMapping("/uploadMultipleFiles")
     fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> {
-        return Result(Arrays
+        return Arrays
                 .asList(*files)
                 .stream()
                 .map { file -> uploadFile(file).data }
                 .collect(Collectors.toList())
-                .orEmpty())
+                .orEmpty()
+                .let { Result(it) }
     }
 
     @GetMapping("/downloadFile/{fileName:.+}")

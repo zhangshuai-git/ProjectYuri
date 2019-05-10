@@ -69,7 +69,7 @@ class ProductionHeaderView: ZSView {
         super.bindViewModel()
         dataSource
             .bind { [weak self] in guard let `self` = self else { return }
-                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl))
+                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl), placeholderImage: nil, options: .refreshCached)
                 self.nameLab.text = $0.name
                 self.contentLab.text = $0.desp
             }
