@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProductionCell0: ZSExpandableCell {
+class ProductionDetailCell0: ZSExpandableCell {
     
     let contentLab: UILabel = {
         let label = UILabel()
@@ -55,7 +55,7 @@ class ProductionCell0: ZSExpandableCell {
 
 }
 
-class ProductionCell1: ZSExpandableCell {
+class ProductionDetailCell1: ZSExpandableCell {
     
     let contentLab: UILabel = {
         let label = UILabel()
@@ -101,7 +101,7 @@ class ProductionCell1: ZSExpandableCell {
     
 }
 
-class ProductionCell2: ZSTableViewCell {
+class ProductionDetailCell2: ZSTableViewCell {
     
     let contentLab: UILabel = {
         let label = UILabel()
@@ -153,7 +153,7 @@ class ProductionCell2: ZSTableViewCell {
     
 }
 
-class ProductionCell3: ZSTableViewCell {
+class ProductionDetailCell3: ZSTableViewCell {
     
     let moreBtn: UIButton = {
         let button = UIButton()

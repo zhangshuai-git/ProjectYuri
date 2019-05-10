@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProductionHeaderView: ZSView {
+class ProductionDetailHeaderView: ZSView {
     
     let dataSource = PublishRelay<Production>()
     
@@ -78,7 +78,7 @@ class ProductionHeaderView: ZSView {
 
 }
 
-class ProductionSectionHeaderView: ZSView {
+class ProductionDetailSectionHeaderView: ZSView {
     
     let titleLab: UILabel = {
         let label = UILabel()

@@ -12,7 +12,7 @@ import RxSwift
 import SDWebImage
 import ZSUtils
 
-class ProductionViewController: ZSViewController {
+class ProductionDetailViewController: ZSViewController {
 
     let tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
@@ -23,15 +23,15 @@ class ProductionViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
-        tableView.zs.register(ProductionCell0.self)
-        tableView.zs.register(ProductionCell1.self)
-        tableView.zs.register(ProductionCell2.self)
-        tableView.zs.register(ProductionCell3.self)
+        tableView.zs.register(ProductionDetailCell0.self)
+        tableView.zs.register(ProductionDetailCell1.self)
+        tableView.zs.register(ProductionDetailCell2.self)
+        tableView.zs.register(ProductionDetailCell3.self)
         return tableView
     }()
     
-    let headerView: ProductionHeaderView = {
-        let headerView = ProductionHeaderView()
+    let headerView: ProductionDetailHeaderView = {
+        let headerView = ProductionDetailHeaderView()
         let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         headerView.frame = CGRect(x: 0, y: 0, width: 0, height: height)
         return headerView
@@ -92,7 +92,7 @@ class ProductionViewController: ZSViewController {
 
 }
 
-extension ProductionViewController: UITableViewDelegate , UITableViewDataSource {
+extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionedDataSource.count
     }
@@ -105,7 +105,7 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
         let data = sectionedDataSource[indexPath.section]
         switch indexPath.section {
         case 0:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+            let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell0.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             cell.expandAction
                 .bind {
@@ -115,7 +115,7 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
                 .disposed(by: cell.disposeBag)
             return cell
         case 1:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell1.self, for: indexPath)
+            let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell1.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             cell.expandAction
                 .bind {
@@ -125,11 +125,11 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
                 .disposed(by: cell.disposeBag)
             return cell
         case 2:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell2.self, for: indexPath)
+            let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell2.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             return cell
         case 3:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
+            let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell3.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             return cell
         default: return UITableViewCell()
@@ -137,7 +137,7 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = ProductionSectionHeaderView()
+        let view = ProductionDetailSectionHeaderView()
         switch section {
         case 0:
             Observable.of("介绍").bind(to: view.dataSource).disposed(by: view.disposeBag)
@@ -153,7 +153,7 @@ extension ProductionViewController: UITableViewDelegate , UITableViewDataSource 
     }
 }
 
-extension ProductionViewController {
+extension ProductionDetailViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: .gray), for: .default)

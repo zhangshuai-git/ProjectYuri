@@ -34,8 +34,8 @@ class ZSViewController: UIViewController {
 }
 
 extension ZSViewController {
-    func gotoProductionViewController(_ data: Observable<Production>) {
-        let vc = ProductionViewController()
+    func gotoProductionDetailViewController(_ data: Observable<Production>) {
+        let vc = ProductionDetailViewController()
         data.bind(to: vc.dataSource).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }

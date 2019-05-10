@@ -108,11 +108,11 @@
 		ECB6D89721C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */; };
 		ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */; };
 		ECE4A57D224B1D2A00A0E69B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */; };
-		ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */; };
+		ECE4A58C224C8CD400A0E69B /* ProductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58B224C8CD400A0E69B /* ProductionDetailViewController.swift */; };
 		ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58D224C90DD00A0E69B /* ZSView.swift */; };
 		ECE4A590224C940300A0E69B /* ZSExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */; };
-		ECE4A593224DDED300A0E69B /* ProductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A592224DDED300A0E69B /* ProductionCell.swift */; };
-		ECE4A595224DEB6600A0E69B /* ProductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A594224DEB6600A0E69B /* ProductionView.swift */; };
+		ECE4A593224DDED300A0E69B /* ProductionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A592224DDED300A0E69B /* ProductionDetailCell.swift */; };
+		ECE4A595224DEB6600A0E69B /* ProductionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4A594224DEB6600A0E69B /* ProductionDetailView.swift */; };
 		ECF0E7392253072400E265B9 /* String+ZSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0E7382253072400E265B9 /* String+ZSExtension.swift */; };
 		ECF0E73B22532B2100E265B9 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF0E73A22532B2100E265B9 /* MeView.swift */; };
 		ECFD0FBB2251B6A90074550D /* ZSVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */; };
@@ -275,11 +275,11 @@
 		ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+HandyJSON+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
-		ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionViewController.swift; sourceTree = "<group>"; };
+		ECE4A58B224C8CD400A0E69B /* ProductionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionDetailViewController.swift; sourceTree = "<group>"; };
 		ECE4A58D224C90DD00A0E69B /* ZSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSView.swift; sourceTree = "<group>"; };
 		ECE4A58F224C940300A0E69B /* ZSExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSExpandableCell.swift; sourceTree = "<group>"; };
-		ECE4A592224DDED300A0E69B /* ProductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCell.swift; sourceTree = "<group>"; };
-		ECE4A594224DEB6600A0E69B /* ProductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionView.swift; sourceTree = "<group>"; };
+		ECE4A592224DDED300A0E69B /* ProductionDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionDetailCell.swift; sourceTree = "<group>"; };
+		ECE4A594224DEB6600A0E69B /* ProductionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionDetailView.swift; sourceTree = "<group>"; };
 		ECF0E7382253072400E265B9 /* String+ZSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ZSExtension.swift"; sourceTree = "<group>"; };
 		ECF0E73A22532B2100E265B9 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		ECFD0FBA2251B6A90074550D /* ZSVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSVisualEffectView.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */,
-				ECE4A58B224C8CD400A0E69B /* ProductionViewController.swift */,
+				ECE4A58B224C8CD400A0E69B /* ProductionDetailViewController.swift */,
 				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
 				EC416FD02283C029001FF43E /* ProductionRepositoryViewController.swift */,
 				EC64AFE6225F195900961A5E /* AddProductionViewController.swift */,
@@ -745,8 +745,8 @@
 			isa = PBXGroup;
 			children = (
 				EC5C2EE6227001C0007E036C /* HomeCell.swift */,
-				ECE4A592224DDED300A0E69B /* ProductionCell.swift */,
-				ECE4A594224DEB6600A0E69B /* ProductionView.swift */,
+				ECE4A592224DDED300A0E69B /* ProductionDetailCell.swift */,
+				ECE4A594224DEB6600A0E69B /* ProductionDetailView.swift */,
 				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
 				ECF0E73A22532B2100E265B9 /* MeView.swift */,
 				EC7BAF3E2254C0AE00F3E28F /* ProfileCell.swift */,
@@ -960,7 +960,7 @@
 				EC64B09F226096AA00961A5E /* LGPhotoPickerCollectionViewCell.m in Sources */,
 				EC64B099226096AA00961A5E /* LGPhotoPickerGroup.m in Sources */,
 				EC7BAF302254800000F3E28F /* ProfileContainerViewController.swift in Sources */,
-				ECE4A595224DEB6600A0E69B /* ProductionView.swift in Sources */,
+				ECE4A595224DEB6600A0E69B /* ProductionDetailView.swift in Sources */,
 				EC64B08F226096AA00961A5E /* LGPhotoPickerCustomToolBarView.m in Sources */,
 				EC1B9D9521BE87CA000E2C5B /* MJRefreshHeader+Rx.swift in Sources */,
 				ECB6D89121BFCBB200017274 /* Model.swift in Sources */,
@@ -982,7 +982,7 @@
 				EC64B0B222609D1F00961A5E /* UIColor+ZSExtension.m in Sources */,
 				EC64B094226096AA00961A5E /* ZLCameraImageView.m in Sources */,
 				EC64B0A7226096AA00961A5E /* LKActionSheetView.m in Sources */,
-				ECE4A58C224C8CD400A0E69B /* ProductionViewController.swift in Sources */,
+				ECE4A58C224C8CD400A0E69B /* ProductionDetailViewController.swift in Sources */,
 				EC7BAF462255CE5A00F3E28F /* Entity.swift in Sources */,
 				EC64B09D226096AA00961A5E /* LGPhotoPickerAssetsViewController.m in Sources */,
 				EC64B0A4226096AA00961A5E /* UIView+Layout.m in Sources */,
@@ -1017,7 +1017,7 @@
 				EC64B0A0226096AA00961A5E /* LGPhotoPickerCollectionView.m in Sources */,
 				EC64B06B226096AA00961A5E /* VPImageCropperViewController.m in Sources */,
 				EC64B06D226096AA00961A5E /* CropImageViewController.m in Sources */,
-				ECE4A593224DDED300A0E69B /* ProductionCell.swift in Sources */,
+				ECE4A593224DDED300A0E69B /* ProductionDetailCell.swift in Sources */,
 				EC64B070226096AA00961A5E /* PhotoClipView.m in Sources */,
 				EC7BAF2C225436BE00F3E28F /* UITabBarController+ZSExtension.swift in Sources */,
 				ECE4A58E224C90DD00A0E69B /* ZSView.swift in Sources */,
