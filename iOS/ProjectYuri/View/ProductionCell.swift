@@ -111,7 +111,7 @@ class ProductionCell1: ZSTableViewCell {
         textView.snp.makeConstraints { (make) in
             make.top.equalTo(titleLab.snp.bottom).offset(10)
             make.bottom.leading.trailing.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
-            make.height.equalTo(30)
+            make.height.equalTo(200)
         }
         
     }
@@ -139,3 +139,136 @@ class ProductionCell1: ZSTableViewCell {
     }
 }
 
+class ProductionCell2: ZSTableViewCell {
+    
+    let titleLab: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
+    let categoryArray: [ProductionCategory] = ProductionCategory.allCases
+    lazy var groupBtn: UISegmentedControl = {
+        let groupBtn = UISegmentedControl(items: categoryArray.map{$0.displayValue})
+        groupBtn.tintColor = UIColor.main
+        return groupBtn
+    }()
+    
+    override func buildSubViews() {
+        super.buildSubViews()
+        contentView.addSubview(titleLab)
+        contentView.addSubview(groupBtn)
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        
+        titleLab.snp.makeConstraints { (make) in
+            make.top.leading.trailing.equalTo(UIEdgeInsets(top: 30, left: 20, bottom: 10, right: 20))
+        }
+        
+        groupBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLab.snp.bottom).offset(10)
+            make.bottom.leading.trailing.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+        }
+        
+    }
+    
+    let input = PublishRelay<ProductionModel>()
+    let output = PublishRelay<ProductionModel>()
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        input
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.titleLab.text = $0.title
+                if let category = $0.category {
+                    self.groupBtn.selectedSegmentIndex = self.categoryArray.firstIndex(of: category)!
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        groupBtn.rx.selectedSegmentIndex
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                return $0 >= 0 && $0 < self.categoryArray.count
+            }
+            .map{ ProductionModel(category: self.categoryArray[$0]) }
+            .bind(to: output)
+            .disposed(by: disposeBag)
+    }
+}
+
+class ProductionCell3: ZSTableViewCell {
+    
+    let titleLab: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
+    let imgBtn: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor.main, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.setImage(UIImage(named: "taking_pictures"), for: .normal)
+        button.backgroundColor = UIColor.groupTableViewBackground
+        return button
+    }()
+    
+    override func buildSubViews() {
+        super.buildSubViews()
+        contentView.addSubview(titleLab)
+        contentView.addSubview(imgBtn)
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        
+        titleLab.snp.makeConstraints { (make) in
+            make.top.leading.trailing.equalTo(UIEdgeInsets(top: 30, left: 20, bottom: 10, right: 20))
+        }
+        
+        imgBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLab.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 100, height: 100))
+            make.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+        }
+        
+    }
+    
+    let input = PublishRelay<ProductionModel>()
+    let output = PublishRelay<ProductionModel>()
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        input
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.titleLab.text = $0.title
+                self.imgBtn.sd_setImage(with: URL(string: $0.coverUrl), for: .normal, completed: nil)
+            }
+            .disposed(by: disposeBag)
+        
+        imgBtn.rx.tap
+            .bind { [weak self] in guard let `self` = self else { return }
+                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.output.accept(ProductionModel(image: image))
+                }, withAlbumArray: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.output.accept(ProductionModel(image: image))
+                }, cancel: nil)
+                pm?.maxPhotoCount = 1
+                pm?.showAlert(self.imgBtn)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+}

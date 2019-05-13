@@ -14,11 +14,17 @@ class ProductionModel {
     var title: String
     var content: String
     var detail: String
+    var category: ProductionCategory?
+    var coverUrl: String
+    var image: UIImage?
     
-    init(title: String = "", content: String = "", detail: String = "") {
+    init(title: String = "", content: String = "", detail: String = "", category: ProductionCategory? = nil, coverUrl: String = "", image: UIImage? = nil) {
         self.title = title
         self.content = content
         self.detail = detail
+        self.category = category
+        self.coverUrl = coverUrl
+        self.image = image
     }
 }
 

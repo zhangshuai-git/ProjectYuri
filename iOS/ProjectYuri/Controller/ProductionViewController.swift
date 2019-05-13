@@ -1,0 +1,31 @@
+//
+//  ProductionViewController.swift
+//  ProjectYuri
+//
+//  Created by 張帥 on 2019/05/13.
+//  Copyright © 2019 張帥. All rights reserved.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
+
+class ProductionViewController: ZSViewController {
+
+    override func buildSubViews() {
+        super.buildSubViews()
+        
+    }
+    
+    override func makeConstraints() {
+        super.makeConstraints()
+        
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+    }
+
+}
