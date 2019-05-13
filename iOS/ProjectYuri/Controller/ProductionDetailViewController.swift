@@ -73,7 +73,7 @@ class ProductionDetailViewController: ZSViewController {
         
         rightBarButtonItem?.button?.rx.tap
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.gotoEditProductionViewController(self.dataSource.asObservable())
+                self.gotoProductionViewController(self.dataSource.asObservable())
                 print("\($0) rightBarButtonItem")
             }
             .disposed(by: disposeBag)

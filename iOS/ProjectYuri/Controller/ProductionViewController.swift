@@ -22,6 +22,7 @@ class ProductionViewController: ZSViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
+        tableView.separatorStyle = .none
         tableView.zs.register(ProductionCell0.self)
         tableView.zs.register(ProductionCell1.self)
         tableView.zs.register(ProductionCell2.self)
@@ -49,8 +50,48 @@ class ProductionViewController: ZSViewController {
         }
     }
     
+    let input = BehaviorRelay(value: Production())
+    let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
+    
+    lazy var dataSource: Observable<[ProductionModel]> = Observable.of([
+        ProductionModel(title: "作品中文名", content: self.input.value.nameCN, detail: "例如:无夜之国"),
+        ProductionModel(title: "作品原名", content: self.input.value.name, detail: "例如:よるのないくに"),
+        ProductionModel(title: "作品简介", content: self.input.value.desp),
+        ProductionModel(title: "作品类别", category: self.input.value.category),
+        ProductionModel(title: "上传封面", coverUrl: self.input.value.coverUrl),
+        ])
+    
     override func bindViewModel() {
         super.bindViewModel()
+        
+       dataSource
+            .bind(to: tableView.rx.items) { tableView, row, element in
+                let indexPath = IndexPath(row: row, section: 0)
+                switch row {
+                case 0:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    return cell
+                case 1:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    return cell
+                case 2:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell1.self, for: indexPath)
+                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    return cell
+                case 3:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell2.self, for: indexPath)
+                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    return cell
+                case 4:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
+                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    return cell
+                default: return UITableViewCell()
+                }
+            }
+            .disposed(by: disposeBag)
         
     }
 

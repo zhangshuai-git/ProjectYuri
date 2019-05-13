@@ -248,7 +248,7 @@ class HomeViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         refrashAction
-            .flatMap { [weak self] _ in
+            .flatMap{ [weak self] _ in
                 Observable.of(self?.dataSource.value ?? PageResult())
             }
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
