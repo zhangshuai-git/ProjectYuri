@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class ProductionView: ZSView {
+class ProductionFooterView: ZSView {
 
     let submittalBtn: UIButton = {
         let button = UIButton()
