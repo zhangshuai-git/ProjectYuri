@@ -10,8 +10,17 @@ import HandyJSON
 import RxSwift
 import RxCocoa
 
+class ProductionModel {
+    var title: String
+    var content: String
+    
+    init(_ title: String, _ detail: String) {
+        self.title = title
+        self.content = detail
+    }
+}
 
-class ProductionModel<T> {
+class ProductionDetailModel<T> {
     var isExpanded: Bool = false
     var data: T
     

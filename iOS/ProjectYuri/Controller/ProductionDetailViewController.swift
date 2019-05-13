@@ -61,11 +61,11 @@ class ProductionDetailViewController: ZSViewController {
     
     let dataSource = BehaviorRelay(value: Production())
     
-    lazy var sectionedDataSource: [ProductionModel<Production>] = [
-        ProductionModel(dataSource.value),
-        ProductionModel(dataSource.value),
-        ProductionModel(dataSource.value),
-        ProductionModel(dataSource.value),
+    lazy var sectionedDataSource: [ProductionDetailModel<Production>] = [
+        ProductionDetailModel(dataSource.value),
+        ProductionDetailModel(dataSource.value),
+        ProductionDetailModel(dataSource.value),
+        ProductionDetailModel(dataSource.value),
         ]
     
     override func bindViewModel() {

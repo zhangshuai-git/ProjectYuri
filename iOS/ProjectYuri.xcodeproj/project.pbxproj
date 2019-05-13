@@ -22,6 +22,7 @@
 		EC1B9D9D21BE890F000E2C5B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */; };
 		EC416FCB22817A45001FF43E /* EditProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC416FCA22817A45001FF43E /* EditProductionViewController.swift */; };
 		EC416FD12283C029001FF43E /* ProductionRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC416FD02283C029001FF43E /* ProductionRepositoryViewController.swift */; };
+		EC416FDB2288F99F001FF43E /* ProductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC416FDA2288F99F001FF43E /* ProductionCell.swift */; };
 		EC5C2EE7227001C0007E036C /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE6227001C0007E036C /* HomeCell.swift */; };
 		EC5C2EE922718D1E007E036C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EE822718D1E007E036C /* AboutViewController.swift */; };
 		EC5C2EED22719D52007E036C /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C2EEC22719D52007E036C /* LicenseViewController.swift */; };
@@ -143,6 +144,7 @@
 		EC1B9D9C21BE890F000E2C5B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EC416FCA22817A45001FF43E /* EditProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductionViewController.swift; sourceTree = "<group>"; };
 		EC416FD02283C029001FF43E /* ProductionRepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionRepositoryViewController.swift; sourceTree = "<group>"; };
+		EC416FDA2288F99F001FF43E /* ProductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCell.swift; sourceTree = "<group>"; };
 		EC5C2EE6227001C0007E036C /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		EC5C2EE822718D1E007E036C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		EC5C2EEC22719D52007E036C /* LicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
@@ -745,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				EC5C2EE6227001C0007E036C /* HomeCell.swift */,
+				EC416FDA2288F99F001FF43E /* ProductionCell.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionDetailCell.swift */,
 				ECE4A594224DEB6600A0E69B /* ProductionDetailView.swift */,
 				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
@@ -950,6 +953,7 @@
 				EC1B9D8421BE8690000E2C5B /* ZSTableViewCell.swift in Sources */,
 				EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */,
 				EC7BAF342254866C00F3E28F /* ZSTabBarController.swift in Sources */,
+				EC416FDB2288F99F001FF43E /* ProductionCell.swift in Sources */,
 				EC64B092226096AA00961A5E /* LGPhotoPickerBrowserPhotoImageView.m in Sources */,
 				ECE4A57A224B1A4E00A0E69B /* HomeViewController.swift in Sources */,
 				EC64B0A5226096AA00961A5E /* LSImagePickerController.m in Sources */,
