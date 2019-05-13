@@ -13,10 +13,12 @@ import RxCocoa
 class ProductionModel {
     var title: String
     var content: String
+    var detail: String
     
-    init(_ title: String, _ detail: String) {
+    init(title: String = "", content: String = "", detail: String = "") {
         self.title = title
-        self.content = detail
+        self.content = content
+        self.detail = detail
     }
 }
 
