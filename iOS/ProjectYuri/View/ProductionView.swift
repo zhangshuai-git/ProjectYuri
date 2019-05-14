@@ -30,7 +30,6 @@ class ProductionFooterView: ZSView {
     
     override func makeConstraints() {
         super.makeConstraints()
-        
         submittalBtn.snp.makeConstraints { (make) in
             make.top.bottom.leading.trailing.equalTo(UIEdgeInsets(top: 30, left: 40, bottom: 40, right: 40))
             make.height.equalTo(40)

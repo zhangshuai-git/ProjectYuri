@@ -243,7 +243,7 @@ class ProductionCell3: ProductionCell {
         input
             .bind{ [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.title
-                self.imgBtn.sd_setImage(with: URL(string: $0.coverUrl), for: .normal, completed: nil)
+                self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
             }
             .disposed(by: disposeBag)
         
@@ -398,7 +398,7 @@ class ProductionCell5: ZSTableViewCell {
         super.bindViewModel()
         input
             .bind{ [weak self] in guard let `self` = self else { return }
-                self.imgBtn.sd_setImage(with: URL(string: $0.coverUrl), for: .normal, completed: nil)
+                self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
                 self.nameTextField.text = $0.title
                 self.cvTextField.text = $0.content
             }

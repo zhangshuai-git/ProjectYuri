@@ -44,7 +44,7 @@ class NetworkService {
             .map{
                 let fileName = "\(formatter.string(from: Date())).jpg"
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
-        }
+            }
         let param = ["param" : request.toJSONString() ?? ""]
         return ProjectYuriProvider.rx
             .request(.addProduction(formDataArray, param))
@@ -63,7 +63,7 @@ class NetworkService {
             .map{
                 let fileName = "\(formatter.string(from: Date())).jpg"
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
-        }
+            }
         let param = ["param" : request.toJSONString() ?? ""]
         return ProjectYuriProvider.rx
             .request(.updateProduction(formDataArray, param))
