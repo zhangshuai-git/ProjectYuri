@@ -128,6 +128,12 @@ class ProductionViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
+        tableView.rx.didScroll
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
     }
 
 }
