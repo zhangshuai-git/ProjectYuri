@@ -11,7 +11,12 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class ProductionCell0: ZSTableViewCell {
+class ProductionCell: ZSTableViewCell {
+    let input = PublishRelay<ProductionModel>()
+    let output = PublishRelay<ProductionModel>()
+}
+
+class ProductionCell0: ProductionCell {
 
     let titleLab: UILabel = {
         let label = UILabel()
@@ -53,9 +58,6 @@ class ProductionCell0: ZSTableViewCell {
         
     }
     
-    let input = PublishRelay<ProductionModel>()
-    let output = PublishRelay<ProductionModel>()
-    
     override func bindViewModel() {
         super.bindViewModel()
         
@@ -77,7 +79,7 @@ class ProductionCell0: ZSTableViewCell {
     }
 }
 
-class ProductionCell1: ZSTableViewCell {
+class ProductionCell1: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -116,9 +118,6 @@ class ProductionCell1: ZSTableViewCell {
         
     }
     
-    let input = PublishRelay<ProductionModel>()
-    let output = PublishRelay<ProductionModel>()
-    
     override func bindViewModel() {
         super.bindViewModel()
         
@@ -139,7 +138,7 @@ class ProductionCell1: ZSTableViewCell {
     }
 }
 
-class ProductionCell2: ZSTableViewCell {
+class ProductionCell2: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -175,9 +174,6 @@ class ProductionCell2: ZSTableViewCell {
         
     }
     
-    let input = PublishRelay<ProductionModel>()
-    let output = PublishRelay<ProductionModel>()
-    
     override func bindViewModel() {
         super.bindViewModel()
         
@@ -200,7 +196,7 @@ class ProductionCell2: ZSTableViewCell {
     }
 }
 
-class ProductionCell3: ZSTableViewCell {
+class ProductionCell3: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -240,9 +236,6 @@ class ProductionCell3: ZSTableViewCell {
         }
         
     }
-    
-    let input = PublishRelay<ProductionModel>()
-    let output = PublishRelay<ProductionModel>()
     
     override func bindViewModel() {
         super.bindViewModel()
