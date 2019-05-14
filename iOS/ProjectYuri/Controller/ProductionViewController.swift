@@ -70,26 +70,68 @@ class ProductionViewController: ZSViewController {
                 switch row {
                 case 0:
                     let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.nameCN = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case 1:
                     let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.name = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case 2:
                     let cell = tableView.zs.dequeueReusableCell(ProductionCell1.self, for: indexPath)
-                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.desp = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case 3:
                     let cell = tableView.zs.dequeueReusableCell(ProductionCell2.self, for: indexPath)
-                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.category = $0.category
+                        }
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case 4:
                     let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
-                    Observable.of(element).bind(to: cell.input).disposed(by: cell.disposeBag)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                             self.addProductionImageRequest.value.coverImg = $0.image
+                        }
+                        .disposed(by: cell.disposeBag)
                     return cell
                 default: return UITableViewCell()
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        footerView.submittalBtn.rx.tap
+            .bind{ [weak self] in guard let `self` = self else { return }
+                print(self.input.value.toJSON())
+                print(self.addProductionImageRequest.value.coverImg)
             }
             .disposed(by: disposeBag)
         

@@ -45,20 +45,20 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func gotoAddProductionViewController() {
-        let vc = AddProductionViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
+//    func gotoAddProductionViewController() {
+//        let vc = AddProductionViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
+//    
+//    func gotoEditProductionViewController(_ data: Observable<Production>) {
+//        let vc = EditProductionViewController()
+//        data.bind(to: vc.dataSource).disposed(by: disposeBag)
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
     
-    func gotoEditProductionViewController(_ data: Observable<Production>) {
-        let vc = EditProductionViewController()
-        data.bind(to: vc.dataSource).disposed(by: disposeBag)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func gotoProductionViewController(_ data: Observable<Production>) {
+    func gotoProductionViewController(_ data: Observable<Production>? = nil) {
         let vc = ProductionViewController()
-        data.bind(to: vc.input).disposed(by: disposeBag)
+        data?.bind(to: vc.input).disposed(by: disposeBag)
         navigationController?.pushViewController(vc, animated: true)
     }
     
