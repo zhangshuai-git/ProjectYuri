@@ -27,6 +27,8 @@ class ProductionViewController: ZSViewController {
         tableView.zs.register(ProductionCell1.self)
         tableView.zs.register(ProductionCell2.self)
         tableView.zs.register(ProductionCell3.self)
+        tableView.zs.register(ProductionCell4.self)
+        tableView.zs.register(ProductionCell5.self)
         return tableView
     }()
     
@@ -53,12 +55,13 @@ class ProductionViewController: ZSViewController {
     let input = BehaviorRelay(value: Production())
     let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
-    lazy var dataSource: Observable<[ProductionModel]> = Observable.of([
+    lazy var dataSource: BehaviorRelay<[ProductionModel]> = BehaviorRelay(value: [
         ProductionModel(title: "作品中文名", content: self.input.value.nameCN, detail: "例如:无夜之国"),
         ProductionModel(title: "作品原名", content: self.input.value.name, detail: "例如:よるのないくに"),
         ProductionModel(title: "作品简介", content: self.input.value.desp),
         ProductionModel(title: "作品类别", category: self.input.value.category),
         ProductionModel(title: "上传封面", coverUrl: self.input.value.coverUrl),
+        ProductionModel(title: "添加角色"),
         ])
     
     override func bindViewModel() {
@@ -120,6 +123,30 @@ class ProductionViewController: ZSViewController {
                     cell.output
                         .bind{ [weak self] in guard let `self` = self else { return }
                              self.addProductionImageRequest.value.coverImg = $0.image
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 5:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell4.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .map{self.dataSource.value + [$0]}
+                        .bind(to: self.dataSource)
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 6...:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell5.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            let characters = Characters()
+                            characters.name = $0.title
+//                            characters.cv = $0.content
+                            self.input.value.charactersList.append(characters)
                         }
                         .disposed(by: cell.disposeBag)
                     return cell

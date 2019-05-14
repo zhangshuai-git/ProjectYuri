@@ -179,7 +179,7 @@ class ProductionDetailCell3: ZSTableViewCell {
         return view
     }()
     
-    var characterArray: [ZSUserView] = {
+    var charactersArray: [ZSUserView] = {
         var arr = [ZSUserView]()
         for _ in 0..<6 {
             let view = ZSUserView(iconSize: CGSize(width: 40, height: 40), titleFont: UIFont.systemFont(ofSize: 10), contentFont: UIFont.systemFont(ofSize: 10))
@@ -199,7 +199,7 @@ class ProductionDetailCell3: ZSTableViewCell {
         contentView.addSubview(moreBtn)
         contentView.addSubview(arrowImg)
         contentView.addSubview(mainView)
-        characterArray.forEach { mainView.addSubview($0) }
+        charactersArray.forEach { mainView.addSubview($0) }
     }
     
     override func makeConstraints() {
@@ -221,7 +221,7 @@ class ProductionDetailCell3: ZSTableViewCell {
             make.top.equalTo(moreBtn.snp.bottom).offset(10)
         }
         
-        characterArray.snp.distributeSudokuViews(fixedLineSpacing: 0, fixedInteritemSpacing: 0, warpCount: 2)
+        charactersArray.snp.distributeSudokuViews(fixedLineSpacing: 0, fixedInteritemSpacing: 0, warpCount: 2)
     }
     
     let dataSource = PublishRelay<ProductionDetailModel<Production>>()
