@@ -128,13 +128,6 @@ class ProductionViewController: ZSViewController {
             }
             .disposed(by: disposeBag)
         
-        footerView.submittalBtn.rx.tap
-            .bind{ [weak self] in guard let `self` = self else { return }
-                print(self.input.value.toJSON())
-                print(self.addProductionImageRequest.value.coverImg)
-            }
-            .disposed(by: disposeBag)
-        
     }
 
 }

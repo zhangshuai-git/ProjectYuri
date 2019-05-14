@@ -56,7 +56,7 @@ class MeViewController: ZSViewController {
     
     lazy var dataSource: BehaviorRelay<[MeModel]> = BehaviorRelay(value: [
         MeModel("添加条目", selectedAction:{ [weak self] in
-            self?.gotoProductionViewController()
+            self?.gotoAddProductionViewController()
         }),
         MeModel("设置"),
         MeModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [weak self] in

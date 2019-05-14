@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class AddProductionViewController: ProductionRepositoryViewController {
+class AddProductionViewController: ProductionViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
@@ -20,24 +20,24 @@ class AddProductionViewController: ProductionRepositoryViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
-        let submitResult: Observable<Result<Production>> = submittalBtn.rx.tap
+        let submitResult: Observable<Result<Production>> = footerView.submittalBtn.rx.tap
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.dataSource.value.nameCN.isEmpty
+                let valid = !self.input.value.nameCN.isEmpty
                 if !valid {self.showMessage("请输入作品中文名")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.dataSource.value.name.isEmpty
+                let valid = !self.input.value.name.isEmpty
                 if !valid {self.showMessage("请输入作品原名")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = !self.dataSource.value.desp.isEmpty
+                let valid = !self.input.value.desp.isEmpty
                 if !valid {self.showMessage("请输入作品简介")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
-                let valid = self.dataSource.value.category != nil
+                let valid = self.input.value.category != nil
                 if !valid {self.showMessage("请选择作品类型")}
                 return valid
             }
@@ -47,7 +47,7 @@ class AddProductionViewController: ProductionRepositoryViewController {
                 return valid
             }
             .flatMapLatest { [weak self] _ in
-                NetworkService.shared.addProduction(self?.dataSource.value ?? Production(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
+                NetworkService.shared.addProduction(self?.input.value ?? Production(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
             }
             .share(replay: 1)
             
