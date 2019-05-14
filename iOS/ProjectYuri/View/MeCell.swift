@@ -52,7 +52,7 @@ class MeCell: ZSTableViewCell {
             .bind{ [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.title
                 self.detailLab.text = $0.desp
-                if $0.selectedAction != nil {self.accessoryType = .disclosureIndicator}
+                self.accessoryType = $0.selectedAction != nil ? .disclosureIndicator : .none
             }
             .disposed(by: disposeBag)
     }
