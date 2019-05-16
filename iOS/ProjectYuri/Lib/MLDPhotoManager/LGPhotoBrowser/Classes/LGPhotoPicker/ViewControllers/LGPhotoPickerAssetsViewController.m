@@ -474,9 +474,9 @@ static NSString *const _identifier = @"toolBarThumbCollectionViewCell";
     
     LGPhotoAssets *imageObj = [[LGPhotoAssets alloc] init];
     if (self.isPreview && self.selectAssets.count) {
-        imageObj = [self.selectAssets objectAtIndex:indexPath.row];
+        imageObj = self.selectAssets[indexPath.row];
     } else if (!self.isPreview && self.assets.count){
-        imageObj = [self.assets objectAtIndex:indexPath.row];
+        imageObj = self.assets[indexPath.row];
     }
     // 包装下imageObj 成 LGPhotoPickerBrowserPhoto 传给数据源
     LGPhotoPickerBrowserPhoto *photo = [LGPhotoPickerBrowserPhoto photoAnyImageObjWith:imageObj];

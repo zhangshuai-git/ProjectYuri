@@ -91,7 +91,7 @@
 - (void)notifyImageDidFailLoadWithError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
         self->_isLoading = NO;
-        NSDictionary *notifyInfo = [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil];
+        NSDictionary *notifyInfo = @{@"error": error};
         [[NSNotificationCenter defaultCenter] postNotificationName:LGPhotoImageDidFailLoadWithError object:self userInfo:notifyInfo];
     });
 }

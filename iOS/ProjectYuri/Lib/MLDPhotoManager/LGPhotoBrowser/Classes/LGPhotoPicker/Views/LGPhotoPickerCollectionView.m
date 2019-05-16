@@ -120,7 +120,7 @@
     LGPhotoPickerCollectionViewCell *cell = (LGPhotoPickerCollectionViewCell *) [self cellForItemAtIndexPath:indexPath];
     
     LGPhotoAssets *asset = self.dataArray[indexPath.item];
-    LGPhotoPickerImageView *pickerImageView = [cell.contentView.subviews objectAtIndex:0];
+    LGPhotoPickerImageView *pickerImageView = cell.contentView.subviews[0];
     // 如果没有就添加到数组里面，存在就移除
     if ([pickerImageView isKindOfClass:[LGPhotoPickerImageView class]] && pickerImageView.isMaskViewFlag) {
         [self.selectAssets removeObject:asset];

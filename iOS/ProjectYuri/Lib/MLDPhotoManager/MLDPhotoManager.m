@@ -204,11 +204,11 @@
 {
     if (self.showType == LGShowImageTypeImageBroswer)
     {
-        return [self.LGPhotoPickerBrowserPhotoArray objectAtIndex:indexPath.item];
+        return self.LGPhotoPickerBrowserPhotoArray[indexPath.item];
     }
     else if (self.showType == LGShowImageTypeImageURL)
     {
-        return [self.LGPhotoPickerBrowserURLArray objectAtIndex:indexPath.item];
+        return self.LGPhotoPickerBrowserURLArray[indexPath.item];
     }
     else
     {
