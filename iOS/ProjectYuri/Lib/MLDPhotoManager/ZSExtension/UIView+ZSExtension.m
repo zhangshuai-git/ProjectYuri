@@ -163,10 +163,10 @@ static const char* IndexPathKey ="UIView_UserInfo";
 {
     return self.frame.size;
 }
-- (void)setViewContoller:(UIViewController *)viewContoller {
-    self.viewContoller = viewContoller;
+- (void)setViewController:(UIViewController *)viewController {
+    self.viewController = viewController;
 }
-- (UIViewController *)viewContoller {
+- (UIViewController *)viewController {
     for (UIView * view = self; view; view = view.superview) {
         UIResponder * nextRextponder = [view nextResponder];
         if ([nextRextponder isKindOfClass:[UIViewController class]]) {

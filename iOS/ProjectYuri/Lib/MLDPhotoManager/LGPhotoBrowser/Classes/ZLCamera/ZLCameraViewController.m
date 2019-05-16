@@ -97,7 +97,7 @@ static CGFloat BOTTOM_HEIGHT = 60;
     
     // Output
     self.captureOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey,nil];
+    NSDictionary *outputSettings = @{AVVideoCodecKey: AVVideoCodecJPEG};
     [self.captureOutput setOutputSettings:outputSettings];
     
     // Session

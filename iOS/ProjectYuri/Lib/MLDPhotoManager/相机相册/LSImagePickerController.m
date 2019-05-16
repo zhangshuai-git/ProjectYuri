@@ -56,7 +56,7 @@
     
     if ([mediaType isEqualToString:@"public.image"]) {  //判断是否为图片
        
-        UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        UIImage * image = info[UIImagePickerControllerOriginalImage];
 //        _showImage = [Tool imageWithImageSimple:[info objectForKey:UIImagePickerControllerOriginalImage] scaledToSize:cell.photoImageV.size];
         if (self.block) {
             self.block(image);

@@ -18,7 +18,7 @@
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, strong) UIViewController * viewContoller;
+@property (nonatomic, strong) UIViewController *viewController;
 @property (nonatomic, assign, readonly) CGSize layoutSize;
 
 /**

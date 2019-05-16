@@ -176,7 +176,7 @@
 //    }
 //    result = window.rootViewController;
 //    return result;
-    return self.vcView.viewContoller;
+    return self.vcView.viewController;
 }
 
 #pragma mark - LGPhotoPickerBrowserViewControllerDataSource
