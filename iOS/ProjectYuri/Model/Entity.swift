@@ -75,7 +75,7 @@ class Comment: HandyJSON {
 }
 
 class User: HandyJSON {
-    var name = ""
+    var name: String = ""
     var avatarUrl: String = ""
     var productionList: [UserProduction] = []
     
