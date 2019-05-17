@@ -25,7 +25,7 @@ PODS:
   - SGPagingView (1.6.0)
   - SnapKit (4.2.0)
   - SVProgressHUD (2.2.5)
-  - ZSUtils (0.0.5)
+  - ZSUtils (0.0.6)
 
 DEPENDENCIES:
   - HandyJSON (~> 4.2.1)
@@ -38,7 +38,7 @@ DEPENDENCIES:
   - SGPagingView (~> 1.6.0)
   - SnapKit (~> 4.2.0)
   - SVProgressHUD (~> 2.2.5)
-  - ZSUtils (~> 0.0.5)
+  - ZSUtils (~> 0.0.6)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -73,8 +73,8 @@ SPEC CHECKSUMS:
   SGPagingView: 4b4f443b365bc70979f890da63d93bc22103be32
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  ZSUtils: 392c7596f2559f844d217ab75642e450e433cd91
+  ZSUtils: a03ca458f6c3f36b5372e5b7dbed5fce4184c790
 
-PODFILE CHECKSUM: d7fb0d42388900d65454dd0f4765eb404ec5a530
+PODFILE CHECKSUM: 65b85313e0b15f7a0bc8b30e5e8177d1a2a24ed1
 
 COCOAPODS: 1.5.3
