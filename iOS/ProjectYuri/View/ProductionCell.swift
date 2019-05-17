@@ -396,6 +396,7 @@ class ProductionCell5: ZSTableViewCell {
     
     override func bindViewModel() {
         super.bindViewModel()
+        
         input
             .bind{ [weak self] in guard let `self` = self else { return }
                 self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
@@ -426,8 +427,7 @@ class ProductionCell5: ZSTableViewCell {
             .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .bind{
-                [weak self] in guard let `self` = self else { return }
+            .bind{ [weak self] in guard let `self` = self else { return }
                 self.output.value.title = $0
                 self.output.accept(self.output.value)
             }
@@ -437,8 +437,7 @@ class ProductionCell5: ZSTableViewCell {
             .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .bind{
-                [weak self] in guard let `self` = self else { return }
+            .bind{ [weak self] in guard let `self` = self else { return }
                 self.output.value.content = $0
                 self.output.accept(self.output.value)
             }
