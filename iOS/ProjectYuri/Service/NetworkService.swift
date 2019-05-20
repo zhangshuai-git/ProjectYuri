@@ -46,6 +46,7 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
+//        print(request.toJSON())
         return ProjectYuriProvider.rx
             .request(.addProduction(formDataArray, param))
             .trackActivity(indicator)
@@ -65,6 +66,7 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
+//        print(request.toJSON())
         return ProjectYuriProvider.rx
             .request(.updateProduction(formDataArray, param))
             .trackActivity(indicator)

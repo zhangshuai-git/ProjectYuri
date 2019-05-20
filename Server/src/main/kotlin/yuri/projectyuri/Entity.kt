@@ -35,10 +35,10 @@ class Production(@Id @GeneratedValue var id: Long) {
     @Enumerated(EnumType.STRING)
     var category: ProductionCategory? = null
 
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.MERGE])
     var charactersList: Collection<Characters> = emptyList()
 
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.MERGE])
     var commentList: Collection<Comment> = emptyList()
 
 }
