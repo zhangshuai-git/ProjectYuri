@@ -10,8 +10,6 @@ interface ProductionRepository: JpaRepository<Production, Long> {
     fun findSearch(query: String, pageable: Pageable): Page<Production>
 }
 
-interface ProducerRepository: JpaRepository<Producer, Long>
-
 interface CharactersRepository: JpaRepository<Characters, Long>
 
 interface CommentRepository: JpaRepository<Comment, Long>

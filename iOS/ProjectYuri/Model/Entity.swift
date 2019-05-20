@@ -43,17 +43,8 @@ class Production: HandyJSON {
     var info: String = ""
     var coverUrl: String = ""
     var category: ProductionCategory?
-    var producerList: [Producer] = []
     var charactersList: [Characters] = []
     var commentList: [Comment] = []
-    
-    required init(){}
-}
-
-class Producer: HandyJSON {
-    var avatarUrl: String = ""
-    var name: String = ""
-    var role: String = ""
     
     required init(){}
 }
@@ -61,7 +52,7 @@ class Producer: HandyJSON {
 class Characters: HandyJSON {
     var avatarUrl: String = ""
     var name: String = ""
-    var cv: Producer?
+    var cv: String = ""
     
     required init(){}
 }

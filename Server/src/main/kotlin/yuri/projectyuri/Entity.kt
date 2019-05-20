@@ -35,25 +35,11 @@ class Production(@Id @GeneratedValue var id: Long) {
     @Enumerated(EnumType.STRING)
     var category: ProductionCategory? = null
 
-    @ManyToMany
-    var producerList: Collection<Producer> = emptyList()
-
     @OneToMany
     var charactersList: Collection<Characters> = emptyList()
 
     @OneToMany
     var commentList: Collection<Comment> = emptyList()
-
-}
-
-@Entity
-class Producer(@Id @GeneratedValue var id: Long) {
-
-    var avatarUrl: String = ""
-
-    var name: String = ""
-
-    var role: String = ""
 
 }
 
@@ -64,8 +50,7 @@ class Characters(@Id @GeneratedValue var id: Long) {
 
     var name: String = ""
 
-    @ManyToOne(cascade = [CascadeType.MERGE])
-    var cv: Producer? = null
+    var cv: String = ""
 }
 
 @Entity
