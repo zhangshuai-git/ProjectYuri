@@ -185,7 +185,10 @@ class HomeViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         Observable
-            .merge(newData.map{$0.data}.map(footerState), moreData.map{$0.data}.map(footerState))
+            .merge(
+                newData.map{$0.data}.map(footerState),
+                moreData.map{$0.data}.map(footerState)
+            )
             .startWith(.hidden)
             .asDriver(onErrorJustReturn: .hidden)
             .drive(tableView.mj_footer.rx.refreshFooterState)

@@ -33,7 +33,6 @@ class MeViewController: ZSViewController {
     
     override func buildSubViews() {
         super.buildSubViews()
-//        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings_black")?.toScale(0.7))
         view.addSubview(topView)
         view.addSubview(tableView)
     }
@@ -74,12 +73,6 @@ class MeViewController: ZSViewController {
                 self?.gotoProfileContainerViewController()
             }
             .disposed(by: disposeBag)
-        
-//        rightBarButtonItem?.button?.rx.tap
-//            .bind{
-//                print("\($0) rightBarButtonItem")
-//            }
-//            .disposed(by: disposeBag)
         
         dataSource
             .bind(to: tableView.rx.items) { tableView, row, element in
