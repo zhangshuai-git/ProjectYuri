@@ -50,7 +50,7 @@ class HomeViewController: ZSViewController {
         return groupBtn
     }()
     
-    let emptyView = ZSEmptyView(message: "")
+    let emptyView = ZSEmptyView(message: "网络异常")
     
     override func buildSubViews() {
         navigationItem.titleView = searchBar
@@ -106,6 +106,7 @@ class HomeViewController: ZSViewController {
             .share(replay: 1)
         
         let filteredDataFromGroupBtnAction: Observable<[Production]> = groupBtnAction
+            .skip(1)
             .flatMap{ [weak self] in
                 self?.filteredItems($0, self?.dataSource.value.items ?? [Production]()) ?? Observable.of([Production]())
             }
@@ -129,6 +130,7 @@ class HomeViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         dataSource
+            .skip(2)
             .map { $0.totalCount == 0 }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
@@ -254,6 +256,11 @@ class HomeViewController: ZSViewController {
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
             .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        refrashAction
+            .skip(1)
+            .bind(to: tableView.mj_header.rx.beginRefreshing)
             .disposed(by: disposeBag)
     }
 }
