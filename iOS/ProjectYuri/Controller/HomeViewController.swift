@@ -118,9 +118,10 @@ class HomeViewController: ZSViewController {
                 self?.filteredItems(self?.groupBtn.selectedSegmentIndex ?? 0, $0) ?? Observable.of([Production]())
             }
         
-        Observable.merge(
-            filteredDataFromGroupBtnAction,
-            filteredDataFromDataSource
+        Observable
+            .merge(
+                filteredDataFromGroupBtnAction,
+                filteredDataFromDataSource
             )
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let cell = tableView.zs.dequeueReusableCell(HomeCell.self, for: IndexPath(row: row, section: 0))
