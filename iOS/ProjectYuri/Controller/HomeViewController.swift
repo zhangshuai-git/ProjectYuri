@@ -118,7 +118,8 @@ class HomeViewController: ZSViewController {
                 self?.filteredItems(self?.groupBtn.selectedSegmentIndex ?? 0, $0) ?? Observable.of([Production]())
             }
         
-        Observable.merge(
+        Observable
+            .merge(
             filteredDataFromGroupBtnAction,
             filteredDataFromDataSource
             )
