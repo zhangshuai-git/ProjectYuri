@@ -143,7 +143,7 @@ class UserService {
             // 字节数组转16进制字符串
             // https://my.oschina.net/u/347386/blog/182717
             for (aSrc in src) {
-                val s = Integer.toHexString((aSrc and 0xFF.toByte()).toInt())
+                val s = Integer.toHexString(aSrc.toInt() and 0xFF)
                 if (s.length < 2) {
                     stringBuilder.append('0')
                 }
