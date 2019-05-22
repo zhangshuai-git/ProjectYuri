@@ -17,7 +17,6 @@ import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import kotlin.experimental.and
 
 @Service
 class FileStorageService {
@@ -140,8 +139,7 @@ class UserService {
             digest.update(password.toByteArray())
             val src = digest.digest()
             val stringBuilder = StringBuilder()
-            // 字节数组转16进制字符串
-            // https://my.oschina.net/u/347386/blog/182717
+            // 字节数组转16进制字符串 https://my.oschina.net/u/347386/blog/182717
             for (aSrc in src) {
                 val s = Integer.toHexString(aSrc.toInt() and 0xFF)
                 if (s.length < 2) {
