@@ -14,7 +14,9 @@ interface CharactersRepository: JpaRepository<Characters, Long>
 
 interface CommentRepository: JpaRepository<Comment, Long>
 
-interface UserRepository: JpaRepository<User, Long>
+interface UserRepository: JpaRepository<User, Long> {
+    fun findByName(name: String): User?
+}
 
 interface UserProductionRepository: JpaRepository<UserProduction, UserProduction.UserProductionID>
 

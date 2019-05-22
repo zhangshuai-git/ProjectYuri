@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletRequest
 
 @RestController
 @Api(tags = ["File"])
-class FileController {
+class FileAPI {
 
-    private val logger = LoggerFactory.getLogger(FileController::class.java)
+    private val logger = LoggerFactory.getLogger(FileAPI::class.java)
 
     @Autowired
     lateinit var fileStorageService: FileStorageService
@@ -77,7 +77,7 @@ class FileController {
 @RestController
 @Api(tags = ["Production"])
 @RequestMapping("/api/v1/production")
-class ProductionController {
+class ProductionAPI {
 
     @Autowired
     lateinit var productionService: ProductionService
@@ -138,6 +138,25 @@ class ProductionController {
         }
     }
 
+}
+
+@RestController
+@Api(tags = ["User"])
+@RequestMapping("/api/v1/user")
+class UserAPI {
+
+    @Autowired
+    lateinit var userService: UserService
+
+    @PostMapping
+    fun create(@RequestBody user: User): Result<User> {
+        return Result(userService.create(user))
+    }
+
+    @GetMapping("{id}")
+    fun findById(@PathVariable id: Long): Result<User> {
+        return Result(userService.findById(id))
+    }
 }
 
 //@RestController

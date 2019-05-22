@@ -15,7 +15,9 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
-
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import kotlin.experimental.and
 
 @Service
 class FileStorageService {
@@ -116,6 +118,55 @@ class ProductionService {
                 ?: throw CustomException(ErrorEnum.PARAM_ERROR)
     }
 
+}
+
+@Service
+class UserService {
+
+    @Autowired
+    lateinit var userRepository: UserRepository
+
+    fun create(user: User): User {
+        return user
+                .takeUnless { userRepository.existsById(it.id) }
+                ?.also { it.password = passwordToHash(it.password) }
+                ?.let { userRepository.save(it) }
+                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+    }
+
+    private fun passwordToHash(password: String): String {
+        try {
+            val digest = MessageDigest.getInstance("SHA-256")
+            digest.update(password.toByteArray())
+            val src = digest.digest()
+            val stringBuilder = StringBuilder()
+            // 字节数组转16进制字符串
+            // https://my.oschina.net/u/347386/blog/182717
+            for (aSrc in src) {
+                val s = Integer.toHexString((aSrc and 0xFF.toByte()).toInt())
+                if (s.length < 2) {
+                    stringBuilder.append('0')
+                }
+                stringBuilder.append(s)
+            }
+            return stringBuilder.toString()
+        } catch (ignore: NoSuchAlgorithmException) {
+            throw CustomException(ErrorEnum.ENCODE_ERROR)
+        }
+    }
+
+    fun findByName(name: String): User? {
+        return userRepository.findByName(name)
+    }
+
+    fun findById(id: Long): User {
+        return userRepository.findById(id).toNullable()
+                ?: throw CustomException(ErrorEnum.RESOURCE_ERROR)
+    }
+
+    fun comparePassword(user: User, userInDataBase: User): Boolean {
+        return passwordToHash(user.password) == userInDataBase.password
+    }
 }
 
 //@Service
