@@ -57,7 +57,9 @@ class MeViewController: ZSViewController {
         MeModel("添加条目", selectedAction:{ [weak self] in
             self?.gotoAddProductionViewController()
         }),
-        MeModel("设置"),
+        MeModel("设置", selectedAction:{ [weak self] in
+            self?.gotoLoginViewController()
+        }),
         MeModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [weak self] in
             self?.gotoAboutViewController("关于\(UIDevice.appName() ?? "")")
         }),

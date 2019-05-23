@@ -49,3 +49,13 @@ class MeModel {
     }
 }
 
+class LoginModel {
+    var content: String
+    var detail: String
+    
+    init(_ content: String = "", detail: String = "") {
+        self.content = content
+        self.detail = detail
+    }
+}
+

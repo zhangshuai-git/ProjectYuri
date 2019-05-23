@@ -154,7 +154,6 @@ class UserAPI {
                 takeIf { userService.findByName(it.name) == null }
                 ?.let { Result(userService.create(it)) }
                 ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
-
     }
 
     @GetMapping("{id}")
