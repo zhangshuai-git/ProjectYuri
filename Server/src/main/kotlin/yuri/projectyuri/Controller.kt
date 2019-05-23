@@ -132,10 +132,10 @@ class ProductionAPI {
             @RequestParam(required = false, defaultValue = "0") page: Int,
             @RequestParam(required = false, defaultValue = "10") size: Int
     ): Result<PageResult<Production>> {
-        return when {
-            query.isEmpty() -> Result(PageResult(productionService.findAll(page, size)))
-            else -> Result(PageResult(productionService.findSearch(query, page, size)))
-        }
+        return query
+                .takeIf { query.isNotEmpty() }
+                ?.let { Result(PageResult(productionService.findSearch(it, page, size))) }
+                ?: Result(PageResult(productionService.findAll(page, size)))
     }
 
 }
@@ -150,7 +150,11 @@ class UserAPI {
 
     @PostMapping
     fun create(@RequestBody user: User): Result<User> {
-        return Result(userService.create(user))
+        return user.
+                takeIf { userService.findByName(it.name) == null }
+                ?.let { Result(userService.create(it)) }
+                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+
     }
 
     @GetMapping("{id}")
