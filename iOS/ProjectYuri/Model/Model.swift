@@ -52,10 +52,14 @@ class MeModel {
 class LoginModel {
     var content: String
     var detail: String
+    var signupAction: ()?
+    var signinAction: ()?
     
-    init(_ content: String = "", detail: String = "") {
+    init(_ content: String = "", detail: String = "", signupAction: ()? = nil, signinAction: ()? = nil) {
         self.content = content
         self.detail = detail
+        self.signupAction = signupAction
+        self.signinAction = signinAction
     }
 }
 

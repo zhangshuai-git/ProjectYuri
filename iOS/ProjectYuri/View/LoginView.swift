@@ -81,6 +81,16 @@ class LoginFooterView: ZSView {
     let output = PublishRelay<LoginModel>()
     
     override func bindViewModel() {
+        signup.rx.tap
+//            .debug("signup")
+            .map{LoginModel(signupAction: ())}
+            .bind(to: output)
+            .disposed(by: disposeBag)
         
+        signin.rx.tap
+//            .debug("signin")
+            .map{LoginModel(signinAction: ())}
+            .bind(to: output)
+            .disposed(by: disposeBag)
     }
 }
