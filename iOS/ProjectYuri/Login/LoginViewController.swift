@@ -71,7 +71,7 @@ class LoginViewController: ZSViewController {
                     .bind(to: cell.input)
                     .disposed(by: cell.disposeBag)
                 cell.output
-                    .bind{ [weak self] in guard let `self` = self else { return }
+                    .bind{
                         print($0.content)
                     }
                     .disposed(by: cell.disposeBag)
@@ -81,14 +81,14 @@ class LoginViewController: ZSViewController {
         
         footerView.output
             .filter{$0.signupAction != nil}
-            .bind{ [weak self] in guard let `self` = self else { return }
+            .bind{
                 print($0.signupAction)
             }
             .disposed(by: disposeBag)
         
         footerView.output
             .filter{$0.signinAction != nil}
-            .bind{ [weak self] in guard let `self` = self else { return }
+            .bind{  
                 print($0.signinAction)
             }
             .disposed(by: disposeBag)

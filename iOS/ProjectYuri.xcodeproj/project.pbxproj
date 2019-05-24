@@ -342,8 +342,12 @@
 				EC64B0AA226096B700961A5E /* Lib */,
 				ECFD0FBC225209F40074550D /* CustomUI */,
 				ECB6D88F21BFCB9F00017274 /* Model */,
-				EC1B9D9921BE88C1000E2C5B /* Controller */,
-				ECE4A57B224B1AB100A0E69B /* View */,
+				EC1B9D9921BE88C1000E2C5B /* Home */,
+				ECE1DE3F2297AE2A00A5472D /* Production */,
+				ECE1DE3E2297ADCD00A5472D /* ProductionDetail */,
+				ECE1DE402297AE7D00A5472D /* Profile */,
+				ECE4A57B224B1AB100A0E69B /* Me */,
+				ECE1DE412297AEAF00A5472D /* Login */,
 				EC1B9D9B21BE88CE000E2C5B /* Service */,
 				EC1B9D7E21BE867F000E2C5B /* Base */,
 				EC1B9D8721BE86B7000E2C5B /* ZSExtension */,
@@ -390,22 +394,13 @@
 			path = ZSExtension;
 			sourceTree = "<group>";
 		};
-		EC1B9D9921BE88C1000E2C5B /* Controller */ = {
+		EC1B9D9921BE88C1000E2C5B /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				ECE4A579224B1A4E00A0E69B /* HomeViewController.swift */,
-				ECE4A58B224C8CD400A0E69B /* ProductionDetailViewController.swift */,
-				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
-				EC416FDE22894834001FF43E /* ProductionViewController.swift */,
-				EC64AFE6225F195900961A5E /* AddProductionViewController.swift */,
-				EC416FCA22817A45001FF43E /* EditProductionViewController.swift */,
-				EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */,
-				EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */,
-				EC5C2EE822718D1E007E036C /* AboutViewController.swift */,
-				EC5C2EEC22719D52007E036C /* LicenseViewController.swift */,
-				ECE1DE3822967D5E00A5472D /* LoginViewController.swift */,
+				EC5C2EE6227001C0007E036C /* HomeCell.swift */,
 			);
-			path = Controller;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		EC1B9D9B21BE88CE000E2C5B /* Service */ = {
@@ -752,21 +747,58 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		ECE4A57B224B1AB100A0E69B /* View */ = {
+		ECE1DE3E2297ADCD00A5472D /* ProductionDetail */ = {
 			isa = PBXGroup;
 			children = (
-				EC5C2EE6227001C0007E036C /* HomeCell.swift */,
-				EC416FDA2288F99F001FF43E /* ProductionCell.swift */,
-				EC416FDC22894300001FF43E /* ProductionView.swift */,
+				ECE4A58B224C8CD400A0E69B /* ProductionDetailViewController.swift */,
 				ECE4A592224DDED300A0E69B /* ProductionDetailCell.swift */,
 				ECE4A594224DEB6600A0E69B /* ProductionDetailView.swift */,
-				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
-				ECF0E73A22532B2100E265B9 /* MeView.swift */,
+			);
+			path = ProductionDetail;
+			sourceTree = "<group>";
+		};
+		ECE1DE3F2297AE2A00A5472D /* Production */ = {
+			isa = PBXGroup;
+			children = (
+				EC416FDE22894834001FF43E /* ProductionViewController.swift */,
+				EC416FDA2288F99F001FF43E /* ProductionCell.swift */,
+				EC416FDC22894300001FF43E /* ProductionView.swift */,
+				EC64AFE6225F195900961A5E /* AddProductionViewController.swift */,
+				EC416FCA22817A45001FF43E /* EditProductionViewController.swift */,
+			);
+			path = Production;
+			sourceTree = "<group>";
+		};
+		ECE1DE402297AE7D00A5472D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EC7BAF2F2254800000F3E28F /* ProfileContainerViewController.swift */,
+				EC7BAF3A225493BE00F3E28F /* ProfileViewController.swift */,
 				EC7BAF3E2254C0AE00F3E28F /* ProfileCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		ECE1DE412297AEAF00A5472D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ECE1DE3822967D5E00A5472D /* LoginViewController.swift */,
 				ECE1DE3A22967E4400A5472D /* LoginCell.swift */,
 				ECE1DE3C229693BF00A5472D /* LoginView.swift */,
 			);
-			path = View;
+			path = Login;
+			sourceTree = "<group>";
+		};
+		ECE4A57B224B1AB100A0E69B /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				ECE4A57C224B1D2A00A0E69B /* MeViewController.swift */,
+				EC7BAF35225488DF00F3E28F /* MeCell.swift */,
+				ECF0E73A22532B2100E265B9 /* MeView.swift */,
+				EC5C2EE822718D1E007E036C /* AboutViewController.swift */,
+				EC5C2EEC22719D52007E036C /* LicenseViewController.swift */,
+			);
+			path = Me;
 			sourceTree = "<group>";
 		};
 		ECFD0FBC225209F40074550D /* CustomUI */ = {
