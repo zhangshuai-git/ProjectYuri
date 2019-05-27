@@ -46,7 +46,6 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
-//        print(request.toJSON())
         return ProjectYuriProvider.rx
             .request(.addProduction(formDataArray, param))
             .trackActivity(indicator)
@@ -66,9 +65,27 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
-//        print(request.toJSON())
         return ProjectYuriProvider.rx
             .request(.updateProduction(formDataArray, param))
+            .trackActivity(indicator)
+            .asObservable()
+            .mapModel(Result.self)
+            .catchErrorJustReturn(Result())
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+    }
+    
+    func signup(_ request:User, _ imageRequest: ProductionImageRequest) -> Observable<Result<User>> {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
+        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
+            .map{
+                let fileName = "\(formatter.string(from: Date())).jpg"
+                return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
+        }
+        let param = ["param" : request.toJSONString() ?? ""]
+        return ProjectYuriProvider.rx
+            .request(.signup(formDataArray, param))
             .trackActivity(indicator)
             .asObservable()
             .mapModel(Result.self)

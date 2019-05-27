@@ -23,19 +23,13 @@ class SignupViewController: ZSViewController {
         tableView.estimatedSectionHeaderHeight = 24.0
         tableView.estimatedSectionFooterHeight = 24.0
         tableView.separatorStyle = .none
-        tableView.zs.register(LoginCell.self)
+        tableView.zs.register(ProductionCell0.self)
+        tableView.zs.register(ProductionCell3.self)
         return tableView
     }()
     
-    let headerView: LoginHeaderView = {
-        let headerView = LoginHeaderView()
-        let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-        headerView.frame = CGRect(x: 0, y: 0, width: 0, height: height)
-        return headerView
-    }()
-    
-    let footerView: LoginFooterView = {
-        let footerView = LoginFooterView()
+    let footerView: ProductionFooterView = {
+        let footerView = ProductionFooterView()
         let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         footerView.frame = CGRect(x: 0, y: 0, width: 0, height: height)
         return footerView
@@ -44,7 +38,6 @@ class SignupViewController: ZSViewController {
     override func buildSubViews() {
         super.buildSubViews()
         view.addSubview(tableView)
-        tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
     }
     
@@ -55,9 +48,14 @@ class SignupViewController: ZSViewController {
         }
     }
     
-    let dataSource: BehaviorRelay<[LoginModel]> = BehaviorRelay(value: [
-        LoginModel(detail: "用户名"),
-        LoginModel(detail: "密码"),
+    let input = BehaviorRelay(value: User())
+    let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
+    
+    lazy var dataSource: BehaviorRelay<[ProductionModel]> = BehaviorRelay(value: [
+        ProductionModel(title: "用户名", content: self.input.value.username),
+        ProductionModel(title: "密码", content: self.input.value.password),
+        ProductionModel(title: "昵称", content: self.input.value.nickname),
+        ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl),
         ])
     
     override func bindViewModel() {
@@ -66,30 +64,95 @@ class SignupViewController: ZSViewController {
         dataSource
             .bind(to: tableView.rx.items) { tableView, row, element in
                 let indexPath = IndexPath(row: row, section: 0)
-                let cell = tableView.zs.dequeueReusableCell(LoginCell.self, for: indexPath)
-                Observable.of(element)
-                    .bind(to: cell.input)
-                    .disposed(by: cell.disposeBag)
-                cell.output
-                    .bind{
-                        print($0.content)
-                    }
-                    .disposed(by: cell.disposeBag)
-                return cell
+                switch row {
+                case 0:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.username = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 1:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.password = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 2:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.nickname = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 3:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.addProductionImageRequest.value.coverImg = $0.image
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                default: return UITableViewCell()
+                }
             }
             .disposed(by: disposeBag)
         
-        footerView.output
-            .filter{$0.signupAction != nil}
-            .bind{
-                print($0.signupAction)
+        let submitResult: Observable<Result<User>> = footerView.submittalBtn.rx.tap
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.input.value.username.isEmpty
+                if !valid {self.showMessage("请输入用户名")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.input.value.password.isEmpty
+                if !valid {self.showMessage("请输入密码")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.input.value.nickname.isEmpty
+                if !valid {self.showMessage("请输入昵称")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = self.addProductionImageRequest.value.coverImg != nil
+                if !valid {self.showMessage("请上传头像")}
+                return valid
+            }
+            .flatMapLatest { [weak self] _ in
+                NetworkService.shared.signup(self?.input.value ?? User(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
+            }
+            .share(replay: 1)
+        
+        submitResult
+            .filter{$0.code == 0}
+            .bind { [weak self] _ in guard let `self` = self else { return }
+                self.showMessage("添加成功", handler: {
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
             .disposed(by: disposeBag)
         
-        footerView.output
-            .filter{$0.signinAction != nil}
-            .bind{
-                print($0.signinAction)
+        submitResult
+            .filter{$0.code != 0}
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.showMessage($0.message)
             }
             .disposed(by: disposeBag)
         

@@ -15,6 +15,7 @@ public enum ProjectYuriAPI {
     case findAllProductions([String : Any])
     case addProduction([MultipartFormData], [String: Any])
     case updateProduction([MultipartFormData], [String: Any])
+    case signup([MultipartFormData], [String: Any])
 }
 
 extension ProjectYuriAPI: TargetType {
@@ -31,6 +32,8 @@ extension ProjectYuriAPI: TargetType {
             return "/api/v1/production"
         case .updateProduction(_, _):
             return "/api/v1/production"
+        case .signup(_, _):
+            return "/api/v1/user"
         }
     }
     
@@ -42,6 +45,8 @@ extension ProjectYuriAPI: TargetType {
             return .post
         case .updateProduction(_, _):
             return .put
+        case .signup(_, _):
+            return .post
         }
     }
     
@@ -54,6 +59,9 @@ extension ProjectYuriAPI: TargetType {
             print("发起请求: \(formData) \(params)")
             return .uploadCompositeMultipart(formData, urlParameters: params)
         case .updateProduction(let formData, let params):
+            print("发起请求: \(formData) \(params)")
+            return .uploadCompositeMultipart(formData, urlParameters: params)
+        case .signup(let formData, let params):
             print("发起请求: \(formData) \(params)")
             return .uploadCompositeMultipart(formData, urlParameters: params)
         }
