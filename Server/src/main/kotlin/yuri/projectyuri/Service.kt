@@ -127,10 +127,10 @@ class UserService {
 
     fun create(user: User): User {
         return user
-                .takeUnless { userRepository.existsById(it.id) }
-                ?.also { it.password = passwordToHash(it.password) }
-                ?.let { userRepository.save(it) }
-                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+//                .takeUnless { userRepository.existsById(it.id) }
+//                ?.also { it.password = passwordToHash(it.password) }
+//                ?.let { userRepository.save(it) }
+//                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     private fun passwordToHash(password: String): String {

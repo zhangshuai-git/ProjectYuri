@@ -149,9 +149,11 @@ class UserAPI {
     lateinit var userService: UserService
 
     @PostMapping
-    fun create(@RequestBody user: User): Result<User> {
-        return user.
-                takeIf { userService.findByUsername(it.username) == null }
+    fun create(@RequestParam param: String, @RequestParam image: MultipartFile): Result<User> {
+        val user: User = param.toBean()
+        println(user.toJsonString())
+        return user
+                .takeIf { userService.findByUsername(it.username) == null }
                 ?.let { Result(userService.create(it)) }
                 ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
