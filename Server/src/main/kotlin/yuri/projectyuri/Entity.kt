@@ -69,9 +69,11 @@ class Comment(@Id @GeneratedValue var id: Long) {
 @Entity
 class User(@Id @GeneratedValue var id: Long) {
 
-    var name: String = ""
+    var username: String = ""
 
     var password: String = ""
+
+    var nickname: String = ""
 
     var avatarUrl: String = ""
 

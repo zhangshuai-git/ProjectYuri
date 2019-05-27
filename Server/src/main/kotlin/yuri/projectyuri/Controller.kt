@@ -151,7 +151,7 @@ class UserAPI {
     @PostMapping
     fun create(@RequestBody user: User): Result<User> {
         return user.
-                takeIf { userService.findByName(it.name) == null }
+                takeIf { userService.findByName(it.username) == null }
                 ?.let { Result(userService.create(it)) }
                 ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }

@@ -46,7 +46,6 @@ class AboutViewController: ZSViewController {
         MeModel("开源组件许可", selectedAction:{ [weak self] in
             self?.gotoLicenseViewController("开源组件许可")
         }),
-        MeModel("制作人名单"),
         ])
     
     override func bindViewModel() {
