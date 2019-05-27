@@ -153,8 +153,8 @@ class UserService {
         }
     }
 
-    fun findByName(name: String): User? {
-        return userRepository.findByName(name)
+    fun findByUsername(username: String): User? {
+        return userRepository.findByUsername(username)
     }
 
     fun findById(id: Long): User {
