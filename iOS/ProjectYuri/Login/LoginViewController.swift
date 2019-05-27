@@ -81,8 +81,8 @@ class LoginViewController: ZSViewController {
         
         footerView.output
             .filter{$0.signupAction != nil}
-            .bind{
-                print($0.signupAction)
+            .bind{ [weak self] _ in guard let `self` = self else { return }
+                self.gotoSignupViewController()
             }
             .disposed(by: disposeBag)
         

@@ -50,6 +50,11 @@ extension ZSViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func gotoSignupViewController() {
+        let vc = SignupViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func gotoAddProductionViewController() {
         let vc = AddProductionViewController()
         navigationController?.pushViewController(vc, animated: true)
