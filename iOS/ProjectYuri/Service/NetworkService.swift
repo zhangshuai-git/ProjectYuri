@@ -80,9 +80,9 @@ class NetworkService {
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
         let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
             .map{
-                let fileName = "\(formatter.string(from: Date())).jpg"
+                let fileName = "avatar_\(formatter.string(from: Date())).jpg"
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
-        }
+            }
         let param = ["param" : request.toJSONString() ?? ""]
         return ProjectYuriProvider.rx
             .request(.signup(formDataArray, param))

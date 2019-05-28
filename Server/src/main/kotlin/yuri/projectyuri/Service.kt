@@ -127,30 +127,31 @@ class UserService {
 
     fun create(user: User): User {
         return user
-//                .takeUnless { userRepository.existsById(it.id) }
-//                ?.also { it.password = passwordToHash(it.password) }
-//                ?.let { userRepository.save(it) }
-//                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+                .takeUnless { userRepository.existsById(it.id) }
+                ?.also { it.password = passwordToHash(it.password) }
+                ?.let { userRepository.save(it) }
+                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     private fun passwordToHash(password: String): String {
-        try {
-            val digest = MessageDigest.getInstance("SHA-256")
-            digest.update(password.toByteArray())
-            val src = digest.digest()
-            val stringBuilder = StringBuilder()
-            // 字节数组转16进制字符串 https://my.oschina.net/u/347386/blog/182717
-            for (aSrc in src) {
-                val s = Integer.toHexString(aSrc.toInt() and 0xFF)
-                if (s.length < 2) {
-                    stringBuilder.append('0')
-                }
-                stringBuilder.append(s)
-            }
-            return stringBuilder.toString()
-        } catch (ignore: NoSuchAlgorithmException) {
-            throw CustomException(ErrorEnum.ENCODE_ERROR)
-        }
+//        try {
+//            val digest = MessageDigest.getInstance("SHA-256")
+//            digest.update(password.toByteArray())
+//            val src = digest.digest()
+//            val stringBuilder = StringBuilder()
+//            // 字节数组转16进制字符串 https://my.oschina.net/u/347386/blog/182717
+//            for (aSrc in src) {
+//                val s = Integer.toHexString(aSrc.toInt() and 0xFF)
+//                if (s.length < 2) {
+//                    stringBuilder.append('0')
+//                }
+//                stringBuilder.append(s)
+//            }
+//            return stringBuilder.toString()
+//        } catch (ignore: NoSuchAlgorithmException) {
+//            throw CustomException(ErrorEnum.ENCODE_ERROR)
+//        }
+        return password
     }
 
     fun findByUsername(username: String): User? {

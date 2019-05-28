@@ -7,6 +7,7 @@ import org.springframework.core.io.Resource
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.util.StringUtils
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -28,7 +29,8 @@ class FileAPI {
     fun uploadFile(@RequestParam("image") file: MultipartFile): Result<UploadFileResponse> {
         val fileName = fileStorageService.storeFile(file)
 
-        val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+        val fileDownloadUri = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString()
@@ -66,7 +68,8 @@ class FileAPI {
             contentType = "application/octet-stream"
         }
 
-        return ResponseEntity.ok()
+        return ResponseEntity
+                .ok()
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.filename + "\"")
                 .body(resource)
@@ -97,12 +100,11 @@ class ProductionAPI {
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString()
-        production.coverUrl = fileDownloadUri
-        println(production.category)
-
-        productionService.create(production)
-
-        return Result(production)
+        return production
+                .also { it.coverUrl = fileDownloadUri }
+                .also { println(it.category) }
+                .let { productionService.create(it) }
+                .let { Result(it) }
     }
 
     @PutMapping
@@ -148,13 +150,27 @@ class UserAPI {
     @Autowired
     lateinit var userService: UserService
 
+    @Autowired
+    lateinit var fileStorageService: FileStorageService
+
     @PostMapping
     fun create(@RequestParam param: String, @RequestParam image: MultipartFile): Result<User> {
         val user: User = param.toBean()
-        println(user.toJsonString())
+        val fileName: String = image
+                .takeIf { it.size > 0 }
+                ?.let { fileStorageService.storeFile(it) }
+                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
+        val fileDownloadUri: String = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString()
         return user
+                .also { it.avatarUrl = fileDownloadUri }
+                .also { println(it.toJsonString()) }
                 .takeIf { userService.findByUsername(it.username) == null }
-                ?.let { Result(userService.create(it)) }
+                ?.let { userService.create(it) }
+                ?.let { Result(it) }
                 ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
