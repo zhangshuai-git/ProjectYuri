@@ -39,8 +39,6 @@ class SignupViewController: ZSViewController {
         super.buildSubViews()
         view.addSubview(tableView)
         tableView.tableFooterView = footerView
-//        tableView.delegate = self
-//        tableView.dataSource = self
     }
     
     override func makeConstraints() {
