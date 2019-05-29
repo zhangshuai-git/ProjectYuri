@@ -61,11 +61,11 @@ class ProductionDetailViewController: ZSViewController {
     
     let dataSource = BehaviorRelay(value: Production())
     
-    lazy var sectionedDataSource: [ProductionDetailModel<Production>] = [
-        ProductionDetailModel(dataSource.value),
-        ProductionDetailModel(dataSource.value),
-        ProductionDetailModel(dataSource.value),
-        ProductionDetailModel(dataSource.value),
+    lazy var sectionedDataSource: [Index : ProductionDetailModel<Production>] = [
+        .description : ProductionDetailModel(dataSource.value),
+        .information : ProductionDetailModel(dataSource.value),
+        .staff : ProductionDetailModel(dataSource.value),
+        .characters : ProductionDetailModel(dataSource.value),
         ]
     
     override func bindViewModel() {
@@ -113,7 +113,7 @@ extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataS
         guard let index = Index(rawValue: indexPath.section) else {
             fatalError("Invalid index \(indexPath)")
         }
-        let data = sectionedDataSource[indexPath.section]
+        let data = sectionedDataSource[index]!
         switch index {
         case .description:
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell0.self, for: indexPath)
