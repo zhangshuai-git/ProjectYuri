@@ -116,10 +116,6 @@ class SignupViewController: ZSViewController {
         
     }
     
-}
-
-extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
-    
     enum Index: Int, CaseIterable {
         case username
         case password
@@ -127,6 +123,17 @@ extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
         case nickname
         case avatar
     }
+    
+    lazy var dataSource: [Index : ProductionModel] = [
+        .username : ProductionModel(title: "用户名", content: self.input.value.username),
+        .password : ProductionModel(title: "密码", content: self.input.value.password),
+        .password2 : ProductionModel(title: "确认密码", content: self.input.value.password2),
+        .nickname : ProductionModel(title: "昵称", content: self.input.value.nickname),
+        .avatar : ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl),
+        ]
+}
+
+extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Index.allCases.count
@@ -136,10 +143,11 @@ extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
         guard let index = Index(rawValue: indexPath.row) else {
             fatalError("Invalid index \(indexPath)")
         }
+        let data = dataSource[index]!
         switch index {
         case .username:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(ProductionModel(title: "用户名", content: self.input.value.username))
+            Observable.of(data)
                 .bind(to: cell.input)
                 .disposed(by: cell.disposeBag)
             cell.output
@@ -150,7 +158,7 @@ extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case .password:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(ProductionModel(title: "密码", content: self.input.value.password))
+            Observable.of(data)
                 .bind(to: cell.input)
                 .disposed(by: cell.disposeBag)
             cell.output
@@ -161,7 +169,7 @@ extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case .password2:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(ProductionModel(title: "再次输入密码", content: self.input.value.password2))
+            Observable.of(data)
                 .bind(to: cell.input)
                 .disposed(by: cell.disposeBag)
             cell.output
@@ -172,7 +180,7 @@ extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case .nickname:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(ProductionModel(title: "昵称", content: self.input.value.nickname))
+            Observable.of(data)
                 .bind(to: cell.input)
                 .disposed(by: cell.disposeBag)
             cell.output
@@ -183,7 +191,7 @@ extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case .avatar:
             let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
-            Observable.of(ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl))
+            Observable.of(data)
                 .bind(to: cell.input)
                 .disposed(by: cell.disposeBag)
             cell.output

@@ -12,8 +12,10 @@ import RxCocoa
 import SnapKit
 
 class ProductionCell: ZSTableViewCell {
-    let input = PublishRelay<ProductionModel>()
-    let output = PublishRelay<ProductionModel>()
+//    let input = PublishRelay<ProductionModel>()
+//    let output = PublishRelay<ProductionModel>()
+    let input = BehaviorRelay(value: ProductionModel())
+    let output = BehaviorRelay(value: ProductionModel())
 }
 
 class ProductionCell0: ProductionCell {
@@ -73,7 +75,10 @@ class ProductionCell0: ProductionCell {
             .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .map{ ProductionModel(content: $0) }
+            .map{ [weak self] in guard let `self` = self else { return ProductionModel(content: $0) }
+                self.input.value.content = $0
+                return self.input.value
+            }
             .bind(to: output)
             .disposed(by: disposeBag)
     }
@@ -132,7 +137,10 @@ class ProductionCell1: ProductionCell {
             .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .map{ ProductionModel(content: $0) }
+            .map{ [weak self] in guard let `self` = self else { return ProductionModel(content: $0) }
+                self.input.value.content = $0
+                return self.input.value
+            }
             .bind(to: output)
             .disposed(by: disposeBag)
     }
@@ -190,7 +198,10 @@ class ProductionCell2: ProductionCell {
             .filter{ [weak self] in guard let `self` = self else { return false }
                 return $0 >= 0 && $0 < self.categoryArray.count
             }
-            .map{ ProductionModel(category: self.categoryArray[$0]) }
+            .map{ [weak self] in guard let `self` = self else { return ProductionModel() }
+                self.input.value.category = self.categoryArray[$0]
+                return self.input.value
+            }
             .bind(to: output)
             .disposed(by: disposeBag)
     }
@@ -323,7 +334,7 @@ class ProductionCell4: ProductionCell {
     }
 }
 
-class ProductionCell5: ZSTableViewCell {
+class ProductionCell5: ProductionCell {
     
     let imgBtn: UIButton = {
         let button = UIButton()
@@ -390,9 +401,6 @@ class ProductionCell5: ZSTableViewCell {
             make.height.equalTo(30)
         }
     }
-    
-    let input = BehaviorRelay(value: ProductionModel())
-    let output = BehaviorRelay(value: ProductionModel())
     
     override func bindViewModel() {
         super.bindViewModel()
