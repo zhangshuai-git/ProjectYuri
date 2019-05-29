@@ -12,8 +12,6 @@ import RxCocoa
 import SnapKit
 
 class ProductionCell: ZSTableViewCell {
-//    let input = PublishRelay<ProductionModel>()
-//    let output = PublishRelay<ProductionModel>()
     let input = BehaviorRelay(value: ProductionModel())
     let output = BehaviorRelay(value: ProductionModel())
 }
