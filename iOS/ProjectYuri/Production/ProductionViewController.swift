@@ -73,7 +73,7 @@ class ProductionViewController: ZSViewController {
                     Observable.of(element)
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
-                    cell.output
+                    cell.output.skip(1)
                         .bind{ [weak self] in guard let `self` = self else { return }
                             self.input.value.nameCN = $0.content
                         }
@@ -84,7 +84,7 @@ class ProductionViewController: ZSViewController {
                     Observable.of(element)
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
-                    cell.output
+                    cell.output.skip(1)
                         .bind{ [weak self] in guard let `self` = self else { return }
                             self.input.value.name = $0.content
                         }
@@ -95,7 +95,7 @@ class ProductionViewController: ZSViewController {
                     Observable.of(element)
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
-                    cell.output
+                    cell.output.skip(1)
                         .bind{ [weak self] in guard let `self` = self else { return }
                             self.input.value.desp = $0.content
                         }
@@ -106,7 +106,7 @@ class ProductionViewController: ZSViewController {
                     Observable.of(element)
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
-                    cell.output
+                    cell.output.skip(1)
                         .bind{ [weak self] in guard let `self` = self else { return }
                             self.input.value.category = $0.category
                         }
@@ -117,7 +117,7 @@ class ProductionViewController: ZSViewController {
                     Observable.of(element)
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
-                    cell.output
+                    cell.output.skip(1)
                         .bind{ [weak self] in guard let `self` = self else { return }
                              self.addProductionImageRequest.value.coverImg = $0.image
                         }
