@@ -39,6 +39,8 @@ class SignupViewController: ZSViewController {
         super.buildSubViews()
         view.addSubview(tableView)
         tableView.tableFooterView = footerView
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func makeConstraints() {
@@ -51,68 +53,8 @@ class SignupViewController: ZSViewController {
     let input = BehaviorRelay(value: User())
     let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
-    lazy var dataSource: BehaviorRelay<[ProductionModel]> = BehaviorRelay(value: [
-        ProductionModel(title: "用户名", content: self.input.value.username),
-        ProductionModel(title: "密码", content: self.input.value.password),
-        ProductionModel(title: "昵称", content: self.input.value.nickname),
-        ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl),
-        ])
-    
     override func bindViewModel() {
         super.bindViewModel()
-        
-        dataSource
-            .bind(to: tableView.rx.items) { tableView, row, element in
-                let indexPath = IndexPath(row: row, section: 0)
-                switch row {
-                case 0:
-                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-                    Observable.of(element)
-                        .bind(to: cell.input)
-                        .disposed(by: cell.disposeBag)
-                    cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.username = $0.content
-                        }
-                        .disposed(by: cell.disposeBag)
-                    return cell
-                case 1:
-                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-                    Observable.of(element)
-                        .bind(to: cell.input)
-                        .disposed(by: cell.disposeBag)
-                    cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.password = $0.content
-                        }
-                        .disposed(by: cell.disposeBag)
-                    return cell
-                case 2:
-                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-                    Observable.of(element)
-                        .bind(to: cell.input)
-                        .disposed(by: cell.disposeBag)
-                    cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.nickname = $0.content
-                        }
-                        .disposed(by: cell.disposeBag)
-                    return cell
-                case 3:
-                    let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
-                    Observable.of(element)
-                        .bind(to: cell.input)
-                        .disposed(by: cell.disposeBag)
-                    cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.addProductionImageRequest.value.coverImg = $0.image
-                        }
-                        .disposed(by: cell.disposeBag)
-                    return cell
-                default: return UITableViewCell()
-                }
-            }
-            .disposed(by: disposeBag)
         
         let submitResult: Observable<Result<User>> = footerView.submittalBtn.rx.tap
             .filter{ [weak self] in guard let `self` = self else { return false }
@@ -123,6 +65,16 @@ class SignupViewController: ZSViewController {
             .filter{ [weak self] in guard let `self` = self else { return false }
                 let valid = !self.input.value.password.isEmpty
                 if !valid {self.showMessage("请输入密码")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = !self.input.value.password2.isEmpty
+                if !valid {self.showMessage("请再次输入密码")}
+                return valid
+            }
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                let valid = self.input.value.password == self.input.value.password2
+                if !valid {self.showMessage("两次输入密码不一致")}
                 return valid
             }
             .filter{ [weak self] in guard let `self` = self else { return false }
@@ -164,4 +116,84 @@ class SignupViewController: ZSViewController {
         
     }
     
+}
+
+extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    enum Index: Int, CaseIterable {
+        case username
+        case password
+        case password2
+        case nickname
+        case avatar
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Index.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let index = Index(rawValue: indexPath.row) else {
+            fatalError("Invalid index \(indexPath)")
+        }
+        switch index {
+        case .username:
+            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+            Observable.of(ProductionModel(title: "用户名", content: self.input.value.username))
+                .bind(to: cell.input)
+                .disposed(by: cell.disposeBag)
+            cell.output
+                .bind{ [weak self] in guard let `self` = self else { return }
+                    self.input.value.username = $0.content
+                }
+                .disposed(by: cell.disposeBag)
+            return cell
+        case .password:
+            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+            Observable.of(ProductionModel(title: "密码", content: self.input.value.password))
+                .bind(to: cell.input)
+                .disposed(by: cell.disposeBag)
+            cell.output
+                .bind{ [weak self] in guard let `self` = self else { return }
+                    self.input.value.password = $0.content
+                }
+                .disposed(by: cell.disposeBag)
+            return cell
+        case .password2:
+            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+            Observable.of(ProductionModel(title: "再次输入密码", content: self.input.value.password2))
+                .bind(to: cell.input)
+                .disposed(by: cell.disposeBag)
+            cell.output
+                .bind{ [weak self] in guard let `self` = self else { return }
+                    self.input.value.password2 = $0.content
+                }
+                .disposed(by: cell.disposeBag)
+            return cell
+        case .nickname:
+            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+            Observable.of(ProductionModel(title: "昵称", content: self.input.value.nickname))
+                .bind(to: cell.input)
+                .disposed(by: cell.disposeBag)
+            cell.output
+                .bind{ [weak self] in guard let `self` = self else { return }
+                    self.input.value.nickname = $0.content
+                }
+                .disposed(by: cell.disposeBag)
+            return cell
+        case .avatar:
+            let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
+            Observable.of(ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl))
+                .bind(to: cell.input)
+                .disposed(by: cell.disposeBag)
+            cell.output
+                .bind{ [weak self] in guard let `self` = self else { return }
+                    self.addProductionImageRequest.value.coverImg = $0.image
+                }
+                .disposed(by: cell.disposeBag)
+            return cell
+        }
+    }
+    
+
 }
