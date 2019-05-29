@@ -39,8 +39,8 @@ class SignupViewController: ZSViewController {
         super.buildSubViews()
         view.addSubview(tableView)
         tableView.tableFooterView = footerView
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
     }
     
     override func makeConstraints() {
@@ -53,8 +53,80 @@ class SignupViewController: ZSViewController {
     let input = BehaviorRelay(value: User())
     let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
+    lazy var dataSource: BehaviorRelay<[ProductionModel]> = BehaviorRelay(value: [
+        ProductionModel(title: "用户名", content: self.input.value.username),
+        ProductionModel(title: "密码", content: self.input.value.password),
+        ProductionModel(title: "确认密码", content: self.input.value.password2),
+        ProductionModel(title: "昵称", content: self.input.value.nickname),
+        ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl),
+        ])
+    
     override func bindViewModel() {
         super.bindViewModel()
+        
+        dataSource
+            .bind(to: tableView.rx.items) { tableView, row, element in
+                let indexPath = IndexPath(row: row, section: 0)
+                switch row {
+                case 0:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.username = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 1:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.password = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 2:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.password2 = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 3:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.input.value.nickname = $0.content
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                case 4:
+                    let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
+                    Observable.of(element)
+                        .bind(to: cell.input)
+                        .disposed(by: cell.disposeBag)
+                    cell.output
+                        .bind{ [weak self] in guard let `self` = self else { return }
+                            self.addProductionImageRequest.value.coverImg = $0.image
+                        }
+                        .disposed(by: cell.disposeBag)
+                    return cell
+                default: return UITableViewCell()
+                }
+            }
+            .disposed(by: disposeBag)
         
         let submitResult: Observable<Result<User>> = footerView.submittalBtn.rx.tap
             .filter{ [weak self] in guard let `self` = self else { return false }
@@ -115,93 +187,4 @@ class SignupViewController: ZSViewController {
             .disposed(by: disposeBag)
         
     }
-    
-    enum Index: Int, CaseIterable {
-        case username
-        case password
-        case password2
-        case nickname
-        case avatar
-    }
-    
-    lazy var dataSource: [Index : ProductionModel] = [
-        .username : ProductionModel(title: "用户名", content: self.input.value.username),
-        .password : ProductionModel(title: "密码", content: self.input.value.password),
-        .password2 : ProductionModel(title: "确认密码", content: self.input.value.password2),
-        .nickname : ProductionModel(title: "昵称", content: self.input.value.nickname),
-        .avatar : ProductionModel(title: "上传头像", coverUrl: self.input.value.avatarUrl),
-        ]
-}
-
-extension SignupViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Index.allCases.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let index = Index(rawValue: indexPath.row) else {
-            fatalError("Invalid index \(indexPath)")
-        }
-        let data = dataSource[index]!
-        switch index {
-        case .username:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(data)
-                .bind(to: cell.input)
-                .disposed(by: cell.disposeBag)
-            cell.output
-                .bind{ [weak self] in guard let `self` = self else { return }
-                    self.input.value.username = $0.content
-                }
-                .disposed(by: cell.disposeBag)
-            return cell
-        case .password:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(data)
-                .bind(to: cell.input)
-                .disposed(by: cell.disposeBag)
-            cell.output
-                .bind{ [weak self] in guard let `self` = self else { return }
-                    self.input.value.password = $0.content
-                }
-                .disposed(by: cell.disposeBag)
-            return cell
-        case .password2:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(data)
-                .bind(to: cell.input)
-                .disposed(by: cell.disposeBag)
-            cell.output
-                .bind{ [weak self] in guard let `self` = self else { return }
-                    self.input.value.password2 = $0.content
-                }
-                .disposed(by: cell.disposeBag)
-            return cell
-        case .nickname:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell0.self, for: indexPath)
-            Observable.of(data)
-                .bind(to: cell.input)
-                .disposed(by: cell.disposeBag)
-            cell.output
-                .bind{ [weak self] in guard let `self` = self else { return }
-                    self.input.value.nickname = $0.content
-                }
-                .disposed(by: cell.disposeBag)
-            return cell
-        case .avatar:
-            let cell = tableView.zs.dequeueReusableCell(ProductionCell3.self, for: indexPath)
-            Observable.of(data)
-                .bind(to: cell.input)
-                .disposed(by: cell.disposeBag)
-            cell.output
-                .bind{ [weak self] in guard let `self` = self else { return }
-                    self.addProductionImageRequest.value.coverImg = $0.image
-                }
-                .disposed(by: cell.disposeBag)
-            return cell
-        }
-    }
-    
-
 }
