@@ -40,7 +40,7 @@ class LoginCell: ZSTableViewCell {
         
     }
     
-    let input = PublishRelay<LoginModel>()
+    let input = BehaviorRelay(value: LoginModel())
     let output = PublishRelay<LoginModel>()
     
     override func bindViewModel() {

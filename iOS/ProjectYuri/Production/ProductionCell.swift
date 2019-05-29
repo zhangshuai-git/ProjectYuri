@@ -13,7 +13,7 @@ import SnapKit
 
 class ProductionCell: ZSTableViewCell {
     let input = BehaviorRelay(value: ProductionModel())
-    let output = BehaviorRelay(value: ProductionModel())
+    let output = PublishRelay<ProductionModel>()
 }
 
 class ProductionCell0: ProductionCell {
@@ -332,7 +332,7 @@ class ProductionCell4: ProductionCell {
     }
 }
 
-class ProductionCell5: ProductionCell {
+class ProductionCell5: ZSTableViewCell {
     
     let imgBtn: UIButton = {
         let button = UIButton()
@@ -399,6 +399,9 @@ class ProductionCell5: ProductionCell {
             make.height.equalTo(30)
         }
     }
+    
+    let input = BehaviorRelay(value: ProductionModel())
+    let output = BehaviorRelay(value: ProductionModel())
     
     override func bindViewModel() {
         super.bindViewModel()
