@@ -93,8 +93,16 @@ class ProductionDetailViewController: ZSViewController {
 }
 
 extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataSource {
+    
+    enum Index: Int, CaseIterable {
+        case description
+        case information
+        case staff
+        case characters
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionedDataSource.count
+        return Index.allCases.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,9 +110,12 @@ extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let index = Index(rawValue: indexPath.section) else {
+            fatalError("Invalid index \(indexPath)")
+        }
         let data = sectionedDataSource[indexPath.section]
-        switch indexPath.section {
-        case 0:
+        switch index {
+        case .description:
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell0.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             cell.expandAction
@@ -114,7 +125,7 @@ extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataS
                 }
                 .disposed(by: cell.disposeBag)
             return cell
-        case 1:
+        case .information:
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell1.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             cell.expandAction
@@ -124,30 +135,31 @@ extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataS
                 }
                 .disposed(by: cell.disposeBag)
             return cell
-        case 2:
+        case .staff:
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell2.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             return cell
-        case 3:
+        case .characters:
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell3.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             return cell
-        default: return UITableViewCell()
         }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let index = Index(rawValue: section) else {
+            fatalError("Invalid index \(section)")
+        }
         let view = ProductionDetailSectionHeaderView()
-        switch section {
-        case 0:
+        switch index {
+        case .description:
             Observable.of("介绍").bind(to: view.dataSource).disposed(by: view.disposeBag)
-        case 1:
+        case .information:
             Observable.of("信息").bind(to: view.dataSource).disposed(by: view.disposeBag)
-        case 2:
+        case .staff:
             Observable.of("制作人员").bind(to: view.dataSource).disposed(by: view.disposeBag)
-        case 3:
+        case .characters:
             Observable.of("角色").bind(to: view.dataSource).disposed(by: view.disposeBag)
-        default: break
         }
         return view
     }

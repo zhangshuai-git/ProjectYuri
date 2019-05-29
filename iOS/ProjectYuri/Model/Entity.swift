@@ -73,6 +73,10 @@ class User: HandyJSON {
     var avatarUrl: String = ""
     var productionList: [UserProduction] = []
     
+    public func mapping(mapper: HelpingMapper) {
+        mapper >>> password2
+    }
+    
     required init(){}
 }
 
