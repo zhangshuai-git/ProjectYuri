@@ -57,7 +57,10 @@ class LoginCell: ZSTableViewCell {
             .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .map{ LoginModel($0) }
+            .map{
+                self.input.value.content = $0
+                return self.input.value
+            }
             .bind(to: output)
             .disposed(by: disposeBag)
     }
