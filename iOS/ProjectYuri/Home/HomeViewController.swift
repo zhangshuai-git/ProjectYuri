@@ -279,7 +279,7 @@ extension HomeViewController {
     func filteredItems(_ index: Int, _ items: [Production]) -> Observable<[Production]> {
         return Observable
             .from(items)
-            .filter{ index == 0 ? true : $0.category == ProductionCategory.allCases[index-1] }
+            .filter{ index == 0 || $0.category == ProductionCategory.allCases[index-1] }
             .toArray()
     }
 }

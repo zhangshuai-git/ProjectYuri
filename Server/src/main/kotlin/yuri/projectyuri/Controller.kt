@@ -155,20 +155,20 @@ class UserAPI {
     @PostMapping
     fun create(@RequestParam param: String, @RequestParam image: MultipartFile): Result<User> {
         val user: User = param.toBean()
-        val fileName: String = image
-                .takeIf { it.size > 0 }
-                ?.let { fileStorageService.storeFile(it) }
-                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
-        val fileDownloadUri: String = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString()
+//        val fileName: String = image
+//                .takeIf { it.size > 0 }
+//                ?.let { fileStorageService.storeFile(it) }
+//                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
+//        val fileDownloadUri: String = ServletUriComponentsBuilder
+//                .fromCurrentContextPath()
+//                .path("/downloadFile/")
+//                .path(fileName)
+//                .toUriString()
         return user
-                .also { it.avatarUrl = fileDownloadUri }
+//                .also { it.avatarUrl = fileDownloadUri }
                 .also { println(it.toJsonString()) }
                 .takeIf { userService.findByUsername(it.username) == null }
-                ?.let { userService.create(it) }
+//                ?.let { userService.create(it) }
                 ?.let { Result(it) }
                 ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
