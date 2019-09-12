@@ -21,7 +21,12 @@
 xcuserdata/
 xcshareddata/
 .metadata/
-*.xcworkspacedataß
+*.xcworkspacedata
+*.xcworkspace
+
+# CocoaPod
+Pods/*
+Podfile.lock
 
 # MacOS
 .DS_Store
