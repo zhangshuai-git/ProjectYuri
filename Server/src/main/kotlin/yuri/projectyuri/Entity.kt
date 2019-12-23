@@ -86,7 +86,7 @@ class User(@Id @GeneratedValue var id: Long) {
 class UserProduction(@EmbeddedId var id: UserProductionID) {
 
     @Embeddable
-    data class UserProductionID(var userID: Long, var productionID: Long): Serializable
+    data class UserProductionID(var userID: Long, var productionID: Long) : Serializable
 
     @ManyToOne(cascade = [CascadeType.MERGE])
     var user: User? = null

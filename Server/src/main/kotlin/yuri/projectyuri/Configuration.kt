@@ -31,16 +31,16 @@ class SwaggerConfig {
 
     @Bean
     fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
-            .select()
-            .apis(RequestHandlerSelectors.any())
-            .paths(Predicates.not(PathSelectors.regex("/error")))
-            .build()
-            .apiInfo(apiInfo())
+        .select()
+        .apis(RequestHandlerSelectors.any())
+        .paths(Predicates.not(PathSelectors.regex("/error")))
+        .build()
+        .apiInfo(apiInfo())
 
     private fun apiInfo(): ApiInfo = ApiInfoBuilder()
-            .title("REST API")
-            .version("0.1")
-            .build()
+        .title("REST API")
+        .version("0.1")
+        .build()
 }
 
 @Component

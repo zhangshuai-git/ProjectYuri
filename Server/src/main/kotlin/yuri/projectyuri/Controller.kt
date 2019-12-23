@@ -24,29 +24,27 @@ class FileAPI {
     @Autowired
     lateinit var fileStorageService: FileStorageService
 
-//    @PostMapping("/uploadFile")
+    //    @PostMapping("/uploadFile")
     fun uploadFile(@RequestParam("image") file: MultipartFile): Result<UploadFileResponse> {
         val fileName = fileStorageService.storeFile(file)
 
         val fileDownloadUri = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString()
+            .fromCurrentContextPath()
+            .path("/downloadFile/")
+            .path(fileName)
+            .toUriString()
 
         return Result(UploadFileResponse(fileName, fileDownloadUri, file.contentType, file.size))
     }
 
-//    @PostMapping("/uploadMultipleFiles")
-    fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> {
-        return Arrays
-                .asList(*files)
-                .stream()
-                .map { file -> uploadFile(file).data }
-                .collect(Collectors.toList())
-                .orEmpty()
-                .let { Result(it) }
-    }
+    //    @PostMapping("/uploadMultipleFiles")
+    fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> =
+        mutableListOf(*files)
+            .stream()
+            .map { file -> uploadFile(file).data }
+            .collect(Collectors.toList())
+            .orEmpty()
+            .let { Result(it) }
 
     @GetMapping("/downloadFile/{fileName:.+}")
     fun downloadFile(@PathVariable fileName: String, request: HttpServletRequest): ResponseEntity<Resource> {
@@ -68,10 +66,10 @@ class FileAPI {
         }
 
         return ResponseEntity
-                .ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.filename + "\"")
-                .body(resource)
+            .ok()
+            .contentType(MediaType.parseMediaType(contentType))
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.filename + "\"")
+            .body(resource)
     }
 
 }
@@ -91,19 +89,19 @@ class ProductionAPI {
     fun createProduction(@RequestParam param: String, @RequestParam image: MultipartFile): Result<Production> {
         val production: Production = param.toBean()
         val fileName: String = image
-                .takeIf { it.size > 0 }
-                ?.let { fileStorageService.storeFile(it) }
-                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
+            .takeIf { it.size > 0 }
+            ?.let { fileStorageService.storeFile(it) }
+            ?: throw CustomException(ErrorEnum.PARAM_ERROR)
         val fileDownloadUri: String = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString()
+            .fromCurrentContextPath()
+            .path("/downloadFile/")
+            .path(fileName)
+            .toUriString()
         return production
-                .also { it.coverUrl = fileDownloadUri }
-                .also { println(it.category) }
-                .let { productionService.create(it) }
-                .let { Result(it) }
+            .also { it.coverUrl = fileDownloadUri }
+            .also { println(it.category) }
+            .let { productionService.create(it) }
+            .let { Result(it) }
     }
 
     @PutMapping
@@ -111,14 +109,14 @@ class ProductionAPI {
         val production: Production = param.toBean()
         val originName: String = production.coverUrl.substring(production.coverUrl.lastIndexOf("/") + 1)
         val fileName: String = image
-                .takeIf { it.size > 0 }
-                ?.let { fileStorageService.storeFile(it, originName) }
-                ?: originName
+            .takeIf { it.size > 0 }
+            ?.let { fileStorageService.storeFile(it, originName) }
+            ?: originName
         val fileDownloadUri: String = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString()
+            .fromCurrentContextPath()
+            .path("/downloadFile/")
+            .path(fileName)
+            .toUriString()
         production.coverUrl = fileDownloadUri
         println(production.category)
 
@@ -129,14 +127,14 @@ class ProductionAPI {
 
     @GetMapping
     fun productionList(
-            @RequestParam(required = false, defaultValue = "") query: String,
-            @RequestParam(required = false, defaultValue = "0") page: Int,
-            @RequestParam(required = false, defaultValue = "10") size: Int
+        @RequestParam(required = false, defaultValue = "") query: String,
+        @RequestParam(required = false, defaultValue = "0") page: Int,
+        @RequestParam(required = false, defaultValue = "10") size: Int
     ): Result<PageResult<Production>> {
         return query
-                .takeIf { query.isNotEmpty() }
-                ?.let { Result(PageResult(productionService.findSearch(it, page, size))) }
-                ?: Result(PageResult(productionService.findAll(page, size)))
+            .takeIf { query.isNotEmpty() }
+            ?.let { Result(PageResult(productionService.findSearch(it, page, size))) }
+            ?: Result(PageResult(productionService.findAll(page, size)))
     }
 
 }
@@ -166,11 +164,11 @@ class UserAPI {
 //                .toUriString()
         return user
 //                .also { it.avatarUrl = fileDownloadUri }
-                .also { println(it.toJsonString()) }
-                .takeIf { userService.findByUsername(it.username) == null }
+            .also { println(it.toJsonString()) }
+            .takeIf { userService.findByUsername(it.username) == null }
 //                ?.let { userService.create(it) }
-                ?.let { Result(it) }
-                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+            ?.let { Result(it) }
+            ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     @GetMapping("{id}")

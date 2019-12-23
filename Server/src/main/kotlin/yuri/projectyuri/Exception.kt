@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest
 import java.text.SimpleDateFormat
 import java.util.*
 
-enum class ErrorEnum (val code: Int, val msg: String) {
+enum class ErrorEnum(val code: Int, val msg: String) {
     UNKNOWN_ERROR(999, "未知错误"),
     PARAM_ERROR(101, "参数错误"),
     RESOURCE_ERROR(102, "资源不存在"),
@@ -19,7 +19,7 @@ enum class ErrorEnum (val code: Int, val msg: String) {
     ENCODE_ERROR(105, "加密错误"),
 }
 
-class CustomException(errorEnum: ErrorEnum): RuntimeException(errorEnum.msg) {
+class CustomException(errorEnum: ErrorEnum) : RuntimeException(errorEnum.msg) {
     var code: Int = errorEnum.code
 }
 
@@ -37,7 +37,7 @@ class GlobalExceptionHandler {
 }
 
 @Component
-class MyErrorAttributes: DefaultErrorAttributes() {
+class MyErrorAttributes : DefaultErrorAttributes() {
 
     override fun getErrorAttributes(request: WebRequest, includeStackTrace: Boolean): Map<String, Any> {
         val map: MutableMap<String, Any> = super.getErrorAttributes(request, includeStackTrace)

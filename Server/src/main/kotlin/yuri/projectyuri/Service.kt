@@ -34,7 +34,8 @@ class FileStorageService {
 
     private val fileStorageLocation: Path
 
-    fun storeFile(file: MultipartFile, fileName: String = file.originalFilename?.let { StringUtils.cleanPath(it) } ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)): String {
+    fun storeFile(file: MultipartFile, fileName: String = file.originalFilename?.let { StringUtils.cleanPath(it) }
+        ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)): String {
         println(fileName)
         try {
             // Check if the file's name contains invalid characters
@@ -80,41 +81,41 @@ class ProductionService {
     @Transactional
     fun create(production: Production): Production {
         return production
-                .takeUnless { productionRepository.existsById(it.id) }
-                ?.let { productionRepository.save(it) }
-                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+            .takeUnless { productionRepository.existsById(it.id) }
+            ?.let { productionRepository.save(it) }
+            ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     @Transactional
     fun update(production: Production): Production {
         return production
-                .takeIf { productionRepository.existsById(it.id) }
-                ?.let { productionRepository.save(it) }
-                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+            .takeIf { productionRepository.existsById(it.id) }
+            ?.let { productionRepository.save(it) }
+            ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     @Transactional
     fun find(id: Long): Production {
         return productionRepository.findById(id).toNullable()
-                ?: throw CustomException(ErrorEnum.RESOURCE_ERROR)
+            ?: throw CustomException(ErrorEnum.RESOURCE_ERROR)
     }
 
     @Transactional
     fun findAll(page: Int, size: Int): Page<Production> {
         return PageRequest.of(page, size)
-                .debug()
-                .let { productionRepository.findAll(it) }
-                .takeIf { it.pageable.pageNumber < it.totalPages }
-                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
+            .debug()
+            .let { productionRepository.findAll(it) }
+            .takeIf { it.pageable.pageNumber < it.totalPages }
+            ?: throw CustomException(ErrorEnum.PARAM_ERROR)
     }
 
     @Transactional
     fun findSearch(query: String, page: Int, size: Int): Page<Production> {
         return PageRequest.of(page, size)
-                .debug()
-                .let { productionRepository.findSearch(query, it) }
-                .takeIf { it.pageable.pageNumber < it.totalPages }
-                ?: throw CustomException(ErrorEnum.PARAM_ERROR)
+            .debug()
+            .let { productionRepository.findSearch(query, it) }
+            .takeIf { it.pageable.pageNumber < it.totalPages }
+            ?: throw CustomException(ErrorEnum.PARAM_ERROR)
     }
 
 }
@@ -127,10 +128,10 @@ class UserService {
 
     fun create(user: User): User {
         return user
-                .takeUnless { userRepository.existsById(it.id) }
-                ?.also { it.password = passwordToHash(it.password) }
-                ?.let { userRepository.save(it) }
-                ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
+            .takeUnless { userRepository.existsById(it.id) }
+            ?.also { it.password = passwordToHash(it.password) }
+            ?.let { userRepository.save(it) }
+            ?: throw CustomException(ErrorEnum.ALREADY_EXISTS_ERROR)
     }
 
     private fun passwordToHash(password: String): String {
@@ -160,7 +161,7 @@ class UserService {
 
     fun findById(id: Long): User {
         return userRepository.findById(id).toNullable()
-                ?: throw CustomException(ErrorEnum.RESOURCE_ERROR)
+            ?: throw CustomException(ErrorEnum.RESOURCE_ERROR)
     }
 
     fun comparePassword(user: User, userInDataBase: User): Boolean {
