@@ -38,13 +38,12 @@ class FileAPI {
     }
 
     //    @PostMapping("/uploadMultipleFiles")
-    fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> =
-        mutableListOf(*files)
-            .stream()
-            .map { file -> uploadFile(file).data }
-            .collect(Collectors.toList())
-            .orEmpty()
-            .let { Result(it) }
+    fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> = mutableListOf(*files)
+        .stream()
+        .map { file -> uploadFile(file).data }
+        .collect(Collectors.toList())
+        .orEmpty()
+        .let { Result(it) }
 
     @GetMapping("/downloadFile/{fileName:.+}")
     fun downloadFile(@PathVariable fileName: String, request: HttpServletRequest): ResponseEntity<Resource> {
