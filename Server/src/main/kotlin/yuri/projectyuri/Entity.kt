@@ -20,7 +20,10 @@ class PageResult<T>(page: Page<T>) {
 class UploadFileResponse(var fileName: String?, var fileDownloadUri: String?, var fileType: String?, var size: Long)
 
 @Entity
-class Production(@Id @GeneratedValue var id: Long) {
+class Production {
+
+    @Id @GeneratedValue
+    var id: Long = 0
 
     var name: String = ""
 
@@ -44,7 +47,10 @@ class Production(@Id @GeneratedValue var id: Long) {
 }
 
 @Entity
-class Characters(@Id @GeneratedValue var id: Long) {
+class Characters {
+
+    @Id @GeneratedValue
+    var id: Long = 0
 
     var avatarUrl: String = ""
 
@@ -54,7 +60,10 @@ class Characters(@Id @GeneratedValue var id: Long) {
 }
 
 @Entity
-class Comment(@Id @GeneratedValue var id: Long) {
+class Comment {
+
+    @Id @GeneratedValue
+    var id: Long = 0
 
     var content: String = ""
 
@@ -67,7 +76,10 @@ class Comment(@Id @GeneratedValue var id: Long) {
 }
 
 @Entity
-class User(@Id @GeneratedValue var id: Long) {
+class User {
+
+    @Id @GeneratedValue
+    var id: Long = 0
 
     var username: String = ""
 
