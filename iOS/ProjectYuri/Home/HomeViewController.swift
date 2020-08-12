@@ -13,7 +13,161 @@ import MJRefresh
 import ZSUtils
 
 class HomeViewController: ZSViewController {
+    
+    let newProductionRequest = BehaviorRelay(value: ProductionRequest())
+    
+    let moreProductionRequest = BehaviorRelay(value: ProductionRequest(page: 1))
+    
+    let dataSource = BehaviorRelay(value: PageResult<Production>())
+    
+    func startEditSearchText() {
+        self.searchBar.showsCancelButton = true
+        self.view.setNeedsUpdateConstraints()
+    }
+    
+    func endEditSearchText() {
+        self.searchBar.showsCancelButton = false
+        self.view.setNeedsUpdateConstraints()
+    }
 
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
+            .distinctUntilChanged()
+            .share(replay: 1)
+        
+        let filteredDataFromGroupBtnAction: Observable<[Production]> = groupBtnAction
+            .skip(1)
+            .flatMap{ [unowned self] in self.filteredItems($0, self.dataSource.value.items) }
+        
+        let filteredDataFromDataSource: Observable<[Production]> = dataSource
+            .skip(2)
+            .map{ $0.items }
+            .flatMap{ [unowned self] in self.filteredItems(self.groupBtn.selectedSegmentIndex, $0) }
+        
+        Observable
+            .merge(filteredDataFromGroupBtnAction, filteredDataFromDataSource)
+            .bind(to: tableView.rx.items) { tableView, row, element in
+                let cell = tableView.zs.dequeueReusableCell(HomeCell.self, for: IndexPath(row: row, section: 0))
+                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        dataSource
+            .skip(2)
+            .map { $0.totalCount == 0 }
+            .distinctUntilChanged()
+            .bind { [unowned self] _ in self.tableView.reloadData(withEmpty: self.emptyView) }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(Production.self)
+            .bind { [unowned self] in self.gotoProductionDetailViewController(Observable.of($0)) }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.textDidBeginEditing
+            .asObservable()
+            .bind { [unowned self] in self.startEditSearchText() }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.textDidEndEditing
+            .asObservable()
+            .bind { [unowned self] in self.endEditSearchText() }
+            .disposed(by: disposeBag)
+        
+        let newData:Observable<Result<PageResult<Production>>> = newProductionRequest
+            .skip(1)
+            .flatMapLatest { NetworkService.shared.searchProductions($0) }
+            .share(replay: 1)
+        
+        let moreData:Observable<Result<PageResult<Production>>> = moreProductionRequest
+            .skip(1)
+            .do(onNext: { [unowned self] in $0.page = self.dataSource.value.currentPage + 1 })
+            .flatMapLatest { NetworkService.shared.searchProductions($0) }
+            .share(replay: 1)
+        
+        newData
+            .map{ _ in false }
+            .asDriver(onErrorJustReturn: false)
+            .drive(tableView.mj_header.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
+        Observable
+            .merge(
+                newData.map{$0.data}.map(footerState),
+                moreData.map{$0.data}.map(footerState)
+            )
+            .startWith(.hidden)
+            .asDriver(onErrorJustReturn: .hidden)
+            .drive(tableView.mj_footer.rx.refreshFooterState)
+            .disposed(by: disposeBag)
+        
+        newData
+            .map{$0.data}
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        moreData
+            .map{$0.data}
+            .map{ [unowned self] in self.dataSource.value + $0 }
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        let searchAction: Observable<String> = searchBar.rx.text.orEmpty
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .share()
+        
+        let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
+            .asObservable()
+            .map{ [unowned self] in self.searchBar.text ?? "" }
+            .share()
+        
+        let footerAction: Observable<String> = tableView.mj_footer.rx.refreshing
+            .asObservable()
+            .map{ [unowned self] in self.searchBar.text ?? "" }
+            .share()
+        
+        let refrashAction: Observable<Void> = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .asObservable()
+            .map { _ in () }
+            .share()
+        
+        Observable
+            .merge(
+                searchBar.rx.searchButtonClicked.asObservable(),
+                searchBar.rx.cancelButtonClicked.asObservable(),
+                tableView.rx.didScroll.asObservable()
+            )
+            .bind { [unowned self] _ in self.searchBar.endEditing(true) }
+            .disposed(by: disposeBag)
+        
+        Observable
+            .merge(searchAction, headerAction)
+            .map{ ProductionRequest(query: $0) }
+            .bind(to: newProductionRequest)
+            .disposed(by: disposeBag)
+        
+        footerAction
+            .do(onNext: { [unowned self] in self.moreProductionRequest.value.query = $0 })
+            .map{ [unowned self] _ in self.moreProductionRequest.value }
+            .bind(to: moreProductionRequest)
+            .disposed(by: disposeBag)
+        
+        refrashAction
+            .flatMap{ [unowned self] _ in Observable.of(self.dataSource.value) }
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
+            .observeOn(MainScheduler.instance)
+            .bind(to: dataSource)
+            .disposed(by: disposeBag)
+        
+        refrashAction
+            .skip(1)
+            .bind(to: tableView.mj_header.rx.beginRefreshing)
+            .disposed(by: disposeBag)
+    }
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.tableFooterView = UIView()
@@ -90,182 +244,6 @@ class HomeViewController: ZSViewController {
             }
         }
         super.updateViewConstraints()
-    }
-    
-    let newProductionRequest = BehaviorRelay(value: ProductionRequest())
-    
-    let moreProductionRequest = BehaviorRelay(value: ProductionRequest(page: 1))
-    
-    let dataSource = BehaviorRelay(value: PageResult<Production>())
-
-    override func bindViewModel() {
-        super.bindViewModel()
-        
-        let groupBtnAction: Observable<Int> = groupBtn.rx.selectedSegmentIndex
-            .distinctUntilChanged()
-            .share(replay: 1)
-        
-        let filteredDataFromGroupBtnAction: Observable<[Production]> = groupBtnAction
-            .skip(1)
-            .flatMap{ [weak self] in
-                self?.filteredItems($0, self?.dataSource.value.items ?? [Production]()) ?? Observable.of([Production]())
-            }
-        
-        let filteredDataFromDataSource: Observable<[Production]> = dataSource
-            .skip(2)
-            .map{ $0.items }
-            .flatMap{ [weak self] in
-                self?.filteredItems(self?.groupBtn.selectedSegmentIndex ?? 0, $0) ?? Observable.of([Production]())
-            }
-        
-        Observable
-            .merge(
-                filteredDataFromGroupBtnAction,
-                filteredDataFromDataSource
-            )
-            .bind(to: tableView.rx.items) { tableView, row, element in
-                let cell = tableView.zs.dequeueReusableCell(HomeCell.self, for: IndexPath(row: row, section: 0))
-                Observable.of(element).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
-                return cell
-            }
-            .disposed(by: disposeBag)
-        
-        dataSource
-            .skip(2)
-            .map { $0.totalCount == 0 }
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] _ in
-                self?.tableView.reloadData(withEmpty: self?.emptyView)
-            })
-            .disposed(by: disposeBag)
-        
-        tableView.rx.modelSelected(Production.self)
-            .subscribe(onNext: { [weak self] in guard let `self` = self else { return }
-                self.gotoProductionDetailViewController(Observable.of($0))
-            })
-            .disposed(by: disposeBag)
-        
-        searchBar.rx.textDidBeginEditing
-            .asObservable()
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.searchBar.showsCancelButton = true
-                self.view.setNeedsUpdateConstraints()
-            }
-            .disposed(by: disposeBag)
-        
-        searchBar.rx.textDidEndEditing
-            .asObservable()
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.searchBar.showsCancelButton = false
-                self.view.setNeedsUpdateConstraints()
-            }
-            .disposed(by: disposeBag)
-        
-        let newData:Observable<Result<PageResult<Production>>> = newProductionRequest
-            .skip(1)
-            .flatMapLatest {
-                NetworkService.shared.searchProductions($0)
-            }
-            .share(replay: 1)
-        
-        let moreData:Observable<Result<PageResult<Production>>> = moreProductionRequest
-            .skip(1)
-            .map{ [weak self] in guard let `self` = self else { return $0 }
-                $0.page = self.dataSource.value.currentPage + 1
-                return $0
-            }
-            .flatMapLatest {
-                NetworkService.shared.searchProductions($0)
-            }
-            .share(replay: 1)
-        
-        newData
-            .map{ _ in false }
-            .asDriver(onErrorJustReturn: false)
-            .drive(tableView.mj_header.rx.isRefreshing)
-            .disposed(by: disposeBag)
-        
-        Observable
-            .merge(
-                newData.map{$0.data}.map(footerState),
-                moreData.map{$0.data}.map(footerState)
-            )
-            .startWith(.hidden)
-            .asDriver(onErrorJustReturn: .hidden)
-            .drive(tableView.mj_footer.rx.refreshFooterState)
-            .disposed(by: disposeBag)
-        
-        newData
-            .map{$0.data}
-            .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        moreData
-            .map{$0.data}
-            .map{ [weak self] in guard let `self` = self else { return $0 }
-                return self.dataSource.value + $0
-            }
-            .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        let searchAction: Observable<String> = searchBar.rx.text.orEmpty
-            .debounce(1.0, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .share()
-        
-        let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
-            .asObservable()
-            .map{ [weak self] in self?.searchBar.text ?? "" }
-            .share()
-        
-        let footerAction: Observable<String> = tableView.mj_footer.rx.refreshing
-            .asObservable()
-            .map{ [weak self] in self?.searchBar.text ?? "" }
-            .share()
-        
-        let refrashAction: Observable<Void> = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .asObservable()
-            .map { _ in () }
-            .share()
-        
-        Observable
-            .merge(
-                searchBar.rx.searchButtonClicked.asObservable(),
-                searchBar.rx.cancelButtonClicked.asObservable(),
-                tableView.rx.didScroll.asObservable()
-            )
-            .bind { [weak self] _ in
-                self?.searchBar.endEditing(true)
-            }
-            .disposed(by: disposeBag)
-        
-        Observable
-            .merge(searchAction, headerAction)
-            .map{ ProductionRequest(query: $0) }
-            .bind(to: newProductionRequest)
-            .disposed(by: disposeBag)
-        
-        footerAction
-            .map{
-                self.moreProductionRequest.value.query = $0
-                return self.moreProductionRequest.value
-            }
-            .bind(to: moreProductionRequest)
-            .disposed(by: disposeBag)
-        
-        refrashAction
-            .flatMap{ [weak self] _ in
-                Observable.of(self?.dataSource.value ?? PageResult())
-            }
-            .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
-            .observeOn(MainScheduler.instance)
-            .bind(to: dataSource)
-            .disposed(by: disposeBag)
-        
-        refrashAction
-            .skip(1)
-            .bind(to: tableView.mj_header.rx.beginRefreshing)
-            .disposed(by: disposeBag)
     }
 }
 
