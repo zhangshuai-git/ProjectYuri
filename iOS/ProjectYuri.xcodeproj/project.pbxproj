@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BEDA8F024E3C8FA0045EE9B /* RxSwift+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDA8EF24E3C8FA0045EE9B /* RxSwift+Extension.swift */; };
 		EC0F9FFE21CB182100EA685A /* ZSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */; };
 		EC1B9D6D21BE84DB000E2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B9D6C21BE84DB000E2C5B /* AppDelegate.swift */; };
 		EC1B9D7421BE84DE000E2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1B9D7321BE84DE000E2C5B /* Assets.xcassets */; };
@@ -131,6 +132,7 @@
 /* Begin PBXFileReference section */
 		2A300FFD16FDCF6D81850714 /* Pods-ProjectYuri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectYuri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri.debug.xcconfig"; sourceTree = "<group>"; };
 		459D6ED540DE527EBF8BDC37 /* Pods-ProjectYuri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectYuri.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectYuri/Pods-ProjectYuri.release.xcconfig"; sourceTree = "<group>"; };
+		5BEDA8EF24E3C8FA0045EE9B /* RxSwift+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+Extension.swift"; sourceTree = "<group>"; };
 		5E5EA96522B8512FF58C6A2F /* Pods_ProjectYuri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectYuri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0F9FFD21CB182100EA685A /* ZSEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSEmptyView.swift; sourceTree = "<group>"; };
 		EC1B9D6921BE84DB000E2C5B /* ProjectYuri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectYuri.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -392,6 +394,7 @@
 				EC1B9D9021BE8796000E2C5B /* MJRefreshFooter+Rx.swift */,
 				ECB6D89621C096CC00017274 /* Moya+HandyJSON+ZSExtension.swift */,
 				ECF0E7382253072400E265B9 /* String+ZSExtension.swift */,
+				5BEDA8EF24E3C8FA0045EE9B /* RxSwift+Extension.swift */,
 			);
 			path = ZSExtension;
 			sourceTree = "<group>";
@@ -1038,6 +1041,7 @@
 				EC64B06E226096AA00961A5E /* TKImageView.m in Sources */,
 				EC5C2EE922718D1E007E036C /* AboutViewController.swift in Sources */,
 				EC64B0A0226096AA00961A5E /* LGPhotoPickerCollectionView.m in Sources */,
+				5BEDA8F024E3C8FA0045EE9B /* RxSwift+Extension.swift in Sources */,
 				EC64B06B226096AA00961A5E /* VPImageCropperViewController.m in Sources */,
 				EC64B06D226096AA00961A5E /* CropImageViewController.m in Sources */,
 				ECE4A593224DDED300A0E69B /* ProductionDetailCell.swift in Sources */,

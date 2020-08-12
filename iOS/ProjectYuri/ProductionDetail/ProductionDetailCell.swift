@@ -23,9 +23,7 @@ class ProductionDetailCell0: ZSExpandableCell {
             .disposed(by: disposeBag)
         
         dataSource
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.isExpanded = $0.isExpanded
-            }
+            .bind { [unowned self] in self.isExpanded = $0.isExpanded }
             .disposed(by: disposeBag)
     }
     
@@ -67,9 +65,7 @@ class ProductionDetailCell1: ZSExpandableCell {
             .disposed(by: disposeBag)
         
         dataSource
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.isExpanded = $0.isExpanded
-            }
+            .bind { [unowned self] in self.isExpanded = $0.isExpanded }
             .disposed(by: disposeBag)
     }
     

@@ -14,6 +14,19 @@ class ProductionDetailHeaderView: ZSView {
     
     let dataSource = PublishRelay<Production>()
     
+    func setData(data: Production) {
+        self.iconImg.sd_setImage(with: URL(string: data.coverUrl), placeholderImage: nil, options: .refreshCached)
+        self.nameLab.text = data.name
+        self.contentLab.text = data.desp
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        dataSource
+            .bind(onNext: self.setData)
+            .disposed(by: disposeBag)
+    }
+    
     let iconImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -64,21 +77,18 @@ class ProductionDetailHeaderView: ZSView {
             make.bottom.lessThanOrEqualTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
     }
+}
+
+class ProductionDetailSectionHeaderView: ZSView {
+    
+    let dataSource = PublishRelay<String>()
     
     override func bindViewModel() {
         super.bindViewModel()
         dataSource
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl), placeholderImage: nil, options: .refreshCached)
-                self.nameLab.text = $0.name
-                self.contentLab.text = $0.desp
-            }
+            .bind(to: titleLab.rx.text)
             .disposed(by: disposeBag)
     }
-
-}
-
-class ProductionDetailSectionHeaderView: ZSView {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -101,14 +111,4 @@ class ProductionDetailSectionHeaderView: ZSView {
             make.height.equalTo(20)
         }
     }
-    
-    let dataSource = PublishRelay<String>()
-    
-    override func bindViewModel() {
-        super.bindViewModel()
-        dataSource
-            .bind(to: titleLab.rx.text)
-            .disposed(by: disposeBag)
-    }
-    
 }

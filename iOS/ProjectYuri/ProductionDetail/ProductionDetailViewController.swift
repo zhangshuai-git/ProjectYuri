@@ -119,20 +119,16 @@ extension ProductionDetailViewController: UITableViewDelegate , UITableViewDataS
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell0.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             cell.expandAction
-                .bind {
-                    data.isExpanded = $0
-                    tableView.reloadSections([indexPath.section], with: .fade)
-                }
+                .do(onNext: { data.isExpanded = $0 })
+                .bind { _ in tableView.reloadSections([indexPath.section], with: .fade) }
                 .disposed(by: cell.disposeBag)
             return cell
         case .information:
             let cell = tableView.zs.dequeueReusableCell(ProductionDetailCell1.self, for: indexPath)
             Observable.of(data).bind(to: cell.dataSource).disposed(by: cell.disposeBag)
             cell.expandAction
-                .bind {
-                    data.isExpanded = $0
-                    tableView.reloadSections([indexPath.section], with: .fade)
-                }
+                .do(onNext: { data.isExpanded = $0 })
+                .bind { _ in tableView.reloadSections([indexPath.section], with: .fade) }
                 .disposed(by: cell.disposeBag)
             return cell
         case .staff:
