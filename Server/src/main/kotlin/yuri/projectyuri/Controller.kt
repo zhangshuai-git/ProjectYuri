@@ -14,6 +14,7 @@ import java.io.IOException
 import java.util.*
 import java.util.stream.Collectors
 import javax.servlet.http.HttpServletRequest
+import kotlin.streams.toList
 
 @RestController
 @Api(tags = ["File"])
@@ -39,10 +40,8 @@ class FileAPI {
 
     //    @PostMapping("/uploadMultipleFiles")
     fun uploadMultipleFiles(@RequestParam("files") files: Array<MultipartFile>): Result<List<UploadFileResponse>> = mutableListOf(*files)
-        .stream()
         .map { file -> uploadFile(file).data }
-        .collect(Collectors.toList())
-        .orEmpty()
+        .toList()
         .let { Result(it) }
 
     @GetMapping("/downloadFile/{fileName:.+}")
