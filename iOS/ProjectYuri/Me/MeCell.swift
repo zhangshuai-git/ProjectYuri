@@ -15,14 +15,16 @@ class MeCell: ZSTableViewCell {
     
     let dataSource = PublishRelay<MeModel>()
 
+    func setData(data: MeModel) {
+        self.titleLab.text = data.title
+        self.detailLab.text = data.desp
+        self.accessoryType = data.selectedAction != nil ? .disclosureIndicator : .none
+    }
+    
     override func bindViewModel() {
         super.bindViewModel()
         dataSource
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.titleLab.text = $0.title
-                self.detailLab.text = $0.desp
-                self.accessoryType = $0.selectedAction != nil ? .disclosureIndicator : .none
-            }
+            .bind(onNext: self.setData)
             .disposed(by: disposeBag)
     }
     

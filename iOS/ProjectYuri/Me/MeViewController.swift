@@ -54,16 +54,10 @@ class MeViewController: ZSViewController {
     }
     
     lazy var dataSource: BehaviorRelay<[MeModel]> = BehaviorRelay(value: [
-        MeModel("添加条目", selectedAction:{ [weak self] in
-            self?.gotoAddProductionViewController()
-        }),
-        MeModel("设置", selectedAction:{ [weak self] in
-            self?.gotoLoginViewController()
-        }),
-        MeModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [weak self] in
-            self?.gotoAboutViewController("关于\(UIDevice.appName() ?? "")")
-        }),
-        ])
+        MeModel("添加条目", selectedAction:{ [unowned self] in self.gotoAddProductionViewController() }),
+        MeModel("设置", selectedAction:{ [unowned self] in self.gotoLoginViewController() }),
+        MeModel("关于\(UIDevice.appName() ?? "")", selectedAction:{ [unowned self] in self.gotoAboutViewController("关于\(UIDevice.appName() ?? "")") }),
+    ])
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -71,9 +65,7 @@ class MeViewController: ZSViewController {
         let topViewTapedAction = UITapGestureRecognizer()
         topView.addGestureRecognizer(topViewTapedAction)
         topViewTapedAction.rx.event
-            .bind{ [weak self] _ in
-                self?.gotoProfileContainerViewController()
-            }
+            .bind{ [unowned self] _ in self.gotoProfileContainerViewController() }
             .disposed(by: disposeBag)
         
         dataSource

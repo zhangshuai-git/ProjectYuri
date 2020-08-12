@@ -53,7 +53,7 @@ class AddProductionViewController: ProductionViewController {
             
         submitResult
             .filter{$0.code == 0}
-            .bind { [weak self] _ in guard let `self` = self else { return }
+            .bind { [unowned self] _ in
                 self.showMessage("添加成功", handler: { 
                     self.navigationController?.popViewController(animated: true)
                 })
@@ -62,7 +62,7 @@ class AddProductionViewController: ProductionViewController {
         
         submitResult
             .filter{$0.code != 0}
-            .bind { [weak self] in guard let `self` = self else { return }
+            .bind { [unowned self] in
                 self.showMessage($0.message)
             }
             .disposed(by: disposeBag)

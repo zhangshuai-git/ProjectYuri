@@ -43,9 +43,7 @@ class AboutViewController: ZSViewController {
     
     lazy var dataSource: BehaviorRelay<[MeModel]> = BehaviorRelay(value: [
         MeModel("当前版本", desp: UIDevice.appVersion()),
-        MeModel("开源组件许可", selectedAction:{ [weak self] in
-            self?.gotoLicenseViewController("开源组件许可")
-        }),
+        MeModel("开源组件许可", selectedAction:{ [unowned self] in self.gotoLicenseViewController("开源组件许可") }),
         ])
     
     override func bindViewModel() {

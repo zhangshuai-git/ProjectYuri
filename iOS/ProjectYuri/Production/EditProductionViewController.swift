@@ -21,22 +21,22 @@ class EditProductionViewController: ProductionViewController {
         super.bindViewModel()
         
         let submitResult: Observable<Result<Production>> = footerView.submittalBtn.rx.tap
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.nameCN.isEmpty
                 if !valid {self.showMessage("请输入作品中文名")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.name.isEmpty
                 if !valid {self.showMessage("请输入作品原名")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.desp.isEmpty
                 if !valid {self.showMessage("请输入作品简介")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = self.input.value.category != nil
                 if !valid {self.showMessage("请选择作品类型")}
                 return valid
@@ -48,7 +48,7 @@ class EditProductionViewController: ProductionViewController {
         
         submitResult
             .filter{$0.code == 0}
-            .bind { [weak self] _ in guard let `self` = self else { return }
+            .bind { [unowned self] _ in
                 self.showMessage("更新成功", handler: {
                     self.navigationController?.popViewController(animated: true)
                 })
@@ -57,7 +57,7 @@ class EditProductionViewController: ProductionViewController {
         
         submitResult
             .filter{$0.code != 0}
-            .bind { [weak self] in guard let `self` = self else { return }
+            .bind { [unowned self] in
                 self.showMessage($0.message)
             }
             .disposed(by: disposeBag)
