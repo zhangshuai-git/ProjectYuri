@@ -81,9 +81,7 @@ class LoginViewController: ZSViewController {
         
         footerView.output
             .filter{$0.signupAction != nil}
-            .bind{ [weak self] _ in guard let `self` = self else { return }
-                self.gotoSignupViewController()
-            }
+            .bind{ [unowned self] _ in self.gotoSignupViewController() }
             .disposed(by: disposeBag)
         
         footerView.output
@@ -94,9 +92,7 @@ class LoginViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.didScroll
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.view.endEditing(true)
-            }
+            .bind{ [unowned self] in self.view.endEditing(true) }
             .disposed(by: disposeBag)
         
     }

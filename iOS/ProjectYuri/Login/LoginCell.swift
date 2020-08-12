@@ -16,14 +16,16 @@ class LoginCell: ZSTableViewCell {
     let input = BehaviorRelay(value: LoginModel())
     let output = PublishRelay<LoginModel>()
     
+    func setData(data: LoginModel) {
+        self.textField.text = data.content
+        self.textField.placeholder = data.detail
+    }
+    
     override func bindViewModel() {
         super.bindViewModel()
         
         input
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.textField.text = $0.content
-                self.textField.placeholder = $0.detail
-            }
+            .bind(onNext: self.setData)
             .disposed(by: disposeBag)
         
         textField.rx.text.orEmpty

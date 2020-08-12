@@ -112,10 +112,8 @@ class ZSExpandableCell: ZSTableViewCell {
     override func bindViewModel() {
         expandBtn.rx.tap
             .asObservable()
-            .map { [weak self] in guard let `self` = self else { return false }
-                self.isExpanded.toggle()
-                return self.isExpanded
-            }
+            .do(onNext: { [unowned self] in self.isExpanded.toggle() })
+            .map { [unowned self] in self.isExpanded }
             .bind(to: expandAction)
             .disposed(by: disposeBag)
     }

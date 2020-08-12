@@ -72,14 +72,14 @@ class ProductionDetailViewController: ZSViewController {
         super.bindViewModel()
         
         rightBarButtonItem?.button?.rx.tap
-            .bind{ [weak self] in guard let `self` = self else { return }
+            .bind{ [unowned self] in
                 self.gotoEditProductionViewController(self.dataSource.asObservable())
                 print("\($0) rightBarButtonItem")
             }
             .disposed(by: disposeBag)
         
         dataSource
-            .bind{ [weak self] in guard let `self` = self else { return }
+            .bind{ [unowned self] in
                 self.visualView.backgroundImg.sd_setImage(with: URL(string: $0.coverUrl))
                 self.title = $0.name
             }

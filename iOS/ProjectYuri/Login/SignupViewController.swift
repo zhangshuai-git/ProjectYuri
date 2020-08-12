@@ -72,9 +72,7 @@ class SignupViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.username = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.username = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 1:
@@ -83,9 +81,7 @@ class SignupViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.password = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.password = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 2:
@@ -94,9 +90,7 @@ class SignupViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.password2 = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.password2 = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 3:
@@ -105,9 +99,7 @@ class SignupViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.nickname = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.nickname = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 4:
@@ -116,9 +108,7 @@ class SignupViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.addProductionImageRequest.value.coverImg = $0.image
-                        }
+                        .bind{ [unowned self] in self.addProductionImageRequest.value.coverImg = $0.image }
                         .disposed(by: cell.disposeBag)
                     return cell
                 default: return UITableViewCell()
@@ -127,44 +117,44 @@ class SignupViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         let submitResult: Observable<Result<User>> = footerView.submittalBtn.rx.tap
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.username.isEmpty
                 if !valid {self.showMessage("请输入用户名")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.password.isEmpty
                 if !valid {self.showMessage("请输入密码")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.password2.isEmpty
                 if !valid {self.showMessage("请再次输入密码")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = self.input.value.password == self.input.value.password2
                 if !valid {self.showMessage("两次输入密码不一致")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = !self.input.value.nickname.isEmpty
                 if !valid {self.showMessage("请输入昵称")}
                 return valid
             }
-            .filter{ [weak self] in guard let `self` = self else { return false }
+            .filter{ [unowned self] in
                 let valid = self.addProductionImageRequest.value.coverImg != nil
                 if !valid {self.showMessage("请上传头像")}
                 return valid
             }
-            .flatMapLatest { [weak self] _ in
-                NetworkService.shared.signup(self?.input.value ?? User(), self?.addProductionImageRequest.value ?? ProductionImageRequest())
+            .flatMapLatest { [unowned self] _ in
+                NetworkService.shared.signup(self.input.value, self.addProductionImageRequest.value)
             }
             .share(replay: 1)
         
         submitResult
             .filter{$0.code == 0}
-            .bind { [weak self] _ in guard let `self` = self else { return }
+            .bind { [unowned self] _ in
                 self.showMessage("添加成功", handler: {
                     self.navigationController?.popViewController(animated: true)
                 })
@@ -173,15 +163,11 @@ class SignupViewController: ZSViewController {
         
         submitResult
             .filter{$0.code != 0}
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.showMessage($0.message)
-            }
+            .bind { [unowned self] in self.showMessage($0.message) }
             .disposed(by: disposeBag)
         
         tableView.rx.didScroll
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.view.endEditing(true)
-            }
+            .bind{ [unowned self] in self.view.endEditing(true) }
             .disposed(by: disposeBag)
         
     }
