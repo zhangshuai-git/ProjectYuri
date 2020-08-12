@@ -13,43 +13,6 @@ import SnapKit
 
 class ProductionViewController: ZSViewController {
     
-    let tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .plain)
-        tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.sectionHeaderHeight = 0
-        tableView.sectionFooterHeight = 0
-        tableView.estimatedRowHeight = 44.0
-        tableView.estimatedSectionHeaderHeight = 24.0
-        tableView.estimatedSectionFooterHeight = 24.0
-        tableView.separatorStyle = .none
-        tableView.zs.register(ProductionCell0.self)
-        tableView.zs.register(ProductionCell1.self)
-        tableView.zs.register(ProductionCell2.self)
-        tableView.zs.register(ProductionCell3.self)
-        return tableView
-    }()
-    
-    let footerView: ProductionFooterView = {
-        let footerView = ProductionFooterView()
-        let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-        footerView.frame = CGRect(x: 0, y: 0, width: 0, height: height)
-        return footerView
-    }()
-
-    override func buildSubViews() {
-        super.buildSubViews()
-        view.addSubview(tableView)
-        tableView.tableFooterView = footerView
-    }
-    
-    override func makeConstraints() {
-        super.makeConstraints()
-        tableView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-        }
-    }
-    
     let input = BehaviorRelay(value: Production())
     let addProductionImageRequest = BehaviorRelay(value: ProductionImageRequest())
     
@@ -74,9 +37,7 @@ class ProductionViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.nameCN = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.nameCN = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 1:
@@ -85,9 +46,7 @@ class ProductionViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.name = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.name = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 2:
@@ -96,9 +55,7 @@ class ProductionViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.desp = $0.content
-                        }
+                        .bind{ [unowned self] in self.input.value.desp = $0.content }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 3:
@@ -107,9 +64,7 @@ class ProductionViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                            self.input.value.category = $0.category
-                        }
+                        .bind{ [unowned self] in self.input.value.category = $0.category }
                         .disposed(by: cell.disposeBag)
                     return cell
                 case 4:
@@ -118,9 +73,7 @@ class ProductionViewController: ZSViewController {
                         .bind(to: cell.input)
                         .disposed(by: cell.disposeBag)
                     cell.output
-                        .bind{ [weak self] in guard let `self` = self else { return }
-                             self.addProductionImageRequest.value.coverImg = $0.image
-                        }
+                        .bind{ [unowned self] in self.addProductionImageRequest.value.coverImg = $0.image }
                         .disposed(by: cell.disposeBag)
                     return cell
                 default: return UITableViewCell()
@@ -129,11 +82,45 @@ class ProductionViewController: ZSViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.didScroll
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.view.endEditing(true)
-            }
+            .bind{ [unowned self] in self.view.endEditing(true) }
             .disposed(by: disposeBag)
         
     }
+    
+    let tableView: UITableView = {
+         let tableView = UITableView(frame: CGRect.zero, style: .plain)
+         tableView.tableFooterView = UIView()
+         tableView.rowHeight = UITableView.automaticDimension
+         tableView.sectionHeaderHeight = 0
+         tableView.sectionFooterHeight = 0
+         tableView.estimatedRowHeight = 44.0
+         tableView.estimatedSectionHeaderHeight = 24.0
+         tableView.estimatedSectionFooterHeight = 24.0
+         tableView.separatorStyle = .none
+         tableView.zs.register(ProductionCell0.self)
+         tableView.zs.register(ProductionCell1.self)
+         tableView.zs.register(ProductionCell2.self)
+         tableView.zs.register(ProductionCell3.self)
+         return tableView
+     }()
+     
+     let footerView: ProductionFooterView = {
+         let footerView = ProductionFooterView()
+         let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+         footerView.frame = CGRect(x: 0, y: 0, width: 0, height: height)
+         return footerView
+     }()
 
+     override func buildSubViews() {
+         super.buildSubViews()
+         view.addSubview(tableView)
+         tableView.tableFooterView = footerView
+     }
+     
+     override func makeConstraints() {
+         super.makeConstraints()
+         tableView.snp.makeConstraints { (make) in
+             make.leading.trailing.top.bottom.equalToSuperview()
+         }
+     }
 }
