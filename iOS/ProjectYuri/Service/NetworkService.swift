@@ -26,8 +26,10 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
+    let moya = MoyaProvider<ProjectYuriAPI>()
+    
     func searchProductions(_ request:ProductionRequest) -> Observable<Result<PageResult<Production>>> {
-        return ProjectYuriProvider.rx
+        return moya.rx
             .request(.findAllProductions(request.toJSON() ?? [:]))
             .trackActivity(indicator)
             .asObservable()
@@ -46,7 +48,7 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
-        return ProjectYuriProvider.rx
+        return moya.rx
             .request(.addProduction(formDataArray, param))
             .trackActivity(indicator)
             .asObservable()
@@ -65,7 +67,7 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
-        return ProjectYuriProvider.rx
+        return moya.rx
             .request(.updateProduction(formDataArray, param))
             .trackActivity(indicator)
             .asObservable()
@@ -84,7 +86,7 @@ class NetworkService {
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
             }
         let param = ["param" : request.toJSONString() ?? ""]
-        return ProjectYuriProvider.rx
+        return moya.rx
             .request(.signup(formDataArray, param))
             .trackActivity(indicator)
             .asObservable()

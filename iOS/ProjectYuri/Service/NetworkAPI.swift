@@ -9,8 +9,6 @@
 import Foundation
 import Moya
 
-let ProjectYuriProvider = MoyaProvider<ProjectYuriAPI>()
-
 public enum ProjectYuriAPI {
     case findAllProductions([String : Any])
     case addProduction([MultipartFormData], [String: Any])
