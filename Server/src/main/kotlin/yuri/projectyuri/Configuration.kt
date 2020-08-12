@@ -24,6 +24,9 @@ fun <T> println(msg: T, tag: String? = null, index: Int = 2) {
     kotlin.io.println("${tag ?: date}  $s  $msg")
 }
 
+/**
+ * http://localhost:8070/swagger-ui.html
+ */
 @Configuration
 @EnableSwagger2
 @ComponentScan("yuri.projectyuri")
