@@ -29,6 +29,19 @@ class HomeViewController: ZSViewController {
         self.searchBar.showsCancelButton = false
         self.view.setNeedsUpdateConstraints()
     }
+    
+    func footerState(_ page: PageResult<Production>?) -> RxMJRefreshFooterState {
+        guard let page = page, page.items.count != 0 else { return .hidden }
+        print("page = \(page.currentPage), totalPage = \(page.totalPage)")
+        return page.totalPage == 0 || page.currentPage < page.totalPage ? .default : .noMoreData
+    }
+    
+    func filteredItems(_ index: Int, _ items: [Production]) -> Observable<[Production]> {
+        return Observable
+            .from(items)
+            .filter{ index == 0 || $0.category == ProductionCategory.allCases[index-1] }
+            .toArray()
+    }
 
     override func bindViewModel() {
         super.bindViewModel()
@@ -244,20 +257,5 @@ class HomeViewController: ZSViewController {
             }
         }
         super.updateViewConstraints()
-    }
-}
-
-extension HomeViewController {
-    func footerState(_ page: PageResult<Production>?) -> RxMJRefreshFooterState {
-        guard let page = page, page.items.count != 0 else { return .hidden }
-        print("page = \(page.currentPage), totalPage = \(page.totalPage)")
-        return page.totalPage == 0 || page.currentPage < page.totalPage ? .default : .noMoreData
-    }
-    
-    func filteredItems(_ index: Int, _ items: [Production]) -> Observable<[Production]> {
-        return Observable
-            .from(items)
-            .filter{ index == 0 || $0.category == ProductionCategory.allCases[index-1] }
-            .toArray()
     }
 }

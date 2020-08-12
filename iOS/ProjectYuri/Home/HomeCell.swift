@@ -14,15 +14,17 @@ class HomeCell: ZSTableViewCell {
     
     let dataSource = BehaviorRelay(value: Production())
     
+    func setData(data: Production) {
+        self.iconImg.sd_setImage(with: URL(string: data.coverUrl), placeholderImage: nil, options: .refreshCached)
+        self.nameLab.text = data.nameCN
+        self.originNameLab.text = data.name
+        self.contentLab.text = data.desp
+        self.categoryLab.text = data.category?.displayValue
+    }
+    
     override func bindViewModel() {
         dataSource
-            .bind { [unowned self] in
-                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl), placeholderImage: nil, options: .refreshCached)
-                self.nameLab.text = $0.nameCN
-                self.originNameLab.text = $0.name
-                self.contentLab.text = $0.desp
-                self.categoryLab.text = $0.category?.displayValue
-            }
+            .bind(onNext: self.setData)
             .disposed(by: disposeBag)
     }
 
