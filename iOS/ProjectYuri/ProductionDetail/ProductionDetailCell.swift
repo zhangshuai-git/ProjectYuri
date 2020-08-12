@@ -12,6 +12,23 @@ import RxCocoa
 
 class ProductionDetailCell0: ZSExpandableCell {
     
+    let dataSource = PublishRelay<ProductionDetailModel<Production>>()
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        dataSource
+            .map{ $0.data }
+            .map{"\($0.desp) \($0.desp) \($0.desp) \($0.desp) \n\n\($0.desp) \($0.desp) \($0.desp) \($0.desp)"}
+            .bind(to:contentLab.rx.text)
+            .disposed(by: disposeBag)
+        
+        dataSource
+            .bind { [weak self] in guard let `self` = self else { return }
+                self.isExpanded = $0.isExpanded
+            }
+            .disposed(by: disposeBag)
+    }
+    
     let contentLab: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
@@ -35,6 +52,9 @@ class ProductionDetailCell0: ZSExpandableCell {
             make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
     }
+}
+
+class ProductionDetailCell1: ZSExpandableCell {
     
     let dataSource = PublishRelay<ProductionDetailModel<Production>>()
     
@@ -42,7 +62,7 @@ class ProductionDetailCell0: ZSExpandableCell {
         super.bindViewModel()
         dataSource
             .map{ $0.data }
-            .map{"\($0.desp) \($0.desp) \($0.desp) \($0.desp) \n\n\($0.desp) \($0.desp) \($0.desp) \($0.desp)"}
+            .map{"\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl)"}
             .bind(to:contentLab.rx.text)
             .disposed(by: disposeBag)
         
@@ -52,10 +72,6 @@ class ProductionDetailCell0: ZSExpandableCell {
             }
             .disposed(by: disposeBag)
     }
-
-}
-
-class ProductionDetailCell1: ZSExpandableCell {
     
     let contentLab: UILabel = {
         let label = UILabel()
@@ -81,27 +97,16 @@ class ProductionDetailCell1: ZSExpandableCell {
             make.edges.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
     }
+}
+
+class ProductionDetailCell2: ZSTableViewCell {
     
     let dataSource = PublishRelay<ProductionDetailModel<Production>>()
     
     override func bindViewModel() {
         super.bindViewModel()
-        dataSource
-            .map{ $0.data }
-            .map{"\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl) \n\n\($0.coverUrl)"}
-            .bind(to:contentLab.rx.text)
-            .disposed(by: disposeBag)
         
-        dataSource
-            .bind { [weak self] in guard let `self` = self else { return }
-                self.isExpanded = $0.isExpanded
-            }
-            .disposed(by: disposeBag)
     }
-    
-}
-
-class ProductionDetailCell2: ZSTableViewCell {
     
     let contentLab: UILabel = {
         let label = UILabel()
@@ -143,6 +148,9 @@ class ProductionDetailCell2: ZSTableViewCell {
             make.size.equalTo(CGSize(width: 15, height: 15))
         }
     }
+}
+
+class ProductionDetailCell3: ZSTableViewCell {
     
     let dataSource = PublishRelay<ProductionDetailModel<Production>>()
     
@@ -150,10 +158,6 @@ class ProductionDetailCell2: ZSTableViewCell {
         super.bindViewModel()
         
     }
-    
-}
-
-class ProductionDetailCell3: ZSTableViewCell {
     
     let moreBtn: UIButton = {
         let button = UIButton()
@@ -223,14 +227,6 @@ class ProductionDetailCell3: ZSTableViewCell {
         
         charactersArray.snp.distributeSudokuViews(fixedLineSpacing: 0, fixedInteritemSpacing: 0, warpCount: 2)
     }
-    
-    let dataSource = PublishRelay<ProductionDetailModel<Production>>()
-    
-    override func bindViewModel() {
-        super.bindViewModel()
-        
-    }
-    
 }
 
 

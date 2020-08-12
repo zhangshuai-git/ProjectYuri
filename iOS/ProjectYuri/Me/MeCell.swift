@@ -13,6 +13,19 @@ import SnapKit
 
 class MeCell: ZSTableViewCell {
     
+    let dataSource = PublishRelay<MeModel>()
+
+    override func bindViewModel() {
+        super.bindViewModel()
+        dataSource
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.titleLab.text = $0.title
+                self.detailLab.text = $0.desp
+                self.accessoryType = $0.selectedAction != nil ? .disclosureIndicator : .none
+            }
+            .disposed(by: disposeBag)
+    }
+    
     let titleLab: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
@@ -42,18 +55,5 @@ class MeCell: ZSTableViewCell {
             make.left.greaterThanOrEqualTo(titleLab.snp.right).offset(10)
             make.right.top.bottom.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
         }
-    }
-    
-    let dataSource = PublishRelay<MeModel>()
-
-    override func bindViewModel() {
-        super.bindViewModel()
-        dataSource
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.titleLab.text = $0.title
-                self.detailLab.text = $0.desp
-                self.accessoryType = $0.selectedAction != nil ? .disclosureIndicator : .none
-            }
-            .disposed(by: disposeBag)
     }
 }

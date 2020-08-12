@@ -11,6 +11,20 @@ import RxCocoa
 import SnapKit
 
 class HomeCell: ZSTableViewCell {
+    
+    let dataSource = BehaviorRelay(value: Production())
+    
+    override func bindViewModel() {
+        dataSource
+            .bind { [unowned self] in
+                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl), placeholderImage: nil, options: .refreshCached)
+                self.nameLab.text = $0.nameCN
+                self.originNameLab.text = $0.name
+                self.contentLab.text = $0.desp
+                self.categoryLab.text = $0.category?.displayValue
+            }
+            .disposed(by: disposeBag)
+    }
 
     let iconImg: UIImageView = {
         let imageView = UIImageView()
@@ -91,20 +105,4 @@ class HomeCell: ZSTableViewCell {
         
     }
     
-    // MARK: - dataSource
-    
-    let dataSource = BehaviorRelay(value: Production())
-    
-    override func bindViewModel() {
-        dataSource
-            .bind { [unowned self] in
-                self.iconImg.sd_setImage(with: URL(string: $0.coverUrl), placeholderImage: nil, options: .refreshCached)
-                self.nameLab.text = $0.nameCN
-                self.originNameLab.text = $0.name
-                self.contentLab.text = $0.desp
-                self.categoryLab.text = $0.category?.displayValue
-            }
-            .disposed(by: disposeBag)
-    }
-
 }

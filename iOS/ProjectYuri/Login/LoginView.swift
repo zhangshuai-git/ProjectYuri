@@ -13,6 +13,11 @@ import SnapKit
 
 class LoginHeaderView: ZSView {
     
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+    }
+    
     let mainView = UIView()
     
     override func buildSubViews() {
@@ -28,14 +33,25 @@ class LoginHeaderView: ZSView {
             make.size.equalTo(CGSize(width: 100, height: 60))
         }
     }
-    
-    override func bindViewModel() {
-        super.bindViewModel()
-        
-    }
 }
 
 class LoginFooterView: ZSView {
+    
+    let input = PublishRelay<LoginModel>()
+    let output = PublishRelay<LoginModel>()
+    
+    override func bindViewModel() {
+        signup.rx.tap
+            .map{LoginModel(signupAction: ())}
+            .bind(to: output)
+            .disposed(by: disposeBag)
+        
+        signin.rx.tap
+            .map{LoginModel(signinAction: ())}
+            .bind(to: output)
+            .disposed(by: disposeBag)
+    }
+    
     let signup: UIButton = {
         let button = UIButton()
         button.setTitle("注册", for: .normal)
@@ -75,20 +91,5 @@ class LoginFooterView: ZSView {
             make.height.equalTo(40)
             make.width.equalTo(signup)
         }
-    }
-    
-    let input = PublishRelay<LoginModel>()
-    let output = PublishRelay<LoginModel>()
-    
-    override func bindViewModel() {
-        signup.rx.tap
-            .map{LoginModel(signupAction: ())}
-            .bind(to: output)
-            .disposed(by: disposeBag)
-        
-        signin.rx.tap
-            .map{LoginModel(signinAction: ())}
-            .bind(to: output)
-            .disposed(by: disposeBag)
     }
 }

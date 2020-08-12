@@ -17,7 +17,30 @@ class ProductionCell: ZSTableViewCell {
 }
 
 class ProductionCell0: ProductionCell {
-
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        input
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.titleLab.text = $0.title
+                self.textField.text = $0.content
+                self.textField.placeholder = $0.detail
+        }
+        .disposed(by: disposeBag)
+        
+        textField.rx.text.orEmpty
+            .skip(1)
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .map{ [weak self] in guard let `self` = self else { return ProductionModel(content: $0) }
+                self.input.value.content = $0
+                return self.input.value
+        }
+        .bind(to: output)
+        .disposed(by: disposeBag)
+    }
+    
     let titleLab: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -36,7 +59,7 @@ class ProductionCell0: ProductionCell {
         textField.leftViewMode = .always
         return textField
     }()
-
+    
     override func buildSubViews() {
         super.buildSubViews()
         contentView.addSubview(titleLab)
@@ -57,6 +80,9 @@ class ProductionCell0: ProductionCell {
         }
         
     }
+}
+
+class ProductionCell1: ProductionCell {
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -64,25 +90,21 @@ class ProductionCell0: ProductionCell {
         input
             .bind{ [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.title
-                self.textField.text = $0.content
-                self.textField.placeholder = $0.detail
-            }
-            .disposed(by: disposeBag)
+                self.textView.text = $0.content
+        }
+        .disposed(by: disposeBag)
         
-        textField.rx.text.orEmpty
+        textView.rx.text.orEmpty
             .skip(1)
             .debounce(1.0, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .map{ [weak self] in guard let `self` = self else { return ProductionModel(content: $0) }
                 self.input.value.content = $0
                 return self.input.value
-            }
-            .bind(to: output)
-            .disposed(by: disposeBag)
+        }
+        .bind(to: output)
+        .disposed(by: disposeBag)
     }
-}
-
-class ProductionCell1: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -120,6 +142,9 @@ class ProductionCell1: ProductionCell {
         }
         
     }
+}
+
+class ProductionCell2: ProductionCell {
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -127,24 +152,23 @@ class ProductionCell1: ProductionCell {
         input
             .bind{ [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.title
-                self.textView.text = $0.content
-            }
-            .disposed(by: disposeBag)
+                if let category = $0.category {
+                    self.groupBtn.selectedSegmentIndex = self.categoryArray.firstIndex(of: category)!
+                }
+        }
+        .disposed(by: disposeBag)
         
-        textView.rx.text.orEmpty
-            .skip(1)
-            .debounce(1.0, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .map{ [weak self] in guard let `self` = self else { return ProductionModel(content: $0) }
-                self.input.value.content = $0
-                return self.input.value
-            }
-            .bind(to: output)
-            .disposed(by: disposeBag)
+        groupBtn.rx.selectedSegmentIndex
+            .filter{ [weak self] in guard let `self` = self else { return false }
+                return $0 >= 0 && $0 < self.categoryArray.count
+        }
+        .map{ [weak self] in guard let `self` = self else { return ProductionModel() }
+            self.input.value.category = self.categoryArray[$0]
+            return self.input.value
+        }
+        .bind(to: output)
+        .disposed(by: disposeBag)
     }
-}
-
-class ProductionCell2: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -179,6 +203,9 @@ class ProductionCell2: ProductionCell {
         }
         
     }
+}
+
+class ProductionCell3: ProductionCell {
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -186,26 +213,27 @@ class ProductionCell2: ProductionCell {
         input
             .bind{ [weak self] in guard let `self` = self else { return }
                 self.titleLab.text = $0.title
-                if let category = $0.category {
-                    self.groupBtn.selectedSegmentIndex = self.categoryArray.firstIndex(of: category)!
-                }
-            }
-            .disposed(by: disposeBag)
+                self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
+        }
+        .disposed(by: disposeBag)
         
-        groupBtn.rx.selectedSegmentIndex
-            .filter{ [weak self] in guard let `self` = self else { return false }
-                return $0 >= 0 && $0 < self.categoryArray.count
-            }
-            .map{ [weak self] in guard let `self` = self else { return ProductionModel() }
-                self.input.value.category = self.categoryArray[$0]
-                return self.input.value
-            }
-            .bind(to: output)
-            .disposed(by: disposeBag)
+        imgBtn.rx.tap
+            .bind { [weak self] in guard let `self` = self else { return }
+                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.output.accept(ProductionModel(image: image))
+                }, withAlbumArray: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.output.accept(ProductionModel(image: image))
+                }, cancel: nil)
+                pm?.maxPhotoCount = 1
+                pm?.showAlert(self.imgBtn)
+        }
+        .disposed(by: disposeBag)
+        
     }
-}
-
-class ProductionCell3: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -246,36 +274,24 @@ class ProductionCell3: ProductionCell {
         
     }
     
+}
+
+class ProductionCell4: ProductionCell {
+    
     override func bindViewModel() {
         super.bindViewModel()
         
         input
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.titleLab.text = $0.title
-                self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
-            }
+            .map{ $0.title }
+            .bind(to: titleLab.rx.text)
             .disposed(by: disposeBag)
         
-        imgBtn.rx.tap
-            .bind { [weak self] in guard let `self` = self else { return }
-                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
-                    let image = images?.first as? UIImage
-                    self.imgBtn.setImage(image, for: .normal)
-                    self.output.accept(ProductionModel(image: image))
-                }, withAlbumArray: { images in
-                    let image = images?.first as? UIImage
-                    self.imgBtn.setImage(image, for: .normal)
-                    self.output.accept(ProductionModel(image: image))
-                }, cancel: nil)
-                pm?.maxPhotoCount = 1
-                pm?.showAlert(self.imgBtn)
-            }
+        addBtn.rx.tap
+            .map{ ProductionModel() }
+            .bind(to: output)
             .disposed(by: disposeBag)
         
     }
-}
-
-class ProductionCell4: ProductionCell {
     
     let titleLab: UILabel = {
         let label = UILabel()
@@ -315,24 +331,62 @@ class ProductionCell4: ProductionCell {
         }
         
     }
+}
+
+class ProductionCell5: ZSTableViewCell {
+    
+    let input = BehaviorRelay(value: ProductionModel())
+    let output = BehaviorRelay(value: ProductionModel())
     
     override func bindViewModel() {
         super.bindViewModel()
         
         input
-            .map{ $0.title }
-            .bind(to: titleLab.rx.text)
-            .disposed(by: disposeBag)
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
+                self.nameTextField.text = $0.title
+                self.cvTextField.text = $0.content
+        }
+        .disposed(by: disposeBag)
         
-        addBtn.rx.tap
-            .map{ ProductionModel() }
-            .bind(to: output)
-            .disposed(by: disposeBag)
+        imgBtn.rx.tap
+            .bind { [weak self] in guard let `self` = self else { return }
+                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.output.value.image = image
+                    self.output.accept(self.output.value)
+                }, withAlbumArray: { images in
+                    let image = images?.first as? UIImage
+                    self.imgBtn.setImage(image, for: .normal)
+                    self.output.value.image = image
+                    self.output.accept(self.output.value)
+                }, cancel: nil)
+                pm?.maxPhotoCount = 1
+                pm?.showAlert(self.imgBtn)
+        }
+        .disposed(by: disposeBag)
         
+        nameTextField.rx.text.orEmpty
+            .skip(1)
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.output.value.title = $0
+                self.output.accept(self.output.value)
+        }
+        .disposed(by: disposeBag)
+        
+        cvTextField.rx.text.orEmpty
+            .skip(1)
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.output.value.content = $0
+                self.output.accept(self.output.value)
+        }
+        .disposed(by: disposeBag)
     }
-}
-
-class ProductionCell5: ZSTableViewCell {
     
     let imgBtn: UIButton = {
         let button = UIButton()
@@ -398,58 +452,5 @@ class ProductionCell5: ZSTableViewCell {
             make.bottom.lessThanOrEqualToSuperview().offset(-10)
             make.height.equalTo(30)
         }
-    }
-    
-    let input = BehaviorRelay(value: ProductionModel())
-    let output = BehaviorRelay(value: ProductionModel())
-    
-    override func bindViewModel() {
-        super.bindViewModel()
-        
-        input
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.imgBtn.sd_setImage(with:  URL(string: $0.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
-                self.nameTextField.text = $0.title
-                self.cvTextField.text = $0.content
-            }
-            .disposed(by: disposeBag)
-        
-        imgBtn.rx.tap
-            .bind { [weak self] in guard let `self` = self else { return }
-                let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
-                    let image = images?.first as? UIImage
-                    self.imgBtn.setImage(image, for: .normal)
-                    self.output.value.image = image
-                    self.output.accept(self.output.value)
-                }, withAlbumArray: { images in
-                    let image = images?.first as? UIImage
-                    self.imgBtn.setImage(image, for: .normal)
-                    self.output.value.image = image
-                    self.output.accept(self.output.value)
-                }, cancel: nil)
-                pm?.maxPhotoCount = 1
-                pm?.showAlert(self.imgBtn)
-            }
-            .disposed(by: disposeBag)
-        
-        nameTextField.rx.text.orEmpty
-            .skip(1)
-            .debounce(1.0, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.output.value.title = $0
-                self.output.accept(self.output.value)
-            }
-            .disposed(by: disposeBag)
-        
-        cvTextField.rx.text.orEmpty
-            .skip(1)
-            .debounce(1.0, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.output.value.content = $0
-                self.output.accept(self.output.value)
-            }
-            .disposed(by: disposeBag)
     }
 }

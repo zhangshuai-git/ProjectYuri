@@ -13,6 +13,31 @@ import SnapKit
 
 class LoginCell: ZSTableViewCell {
     
+    let input = BehaviorRelay(value: LoginModel())
+    let output = PublishRelay<LoginModel>()
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        input
+            .bind{ [weak self] in guard let `self` = self else { return }
+                self.textField.text = $0.content
+                self.textField.placeholder = $0.detail
+            }
+            .disposed(by: disposeBag)
+        
+        textField.rx.text.orEmpty
+            .skip(1)
+            .debounce(1.0, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .map{
+                self.input.value.content = $0
+                return self.input.value
+            }
+            .bind(to: output)
+            .disposed(by: disposeBag)
+    }
+    
     let textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = UIColor.groupTableViewBackground
@@ -37,31 +62,5 @@ class LoginCell: ZSTableViewCell {
             make.top.bottom.leading.trailing.equalTo(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
             make.height.equalTo(30)
         }
-        
-    }
-    
-    let input = BehaviorRelay(value: LoginModel())
-    let output = PublishRelay<LoginModel>()
-    
-    override func bindViewModel() {
-        super.bindViewModel()
-        
-        input
-            .bind{ [weak self] in guard let `self` = self else { return }
-                self.textField.text = $0.content
-                self.textField.placeholder = $0.detail
-            }
-            .disposed(by: disposeBag)
-        
-        textField.rx.text.orEmpty
-            .skip(1)
-            .debounce(1.0, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .map{
-                self.input.value.content = $0
-                return self.input.value
-            }
-            .bind(to: output)
-            .disposed(by: disposeBag)
     }
 }

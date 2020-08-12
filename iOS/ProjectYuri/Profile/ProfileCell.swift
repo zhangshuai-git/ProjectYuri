@@ -10,6 +10,11 @@ import UIKit
 
 class ProfileCell: ZSCollectionViewCell {
     
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+    }
+    
     let iconImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -45,10 +50,5 @@ class ProfileCell: ZSCollectionViewCell {
             make.height.equalTo(15)
             make.top.equalTo(iconImg.snp.bottom)
         }
-    }
-    
-    override func bindViewModel() {
-        super.bindViewModel()
-        
     }
 }
