@@ -341,25 +341,25 @@ class ProductionCell5: ZSTableViewCell {
     let output = BehaviorRelay(value: ProductionModel())
     
     func setData(data: ProductionModel) {
-        self.imgBtn.sd_setImage(with:  URL(string: data.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
+        self.imgBtn.sd_setImage(with: URL(string: data.coverUrl), for: .normal, placeholderImage: UIImage(named: "taking_pictures"), options: .refreshCached, completed: nil)
         self.nameTextField.text = data.title
         self.cvTextField.text = data.content
     }
     
     func selectImage() {
         let pm = MLDPhotoManager(self.imgBtn, withCameraImages: { images in
-                let image = images?.first as? UIImage
-                self.imgBtn.setImage(image, for: .normal)
-                self.output.value.image = image
-                self.output.accept(self.output.value)
-            }, withAlbumArray: { images in
-                let image = images?.first as? UIImage
-                self.imgBtn.setImage(image, for: .normal)
-                self.output.value.image = image
-                self.output.accept(self.output.value)
-            }, cancel: nil)
-            pm?.maxPhotoCount = 1
-            pm?.showAlert(self.imgBtn)
+            let image = images?.first as? UIImage
+            self.imgBtn.setImage(image, for: .normal)
+            self.output.value.image = image
+            self.output.accept(self.output.value)
+        }, withAlbumArray: { images in
+            let image = images?.first as? UIImage
+            self.imgBtn.setImage(image, for: .normal)
+            self.output.value.image = image
+            self.output.accept(self.output.value)
+        }, cancel: nil)
+        pm?.maxPhotoCount = 1
+        pm?.showAlert(self.imgBtn)
     }
     
     override func bindViewModel() {
