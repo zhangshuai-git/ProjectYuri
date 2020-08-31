@@ -1,4 +1,4 @@
-package yuri.projectyuri
+package yuri.projectyuri.domain
 
 import org.springframework.data.domain.Page
 import java.io.Serializable

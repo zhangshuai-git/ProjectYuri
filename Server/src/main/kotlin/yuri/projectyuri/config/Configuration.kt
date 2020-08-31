@@ -1,4 +1,4 @@
-package yuri.projectyuri
+package yuri.projectyuri.config
 
 import com.google.common.base.Predicates
 import org.springframework.context.annotation.Bean
@@ -17,12 +17,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.PropertySource
 import org.springframework.stereotype.Component
 
-
-fun <T> println(msg: T, tag: String? = null, index: Int = 2) {
-    val date: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date())
-    val s: StackTraceElement = Throwable().stackTrace[index]
-    kotlin.io.println("${tag ?: date}  $s  $msg")
-}
 
 /**
  * http://localhost:8070/swagger-ui.html

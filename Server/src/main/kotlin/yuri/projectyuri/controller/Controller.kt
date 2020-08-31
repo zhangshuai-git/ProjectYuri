@@ -1,4 +1,4 @@
-package yuri.projectyuri
+package yuri.projectyuri.controller
 
 import io.swagger.annotations.Api
 import org.slf4j.LoggerFactory
@@ -10,11 +10,17 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
+import yuri.projectyuri.common.CustomException
+import yuri.projectyuri.common.ErrorEnum
+import yuri.projectyuri.domain.*
+import yuri.projectyuri.service.FileStorageService
+import yuri.projectyuri.service.ProductionService
+import yuri.projectyuri.service.UserService
+import yuri.projectyuri.utility.log
+import yuri.projectyuri.utility.toBean
+import yuri.projectyuri.utility.toJsonString
 import java.io.IOException
-import java.util.*
-import java.util.stream.Collectors
 import javax.servlet.http.HttpServletRequest
-import kotlin.streams.toList
 
 @RestController
 @Api(tags = ["File"])
@@ -97,7 +103,7 @@ class ProductionAPI {
             .toUriString()
         return production
             .also { it.coverUrl = fileDownloadUri }
-            .also { println(it.category) }
+            .also { log(it.category) }
             .let { productionService.create(it) }
             .let { Result(it) }
     }
@@ -116,7 +122,7 @@ class ProductionAPI {
             .path(fileName)
             .toUriString()
         production.coverUrl = fileDownloadUri
-        println(production.category)
+        log(production.category)
 
         productionService.update(production)
 
@@ -162,7 +168,7 @@ class UserAPI {
 //                .toUriString()
         return user
 //                .also { it.avatarUrl = fileDownloadUri }
-            .also { println(it.toJsonString()) }
+            .also { log(it.toJsonString()) }
             .takeIf { userService.findByUsername(it.username) == null }
 //                ?.let { userService.create(it) }
             ?.let { Result(it) }

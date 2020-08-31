@@ -1,4 +1,4 @@
-package yuri.projectyuri
+package yuri.projectyuri.common
 
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes
 import org.springframework.stereotype.Component

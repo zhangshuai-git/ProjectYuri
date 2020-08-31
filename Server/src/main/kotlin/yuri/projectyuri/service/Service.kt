@@ -1,4 +1,4 @@
-package yuri.projectyuri
+package yuri.projectyuri.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.Resource
@@ -9,6 +9,16 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.util.StringUtils
 import org.springframework.web.multipart.MultipartFile
+import yuri.projectyuri.common.CustomException
+import yuri.projectyuri.common.ErrorEnum
+import yuri.projectyuri.config.FileStorageProperties
+import yuri.projectyuri.utility.debug
+import yuri.projectyuri.domain.Production
+import yuri.projectyuri.domain.User
+import yuri.projectyuri.utility.log
+import yuri.projectyuri.repository.ProductionRepository
+import yuri.projectyuri.repository.UserRepository
+import yuri.projectyuri.utility.toNullable
 import java.io.IOException
 import java.net.MalformedURLException
 import java.nio.file.Files
@@ -34,7 +44,7 @@ class FileStorageService {
 
     fun storeFile(file: MultipartFile, fileName: String = file.originalFilename?.let { StringUtils.cleanPath(it) }
         ?: throw CustomException(ErrorEnum.FILE_STORAGE_ERROR)): String {
-        println(fileName)
+        log(fileName)
         try {
             // Check if the file's name contains invalid characters
             if (fileName.contains("..")) {
