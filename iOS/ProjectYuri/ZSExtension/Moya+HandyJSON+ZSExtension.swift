@@ -22,7 +22,7 @@ extension ObservableType where E == Response {
 extension Response {
     func mapModel<T: HandyJSON>(_ type: T.Type) -> T {
         let dict:[String : Any] = (try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? [String : Any] ?? [:]
-        print(dict)
+//        print(dict)
         return JSONDeserializer<T>.deserializeFrom(dict: dict) ?? T()
     }
 }

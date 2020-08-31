@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Moya
+import Alamofire
 import SVProgressHUD
 
 class NetworkService {
@@ -26,7 +27,22 @@ class NetworkService {
     
     private let indicator = ActivityIndicator()
     
-    let moya = MoyaProvider<ProjectYuriAPI>()
+    private var manager: Alamofire.SessionManager {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 10
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        return manager
+    }
+
+    private var plugins: [PluginType] {
+        var plugins: [PluginType] = []
+        #if DEBUG
+        plugins.append(NetworkLoggerPlugin(verbose: true))
+        #endif
+        return plugins
+    }
+
+    private lazy var moya = MoyaProvider<ProjectYuriAPI>(manager: manager, plugins: plugins)
     
     func searchProductions(_ request:ProductionRequest) -> Observable<Result<PageResult<Production>>> {
         return moya.rx
@@ -42,7 +58,7 @@ class NetworkService {
     func addProduction(_ request:Production, _ imageRequest: ProductionImageRequest) -> Observable<Result<Production>> {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
-        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
+        let formDataArray: [Moya.MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
             .map{
                 let fileName = "\(formatter.string(from: Date())).jpg"
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
@@ -61,7 +77,7 @@ class NetworkService {
     func updateProduction(_ request:Production, _ imageRequest: ProductionImageRequest) -> Observable<Result<Production>> {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
-        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
+        let formDataArray: [Moya.MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
             .map{
                 let fileName = "\(formatter.string(from: Date())).jpg"
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
@@ -80,7 +96,7 @@ class NetworkService {
     func signup(_ request:User, _ imageRequest: ProductionImageRequest) -> Observable<Result<User>> {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_SSS"
-        let formDataArray: [MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
+        let formDataArray: [Moya.MultipartFormData] = [imageRequest.coverImg?.jpegData(compressionQuality: 0.5)]
             .map{
                 let fileName = "avatar_\(formatter.string(from: Date())).jpg"
                 return MultipartFormData(provider: .data($0 ?? Data()), name: "image", fileName: fileName, mimeType:"image/jpg")
