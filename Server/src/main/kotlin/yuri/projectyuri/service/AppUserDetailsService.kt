@@ -15,11 +15,11 @@ class AppUserDetailsService(val userRepository: UserRepository) : UserDetailsSer
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(s: String): UserDetails {
-        val user: yuri.projectyuri.domain.User? = userRepository.findByUsername(s)
+        val user: yuri.projectyuri.domain.User = userRepository.findByUsername(s)
             ?: throw UsernameNotFoundException("The username $s doesn't exist")
 
         val authorities = ArrayList<GrantedAuthority>()
-        user!!.roles.forEach { role -> authorities.add(SimpleGrantedAuthority(role.roleName)) }
+        user.roles.forEach { role -> authorities.add(SimpleGrantedAuthority(role.roleName)) }
 
         return User(
             user.username,
