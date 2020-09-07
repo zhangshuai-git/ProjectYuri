@@ -82,7 +82,6 @@ class User(@Id @GeneratedValue var id: Long) {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "v_app_users_roles",
         joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
     )
@@ -92,14 +91,12 @@ class User(@Id @GeneratedValue var id: Long) {
 }
 
 @Entity
-@Table(name = "v_app_roles")
-class Role(
-    @Column(name = "role_name")
-    var roleName: String? = null,
+class Role(@Id @GeneratedValue var id: Long) {
 
-    @Column(name = "description")
+    var roleName: String? = null
+
     var description: String? = null
-)
+}
 
 
 @Entity
