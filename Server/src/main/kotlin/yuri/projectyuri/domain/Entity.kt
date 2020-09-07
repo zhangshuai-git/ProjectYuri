@@ -80,7 +80,27 @@ class User(@Id @GeneratedValue var id: Long) {
     @OneToMany(mappedBy = "user")
     var productionList: Collection<UserProduction> = emptyList()
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "v_app_users_roles",
+        joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
+    )
+    var roles: Collection<Role> = emptyList()
+
+
 }
+
+@Entity
+@Table(name = "v_app_roles")
+class Role(
+    @Column(name = "role_name")
+    var roleName: String? = null,
+
+    @Column(name = "description")
+    var description: String? = null
+)
+
 
 @Entity
 class UserProduction(@EmbeddedId var id: UserProductionID) {
