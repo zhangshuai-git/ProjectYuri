@@ -18,39 +18,39 @@ import javax.servlet.http.HttpServletResponse
 
 class JWTAuthorizationFilter(authManager: AuthenticationManager) : BasicAuthenticationFilter(authManager) {
 
-  @Throws(IOException::class, ServletException::class)
-  override fun doFilterInternal(
-          req: HttpServletRequest,
-          res: HttpServletResponse,
-          chain: FilterChain
-  ) {
-    val header = req.getHeader(HEADER_STRING)
-    if (header == null) {
-      chain.doFilter(req, res)
-      return
+    @Throws(IOException::class, ServletException::class)
+    override fun doFilterInternal(
+        req: HttpServletRequest,
+        res: HttpServletResponse,
+        chain: FilterChain
+    ) {
+        val header = req.getHeader(HEADER_STRING)
+        if (header == null) {
+            chain.doFilter(req, res)
+            return
+        }
+        val authentication = getAuthentication(req)
+        SecurityContextHolder.getContext().authentication = authentication
+        chain.doFilter(req, res)
     }
-    val authentication = getAuthentication(req)
-    SecurityContextHolder.getContext().authentication = authentication
-    chain.doFilter(req, res)
-  }
 
-  private fun getAuthentication(request: HttpServletRequest): UsernamePasswordAuthenticationToken? {
-    val token = request.getHeader(HEADER_STRING)
-    return if (token != null) {
-      val claims = Jwts.parser()
-        .setSigningKey(Keys.hmacShaKeyFor(SECRET.toByteArray()))
-        .parseClaimsJws(token)
+    private fun getAuthentication(request: HttpServletRequest): UsernamePasswordAuthenticationToken? {
+        val token = request.getHeader(HEADER_STRING)
+        return if (token != null) {
+            val claims = Jwts.parser()
+                .setSigningKey(Keys.hmacShaKeyFor(SECRET.toByteArray()))
+                .parseClaimsJws(token)
 
-      val user = claims
-        .body
-        .subject
+            val user = claims
+                .body
+                .subject
 
-      val authorities = ArrayList<GrantedAuthority>()
-      (claims.body["auth"] as MutableList<*>).forEach { role -> authorities.add(SimpleGrantedAuthority(role.toString())) }
+            val authorities = ArrayList<GrantedAuthority>()
+            (claims.body["auth"] as MutableList<*>).forEach { role -> authorities.add(SimpleGrantedAuthority(role.toString())) }
 
-      if (user != null) {
-        UsernamePasswordAuthenticationToken(user, null, authorities)
-      } else null
-    } else null
-  }
+            if (user != null) {
+                UsernamePasswordAuthenticationToken(user, null, authorities)
+            } else null
+        } else null
+    }
 }

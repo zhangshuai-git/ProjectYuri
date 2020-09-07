@@ -7,8 +7,8 @@ import yuri.projectyuri.common.SecurityConstants
 
 @Configuration
 class AppConfiguration {
-  @Bean
-  fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
-    return BCryptPasswordEncoder(SecurityConstants.STRENGTH)
-  }
+    @Bean
+    fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
+        return BCryptPasswordEncoder(SecurityConstants.STRENGTH)
+    }
 }

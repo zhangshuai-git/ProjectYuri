@@ -13,18 +13,18 @@ import java.util.*
 @Component
 class AppUserDetailsService(val userRepository: UserRepository) : UserDetailsService {
 
-	@Throws(UsernameNotFoundException::class)
-	override fun loadUserByUsername(s: String): UserDetails {
-		val user: yuri.projectyuri.domain.User? = userRepository.findByUsername(s)
-				?: throw UsernameNotFoundException("The username $s doesn't exist")
+    @Throws(UsernameNotFoundException::class)
+    override fun loadUserByUsername(s: String): UserDetails {
+        val user: yuri.projectyuri.domain.User? = userRepository.findByUsername(s)
+            ?: throw UsernameNotFoundException("The username $s doesn't exist")
 
-		val authorities = ArrayList<GrantedAuthority>()
-		user!!.roles.forEach { role -> authorities.add(SimpleGrantedAuthority(role.roleName)) }
+        val authorities = ArrayList<GrantedAuthority>()
+        user!!.roles.forEach { role -> authorities.add(SimpleGrantedAuthority(role.roleName)) }
 
-		return User(
-			user.username,
-			user.password,
-			authorities
-		)
-	}
+        return User(
+            user.username,
+            user.password,
+            authorities
+        )
+    }
 }

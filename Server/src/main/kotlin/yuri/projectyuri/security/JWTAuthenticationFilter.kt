@@ -22,48 +22,48 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JWTAuthenticationFilter(private val _authenticationManager: AuthenticationManager) :
-	UsernamePasswordAuthenticationFilter() {
+    UsernamePasswordAuthenticationFilter() {
 
-  @Throws(AuthenticationException::class)
-	override fun attemptAuthentication(
-		req: HttpServletRequest,
-		res: HttpServletResponse?
-	): Authentication {
-		return try {
-			val creds = ObjectMapper()
-				.readValue(req.inputStream, User::class.java)
+    @Throws(AuthenticationException::class)
+    override fun attemptAuthentication(
+        req: HttpServletRequest,
+        res: HttpServletResponse?
+    ): Authentication {
+        return try {
+            val creds = ObjectMapper()
+                .readValue(req.inputStream, User::class.java)
 
-			_authenticationManager.authenticate(
-				UsernamePasswordAuthenticationToken(
-					creds.username,
-					creds.password,
-					ArrayList<GrantedAuthority>()
-				)
-			)
-		} catch (e: IOException) {
-			throw RuntimeException(e)
-		}
-	}
+            _authenticationManager.authenticate(
+                UsernamePasswordAuthenticationToken(
+                    creds.username,
+                    creds.password,
+                    ArrayList<GrantedAuthority>()
+                )
+            )
+        } catch (e: IOException) {
+            throw RuntimeException(e)
+        }
+    }
 
-	@Throws(IOException::class, ServletException::class)
-	override fun successfulAuthentication(
-		req: HttpServletRequest,
-		res: HttpServletResponse,
-		chain: FilterChain?,
-		auth: Authentication
-	) {
-		val claims: MutableList<String> = mutableListOf()
-		auth.authorities!!.forEach { a -> claims.add(a.toString()) }
+    @Throws(IOException::class, ServletException::class)
+    override fun successfulAuthentication(
+        req: HttpServletRequest,
+        res: HttpServletResponse,
+        chain: FilterChain?,
+        auth: Authentication
+    ) {
+        val claims: MutableList<String> = mutableListOf()
+        auth.authorities!!.forEach { a -> claims.add(a.toString()) }
 
-		val token = Jwts.builder()
-			.setSubject((auth.principal as User).username)
-			.claim("auth", claims)
-			.setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
-			.signWith(Keys.hmacShaKeyFor(SECRET.toByteArray()), SignatureAlgorithm.HS512)
-			.compact()
-		res.addHeader(HEADER_STRING, token)
+        val token = Jwts.builder()
+            .setSubject((auth.principal as User).username)
+            .claim("auth", claims)
+            .setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
+            .signWith(Keys.hmacShaKeyFor(SECRET.toByteArray()), SignatureAlgorithm.HS512)
+            .compact()
+        res.addHeader(HEADER_STRING, token)
 
-		res.writer.write(claims.toString())
+        res.writer.write(claims.toString())
 
-	}
+    }
 }
