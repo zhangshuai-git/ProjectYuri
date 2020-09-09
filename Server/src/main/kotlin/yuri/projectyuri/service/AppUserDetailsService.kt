@@ -18,8 +18,7 @@ class AppUserDetailsService(val userRepository: UserRepository) : UserDetailsSer
         val user: yuri.projectyuri.domain.User = userRepository.findByUsername(s)
             ?: throw UsernameNotFoundException("The username $s doesn't exist")
 
-        val authorities = ArrayList<GrantedAuthority>()
-        user.roles.forEach { role -> authorities.add(SimpleGrantedAuthority(role.roleName)) }
+        val authorities = user.roles.map { SimpleGrantedAuthority(it.roleName) }
 
         return User(
             user.username,

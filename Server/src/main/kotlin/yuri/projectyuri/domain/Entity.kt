@@ -40,7 +40,6 @@ class Production(@Id @GeneratedValue var id: Long) {
 
     @OneToMany(cascade = [CascadeType.MERGE])
     var commentList: Collection<Comment> = emptyList()
-
 }
 
 @Entity
@@ -63,7 +62,6 @@ class Comment(@Id @GeneratedValue var id: Long) {
 
     @Temporal(TemporalType.TIMESTAMP)
     var date: Date = Date()
-
 }
 
 @Entity
@@ -86,8 +84,6 @@ class User(@Id @GeneratedValue var id: Long) {
         inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
     )
     var roles: Collection<Role> = emptyList()
-
-
 }
 
 @Entity
@@ -116,7 +112,6 @@ class UserProduction(@EmbeddedId var id: UserProductionID) {
 
     @Enumerated(EnumType.STRING)
     var schedule: Schedule? = null
-
 }
 
 enum class Schedule {
@@ -130,41 +125,3 @@ enum class Evaluation {
 enum class ProductionCategory {
     GAME, ANIME, COMIC, NOVEL
 }
-
-
-
-
-//enum class Gender { MALE, FEMALE }
-
-//@Entity
-//class Employee(@Id @GeneratedValue var id: Long) {
-//
-//    @Column
-//    var name: String? = null
-//
-//    @Column
-//    @Enumerated
-//    var gender: Gender? = null
-//
-//    @ManyToOne(cascade = [CascadeType.MERGE])
-//    var department: Department? = null
-//
-//    @Column
-//    @Temporal(TemporalType.DATE)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    var birthDate: Date = Date()
-//
-//    override fun toString(): String = toJsonString()
-//}
-//
-//@Entity
-//class Department(@Id @GeneratedValue var id: Long) {
-//
-//    @Column(unique = true)
-//    var departmentName: String? = null
-//
-//    override fun toString(): String = toJsonString()
-//}
-
-
-
