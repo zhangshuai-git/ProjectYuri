@@ -19,11 +19,7 @@ import javax.servlet.http.HttpServletResponse
 class JWTAuthorizationFilter(authManager: AuthenticationManager) : BasicAuthenticationFilter(authManager) {
 
     @Throws(IOException::class, ServletException::class)
-    override fun doFilterInternal(
-        req: HttpServletRequest,
-        res: HttpServletResponse,
-        chain: FilterChain
-    ) {
+    override fun doFilterInternal(req: HttpServletRequest, res: HttpServletResponse, chain: FilterChain) {
         val header = req.getHeader(HEADER_STRING)
         if (header == null) {
             chain.doFilter(req, res)

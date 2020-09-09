@@ -25,10 +25,7 @@ class JWTAuthenticationFilter(private val _authenticationManager: Authentication
     UsernamePasswordAuthenticationFilter() {
 
     @Throws(AuthenticationException::class)
-    override fun attemptAuthentication(
-        req: HttpServletRequest,
-        res: HttpServletResponse?
-    ): Authentication {
+    override fun attemptAuthentication(req: HttpServletRequest, res: HttpServletResponse?): Authentication {
         return try {
             val creds = ObjectMapper()
                 .readValue(req.inputStream, User::class.java)
@@ -46,12 +43,7 @@ class JWTAuthenticationFilter(private val _authenticationManager: Authentication
     }
 
     @Throws(IOException::class, ServletException::class)
-    override fun successfulAuthentication(
-        req: HttpServletRequest,
-        res: HttpServletResponse,
-        chain: FilterChain?,
-        auth: Authentication
-    ) {
+    override fun successfulAuthentication(req: HttpServletRequest, res: HttpServletResponse, chain: FilterChain?, auth: Authentication) {
         val claims: MutableList<String> = mutableListOf()
         auth.authorities!!.forEach { a -> claims.add(a.toString()) }
 
