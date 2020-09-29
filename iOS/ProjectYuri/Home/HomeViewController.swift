@@ -103,7 +103,7 @@ class HomeViewController: ZSViewController {
         newData
             .map{ _ in false }
             .asDriver(onErrorJustReturn: false)
-            .drive(tableView.mj_header.rx.isRefreshing)
+            .drive(tableView.mj_header!.rx.isRefreshing)
             .disposed(by: disposeBag)
         
         Observable
@@ -113,7 +113,7 @@ class HomeViewController: ZSViewController {
             )
             .startWith(.hidden)
             .asDriver(onErrorJustReturn: .hidden)
-            .drive(tableView.mj_footer.rx.refreshFooterState)
+            .drive(tableView.mj_footer!.rx.refreshFooterState)
             .disposed(by: disposeBag)
         
         newData
@@ -132,12 +132,12 @@ class HomeViewController: ZSViewController {
             .distinctUntilChanged()
             .share()
         
-        let headerAction: Observable<String> = tableView.mj_header.rx.refreshing
+        let headerAction: Observable<String> = tableView.mj_header!.rx.refreshing
             .asObservable()
             .map{ [unowned self] in self.searchBar.text ?? "" }
             .share()
         
-        let footerAction: Observable<String> = tableView.mj_footer.rx.refreshing
+        let footerAction: Observable<String> = tableView.mj_footer!.rx.refreshing
             .asObservable()
             .map{ [unowned self] in self.searchBar.text ?? "" }
             .share()
@@ -177,7 +177,7 @@ class HomeViewController: ZSViewController {
         
         refrashAction
             .skip(1)
-            .bind(to: tableView.mj_header.rx.beginRefreshing)
+            .bind(to: tableView.mj_header!.rx.beginRefreshing)
             .disposed(by: disposeBag)
     }
     
